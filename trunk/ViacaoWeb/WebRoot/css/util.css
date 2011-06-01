@@ -1,0 +1,180 @@
+.pagebanner{
+	display: block;
+	width: 100%;
+	text-align:left;
+	margin-top:5px;
+	margin-bottom: 5px;
+	font-size: 10px;
+	font-weight: bold;
+}
+/*---------ALINHAMENTO DE DADOS TABULARES---------*/
+.ad{/*PARA NÚMEROS E VALORES*/
+	text-align: right;
+}
+.ac{/*PARA DATAS*/
+	text-align: center;
+}
+.ae{/*PARA TEXTOS*/
+	text-align: left;
+}
+/*--------------------------------------*/
+/*---------FORMATAÇÃO DO HEADER---------*/
+.imagem_titulo{
+	width: 144px;
+	height: 22px;
+}
+/*--------------------------------------*/
+/*---------TABELA CONTAINER PARA EVITAR ERROS---------*/
+#tabela_container{
+	width: 100%;
+}
+/*--------------------------------------*/
+/*---------CONTAINER BOTOES---------*/
+#container_botoes{
+	width: 95%;
+	text-align: center;
+}
+/*--------------------------------------*/
+/*----------------MENSAGENS DE AVISO RESULTADO DE CONSULTAS----------------*/
+.container_aviso{
+	width:425px;
+	position: relative;
+	margin:auto;
+    text-align:left;
+    
+}
+.aviso{
+    margin:0;
+}
+.aviso_span{
+    margin:0;
+    font-size:11px;
+     
+}
+.aviso_span a{
+    margin:0;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration:underline;
+    color:#CC0000;
+}
+.aviso_span a:hover{
+    margin:0;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration:underline;
+    color:#000; 
+}
+.aviso_span a visited{
+    margin:0;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration:underline;
+    color:#CC0000;
+}
+.aviso_span a visited:hover{
+    margin:0;
+    font-size:12px;
+    font-weight:bold;
+    text-decoration:underline;
+    color: #000;
+}
+.aviso_ico{
+	display:block;
+    float:left;
+	width:32px;
+	height:28px;
+	margin-right: 10px;
+
+}
+/*--------------------------------------*/
+/*-----------EXIBIÇÃO DE ERROS----------*/
+.erros{
+	font-size: 10px;
+	font-weight: bold;
+	color: #CC0000;
+}
+/*-------------------------------------*/
+/*----------------PAGINAÇÃO----------------*/
+.paginacao{
+	width:20%;
+	height: 20px;
+	margin-top:20px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+}
+.paginacao_container{
+	width:95%;
+	height:20px;
+	text-align: center;
+	vertical-align:top;
+}
+#paginacao{
+	height: 15px;
+	width: 15px;
+	padding: 7px;
+	background-position: center;
+	background-repeat: no-repeat;
+	margin: 5px;
+}
+.primeira{
+	background-image: url("../../imagens/i.p.firstpg.gif");
+}
+.anterior{
+	background-image: url("../../imagens/i.p.prevpg.gif");
+}
+.proxima{
+	background-image: url("../../imagens/i.p.nextpg.gif");
+}
+.ultima{
+	background-image: url("../../imagens/i.p.lastpg.gif");
+}
+.paginacao_combo{
+	font-size:11px;
+	margin-right: -3px;
+	/vertical-align:3px;/*HACK IE 6*/
+}
+/*--------------ERRO.JSP-----------------*/
+.container_erro{
+	width:300px;
+    margin:auto;
+    margin-top:50px;
+}
+span.erro{
+	font-size: 11px;
+}
+.erro{
+    margin:0;
+    /float:left;/*IE 6 HACK*/
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+}
+.erro_ico{
+	display:block;
+    float:left;
+	width:32px;
+	height:32px;
+	margin-right: 10px;
+
+}
+/*--------------CORREÇÃO DE SELECTS-----------------*/
+select{
+	height: 15px;
+}
+/*--------------INFORMAÇÕES-----------------*/
+.info{
+	color: #666;
+}
+/*--------------CORREÇÃO PRIMEIRO BOTÃO DA TABELA-----------------*/
+#primeiro_botao{
+	margin-left: 0px;
+}
+/*--------------COR DE LINHA ALTERNADA DA TABELA-----------------*/
+#row{
+	width: 100%;
+}
+tr.even{
+	background-color:#dcdedd;
+}

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/application_1_4.xsd">
+  <display-name>ViacaoEAR</display-name>
+  <module id="myeclipse.1306931486015">
+    <web>
+      <web-uri>ViacaoWeb.war</web-uri>
+      <context-root>/viacao</context-root>
+    </web>
+  </module>
+  <module id="myeclipse.1306931486312">
+    <ejb>ViacaoEJB.jar</ejb>
+  </module>
+</application>
+

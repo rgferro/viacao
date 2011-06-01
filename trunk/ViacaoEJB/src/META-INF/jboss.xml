@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE jboss PUBLIC "-//JBoss//DTD JBOSS 3.0//EN" "http://www.jboss.org/j2ee/dtd/jboss_3_0.dtd">
+
+<jboss>
+	<enterprise-beans>
+		<session>
+			<ejb-name>Processo</ejb-name>
+			<jndi-name>Processo</jndi-name>
+			<resource-ref>
+				<res-ref-name>jdbc/EstagioDS</res-ref-name>
+				<jndi-name>java:/EstagioDS</jndi-name>
+			</resource-ref>
+		</session>
+	</enterprise-beans>
+</jboss>

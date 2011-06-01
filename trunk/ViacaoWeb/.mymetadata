@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="ViacaoWeb"
+  id="myeclipse.1306931486015"
+  context-root="/viacao"
+  j2ee-spec="1.4"
+  archive="ViacaoWeb.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

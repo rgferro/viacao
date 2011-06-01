@@ -1,0 +1,40 @@
+<form-validation>
+	
+	<global>
+
+        <constant>
+            <constant-name>numeros</constant-name>
+            <constant-value>^\d{5}$</constant-value>
+        </constant>
+
+        <constant>
+            <constant-name>masc-valor-monetario</constant-name>
+            <constant-value>^\d{1,4}(,\d{2})?$</constant-value>
+        </constant>
+
+        <constant>
+            <constant-name>masc-data</constant-name>
+            <constant-value>^\d{2}\/\d{2}\/\d{4}$</constant-value>
+        </constant>
+
+    </global>
+
+<!--		
+	<formset>
+		<form name="cadastrarAplicacaoForm">
+			<field property="aplicacaoVO.nomAplicacao" depends="required">
+				<arg0 key="label.cadastroAplicacaoForm.nomAplicacao"/>
+			</field>
+			<field property="aplicacaoVO.desAplicacao" depends="required">
+				<arg0 key="label.cadastroAplicacaoForm.desAplicacao"/>
+			</field>
+			<field property="aplicacaoVO.url" depends="required">
+				<arg0 key="label.cadastroAplicacaoForm.url"/>
+			</field>
+		</form>
+
+	
+		
+	</formset>
+-->	
+</form-validation>

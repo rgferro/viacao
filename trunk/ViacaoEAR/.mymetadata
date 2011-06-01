@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<enterprise-project
+  version="1.0.0"
+  name="ViacaoEAR"
+  id="myeclipse.1306867878390"
+  j2ee-spec="1.4"
+  archive="ViacaoEAR.ear">
+  <project-modules>
+    <project-module
+      type="WEB"
+      name="ViacaoWeb"
+      id="myeclipse.1306867878125"
+      context-root="/viacao"
+      j2ee-spec="1.4"
+      archive="ViacaoWeb.war">
+      <attributes>
+        <attribute name="webrootdir" value="WebRoot" />
+      </attributes>
+    </project-module>
+    <project-module
+      type="EJB"
+      name="ViacaoEJB"
+      id="myeclipse.1306867878328"
+      j2ee-spec="1.4"
+      archive="ViacaoEJB.jar" />
+  </project-modules>
+</enterprise-project>
+
