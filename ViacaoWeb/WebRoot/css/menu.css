@@ -1,0 +1,236 @@
+/* 
+* @package Menu Drop Down
+* @copyleft (cc) 2008 UNIFACS - Desenvolvimento Web Sites - Turma 04. Alguns direitos reservados
+* @licence http://www.gnu.org/licence/lgpl.html LGPL Licence
+* @author Marcelo Pereira Rodrigues - marcelo@alconta.com.br
+* @author Eduardo de Souza Santos - eduipd@yahoo.com.br
+* @author Alexandre Valverde - alexandre_valverde@hotmail.com
+* @author Danilo Pinheiro - pivamix@hotmail.com
+*/
+
+/* 
+Regra 0 - Definiçao da fonte padrao encontrada na maioria dos computadores
+*/
+body {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+	color: #000000;
+	border: none;
+	font-weight: bold;
+}
+/* 
+Regra 1 - Classe que define as propriedades da barra horizontal
+*/
+ul.menubar{
+  margin: 0px;
+  padding: 0px;
+  background-color: #E4F1F1;
+  
+}
+/* 
+Regra 2 - Classe que define o formato e a posiçao dos submenus (um ao lado do outro)
+*/ 
+ul.menubar .submenu{
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  background-color: #E4F1F1;
+  border: 1px solid #ccc;
+  float:left; 
+  border-color: #0c2c36;
+}
+/* 
+Regra 3 - Classe que define a posiçao e a exibiçao dos menus verticais (inicialmente eles nao sao exibidos)
+*/  
+ul.menubar ul.menu{
+  display: none;
+  position: absolute;
+  margin: 0px;
+}
+/* 
+Regra 4 - Classe que define a aparencia do link da barra horizontal
+*/  
+ul.menubar a{
+  padding: 5px;
+  display:block;
+  height: 20px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  text-decoration: none;
+  padding: 2px;
+  color: #000000;
+}
+/* 
+Regra 5 - Classe que define o tamanho e a cor do menu vertical
+*/ 
+ul.menu, ul.menu ul{
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px solid #ccc;
+  width: 150px;
+  background-color: #FFFFFF; /* IE6 Bug */
+  border-color: #0c2c36;
+} 
+/* 
+Regra 6 - Classe que define o posicionamento dos itens do menu vertical relativos ao submenu
+*/  
+ul.menu li{
+  position: relative;
+  list-style:none;
+  border: 0px;
+}
+/* 
+Regra 7 - Classe que define a aparencia dos links dos itens do menu vertical
+*/  
+ul.menu li a{
+  display: block;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-bottom: 0px;
+  padding: 5px 10px 5px 5px;
+  border-color: #0c2c36;
+}
+/* 
+Regra 8 - Classe que define o posicionamento do menu vertical
+*/   
+ul.menu ul{
+  position: absolute;
+  display: none;
+  left: 149px; /* Definir 1px menor que o tamannho do menu */
+  top: 0px; 
+}
+/* 
+Regra 9 - Classe que define o tamanho e a posiçao do 3o nível de menus
+*/ 
+ul.menu li.submenu {
+  width: 150px; 
+  position: relative; 
+  list-style:none; 
+  border: 0px; 
+  float:none;  
+  z-index: 1000; /* IE7 Bug */
+}
+/* 
+Regra 10 - Classe que define a aparencia dos links do 3o nível de menus
+*/ 
+ul.menu li.submenu a {
+  display: block;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-bottom: 0px;
+  padding: 5px 10px 5px 5px;
+  border-color: #0c2c36;
+}
+
+/* Fixar IE. Invisível para IE Mac \*/
+* html ul.menu li { float: left; height: 1%; } /* Regra 11 */
+* html ul.menu li a { height: 1%; } /* Regra 12 */
+* html ul.menu li.submenu { float: none; height: 1%; } /* Regra 13 */
+* html ul.menu li.submenu a { height: 1%; } /* Regra 14 */
+/* Fim */
+
+/* 
+Regra 15 - Classe que torna os sub-menus invisíveis inicialmente
+*/ 
+ul.menu li.submenu ul { display: none; } 
+/* 
+Regra 16 - Classe que insere a imagem da seta para a direita no menu vertical
+*/  
+ul.menu li.submenu {
+  background-color: transparent;
+  background-image: url(../img/seta_dir.gif);
+  background-repeat: no-repeat;
+  background-position: 93% 50%;
+}
+.bordatabela {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #000000;
+	border: #E4F1F1;
+	border-color: #E4F1F1;
+	border-style: solid;
+	border-top-width: 1px;
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px
+}
+.botao {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-weight: bold;
+	color: #255d4d;
+	background-color: #BFDFDF;
+	text-align: center;
+	vertical-align: middle;
+	height: 16px;
+	width: auto;
+	cursor: hand;
+	border-top: 1px solid #FFFFFF;
+	border-right: 1px solid #255d4d;
+	border-bottom: 1px solid #255d4d;
+	border-left: 1px solid #FFFFFF;
+}
+
+.fundoescuro {
+	background-color: #BFDFDF;
+	font-family: Verdana;
+	font-size: 10px;
+	color: #255d4d;
+	font-weight: bold;
+
+
+}
+
+.fundoclaro {
+	background-color: #E4F1F1;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	color: #255d4d;
+
+}
+.fundobranco {
+	background-color: #FFFFFF;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	font-style: normal;
+	color: #255d4d;
+
+}
+.inputfocus {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #255d4d;
+	border:1px solid #BFDFDF;
+	background-color: #FAF1DC;
+	height: 22px;
+}
+.texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #008B8B;
+	border: none;
+}
+.fundoescurodescricaotime {
+	background-color: #BFDFDF;
+	font-family: Verdana;
+	font-size: 18px;
+	color: #255d4d;
+	font-weight: bold;
+}
+.inputobrigatorio {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #255d4d;
+	border: 1px solid #BFDFDF;
+	background-color: #FFFFCE;
+}
+
+.inputobrigatorio2 {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #255d4d;
+	border: 1px solid #BFDFDF;
+	background-color: #FFFFCE;
+	height: 17px;
+}

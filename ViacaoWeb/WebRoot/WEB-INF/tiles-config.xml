@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+  "-//Apache Software Foundation//DTD Tiles Configuration 1.1//EN"
+  "http://jakarta.apache.org/struts/dtds/tiles-config_1_1.dtd">
+
+<tiles-definitions>
+
+  <!-- Layout Padrao-->
+  <definition name="layout" path="/jsp/common/layout.jsp">
+     <put name="title" value="Programa de Estágio"/>
+     <put name="body"  value=""/>
+  </definition>
+ <definition name="layoutLogado" path="/jsp/common/layoutLogado.jsp">
+     <put name="title" value="Programa de Estágio"/>
+     <put name="body"  value=""/>
+  </definition>
+ 
+ <!-- Tiles for Aplicação -->
+ 
+	<definition name=".cadastrar.aplicacao.alterar" extends="layout">
+		<put name="body" value="/jsp/prcCadastrarAplicacao/alterar.jsp"/>
+	</definition>
+	<definition name=".cadastrar.aplicacao.inserir" extends="layout">
+		<put name="body" value="/jsp/prcCadastrarAplicacao/inserir.jsp"/>
+	</definition>
+	<definition name=".cadastrar.aplicacao.listar" extends="layout">
+		<put name="body" value="/jsp/prcCadastrarAplicacao/listar.jsp"/>
+	</definition>
+
+</tiles-definitions>
