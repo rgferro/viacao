@@ -10,9 +10,11 @@ import javax.sql.DataSource;
 
 import org.apache.log4j.Logger;
 
-import com.acol.exception.DAOException;
-
 import sun.jdbc.rowset.CachedRowSet;
+
+import com.acol.exception.BaseException;
+import com.acol.exception.DAOException;
+import com.acol.services.ServiceLocator;
  
 /** 
  * Super classe para os data command beans que
@@ -33,17 +35,42 @@ public abstract class BaseDB implements IBaseDB{
 	protected static DataSource cachedDS;
 	protected CachedRowSet rowSet = null;
 
-    /**
-	 * Construtor default de BaseDB - Connecta ao se instanciar a classe
-	 * 
-	 * @throws DAOException Em caso de SQLException
-     */
-    protected BaseDB() throws DAOException {
-      	loadBase();
+	/**
+	* Construtor default de BaseDB - Connecta ao se instanciar a classe
+	* 
+	* @throws DAOException Em caso de ocorrência de SQLException
+    */
+	protected BaseDB()throws DAOException {
+		this(true);
 	}
-
-
-    protected abstract void loadBase();
+	
+     /**
+	* Construtor da BaseDB que pode obter ou nao uma connection
+	* quando se instancia
+	* @param connectNow - Se verdadeiro faz com que BaseDB conecte
+	* no instante da instanciação. Se falso, isto poderá ser feito
+	* mais tarde se necessário por meio do método 'conect'
+	* 
+	* @throws DAOException Em caso de ocorrência de SQLException
+	* 
+	*/
+	protected BaseDB(boolean connectNow) throws DAOException { 	
+		try {
+			ServiceLocator locator = ServiceLocator.instance();
+			cachedDS = (DataSource) locator.getService("java:comp/env/jdbc/EstagioDS");	
+			if(connectNow){
+				   connect();
+				}
+		} catch (BaseException e) {
+			logger.fatal("BaseDB(boolean) BaseException", e);
+		} catch (NullPointerException e) {
+			logger.fatal("@@@ NullPointerException: DataSource Nulo @@@", e);
+		} catch (RuntimeException e) {
+			logger.fatal("@@@ RuntimeException: DataSource Nulo @@@", e);
+		} catch (SQLException e) {
+			logger.fatal("Erro no inicializador de BaseDB", e);
+		}
+	}
       
 	/**
 	 * Realiza a conexão.
@@ -160,13 +187,14 @@ public abstract class BaseDB implements IBaseDB{
 	 * @throws DAOException Em caso de ocorrência de SQLException
 	 */
 	public CachedRowSet executeQuery(PreparedStatement p) throws DAOException{
-		try{
-			CachedRowSet rowSet = new CachedRowSet();
+		try {
+			rowSet = new CachedRowSet();
 			rowSet.populate(p.executeQuery());
-			
-			return rowSet;
-		} catch(SQLException e){
-			logger.error("Erro ocorrido ao tentar executar a query.", e);
+			rowSet.beforeFirst();
+		
+			return rowSet; 
+		} catch (SQLException e) {
+			logger.fatal("Erro ao executar query", e);
 			throw new DAOException(e);
 		}
 	}

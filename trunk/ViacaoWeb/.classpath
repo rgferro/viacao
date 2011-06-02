@@ -28,5 +28,13 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xalan.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/xercesImpl.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/acol-commons.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/activation.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/dwr.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/ejb.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/mail.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/ojdbc14.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/rowset.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

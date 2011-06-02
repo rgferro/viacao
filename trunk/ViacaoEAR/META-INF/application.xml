@@ -10,5 +10,26 @@
   <module id="myeclipse.1306931486312">
     <ejb>ViacaoEJB.jar</ejb>
   </module>
+  <module>
+		<java>acol-commons.jar</java>
+	</module>
+	<module>
+		<java>activation.jar</java>
+	</module>
+	<module>
+		<java>ejb.jar</java>
+	</module>
+	<module>
+		<java>log4j-1.2.8.jar</java>
+	</module>
+	<module>
+		<java>mail.jar</java>
+	</module>
+	<module>
+		<java>ojdbc14.jar</java>
+	</module>
+	<module>
+		<java>rowset.jar</java>
+	</module>
 </application>
 

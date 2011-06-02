@@ -7,7 +7,6 @@ import java.sql.Statement;
 
 import sun.jdbc.rowset.CachedRowSet;
 
-
 import com.acol.exception.DAOException;
 
 /**

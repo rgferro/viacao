@@ -31,10 +31,7 @@
 			<field property="aplicacaoVO.url" depends="required">
 				<arg0 key="label.cadastroAplicacaoForm.url"/>
 			</field>
-		</form>
-
-	
-		
+		</form>		
 	</formset>
 -->	
 </form-validation>

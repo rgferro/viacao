@@ -3,13 +3,12 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="com.genuitec.eclipse.j2eedt.core.J2EE14_CONTAINER"/>
-	<classpathentry kind="lib" path="/ViacaoEAR/acol-commons.jar"/>
 	<classpathentry kind="lib" path="/ViacaoEAR/activation.jar"/>
-	<classpathentry kind="lib" path="/ViacaoEAR/dwr.jar"/>
 	<classpathentry kind="lib" path="/ViacaoEAR/ejb.jar"/>
 	<classpathentry kind="lib" path="/ViacaoEAR/log4j-1.2.8.jar"/>
 	<classpathentry kind="lib" path="/ViacaoEAR/mail.jar"/>
 	<classpathentry kind="lib" path="/ViacaoEAR/ojdbc14.jar"/>
 	<classpathentry kind="lib" path="/ViacaoEAR/rowset.jar"/>
+	<classpathentry kind="lib" path="/ViacaoEAR/acol-commons.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

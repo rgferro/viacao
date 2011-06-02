@@ -16,16 +16,10 @@
      <put name="body"  value=""/>
   </definition>
  
- <!-- Tiles for Aplicação -->
+ <!-- Tiles for Exemplo -->
  
-	<definition name=".cadastrar.aplicacao.alterar" extends="layout">
-		<put name="body" value="/jsp/prcCadastrarAplicacao/alterar.jsp"/>
-	</definition>
-	<definition name=".cadastrar.aplicacao.inserir" extends="layout">
-		<put name="body" value="/jsp/prcCadastrarAplicacao/inserir.jsp"/>
-	</definition>
-	<definition name=".cadastrar.aplicacao.listar" extends="layout">
-		<put name="body" value="/jsp/prcCadastrarAplicacao/listar.jsp"/>
+	<definition name=".listar.exemplo" extends="layout">
+		<put name="body" value="/jsp/exemplo/listar.jsp"/>
 	</definition>
 
 </tiles-definitions>
