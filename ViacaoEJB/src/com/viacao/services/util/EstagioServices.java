@@ -17,7 +17,7 @@ public class EstagioServices {
 			ProcessoHome home = (ProcessoHome) EJBHomeFactory.getInstance().lookUpHome(ProcessoHome.class, ProcessoHome.COMP_NAME);
 			return home.create();
 		} catch (Exception e) {
-			logger.fatal("Erro em EstagioServices.getFluxoProcessoBean()", e);
+			logger.fatal("Erro em EstagioServices.getProcessoBean()", e);
 			throw new SystemException (e);
 		}
 	}

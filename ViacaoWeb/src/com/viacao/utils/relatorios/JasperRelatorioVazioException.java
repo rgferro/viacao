@@ -1,4 +1,4 @@
-package com.viacao.relatorios.utils;
+package com.viacao.utils.relatorios;
 
 public class JasperRelatorioVazioException extends Exception {
 

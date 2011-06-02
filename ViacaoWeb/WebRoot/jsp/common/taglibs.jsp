@@ -4,7 +4,7 @@
 <%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%> 
 <%@ taglib uri="/WEB-INF/struts-tiles.tld" prefix="tiles"%> 
 <%@ taglib uri="/WEB-INF/struts-nested.tld" prefix="nested"%>
-<%@ taglib uri="/WEB-INF/c.tld" prefix="c" %>
+<%@ taglib uri="/WEB-INF/c-rt.tld" prefix="c" %>
 <%@ include file="/css/portal.css" %>
 <%@ taglib uri="/WEB-INF/fmt.tld" prefix="fmt"%>
 
