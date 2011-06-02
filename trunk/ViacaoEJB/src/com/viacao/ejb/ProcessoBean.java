@@ -56,10 +56,10 @@ public class ProcessoBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}	
-	public List readExemplo(){ 
+	public List readExemplo(ExemploVO exemploVO){ 
 		try {
 			ExemploDAO dao = new ExemploDAO(); 
-			return dao.readExemplo();
+			return dao.readExemplo(exemploVO);
 		} catch (DAOException e) {
 			logger.fatal("Erro ocorrido no metodo readExemplo :: ProcessoBean", e);
 			throw new EJBException(e);

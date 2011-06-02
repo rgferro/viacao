@@ -14,6 +14,7 @@ public class ExemploForm extends ActionForm{
 	private String task;
 	private String acao;
 	private String seqExemplo;
+	private String busca = "";
 	
 	public void inicializar(){
 		exemploVO = new ExemploVO();
@@ -59,6 +60,14 @@ public class ExemploForm extends ActionForm{
 
 	public void setSeqExemplo(String seqExemplo) {
 		this.seqExemplo = seqExemplo;
+	}
+
+	public String getBusca() {
+		return busca;
+	}
+
+	public void setBusca(String busca) {
+		this.busca = busca;
 	}
 	
 

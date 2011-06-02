@@ -3,8 +3,6 @@ package com.viacao.struts.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.struts.action.ActionError;
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
@@ -21,9 +19,13 @@ public class ExemploAction extends DispatchAction{
 	
 	public ActionForward unspecified(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ExemploForm frm = (ExemploForm)form;
-		frm.inicializar();
 		try{
-			frm.setListaExemplo(EstagioServices.getProcessoBean().readExemplo());
+			ExemploVO exemploVO = null;
+			if(frm.getBusca().equals("pesquisar")){
+				exemploVO = frm.getExemploVO();
+			}
+			frm.inicializar();
+			frm.setListaExemplo(EstagioServices.getProcessoBean().readExemplo(exemploVO));
 		}catch (Exception e) {
 			ActionMessages messages = new ActionMessages();
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
@@ -37,7 +39,6 @@ public class ExemploAction extends DispatchAction{
 		ActionMessages messages = new ActionMessages();
 		try{
 			EstagioServices.getProcessoBean().insertExemplo(frm.getExemploVO());
-			frm.setExemploVO(new ExemploVO());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
 		}catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));

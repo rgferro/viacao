@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.ExemploVO;
 
@@ -25,7 +26,7 @@ public class ExemploDAO extends BaseDB{
 	public void insertExemplo (ExemploVO exemploVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("INSERT INTO exemplo (seq_exemplo, nome_exemplo, descricao) VALUES (seq_exemplo.nextval, ?, ?)");
+		sql.append("INSERT INTO exemplo (seq_exemplo, nome_exemplo, descricao) VALUES (seq_exemplo.nextval, upper(?), upper(?))");
 		
 		try {
 			pstmt = getPstmt(sql.toString());
@@ -103,10 +104,20 @@ public class ExemploDAO extends BaseDB{
 	 * @return
 	 * @throws DAOException
 	 */
-	public List readExemplo() throws DAOException{
+	public List readExemplo(ExemploVO exemploVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("SELECT seq_exemplo, nome_exemplo, descricao FROM exemplo ORDER BY 2");
+		sql.append(" SELECT seq_exemplo, nome_exemplo, descricao FROM exemplo");
+		if(exemploVO != null){
+			sql.append(" WHERE 1=1");
+			if(!StringUtil.empty(exemploVO.getNomeExemplo())){
+				sql.append(" AND nome_exemplo like upper('%"+exemploVO.getNomeExemplo()+"%')");
+			}
+			if(!StringUtil.empty(exemploVO.getDescricao())){
+				sql.append(" AND descricao like upper('%"+exemploVO.getDescricao()+"%')");
+			}
+		}
+		sql.append(" ORDER BY 2");
 		
 		try {
 			pstmt = getPstmt(sql.toString());
@@ -114,12 +125,12 @@ public class ExemploDAO extends BaseDB{
 
 			List listaDeExemplo = new ArrayList();
 			while (next()) {		
-				ExemploVO exemploVO = new ExemploVO();
-				exemploVO.setSeqExemplo(new Integer(rowSet.getString("seq_exemplo")));
-				exemploVO.setNomeExemplo(rowSet.getString("nome_exemplo"));
-				exemploVO.setDescricao(rowSet.getString("descricao"));
+				ExemploVO exeVO = new ExemploVO();
+				exeVO.setSeqExemplo(new Integer(rowSet.getString("seq_exemplo")));
+				exeVO.setNomeExemplo(rowSet.getString("nome_exemplo"));
+				exeVO.setDescricao(rowSet.getString("descricao"));
 				
-				listaDeExemplo.add(exemploVO);
+				listaDeExemplo.add(exeVO);
 			}
 			
 			return listaDeExemplo;			
