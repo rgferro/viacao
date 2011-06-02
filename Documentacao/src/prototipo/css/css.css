@@ -1,0 +1,377 @@
+/* Documento de css para as telas de sistema Intranet */
+
+/* Redefinição de Classes */
+body {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #333333;
+	margin: 0px;
+	padding: 0px;
+}
+
+
+h5 {/* FALTA!!!!!!!!!!!!!! **/
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+}
+
+h5 a:link {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #999999;
+	text-decoration: underline;
+}
+
+h5 a:visited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #999999;
+	text-decoration: underline;
+}
+h5 a:hover {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	color: #999999;
+}
+h5 a:active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	text-decoration: none;
+	color: #999999;
+}
+
+
+a:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #666666;
+	text-decoration: underline;
+}
+a:visited {
+	color: #666666;
+}
+a:hover {
+	color: #CC0000;
+}
+
+a:active {
+	color: #666666;
+}
+
+
+input {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #000000;
+	border: thin none;
+	background-color: #FFFFFF;
+}
+textarea {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #000000;
+	background-color: #FFFFFF;
+	border: thin solid #CCCCCC;
+}
+select {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #000000;
+	height: 10px;
+	border: thin solid #CCCCCC;
+	background-color: #FFFFFF;
+}
+
+/* ID */
+#tabela_principal {
+	margin: 10px;
+	margin-top: 35px;
+	width: 97%; 
+}
+
+.tabela_principal {
+	margin: 10px;
+	margin-top: 35px;
+	width: 97%; 
+}
+
+#tabela_interna {
+	border: 1px solid #666666;
+}
+
+.tabela_interna {
+	border: 1px solid #666666;
+}
+
+#tabela_interna th { /* cabeçalho da tabela */
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #CCCCCC;
+	padding: 3px;
+	text-align: center;
+}
+
+.tabela_interna th { /* cabeçalho da tabela */
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	font-weight: bold;
+	color: #000000;
+	background-color: #CCCCCC;
+	padding: 3px;
+	text-align: center;
+}
+
+#tabela_interna tr {
+	padding: 3px;
+	background-color: #EFEFEF;
+	line-height: 22px;
+}
+
+.tabela_interna tr {
+	padding: 3px;
+	background-color: #EFEFEF;
+	line-height: 22px;
+}
+
+#tabela_interna tr.off{
+	padding: 3px;
+	background-color: #dcdedd; /*cinza médio - para alternar as linhas da tabela*/
+}
+
+.tabela_interna tr.off{
+	padding: 3px;
+	background-color: #dcdedd; /*cinza médio - para alternar as linhas da tabela*/
+}
+
+#tabela_interna tr.link{
+	padding: 3px;
+	background-color: #FFFFFF;
+	color:#CC0000 /*vermelho médio - para alternar link das linhas da tabela*/
+}
+
+.tabela_interna tr.link{
+	padding: 3px;
+	background-color: #FFFFFF;
+	color:#CC0000 /*vermelho médio - para alternar link das linhas da tabela*/
+}
+
+#tabela_botoes {
+	background-color: none;
+	padding: 2px;
+}
+
+.tabela_botoes {
+	background-color: none;
+	padding: 2px;
+}
+
+/*classes*/
+
+.botao{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;	
+	font-weight: bold;
+	text-decoration: none;
+	color: #737373;
+	background-color: #efefef;
+	text-align: center;
+	vertical-align: middle;
+	height: 16px;
+	width: auto;
+	border: 1px solid #737373;
+	cursor: hand;
+	margin: 5px;
+	/*ver como o texto deve ser escrito....primeira letra maiuscula ou tudo...*/	
+}
+
+.estilo {
+	font-weight: bold;
+	}
+	
+.obrigatorio {
+	font-style:italic;
+	font-size:9px;
+	color: #CC0000;
+	}
+
+.destaque {
+	color: #CC0000;
+}
+
+.subtitulo {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	font-weight: bold;
+	color: #666666;
+	text-transform: capitalize;
+}
+
+.noborder, img {border: 0}
+
+.fundo_branco {
+	background-color: #FFFFFF; 
+}
+
+a.destaque:link {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FF0000;
+	text-decoration: underline;
+}
+a.destaque:visited {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FF0000;
+	text-decoration: underline;
+}
+a.destaque:hover {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	text-decoration: none;
+	color: #FF0000;
+}
+a.destaque:active {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	text-decoration: none;
+	color: #FF0000;
+}
+
+
+.menu {
+	font-weight: bold;
+	background-color: #CCCCCC;
+	top: 0px;
+	width: 100%;
+	position: absolute;
+	height: 14px;
+	z-index:1;
+	left: 0px;
+	text-align: left;
+	vertical-align: middle;
+	padding: 4px 4px;
+	word-spacing: 10px;
+	letter-spacing: normal;
+}
+
+a.menu:link {
+	text-decoration: none;
+	color: #333333;
+}
+a.menu:visited {
+	color: #FF0000;
+	text-decoration: none;
+}
+a.menu:hover {
+	text-decoration: underline;
+	color: #FF0000;
+}
+a.menu:active {
+	text-decoration: none;
+	color: #FF0000;
+}
+
+.usuario {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #666666;
+	list-style-type: square;
+	text-align: right;
+	text-indent: 10px;
+
+}
+
+.layer {
+
+	background-color:#efefef;
+	border:1px solid #ababab;
+	border-bottom:1px solid #373737;
+	border-right:1px solid #373737;
+	font:9px Verdana;
+	padding:5px;
+	
+}
+
+.tabbar {
+  margin-top: 1px;
+  border-bottom: 10px solid #666666;
+  padding: 0px 0px;
+  font-family: sans-serif;
+  font-size: 10px;
+}
+.tabbar ul, li {
+  margin: 0;
+  padding: 0;
+  display: inline;
+  list-style: none;
+}
+.tabbar a {
+  padding: 0px 3px;
+  border-top: 1px solid #666666;
+  border-left: 1px solid #666666;
+  border-right: 1px solid #666666;
+  border-bottom: none;
+  background-color: #FFFFFF;
+  color: #666666;
+  text-decoration: none;
+}
+.tabbar a:hover, .tabbar a:active {
+  border-top: 1px solid #666666;
+  border-left: 1px solid #666666;
+  border-right: 1px solid #666666;
+  background-color: #EEEEEE;
+  color: #666666;
+  text-decoration: underline;
+}
+.tabbar a.tabact {
+  border-bottom: 1px solid #666666;
+  background-color: #666666;
+  color: white;
+  font-weight: bold;
+}
+.tabbar a.tabact:hover,
+.tabbar a.tabact:active {
+  background-color: #666666;
+  color: white;
+}
+
+.saudacao {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+	color: #FFFFFF;
+	text-align: center;
+	list-style-type: square;
+	vertical-align: middle;
+}
+
+.descricao {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #666666;
+	list-style-position: outside;
+	list-style-type: square;
+	font-weight: normal;
+	left: 50px;
+	text-align: left;
+	text-indent: 20px;
+}
+
+li {
+	list-style-position: outside;
+	list-style-type: square;
+} 
+
+	.td_label
+{
+    BACKGROUND-COLOR: #E4E4E4;
+}
+
+	.td_dados
+{
+    FONT-WEIGHT: bold;
+}

@@ -14,8 +14,9 @@ function confirmar(acao) {
 	}
 	frm.submit();
 }
-function cancelar() {
+function inicio(flag) {
 	var frm = document.forms[0];
+	frm.busca.value = flag;
 	frm.task.value = "unspecified";
 	frm.submit();
 }
@@ -38,7 +39,7 @@ function getExemplo(acao,seq) {
 <html:hidden name="exemploForm" property="task"/>
 <html:hidden name="exemploForm" property="seqExemplo"/>
 <html:hidden name="exemploForm" property="acao"/>
-
+<html:hidden name="exemploForm" property="busca"/>
 <table width="600" border="0" align="center">
 	<tr>
 		<td>
@@ -58,31 +59,30 @@ function getExemplo(acao,seq) {
 					<td width="40%" class="texto">
 						Descrição do exemplo
 					</td>
-					<td width="20%" colspan="2">&nbsp;</td>
+					<td width="20%" colspan="3">&nbsp;</td>
 				</tr>
 				<tr class="fundoclaro">
+					<c:set var="disable" value="false"/>
 					<logic:equal name="exemploForm" property="acao" value="DELETAR">
 						<td align="center" style="color: #FF0000">
+						<c:set var="disable" value="true"/>
 					</logic:equal>
 					<logic:notEqual name="exemploForm" property="acao" value="DELETAR">
 						<td align="center" style="color: #0000FF">
 					</logic:notEqual>
 						<b><bean:write name="exemploForm" property="acao"/></b></td>
 					<td>
-						<html:text name="exemploForm" size="40" property="exemploVO.nomeExemplo" styleClass="input"/>
+						<html:text name="exemploForm" size="40" property="exemploVO.nomeExemplo" styleClass="input" disabled="${disable}"/>
 					</td>
 					<td>
-						<html:text name="exemploForm" size="40" property="exemploVO.descricao" styleClass="input"/>
+						<html:text name="exemploForm" size="40" property="exemploVO.descricao" styleClass="input" disabled="${disable}"/>
 					</td>
+					<td align="center"><img title="Pesquisar!" src="images/icon_lupa.gif" onclick="javascript: inicio('pesquisar');"></td>
 					<td align="center"><img title="Confirmar!" src="images/confirmar.gif" onclick="javascript: confirmar('<bean:write name="exemploForm" property="acao"/>');"></td>
-					<td align="center"><img title="Cancelar!" src="images/cancelar.gif" onclick="javascript: cancelar();"></td>
+					<td align="center"><img title="Cancelar!" src="images/cancelar.gif" onclick="javascript: inicio('');"></td>
 				</tr>
 			</table>
-			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" >
-				<tr>
-					<td>&nbsp;</td>
-				</tr>
-			</table>		
+			<br>
 			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" class="bordatabela">
 				<tr class="fundoescuro">
 					<td width="10%" height="20" colspan="2">&nbsp;</td>
@@ -91,7 +91,7 @@ function getExemplo(acao,seq) {
 				</tr>
 				<logic:empty name="exemploForm" property="listaExemplo">
 					<tr>
-						<td align="center" colspan="4">Nenhum exemplo foi cadastrado!!</td>
+						<td align="center" colspan="4" class="texto">Nenhum exemplo foi cadastrado!!</td>
 					</tr>
 				</logic:empty>
 				<logic:iterate id="varInterno" name="exemploForm" property="listaExemplo" indexId="index">

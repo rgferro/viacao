@@ -21,7 +21,7 @@ public interface Processo extends EJBObject {
 	
 	public void updateExemplo(ExemploVO exemploVO) throws RemoteException;
 	
-	public List readExemplo() throws RemoteException;
+	public List readExemplo(ExemploVO exemploVO) throws RemoteException;
 	
 	public ExemploVO getExemplo(String seqExemplo) throws RemoteException;
 }
