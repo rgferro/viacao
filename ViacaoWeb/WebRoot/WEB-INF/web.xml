@@ -28,5 +28,26 @@
   	<remote>com.viacao.interfaces.Processo</remote>
   	<ejb-link>Processo</ejb-link>
   </ejb-ref>
+  <ejb-ref>
+  	<ejb-ref-name>ejb/ManterCadastro</ejb-ref-name>
+  	<ejb-ref-type>Session</ejb-ref-type>
+  	<home>com.viacao.interfaces.ManterCadastroHome</home>
+  	<remote>com.viacao.interfaces.ManterCadastro</remote>
+  	<ejb-link>ManterCadastro</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+  	<ejb-ref-name>ejb/Passagem</ejb-ref-name>
+  	<ejb-ref-type>Session</ejb-ref-type>
+  	<home>com.viacao.interfaces.PassagemHome</home>
+  	<remote>com.viacao.interfaces.Passagem</remote>
+  	<ejb-link>Passagem</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+  	<ejb-ref-name>ejb/Viagem</ejb-ref-name>
+  	<ejb-ref-type>Session</ejb-ref-type>
+  	<home>com.viacao.interfaces.ViagemHome</home>
+  	<remote>com.viacao.interfaces.Viagem</remote>
+  	<ejb-link>Viagem</ejb-link>
+  </ejb-ref>
 </web-app>
 

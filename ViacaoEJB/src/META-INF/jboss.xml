@@ -11,5 +11,37 @@
 				<jndi-name>java:/EstagioDS</jndi-name>
 			</resource-ref>
 		</session>
+		<session>
+			<ejb-name>Cliente</ejb-name>
+			<jndi-name>Cliente</jndi-name>
+			<resource-ref>
+				<res-ref-name>jdbc/EstagioDS</res-ref-name>
+				<jndi-name>java:/EstagioDS</jndi-name>
+			</resource-ref>
+		</session>
+		<session>
+			<ejb-name>ManterCadastro</ejb-name>
+			<jndi-name>ManterCadastro</jndi-name>
+			<resource-ref>
+				<res-ref-name>jdbc/EstagioDS</res-ref-name>
+				<jndi-name>java:/EstagioDS</jndi-name>
+			</resource-ref>
+		</session>
+		<session>
+			<ejb-name>Passagem</ejb-name>
+			<jndi-name>Passagem</jndi-name>
+			<resource-ref>
+				<res-ref-name>jdbc/EstagioDS</res-ref-name>
+				<jndi-name>java:/EstagioDS</jndi-name>
+			</resource-ref>
+		</session>
+		<session>
+			<ejb-name>Viagem</ejb-name>
+			<jndi-name>Viagem</jndi-name>
+			<resource-ref>
+				<res-ref-name>jdbc/EstagioDS</res-ref-name>
+				<jndi-name>java:/EstagioDS</jndi-name>
+			</resource-ref>
+		</session>
 	</enterprise-beans>
 </jboss>
