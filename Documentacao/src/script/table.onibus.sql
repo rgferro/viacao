@@ -1,0 +1,53 @@
+drop table onibus;
+-- Create table
+create table ONIBUS
+(
+  SEQ_ONIBUS   NUMBER(8) not null,
+  TIPO         VARCHAR2(20),
+  EMPRESA        VARCHAR2(20),
+  PLACA        VARCHAR2(20),
+  QTD_POLTRONA NUMBER(3)
+)
+tablespace SYSTEM
+  pctfree 10
+  pctused 40
+  initrans 1
+  maxtrans 255
+  storage
+  (
+    initial 16K
+    next 16K
+    minextents 1
+    maxextents 505
+    pctincrease 50
+  );
+-- Add comments to the table 
+comment on table ONIBUS
+  is 'Entidade que representa um ONIBUS.';
+-- Add comments to the columns 
+comment on column ONIBUS.SEQ_ONIBUS
+  is 'ID (chave primária) do ONIBUS. Gerado através de Oracle Sequence.';
+comment on column ONIBUS.TIPO
+  is 'TIPO DO ONIBUS';
+comment on column ONIBUS.EMPRESA
+  is 'MARCA DO ONIBUS.';
+comment on column ONIBUS.PLACA
+  is 'PLACA DO ONIBUS.';
+comment on column ONIBUS.QTD_POLTRONA
+  is 'QUANTIDADE DE POLTRONAS DO ONIBUS.';
+-- Create/Recreate primary, unique and foreign key constraints 
+alter table ONIBUS
+  add constraint PK_ONIBUS primary key (SEQ_ONIBUS)
+  using index 
+  tablespace SYSTEM
+  pctfree 10
+  initrans 2
+  maxtrans 255
+  storage
+  (
+    initial 16K
+    next 16K
+    minextents 1
+    maxextents 505
+    pctincrease 50
+  );
