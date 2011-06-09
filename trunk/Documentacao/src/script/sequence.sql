@@ -77,3 +77,19 @@ maxvalue 999999999999999999999999999
 start with 367
 increment by 1
 cache 20;
+
+-- Create sequence 
+create sequence SEQ_FISICA
+minvalue 1
+maxvalue 999999999999999999999999999
+start with 367
+increment by 1
+cache 20;
+
+-- Create sequence 
+create sequence SEQ_JURIDICA
+minvalue 1
+maxvalue 999999999999999999999999999
+start with 367
+increment by 1
+cache 20;
