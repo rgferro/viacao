@@ -17,17 +17,8 @@
  <tr>
  <td>
 <ul id="menu_dropdown" class="menubar">
-   <li class="submenu"><a href="<%=request.getContextPath()%>/gerenciarTimes.do?task=listarTodosOsTimes">Times</a>
-      <ul class="menu">
-      </ul>
+   <li class="submenu"><a href="<%=request.getContextPath()%>/login.do">Login</a>
   </li>
-   <li class="submenu"><a href="<%=request.getContextPath()%>/mostrarTimeCampeonatoMenu.do">Campeonatos</a>
-      <ul class="menu">
-      </ul>
-  </li>
-  <li class="submenu"><a href="<%=request.getContextPath()%>/gerenciarConta.do?task=iniciarPagLogin">Logar</a>
-      <ul class="menu">                                                        
-      </ul>
  </ul>
 </td>
 </tr>
