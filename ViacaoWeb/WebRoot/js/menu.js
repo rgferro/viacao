@@ -103,12 +103,12 @@ function temas(tema) {
        case 4 : // verde
 		   cor_Menu_Ativa = 'url(cabecalho/fundoclaro.jpg)';
 		   cor_Menu_NaoAtiva = 'url(cabecalho/fundo.jpg)'; 
-		   cor_Fonte_Menu_Ativa = '#0d232a';
-		   cor_Fonte_Menu_NaoAtiva = '#0d232a';
+		   cor_Fonte_Menu_Ativa = '#FFFFFF';
+		   cor_Fonte_Menu_NaoAtiva = '#FFFFFF';
 		   cor_Submenu_Ativa = 'url(cabecalho/fundoclaro.jpg)';
 		   cor_Submenu_NaoAtiva = 'url(cabecalho/fundo.jpg)';
-		   cor_Fonte_Submenu_Ativa = '#0d232a';
-		   cor_Fonte_Submenu_NaoAtiva = '#0d232a';
+		   cor_Fonte_Submenu_Ativa = '#FFFFFF';
+		   cor_Fonte_Submenu_NaoAtiva = '#FFFFFF';
            break
        case 5 : // vermelho
 		   cor_Menu_Ativa = '#000000';
