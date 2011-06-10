@@ -3,7 +3,6 @@ drop table cliente;
 create table CLIENTE
 (
   SEQ_CLIENTE     NUMBER(8) not null,
-  SEQ_PESSOA      NUMBER(8),
   SEQ_ENDERECO_FK NUMBER(8),
   LOGIN           VARCHAR2(20),
   SENHA           VARCHAR2(20),
@@ -27,8 +26,6 @@ comment on table CLIENTE
   is 'Entidade que representa um CLIENTE.';
 comment on column CLIENTE.SEQ_CLIENTE
   is 'ID (chave primária) do CLIENTE. Gerado através de Oracle Sequence.';
-comment on column CLIENTE.SEQ_PESSOA
-  is 'ID (chave primária) de juridica ou pessoa, gerado por sequence.';
 comment on column CLIENTE.SEQ_ENDERECO_FK
   is 'ID (chave primária) de endereco, gerado por sequence.';
 comment on column CLIENTE.LOGIN

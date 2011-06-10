@@ -3,7 +3,7 @@ drop table JURIDICA;
 create table JURIDICA
 (
   SEQ_JURIDICA       NUMBER(8) not null,
-  SEQ_PESSOA_FK      NUMBER(8),
+  SEQ_CLIENTE_FK      NUMBER(8),
   RAZAO_SOCIAL       VARCHAR2(50),
   NOM_FANTASIA       VARCHAR2(50),
   NOM_RESPONSAVEL    VARCHAR2(50),
@@ -28,7 +28,7 @@ comment on table JURIDICA
   is 'Entidade que representa uma pessoa juridica.';
 comment on column JURIDICA.SEQ_JURIDICA
   is 'ID (chave primária) da JURIDICA, gerado por sequence.';
-comment on column JURIDICA.SEQ_PESSOA_FK
+comment on column JURIDICA.SEQ_CLIENTE_FK
   is 'ID (chave secundaria) da FISICA, gerado por sequence.';
 comment on column JURIDICA.RAZAO_SOCIAL
   is 'Razao social de uma pessoa juridica.';
@@ -57,7 +57,7 @@ alter table JURIDICA
     pctincrease 50
   );
 alter table JURIDICA
-  add constraint FK_JURIDICA_CLIENTE foreign key (SEQ_PESSOA_FK)
+  add constraint FK_JURIDICA_CLIENTE foreign key (SEQ_CLIENTE_FK)
   references CLIENTE (SEQ_CLIENTE) on delete cascade;
   
 -- Create/Recreate indexes 
