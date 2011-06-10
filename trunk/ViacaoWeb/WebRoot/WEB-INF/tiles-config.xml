@@ -22,4 +22,19 @@
 		<put name="body" value="/jsp/exemplo/listar.jsp"/>
 	</definition>
 
+<!-- Tiles for Manter Onibus -->
+	
+	<definition name=".onibus.listar" extends="layout">
+		<put name="body" value="jsp/viacao/manutencao/onibus/listar.jsp"/>
+	</definition>
+	<definition name=".onibus.deletar" extends="layout">
+		<put name="body" value="jsp/viacao/manutencao/onibus/deletar.jsp"/>
+	</definition>
+	<definition name=".onibus.alterar" extends="layout">
+		<put name="body" value="jsp/viacao/manutencao/onibus/alterar.jsp"/>
+	</definition>
+	<definition name=".onibus.inserir" extends="layout">
+		<put name="body" value="jsp/viacao/manutencao/onibus/inserir.jsp"/>
+	</definition>
+
 </tiles-definitions>
