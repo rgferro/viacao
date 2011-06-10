@@ -17,8 +17,23 @@
             type="com.viacao.struts.action.ExemploAction"
             validate="false">
             <forward name="listar"                path=".listar.exemplo"/>
-	 	</action>
+	 </action>
+	 
+	 <action 
+		attribute="ManterOnibusForm"
+        name="manterOnibusForm"
+        path="/manterOnibus"
+        parameter="task"
+        scope="session"
+        type="com.viacao.struts.action.ManterOnibusAction"
+        validate="false">
+        <forward name="listar" path=".onibus.listar"/>
+        <forward name="deletar" path=".onibus.deletar"/>
+        <forward name="alterar" path=".onibus.alterar"/>
+        <forward name="inserir" path=".onibus.inserir"/>
+	 </action>
   </action-mappings>
+  
   <message-resources parameter="com.viacao.struts.ApplicationResources" />
 		
 	<plug-in className="org.apache.struts.tiles.TilesPlugin">
