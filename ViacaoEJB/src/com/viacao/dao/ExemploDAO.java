@@ -104,7 +104,7 @@ public class ExemploDAO extends BaseDB{
 	 * @return
 	 * @throws DAOException
 	 */
-	public List readExemplo(ExemploVO exemploVO) throws DAOException{
+	public List<ExemploVO> readExemplo(ExemploVO exemploVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" SELECT seq_exemplo, nome_exemplo, descricao FROM exemplo");
@@ -123,7 +123,7 @@ public class ExemploDAO extends BaseDB{
 			pstmt = getPstmt(sql.toString());
 			rowSet = executeQuery(pstmt);	
 
-			List listaDeExemplo = new ArrayList();
+			List<ExemploVO> listaDeExemplo = new ArrayList<ExemploVO>();
 			while (next()) {		
 				ExemploVO exeVO = new ExemploVO();
 				exeVO.setSeqExemplo(new Integer(rowSet.getString("seq_exemplo")));

@@ -181,12 +181,12 @@ public class OnibusDAO extends BaseDB {
 	 * @param onibusVO
 	 * @throws DAOException
 	 */
-	 /*<OnibusVO>*/public List getListaOnibus(OnibusVO onibusVO) throws DAOException{
+	public List<OnibusVO> getListaOnibus(OnibusVO onibusVO) throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLListarOnibus(onibusVO));
 			
 			rowSet = executeQuery(pstmt);
-			List listaOnibus = new ArrayList();
+			List<OnibusVO> listaOnibus = new ArrayList<OnibusVO>();
 			while(rowSet.next()){
 				OnibusVO oniVO = new OnibusVO();
 				oniVO.setSeqOnibus(new Integer(rowSet.getInt("qtd_poltrona")));

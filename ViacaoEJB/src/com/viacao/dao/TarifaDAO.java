@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
 import com.acol.util.DoubleUtils;
-import com.acol.util.IntegerUtils;
 import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.TarifaVO;
@@ -106,7 +105,7 @@ public class TarifaDAO extends BaseDB{
 	 * @return
 	 * @throws DAOException
 	 */
-	public List getListaTarifa(TarifaVO tarifaVO) throws DAOException{
+	public List<TarifaVO> getListaTarifa(TarifaVO tarifaVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" SELECT seq_tarifa, nom_tarifa, valor_tarifa ");
@@ -126,7 +125,7 @@ public class TarifaDAO extends BaseDB{
 			pstmt = getPstmt(sql.toString());
 			rowSet = executeQuery(pstmt);
 
-			List listaTarifas = new ArrayList();
+			List<TarifaVO> listaTarifas = new ArrayList<TarifaVO>();
 			while (next()) {		
 				TarifaVO tarifasVO = new TarifaVO();
 				tarifasVO.setSeqTarifa(new Integer(rowSet.getString("seq_tarifa")));
