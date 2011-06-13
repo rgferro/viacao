@@ -70,7 +70,7 @@ function getExemplo(acao,seq) {
 					<logic:notEqual name="exemploForm" property="acao" value="DELETAR">
 						<td align="center" style="color: #0000FF">
 					</logic:notEqual>
-						<b><bean:write name="exemploForm" property="acao"/></b></td>
+						<td><b><bean:write name="exemploForm" property="acao"/></b></td>
 					<td>
 						<html:text name="exemploForm" size="40" property="exemploVO.nomeExemplo" styleClass="input" disabled="${disable}"/>
 					</td>
@@ -101,6 +101,7 @@ function getExemplo(acao,seq) {
 					<c:if test="${index % 2 != 0}">
 						<tr class="fundoclaro">
 					</c:if>
+					<tr>
 						<td><img title="Editar!" src="images/icon_editar.gif" onclick="javascript: getExemplo('alterar',<bean:write name="varInterno" property="seqExemplo"/>);"></td>
 						<td><img title="Deletar!" src="images/icon_lixeira.gif" onclick="javascript: getExemplo('deletar', <bean:write name="varInterno" property="seqExemplo"/>);"></td>
 						<td align="center"><bean:write name="varInterno" property="nomeExemplo"/></td>
