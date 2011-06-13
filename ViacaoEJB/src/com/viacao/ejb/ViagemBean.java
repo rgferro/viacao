@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 public class ViagemBean implements SessionBean {
 	
+	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(ViagemBean.class);
 	
 	// Container callbacks
