@@ -56,7 +56,7 @@ public class ProcessoBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}	
-	public List readExemplo(ExemploVO exemploVO){ 
+	public List<ExemploVO> readExemplo(ExemploVO exemploVO){ 
 		try {
 			ExemploDAO dao = new ExemploDAO(); 
 			return dao.readExemplo(exemploVO);
