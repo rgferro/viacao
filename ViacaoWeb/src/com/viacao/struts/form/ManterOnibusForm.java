@@ -9,12 +9,14 @@ import com.viacao.vo.OnibusVO;
 
 public class ManterOnibusForm extends ActionForm {
 	
+	private static final long serialVersionUID = 1L;
+	
 	private OnibusVO onibusVO;
-	private List listaOnibus;
+	private List<OnibusVO> listaOnibus;
 	
 	public void inicializar(){
 		this.onibusVO = new OnibusVO();
-		this.listaOnibus = new ArrayList();
+		this.listaOnibus = new ArrayList<OnibusVO>();
 	}
 	
 	public OnibusVO getOnibusVO() {
@@ -25,11 +27,11 @@ public class ManterOnibusForm extends ActionForm {
 		this.onibusVO = onibusVO;
 	}
 	
-	public List getListaOnibus() {
+	public List<OnibusVO> getListaOnibus() {
 		return listaOnibus;
 	}
 
-	public void setListaOnibus(List listaOnibus) {
+	public void setListaOnibus(List<OnibusVO> listaOnibus) {
 		this.listaOnibus = listaOnibus;
 	}
 		
