@@ -20,7 +20,7 @@ public class ManterOnibusAction extends DispatchAction {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 		frm.inicializar();
 		frm.getOnibusVO().setSeqOnibus(new Integer(request.getParameter("seqOnibus")));
-		List listaOnibus = EstagioServices.getManterCadastroBean().getListaOnibus(frm.getOnibusVO());
+		List<OnibusVO> listaOnibus = EstagioServices.getManterCadastroBean().getListaOnibus(frm.getOnibusVO());
 		return mapping.findForward("listar");
 	}
 	
