@@ -44,7 +44,7 @@ function somenteNumero(obj,e,ast,virg,ponto){
 		if((tecla == 9)) return true;
 		if ((tecla == 8)) return true;
 		if ((tecla == 0)) return true;
-		if ((tecla == 42)&&(ast)) return true; //permite asterisco
+		if ((tecla == 42)&&(ast)) return true; //permite asterísco
 		if ((tecla == 44)&&(virg)) return true; //permite vírgula
 		if ((tecla == 46)&&(ponto)) return true; //permite ponto
 		return false;
@@ -132,7 +132,7 @@ function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
 					<logic:notEqual name="manterTarifaForm" property="acao" value="DELETAR">
 						<td align="center" style="color: #0000FF">
 					</logic:notEqual>
-						<td><b><bean:write name="manterTarifaForm" property="acao"/></b></td>
+						<b><bean:write name="manterTarifaForm" property="acao"/></b></td>
 					<td>
 						<html:text name="manterTarifaForm" size="40" property="tarifaVO.nomTarifa" styleClass="input" disabled="${disable}"/>
 					</td>
@@ -163,7 +163,6 @@ function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
 					<c:if test="${index % 2 != 0}">
 						<tr class="fundoclaro">
 					</c:if>
-					<tr>
 						<td><img title="Editar!" src="images/icon_editar.gif" onclick="javascript: getTarifa('alterar',<bean:write name="varInterno" property="seqTarifa"/>);"></td>
 						<td><img title="Deletar!" src="images/icon_lixeira.gif" onclick="javascript: getTarifa('deletar', <bean:write name="varInterno" property="seqTarifa"/>);"></td>
 						<td align="center"><bean:write name="varInterno" property="nomTarifa"/></td>
