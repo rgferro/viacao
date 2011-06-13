@@ -4,6 +4,7 @@
 <struts-config>
   <form-beans>
   	<form-bean name="exemploForm" type="com.viacao.struts.form.ExemploForm" />
+  	<form-bean name="manterTarifaForm" type="com.viacao.struts.form.ManterTarifaForm" />
   </form-beans>
   <global-exceptions />
   <global-forwards />
@@ -32,6 +33,16 @@
         <forward name="alterar" path=".onibus.alterar"/>
         <forward name="inserir" path=".onibus.inserir"/>
 	 </action>
+	 		<action 
+			attribute="manterTarifaForm"
+            name="manterTarifaForm"
+            path="/manterTarifa"
+            parameter="task"
+            scope="session"
+            type="com.viacao.struts.action.ManterTarifaAction"
+            validate="false">
+            <forward name="listar"                path=".listar.manterTarifa"/>
+	 	</action>
   </action-mappings>
   
   <message-resources parameter="com.viacao.struts.ApplicationResources" />

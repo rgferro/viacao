@@ -10,8 +10,9 @@ import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
 import com.viacao.dao.OnibusDAO;
-import com.viacao.vo.ExemploVO;
+import com.viacao.dao.TarifaDAO;
 import com.viacao.vo.OnibusVO;
+import com.viacao.vo.TarifaVO;
 
 public class ManterCadastroBean implements SessionBean {
 	
@@ -24,7 +25,55 @@ public class ManterCadastroBean implements SessionBean {
 	public void ejbPassivate() {}
 	public void ejbCreate() {}
 	
-	// Métodos de negócio
+// Métodos de negócio
+	
+	
+	public void inserir (TarifaVO tarifaVO){ 
+		try {
+			TarifaDAO dao = new TarifaDAO(); 
+			dao.inserir(tarifaVO);
+		} catch (DAOException e) {
+			logger.fatal("Erro ocorrido no metodo inserir :: ManterCadastroBean", e);
+			throw new EJBException(e);
+		}
+	}	
+	
+	public void deletar(TarifaVO tarifaVO){ 
+		try {
+			TarifaDAO dao = new TarifaDAO(); 
+			dao.deletar(tarifaVO);
+		} catch (DAOException e) {
+			logger.fatal("Erro ocorrido no metodo deletar :: ManterCadastroBean", e);
+			throw new EJBException(e);
+		}
+	}	
+	public void alterar(TarifaVO tarifaVO){ 
+		try {
+			TarifaDAO dao = new TarifaDAO();
+			dao.alterar(tarifaVO);
+		} catch (DAOException e) {
+			logger.fatal("Erro ocorrido no metodo alterar :: ManterCadastroBean", e);
+			throw new EJBException(e);
+		}
+	}	
+	public List getListaTarifa(TarifaVO tarifaVO){ 
+		try {
+			TarifaDAO dao = new TarifaDAO(); 
+			return dao.getListaTarifa(tarifaVO);
+		} catch (DAOException e) {
+			logger.fatal("Erro ocorrido no metodo getListaTarifa :: ManterCadastroBean", e);
+			throw new EJBException(e);
+		}
+	}	
+	public TarifaVO getTarifa(TarifaVO tarifaVO){ 
+		try {
+			TarifaDAO dao = new TarifaDAO(); 
+			return dao.getTarifa(tarifaVO);
+		} catch (DAOException e) {
+			logger.fatal("Erro ocorrido no metodo getTarifa :: ManterCadastroBean", e);
+			throw new EJBException(e);
+		}
+	}	
 	
 	/**
 	 * Insere um novo ônibus no banco.
@@ -102,5 +151,5 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
-
+	
 }

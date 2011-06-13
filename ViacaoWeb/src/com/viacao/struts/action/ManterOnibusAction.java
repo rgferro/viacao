@@ -33,7 +33,7 @@ public class ManterOnibusAction extends DispatchAction {
 		onibusVO.setQtdPoltrona(frm.getOnibusVO().getQtdPoltrona());
 		onibusVO.setTipo(frm.getOnibusVO().getTipo());
 		
-		EstagioServices.getManterCadastroBean().insertExemplo(onibusVO);
+		EstagioServices.getManterCadastroBean().inserir(onibusVO);
 		return mapping.findForward("listar");
 	}
 	

@@ -30,13 +30,6 @@ public class ExemploForm extends ActionForm{
 		this.exemploVO = exemploVO;
 	}
 
-	public List getListaExemplo() {
-		return listaExemplo;
-	}
-
-	public void setListaExemplo(List listaExemplo) {
-		this.listaExemplo = listaExemplo;
-	}
 
 	public String getTask() {
 		return task;
@@ -68,6 +61,14 @@ public class ExemploForm extends ActionForm{
 
 	public void setBusca(String busca) {
 		this.busca = busca;
+	}
+
+	public List getListaExemplo() {
+		return listaExemplo;
+	}
+
+	public void setListaExemplo(List listaExemplo) {
+		this.listaExemplo = listaExemplo;
 	}
 	
 
