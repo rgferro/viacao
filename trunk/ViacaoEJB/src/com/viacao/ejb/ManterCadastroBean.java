@@ -9,13 +9,16 @@ import javax.ejb.SessionContext;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.viacao.dao.ItinerarioDAO;
 import com.viacao.dao.OnibusDAO;
+import com.viacao.vo.ItinerarioVo;
 import com.viacao.dao.TarifaDAO;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.TarifaVO;
 
 public class ManterCadastroBean implements SessionBean {
 	
+	private static final long serialVersionUID = 1L;
 	private static Logger logger = Logger.getLogger(ManterCadastroBean.class);
 	
 	// Container callbacks
@@ -56,7 +59,7 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}	
-	public List getListaTarifa(TarifaVO tarifaVO){ 
+	public List<TarifaVO> getListaTarifa(TarifaVO tarifaVO){ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
 			return dao.getListaTarifa(tarifaVO);
@@ -142,7 +145,7 @@ public class ManterCadastroBean implements SessionBean {
 	 * @throws DAOException.
 	 * @return List.
 	 */
-	public List getListaOnibus(OnibusVO onibusVO){
+	public List<OnibusVO> getListaOnibus(OnibusVO onibusVO){
 		try{
 			OnibusDAO odao = new OnibusDAO();
 			return odao.getListaOnibus(onibusVO);
@@ -152,4 +155,69 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 	
+	/**
+	 * Inseri um itinerario no banco.
+	 * @param itinerarioVo
+	 */
+	public void inserirItinerario(ItinerarioVo itinerarioVo){
+		try{
+			ItinerarioDAO dao = new ItinerarioDAO();
+			dao.inserir(itinerarioVo);
+		}catch (DAOException e) {
+			logger.fatal("Erro ao inserir itinerario", e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * Exclui um itinerario.
+	 * @param itinerarioVo
+	 */
+	public void deletarItinerario(ItinerarioVo itinerarioVo){
+		try{
+			ItinerarioDAO dao = new ItinerarioDAO();
+			dao.excluir(itinerarioVo);
+		}catch (DAOException e) {
+			logger.fatal("Erro ao deletar itinerario", e);
+			throw new EJBException(e);
+		}
+	}
+	/**
+	 * Altera um itinerario.
+	 * @param itinerarioVo
+	 */
+	public void alterarItinerario(ItinerarioVo itinerarioVo){
+		try{
+			ItinerarioDAO dao = new ItinerarioDAO();
+			dao.alterar(itinerarioVo);
+		}catch (DAOException e) {
+			logger.fatal("Erro ao alterar itinerario", e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * Recuperar um itinerario
+	 * @param itinerarioVo
+	 * @return
+	 */
+	public ItinerarioVo getItinerario(ItinerarioVo itinerarioVo){
+		try{
+			ItinerarioDAO dao = new ItinerarioDAO();
+			return dao.getItinerario(itinerarioVo);
+		}catch (DAOException e) {
+			logger.fatal("Erro ao buscar itinerario", e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public List<ItinerarioVo> listaItinerario(ItinerarioVo itinerarioVo){
+		try{
+			ItinerarioDAO dao = new ItinerarioDAO();
+			return dao.listaItinerario(itinerarioVo);
+		}catch (DAOException e) {
+			logger.fatal("Erro ao buscar a lista de itinerarios", e);
+			throw new EJBException(e);
+		}
+	}
 }
