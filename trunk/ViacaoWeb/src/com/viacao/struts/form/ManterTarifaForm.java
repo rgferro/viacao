@@ -3,21 +3,15 @@ package com.viacao.struts.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.struts.action.ActionErrors;
 import org.apache.struts.action.ActionForm;
-import org.apache.struts.action.ActionMapping;
-import org.apache.struts.action.ActionMessage;
-import org.apache.struts.action.ActionMessages;
 
-import com.viacao.utils.Constantes;
 import com.viacao.vo.TarifaVO;
 
 public class ManterTarifaForm extends ActionForm{
-
+	
+	private static final long serialVersionUID = 1L;
 	private TarifaVO tarifaVO;
-	private List listaTarifas;
+	private List<TarifaVO> listaTarifas;
 	private String task;
 	private String acao;
 	private Integer seqTarifa;
@@ -25,7 +19,7 @@ public class ManterTarifaForm extends ActionForm{
 	
 	public void inicializar(){
 		tarifaVO = new TarifaVO();
-		listaTarifas = new ArrayList();
+		listaTarifas = new ArrayList<TarifaVO>();
 		acao = "INCLUIR";
 	}
 
@@ -37,11 +31,11 @@ public class ManterTarifaForm extends ActionForm{
 		this.tarifaVO = tarifaVO;
 	}
 
-	public List getListaTarifas() {
+	public List<TarifaVO> getListaTarifas() {
 		return listaTarifas;
 	}
 
-	public void setListaTarifas(List listaTarifas) {
+	public void setListaTarifas(List<TarifaVO> listaTarifas) {
 		this.listaTarifas = listaTarifas;
 	}
 
