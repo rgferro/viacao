@@ -5,6 +5,9 @@
   <form-beans>
   	<form-bean name="exemploForm" type="com.viacao.struts.form.ExemploForm" />
   	<form-bean name="manterTarifaForm" type="com.viacao.struts.form.ManterTarifaForm" />
+  	<form-bean name="manterOnibusForm" type="com.viacao.struts.form.ManterOnibusForm" />
+  	<form-bean name="manterItinerarioForm" type="com.viacao.struts.form.ManterItinerarioForm" />
+  	
   </form-beans>
   <global-exceptions />
   <global-forwards />
@@ -21,7 +24,7 @@
 	 </action>
 	 
 	 <action 
-		attribute="ManterOnibusForm"
+		attribute="manterOnibusForm"
         name="manterOnibusForm"
         path="/manterOnibus"
         parameter="task"
@@ -43,6 +46,18 @@
             validate="false">
             <forward name="listar"                path=".listar.manterTarifa"/>
 	 	</action>
+	
+	<action
+		attribute="manterItinerarioForm"
+		name="manterItinerarioForm"
+		path="/manterItinerario"
+		parameter="task"
+		scope="session"
+		type="com.viacao.struts.action.ManterItinerarioAction"
+		validate="false">
+		<forward name="cadastrar"				path=".cadastrar.manter.itinerario" />
+	</action>
+	 	
   </action-mappings>
   
   <message-resources parameter="com.viacao.struts.ApplicationResources" />

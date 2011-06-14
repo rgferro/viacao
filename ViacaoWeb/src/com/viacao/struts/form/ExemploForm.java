@@ -9,8 +9,9 @@ import com.viacao.vo.ExemploVO;
 
 public class ExemploForm extends ActionForm{
 	
+	private static final long serialVersionUID = 1L;
 	private ExemploVO exemploVO;
-	private List listaExemplo;
+	private List<ExemploVO> listaExemplo;
 	private String task;
 	private String acao;
 	private String seqExemplo;
@@ -18,7 +19,7 @@ public class ExemploForm extends ActionForm{
 	
 	public void inicializar(){
 		exemploVO = new ExemploVO();
-		listaExemplo = new ArrayList();
+		listaExemplo = new ArrayList<ExemploVO>();
 		acao = "INCLUIR";
 	}
 
@@ -63,11 +64,11 @@ public class ExemploForm extends ActionForm{
 		this.busca = busca;
 	}
 
-	public List getListaExemplo() {
+	public List<ExemploVO> getListaExemplo() {
 		return listaExemplo;
 	}
 
-	public void setListaExemplo(List listaExemplo) {
+	public void setListaExemplo(List<ExemploVO> listaExemplo) {
 		this.listaExemplo = listaExemplo;
 	}
 	

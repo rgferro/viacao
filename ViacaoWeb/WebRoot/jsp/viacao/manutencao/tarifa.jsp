@@ -163,6 +163,7 @@ function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
 					<c:if test="${index % 2 != 0}">
 						<tr class="fundoclaro">
 					</c:if>
+					<tr>
 						<td><img title="Editar!" src="images/icon_editar.png" height="16" width="16" onclick="javascript: getTarifa('alterar',<bean:write name="varInterno" property="seqTarifa"/>);"></td>
 						<td><img title="Deletar!" src="images/icon_lixeira.png" height="16" width="16" onclick="javascript: getTarifa('deletar', <bean:write name="varInterno" property="seqTarifa"/>);"></td>
 						<td align="center"><bean:write name="varInterno" property="nomTarifa"/></td>

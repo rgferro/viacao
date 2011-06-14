@@ -38,5 +38,11 @@
 	<definition name=".onibus.inserir" extends="layout">
 		<put name="body" value="jsp/viacao/manutencao/onibus/inserir.jsp"/>
 	</definition>
+	
+	<!-- Manter Itinerario -->
+ 
+	<definition name=".cadastrar.manter.itinerario" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/itinerario/cadastrar.jsp"/>
+	</definition>
 
 </tiles-definitions>
