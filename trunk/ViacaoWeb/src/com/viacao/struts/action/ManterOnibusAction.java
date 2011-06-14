@@ -24,6 +24,13 @@ public class ManterOnibusAction extends DispatchAction {
 		return mapping.findForward("listar");
 	}
 	
+	/*public ActionForward listarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ManterOnibusForm frm = (ManterOnibusForm) form;
+		OnibusVO onibusVO = new OnibusVO();
+		
+		return mapping.findForward("listar");
+	}*/
+	
 	public ActionForward inserirOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 		OnibusVO onibusVO = new OnibusVO();
@@ -37,16 +44,18 @@ public class ManterOnibusAction extends DispatchAction {
 		return mapping.findForward("listar");
 	}
 	
-	public ActionForward paginaAlterarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward recuperarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 		OnibusVO onibusVO = new OnibusVO();
 		
-		frm.getOnibusVO().setEmpresa(onibusVO.getEmpresa());
-		frm.getOnibusVO().setPlaca(onibusVO.getPlaca());
-		frm.getOnibusVO().setQtdPoltrona(onibusVO.getQtdPoltrona());
-		frm.getOnibusVO().setTipo(onibusVO.getTipo());
+		onibusVO.setSeqOnibus(frm.getSeqOnibus());
+		frm.setOnibusVO(EstagioServices.getManterCadastroBean().getOnibus(onibusVO));
 		
-		return mapping.findForward("alterar");
+		if(frm.getAcao().equals("deletando")){
+			return mapping.findForward("deletar");
+		}else{
+			return mapping.findForward("alterar");
+		}
 	}
 	
 	public ActionForward alterarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -59,7 +68,7 @@ public class ManterOnibusAction extends DispatchAction {
 		onibusVO.setTipo(frm.getOnibusVO().getTipo());
 		
 		EstagioServices.getManterCadastroBean().alterar(onibusVO);
-		return mapping.findForward("inserir");
+		return mapping.findForward("listar");
 	}
 	
 	public ActionForward deletarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -72,7 +81,7 @@ public class ManterOnibusAction extends DispatchAction {
 		onibusVO.setTipo(frm.getOnibusVO().getTipo());
 		
 		EstagioServices.getManterCadastroBean().deletar(onibusVO);
-		return mapping.findForward("inserir");
+		return mapping.findForward("listar");
 	}
 
 }
