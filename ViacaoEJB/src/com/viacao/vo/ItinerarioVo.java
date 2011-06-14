@@ -5,6 +5,8 @@ package com.viacao.vo;
 
 import java.util.List;
 
+import com.acol.vo.DataVO;
+
 /**
  * @author Wallace Gonçalves
  *
@@ -12,8 +14,13 @@ import java.util.List;
 public class ItinerarioVo {
 	
 	private Integer seqItinerario;
-	private Double passagem;
+	private Double valorPassagem;
+	
+	private RodoviariaVO rodoviariaOrigemVO;
+	private RodoviariaVO rodoviariaDestinoVO;
+	private TarifaVO tarifaVO;	
 	private List<TarifaVO> listaTarifas;
+	private DataVO tempoViagem;
 	
 	
 	/**
@@ -30,20 +37,7 @@ public class ItinerarioVo {
 	public void setSeqItinerario(Integer seqItinerario) {
 		this.seqItinerario = seqItinerario;
 	}
-	/**
-	 * Obtém o atributo passagem
-	 * @return Valor do atributo passagem
-	 */
-	public Double getPassagem() {
-		return passagem;
-	}
-	/**
-	 * Altera o atributo passagem
-	 * @param passagem Novo valor do atributo
-	 */
-	public void setPassagem(Double passagem) {
-		this.passagem = passagem;
-	}
+	
 	/**
 	 * Obtém o atributo listaTarifas
 	 * @return Valor do atributo listaTarifas
@@ -57,5 +51,75 @@ public class ItinerarioVo {
 	 */
 	public void setListaTarifas(List<TarifaVO> listaTarifas) {
 		this.listaTarifas = listaTarifas;
+	}	
+	/**
+	 * Obtém o atributo tarifaVO
+	 * @return Valor do atributo tarifaVO
+	 */
+	public TarifaVO getTarifaVO() {
+		return tarifaVO;
+	}
+	/**
+	 * Altera o atributo tarifaVO
+	 * @param tarifaVO Novo valor do atributo
+	 */
+	public void setTarifaVO(TarifaVO tarifaVO) {
+		this.tarifaVO = tarifaVO;
+	}
+	/**
+	 * Obtém o atributo rodoviariaOrigemVO
+	 * @return Valor do atributo rodoviariaOrigemVO
+	 */
+	public RodoviariaVO getRodoviariaOrigemVO() {
+		return rodoviariaOrigemVO;
+	}
+	/**
+	 * Altera o atributo rodoviariaOrigemVO
+	 * @param rodoviariaOrigemVO Novo valor do atributo
+	 */
+	public void setRodoviariaOrigemVO(RodoviariaVO rodoviariaOrigemVO) {
+		this.rodoviariaOrigemVO = rodoviariaOrigemVO;
+	}
+	/**
+	 * Obtém o atributo rodoviariaDestinoVO
+	 * @return Valor do atributo rodoviariaDestinoVO
+	 */
+	public RodoviariaVO getRodoviariaDestinoVO() {
+		return rodoviariaDestinoVO;
+	}
+	/**
+	 * Altera o atributo rodoviariaDestinoVO
+	 * @param rodoviariaDestinoVO Novo valor do atributo
+	 */
+	public void setRodoviariaDestinoVO(RodoviariaVO rodoviariaDestinoVO) {
+		this.rodoviariaDestinoVO = rodoviariaDestinoVO;
+	}
+	/**
+	 * Obtém o atributo valorPassagem
+	 * @return Valor do atributo valorPassagem
+	 */
+	public Double getValorPassagem() {
+		return valorPassagem;
+	}
+	/**
+	 * Altera o atributo valorPassagem
+	 * @param valorPassagem Novo valor do atributo
+	 */
+	public void setValorPassagem(Double valorPassagem) {
+		this.valorPassagem = valorPassagem;
+	}
+	/**
+	 * Obtém o atributo tempoViagem
+	 * @return Valor do atributo tempoViagem
+	 */
+	public DataVO getTempoViagem() {
+		return tempoViagem;
+	}
+	/**
+	 * Altera o atributo tempoViagem
+	 * @param tempoViagem Novo valor do atributo
+	 */
+	public void setTempoViagem(DataVO tempoViagem) {
+		this.tempoViagem = tempoViagem;
 	}
 }
