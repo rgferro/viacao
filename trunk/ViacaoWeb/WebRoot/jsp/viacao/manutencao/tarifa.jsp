@@ -139,9 +139,9 @@ function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
 					<td>
 						<html:text name="manterTarifaForm" size="40" property="tarifaVO.valor" styleClass="input" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
 					</td>
-					<td align="center"><img title="Pesquisar!" src="images/icon_lupa.gif" onclick="javascript: inicio('pesquisar');"></td>
-					<td align="center"><img title="Confirmar!" src="images/confirmar.gif" onclick="javascript: confirmar('<bean:write name="manterTarifaForm" property="acao"/>');"></td>
-					<td align="center"><img title="Cancelar!" src="images/cancelar.gif" onclick="javascript: inicio('');"></td>
+					<td align="center"><img title="Pesquisar!" src="images/icon_lupa2.png" height="16" width="16" onclick="javascript: inicio('pesquisar');"></td>
+					<td align="center"><img title="Confirmar!" src="images/confirmar2.png" height="16" width="16" onclick="javascript: confirmar('<bean:write name="manterTarifaForm" property="acao"/>');"></td>
+					<td align="center"><img title="Cancelar!" src="images/cancelar2.png" height="16" width="16" onclick="javascript: inicio('');"></td>
 				</tr>
 			</table>
 			<br>
@@ -149,7 +149,7 @@ function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
 				<tr class="fundoescuro">
 					<td width="10%" height="20" colspan="2">&nbsp;</td>
 					<td width="45%"  align="center">Nome da Tarifa</td>
-					<td width="45%" align="center">Valor</td>
+					<td width="45%" align="center">Valor(R$)</td>
 				</tr>
 				<logic:empty name="manterTarifaForm" property="listaTarifas">
 					<tr>
@@ -163,8 +163,8 @@ function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
 					<c:if test="${index % 2 != 0}">
 						<tr class="fundoclaro">
 					</c:if>
-						<td><img title="Editar!" src="images/icon_editar.gif" onclick="javascript: getTarifa('alterar',<bean:write name="varInterno" property="seqTarifa"/>);"></td>
-						<td><img title="Deletar!" src="images/icon_lixeira.gif" onclick="javascript: getTarifa('deletar', <bean:write name="varInterno" property="seqTarifa"/>);"></td>
+						<td><img title="Editar!" src="images/icon_editar.png" height="16" width="16" onclick="javascript: getTarifa('alterar',<bean:write name="varInterno" property="seqTarifa"/>);"></td>
+						<td><img title="Deletar!" src="images/icon_lixeira.png" height="16" width="16" onclick="javascript: getTarifa('deletar', <bean:write name="varInterno" property="seqTarifa"/>);"></td>
 						<td align="center"><bean:write name="varInterno" property="nomTarifa"/></td>
 						<td align="center"><bean:write name="varInterno" property="valor"/></td>
 					</tr>
