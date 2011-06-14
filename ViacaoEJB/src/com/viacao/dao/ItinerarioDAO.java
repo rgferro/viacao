@@ -14,8 +14,7 @@ import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.ItinerarioVo;
 
 /**
- * @author Wallace Gonçalves
- *
+ * @author Wallace Gonçalves  
  */
 public class ItinerarioDAO extends BaseDB{
 	
@@ -56,10 +55,12 @@ public class ItinerarioDAO extends BaseDB{
 		
 		try {
 			pstmt = getPstmt(getSQLInserir());
-			pstmt.setInt(1, itinerarioVo.getSeqItinerario());
-			pstmt.setDouble(2, itinerarioVo.getPassagem());
-
+			pstmt.setInt(1, itinerarioVo.getRodoviariaOrigemVO().getSeqRodoviaria());
+			pstmt.setInt(2, itinerarioVo.getRodoviariaDestinoVO().getSeqRodoviaria());
+			pstmt.setString(3, itinerarioVo.getTempoViagem().getHoraMinutoSegundo());
+			pstmt.setDouble(4, itinerarioVo.getValorPassagem());
 			pstmt.executeQuery();
+			
 		} catch(SQLException e) {
 			logger.fatal("Erro ocorrido no metodo inserir em :: ItinerarioDAO", e);
 			throw new DAOException(e);
@@ -108,10 +109,21 @@ public class ItinerarioDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * alterar um itinerario.
+	 * @param itinerarioVo
+	 * @throws DAOException
+	 */
 	public void alterar(ItinerarioVo itinerarioVo)throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLAlterar());
-			pstmt.setInt(1, itinerarioVo.getSeqItinerario());
+			pstmt.setInt(1, itinerarioVo.getRodoviariaOrigemVO().getSeqRodoviaria());
+			pstmt.setInt(2, itinerarioVo.getRodoviariaDestinoVO().getSeqRodoviaria());
+			pstmt.setString(3, itinerarioVo.getTempoViagem().getData());
+			pstmt.setDouble(4, itinerarioVo.getValorPassagem());
+			pstmt.setInt(5, itinerarioVo.getSeqItinerario());
+			pstmt.executeUpdate();
+			
 		}catch (SQLException e) {
 			logger.fatal("Erro ocorrido no metodo alterar em :: ItinerarioDAO", e);
 			throw new DAOException(e);
@@ -153,9 +165,9 @@ public class ItinerarioDAO extends BaseDB{
 	public ItinerarioVo getItinerario(ItinerarioVo itinerarioVo)throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLItinerario());
-			pstmt.setInt(1, itinerarioVo.getSeqItinerario().intValue());
-			
+			pstmt.setInt(1, itinerarioVo.getSeqItinerario().intValue());			
 			rowSet = executeQuery(pstmt);
+			
 			if(rowSet.next()){
 				ItinerarioVo inVo = new ItinerarioVo();
 				inVo.setSeqItinerario(new Integer(rowSet.getInt("seq_itinerario")));
@@ -209,6 +221,8 @@ public class ItinerarioDAO extends BaseDB{
 			while(rowSet.next()){
 				ItinerarioVo itinerario = new ItinerarioVo();
 				itinerario.setSeqItinerario(new Integer(rowSet.getInt("seq_itinerario")));
+				itinerario.getRodoviariaOrigemVO().setSeqRodoviaria(new Integer(rowSet.getInt("seq_rodoviaria_origem")));
+				itinerario.getRodoviariaDestinoVO().setSeqRodoviaria(new Integer(rowSet.getInt("seq_rodoviaria_destino")));
 				
 				lista.add(itinerario);
 			}
