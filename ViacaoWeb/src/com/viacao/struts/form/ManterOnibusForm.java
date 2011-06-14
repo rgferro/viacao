@@ -13,10 +13,13 @@ public class ManterOnibusForm extends ActionForm {
 	
 	private OnibusVO onibusVO;
 	private List<OnibusVO> listaOnibus;
-	
+	private Integer seqOnibus;
+	private String acao;
+
 	public void inicializar(){
 		this.onibusVO = new OnibusVO();
 		this.listaOnibus = new ArrayList<OnibusVO>();
+		this.seqOnibus = null;
 	}
 	
 	public OnibusVO getOnibusVO() {
@@ -33,6 +36,22 @@ public class ManterOnibusForm extends ActionForm {
 
 	public void setListaOnibus(List<OnibusVO> listaOnibus) {
 		this.listaOnibus = listaOnibus;
+	}
+	
+	public Integer getSeqOnibus() {
+		return seqOnibus;
+	}
+
+	public void setSeqOnibus(Integer seqOnibus) {
+		this.seqOnibus = seqOnibus;
+	}
+	
+	public String getAcao() {
+		return acao;
+	}
+
+	public void setAcao(String acao) {
+		this.acao = acao;
 	}
 		
 }
