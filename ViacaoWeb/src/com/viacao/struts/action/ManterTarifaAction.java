@@ -52,6 +52,7 @@ public class ManterTarifaAction extends DispatchAction{
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
 		saveMessages(request, messages);
+		getTarifa(mapping, form, request, response);
 		return unspecified(mapping, form, request, response);
 	}
 	

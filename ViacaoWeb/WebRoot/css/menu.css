@@ -38,7 +38,7 @@ ul.menubar .submenu{
   border: 1px solid #ccc;
   float:left; 
   border-color: #0c2c36;
-  color: #FFFFFF;
+  color: #000000;
 }
 /* 
 Regra 3 - Classe que define a posiçao e a exibiçao dos menus verticais (inicialmente eles nao sao exibidos)
@@ -59,7 +59,7 @@ ul.menubar a{
   font-size: 15px;
   text-decoration: none;
   padding: 2px;
-  color: #FFFFFF;
+  color: #000000;
 }
 /* 
 Regra 5 - Classe que define o tamanho e a cor do menu vertical
@@ -71,7 +71,7 @@ ul.menu, ul.menu ul{
   width: 150px;
   background-color: #FFFFFF; /* IE6 Bug */
   border-color: #0c2c36;
-  color: #FFFFFF;
+  color: #000000;
 } 
 /* 
 Regra 6 - Classe que define o posicionamento dos itens do menu vertical relativos ao submenu
@@ -91,7 +91,7 @@ ul.menu li a{
   border-bottom: 0px;
   padding: 5px 10px 5px 5px;
   border-color: #0c2c36;
-  color: #FFFFFF;
+  color: #000000;
 }
 /* 
 Regra 8 - Classe que define o posicionamento do menu vertical

@@ -9,7 +9,7 @@
 </script>
 </head>
  <body onload="menuDropDown(4);">
-  <img src="cabecalho/banner.jpg" width="100%" height="133"/>
+  <img src="cabecalho/banner2.jpg" width="100%" height="133"/>
  <table cellspacing="0" align="center" width="100%" style="background-image: url(cabecalho/fundobanner.jpg);">
  <tr>
  <td>
