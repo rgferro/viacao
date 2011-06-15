@@ -165,13 +165,21 @@ public class OnibusDAO extends BaseDB {
 		sql.append("FROM onibus ");
 		sql.append("WHERE 1=1 ");
 		//--filtro tipo
-		sql.append("AND tipo like upper('%<param_tipo>%') ");
+		if(oniVO.getTipo() != null){
+			sql.append("AND tipo like upper('%" + oniVO.getTipo() + "%')");
+		}
 		//--filtro empresa
-		sql.append("AND empresa like upper('%<param_empresa>%') ");		
+		if(oniVO.getEmpresa() != null){
+			sql.append("AND empresa like upper('%" + oniVO.getEmpresa() + "%') ");
+		}
 		//--filtro placa
-		sql.append("AND placa like upper('%<param_placa>%') ");
+		if(oniVO.getPlaca() != null){
+			sql.append("AND placa like upper('%" + oniVO.getPlaca() + "%') ");
+		}
 		//--filtro quantidade de poltrona
-		sql.append("AND qtd_poltrona = <param_qtd_poltrona>");
+		if(oniVO.getQtdPoltrona() != null){
+			sql.append("AND qtd_poltrona = " + oniVO.getQtdPoltrona());
+		}
 		
 		return sql.toString();
 	}
@@ -196,16 +204,15 @@ public class OnibusDAO extends BaseDB {
 				oniVO.setQtdPoltrona(new Integer(rowSet.getInt("qtd_poltrona")));
 				
 				listaOnibus.add(oniVO);
-				
-				return listaOnibus;
 			}
+			
+			return listaOnibus;
 		}catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo getListaOnibus em :: OnibusDAO", e);
 			throw new DAOException(e);
 		}finally{
 			release();
 		}
-		return null;
 	}
 
 }
