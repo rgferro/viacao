@@ -101,12 +101,12 @@ function temas(tema) {
 		   cor_Fonte_Submenu_NaoAtiva = '#FFFFFF';
            break 
        case 4 : // Viacão
-		   cor_Menu_Ativa = 'url(cabecalho/fundoclaro3.jpg)';
-		   cor_Menu_NaoAtiva = 'url(cabecalho/fundo3.jpg)'; 
+		   cor_Menu_Ativa = 'url(cabecalho/fundoclaro5.jpg)';
+		   cor_Menu_NaoAtiva = 'url(cabecalho/fundo5.jpg)'; 
 		   cor_Fonte_Menu_Ativa = '#000000';
 		   cor_Fonte_Menu_NaoAtiva = '#000000';
-		   cor_Submenu_Ativa = 'url(cabecalho/fundoclaro2.jpg)';
-		   cor_Submenu_NaoAtiva = 'url(cabecalho/fundo2.jpg)';
+		   cor_Submenu_Ativa = 'url(cabecalho/fundoclaro4.jpg)';
+		   cor_Submenu_NaoAtiva = 'url(cabecalho/fundo4.jpg)';
 		   cor_Fonte_Submenu_Ativa = '#000000';
 		   cor_Fonte_Submenu_NaoAtiva = '#000000';
            break

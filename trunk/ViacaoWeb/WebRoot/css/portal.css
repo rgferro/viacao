@@ -78,17 +78,17 @@
 }
 
 .fundoescuro {
-	background-color: #BFDFDF;
+	background-color: #6dacd2;
 	font-family: Verdana;
 	font-size: 10px;
-	color: #255d4d;
+	color: #FFFFFF;
 	font-weight: bold;
 
 
 }
 
 .fundoclaro {
-	background-color: #E4F1F1;
+	background-color: #d8f0ff;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	font-style: normal;
@@ -122,7 +122,7 @@
 .texto {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color: #255d4d;
+	color: #FFFFFF	;
 	border: none;
 }
 .tabela_rolagem
