@@ -52,7 +52,7 @@ public class ManterTarifaAction extends DispatchAction{
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
 		saveMessages(request, messages);
-		getTarifa(mapping, form, request, response);
+		unspecified(mapping, form, request, response);
 		return unspecified(mapping, form, request, response);
 	}
 	
@@ -72,6 +72,11 @@ public class ManterTarifaAction extends DispatchAction{
 	public ActionForward alterar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		ActionMessages messages = new ActionMessages();
+		if(frm.getTarifaVO().getNomTarifa().equals("")){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio"));
+			saveMessages(request, messages);
+			return unspecified(mapping, form, request, response);
+		}
 		try{
 			EstagioServices.getManterCadastroBean().alterar(frm.getTarifaVO());
 			frm.setTarifaVO(new TarifaVO());
