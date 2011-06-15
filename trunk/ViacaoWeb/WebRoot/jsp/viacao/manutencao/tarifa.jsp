@@ -166,9 +166,9 @@ function MM_swapImage() { //v3.0
 					<td>
 						<html:text name="manterTarifaForm" size="40" property="tarifaVO.valor" styleClass="input" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
 					</td>
-					<td align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','images/icon_lupa.png',1)"><img title="Pesquisar!" src="images/icon_lupaoff.png" name="Image3" height="16" width="16" onclick="javascript: inicio('pesquisar');"></a></td>
-					<td align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','images/confirmar.png',1)"><img title="Confirmar!" src="images/confirmaroff.png" name="Image2" height="16" width="16" onclick="javascript: confirmar('<bean:write name="manterTarifaForm" property="acao"/>');"></a></td>
-					<td align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','images/cancelar.png',1)"><img title="Cancelar!" src="images/cancelaroff.png" name="Image1" height="16" width="16" onclick="javascript: inicio('');"></a></td>
+					<td align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image3','','images/icon_lupa.png',1)"><img title="Pesquisar!" src="images/icon_lupaoff.png" name="Image3" height="16" width="16" border="0" onclick="javascript: inicio('pesquisar');"></a></td>
+					<td align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image2','','images/confirmar.png',1)"><img title="Confirmar!" src="images/confirmaroff.png" name="Image2" height="16" width="16" border="0" onclick="javascript: confirmar('<bean:write name="manterTarifaForm" property="acao"/>');"></a></td>
+					<td align="center"><a href="#" onMouseOut="MM_swapImgRestore()" onMouseOver="MM_swapImage('Image1','','images/cancelar.png',1)"><img title="Cancelar!" src="images/cancelaroff.png" name="Image1" height="16" width="16" border="0" onclick="javascript: inicio('');"></a></td>
 				</tr>
 			</table>
 			<br>
