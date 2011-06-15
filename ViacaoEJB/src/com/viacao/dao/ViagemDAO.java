@@ -20,7 +20,8 @@ public class ViagemDAO extends BaseDB {
 	public ViagemDAO() throws DAOException {
 		super();
 	}
-	public String getSQLInserir() throws DAOException {;
+	
+	public String getSQLInserir() throws DAOException {
 		StringBuffer sql = new StringBuffer();
 	
 		sql.append("INSERT INTO viagem ( ");
@@ -45,9 +46,11 @@ public class ViagemDAO extends BaseDB {
 			pstmt.setString(4, viagemVO.getHoraChegada().getHoraMinutoSegundo());
 			
 			pstmt.executeUpdate();
-		}catch(SQLException e){
+		}
+		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo inserir em :: ViagemDAO", e);
-		}finally{
+		}
+		finally{
 			release();
 		}
 	}
@@ -63,10 +66,12 @@ public class ViagemDAO extends BaseDB {
 			pstmt.setInt(1, viagemVO.getSeqViagem());
 			
 			pstmt.executeUpdate();
-		}catch(SQLException e){
+		}
+		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo deletar em :: ViagemDAO", e);
 			throw new DAOException(e);
-		}finally{
+		}
+		finally{
 			release();
 		}
 	}
@@ -94,10 +99,12 @@ public class ViagemDAO extends BaseDB {
 			pstmt.setInt(5, viagemVO.getSeqViagem());
 			
 			pstmt.executeUpdate();
-		}catch(SQLException e){
+		}
+		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo alterar em :: ViagemDAO", e);
 			throw new DAOException(e);
-		}finally{
+		}
+		finally{
 			release();
 		}
 	}
@@ -137,13 +144,14 @@ public class ViagemDAO extends BaseDB {
 				vgVO.getOnibusVO().setTipo(rowSet.getString("tipo"));
 				vgVO.setHoraSaida(new DataVO(rowSet.getString("data_hora_saida")));
 				vgVO.setHoraChegada(new DataVO(rowSet.getString("data_hora_chegada")));
-				
 			}
 			return vgVO;
-		}catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			logger.fatal("Erro ocorrido no metodo getViagem em :: ViagemDAO", e);
 			throw new DAOException(e);
-		}finally{
+		}
+		finally{
 			release();
 		}
 	}
@@ -197,11 +205,12 @@ public class ViagemDAO extends BaseDB {
 				lista.add(viagem);
 			}
 			return lista;
-			
-		}catch (SQLException e) {
+		}
+		catch (SQLException e) {
 			logger.fatal("Erro ocorrido no metodo listaViagem em :: ViagemDAO");
 			throw new DAOException(e);
-		}finally{
+		}
+		finally{
 			release();
 		}
 	}

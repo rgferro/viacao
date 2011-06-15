@@ -4,7 +4,7 @@ import com.acol.vo.DataVO;
 
 public class ViagemVO {
 
-	private String Viagem;
+	private String ViagemVO;
 	private Integer  seqViagem; 
 	private ItinerarioVo itinerarioVO;
 	private OnibusVO onibusVO;
@@ -12,11 +12,11 @@ public class ViagemVO {
 	private DataVO horaChegada;
 	
 	
-	public String getViagem() {
-		return Viagem;
+	public String getViagemVO() {
+		return ViagemVO;
 	}
-	public void setViagem(String viagem) {
-		Viagem = viagem;
+	public void setViagemVO(String viagemVO) {
+		ViagemVO = viagemVO;
 	}
 	
 	/**
