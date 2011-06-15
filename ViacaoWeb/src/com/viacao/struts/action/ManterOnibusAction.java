@@ -1,7 +1,5 @@
 package com.viacao.struts.action;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -19,17 +17,18 @@ public class ManterOnibusAction extends DispatchAction {
 	public ActionForward unspecified(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 		frm.inicializar();
-		frm.getOnibusVO().setSeqOnibus(new Integer(request.getParameter("seqOnibus")));
-		List<OnibusVO> listaOnibus = EstagioServices.getManterCadastroBean().getListaOnibus(frm.getOnibusVO());
+		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(frm.getOnibusVO()));
+		
 		return mapping.findForward("listar");
 	}
 	
-	/*public ActionForward listarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward listarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
-		OnibusVO onibusVO = new OnibusVO();
+		
+		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(frm.getOnibusVO()));
 		
 		return mapping.findForward("listar");
-	}*/
+	}
 	
 	public ActionForward inserirOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;

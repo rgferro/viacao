@@ -1,15 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>  
-<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
-<%@ taglib uri="/WEB-INF/struts-nested.tld" prefix="nested"%>
-<%@ taglib uri="/WEB-INF/c.tld" prefix="c"%>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
-
-<link href="css/portal.css" rel="stylesheet" type="text/css">
+<%@ include file="/jsp/common/taglibs.jsp" %>
 
 <script type="text/javascript">
 function selecionar(acao, seq){
@@ -20,7 +9,8 @@ function selecionar(acao, seq){
 }
 </script>
 
-<form action="/manterOnibus">
+<html:form action="/manterOnibus">
+
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
@@ -32,7 +22,8 @@ function selecionar(acao, seq){
 				<br>
 				<table>
 					<tr>
-						<td class="link"><img src="images/fetch.gif"/> Cadastrar Novo Ônibus</td>
+						<td class="link"><img src="images/fetch.gif"/>
+							<a href="">Cadastrar Novo Ônibus</a></td>
 					</tr>
 				</table>
 				<table width="100%" border="0" align="center" id="consulta" class="bordatabela">
@@ -79,24 +70,33 @@ function selecionar(acao, seq){
 					<tr>
 						<td align="center" colspan="6" class="texto">Nenhum ônibus foi cadastrado!</td>
 					</tr>
-					<logic:iterate id="lista" name="manterOnibusForm" property="listaOnibus">
-						<tr class="fundoclaro">
-							<td align="center">
-								<a href="javascript: selecionar('ALTERANDO', '<c:out value="${lista.seqOnibus}"/>');">
-								<img title="Editar" src="images/icon_editar.gif"></a>
+					<logic:notEmpty>
+						<logic:iterate id="lista" name="manterOnibusForm" property="listaOnibus">
+							<tr class="fundoclaro">
+								<td align="center">
+									<a href="javascript: selecionar('ALTERANDO', '<c:out value="${lista.seqOnibus}"/>');">
+									<img title="Editar" src="images/icon_editar.gif"></a>
+								</td>
+								<td align="center">
+									<a href="javascript: selecionar('DELETANDO', '<c:out value="${lista.seqOnibus}"/>');">
+									<img title="Deletar" src="images/icon_lixeira.gif"></a>
+								</td>
+								<td align="center"><bean:write name="lista" property="empresa"/></td>
+								<td align="center"><bean:write name="lista" property="tipo"/></td>
+								<td align="center"><bean:write name="lista" property="qtdPoltrona"/></td>
+								<td align="center"><bean:write name="lista" property="placa"/></td>
+							</tr>
+						</logic:iterate>
+					</logic:notEmpty>
+					<logic:empty>
+						<tr>
+							<td colspan="5">
+								Não há Ônibus cadastrados.
 							</td>
-							<td align="center">
-								<a href="javascript: selecionar('DELETANDO', '<c:out value="${lista.seqOnibus}"/>');">
-								<img title="Deletar" src="images/icon_lixeira.gif"></a>
-							</td>
-							<td align="center"><bean:write name="lista" property="empresa"/></td>
-							<td align="center"><bean:write name="lista" property="tipo"/></td>
-							<td align="center"><bean:write name="lista" property="qtdPoltrona"/></td>
-							<td align="center"><bean:write name="lista" property="placa"/></td>
 						</tr>
-					</logic:iterate>
+					</logic:empty>
 				</table>
 			</td>
 		</tr>
 	</table>
-</form>
+</html:form>
