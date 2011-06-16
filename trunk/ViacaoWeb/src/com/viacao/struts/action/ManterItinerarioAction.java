@@ -145,11 +145,11 @@ public class ManterItinerarioAction extends DispatchAction{
 		
 		TarifaVO tarifaVO = new TarifaVO();
 		
-		if("".equals(form.getCboTarifa())){
+		if(form.getCboTarifa()==0){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.selecionado"));
 			form.setIsconfirme(false);			
 		}else {
-			tarifaVO =(TarifaVO)CollectionsUtil.find(form.getListaTarifas(), "seqTarifa", Integer.valueOf(form.getCboTarifa()));
+			tarifaVO =(TarifaVO)CollectionsUtil.find(form.getListaTarifas(), "seqTarifa", form.getCboTarifa());
 			
 			if(tarifaVO == null){
 				form.setIsconfirme(false);	
@@ -160,7 +160,7 @@ public class ManterItinerarioAction extends DispatchAction{
 		if(form.isIsconfirme()){
 			form.getListaTarifasEscolhidas().add(tarifaVO);
 			form.getListaTarifas().remove(tarifaVO);
-			form.setCboTarifa("");
+			form.setCboTarifa(0);
 		}
 		saveMessages(request, messages);		
 		return mapping.findForward("cadastrar");
@@ -181,11 +181,11 @@ public class ManterItinerarioAction extends DispatchAction{
 		ActionMessages messages = new ActionMessages();
 		TarifaVO tarifaVO = new TarifaVO();
 		
-		if("".equals(form.getCboTarifa())){			
+		if(form.getCboTarifaDestino()==0){			
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.selecionado"));
 			form.setIsconfirme(false);
 		}else {
-			tarifaVO = (TarifaVO) CollectionsUtil.find(form.getListaTarifasEscolhidas(), "seqTarifa", Integer.valueOf(form.getCboTarifaDestino()));
+			tarifaVO = (TarifaVO) CollectionsUtil.find(form.getListaTarifasEscolhidas(), "seqTarifa", form.getCboTarifaDestino());
 			
 			if(tarifaVO == null){
 				form.setIsconfirme(false);
@@ -196,7 +196,7 @@ public class ManterItinerarioAction extends DispatchAction{
 		if(form.isIsconfirme()){					
 			form.getListaTarifas().add(tarifaVO);		
 			form.getListaTarifasEscolhidas().remove(tarifaVO);
-			form.setCboTarifaDestino("");
+			form.setCboTarifaDestino(0);
 		}
 		saveMessages(request, messages);		
 		return mapping.findForward("cadastrar");
