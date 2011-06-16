@@ -220,4 +220,132 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
+//--------------------------------------Rodoviaria----------------------------------------------------------------------
+	
+	public void inserir(RodoviariaVO rodoviariaVO){
+		try{
+			RodoviariaDAO dao = new RodoviariaDAO();
+		    dao.inserir(rodoviariaVO);
+		}catch(DAOException e){
+			logger.fatal("Erro ao inserir Rodoviaria :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+		
+	}
+	public void deletar(RodoviariaVO rodoviariaVO){
+		try {
+			RodoviariaDAO dao = new RodoviariaDAO();
+			dao.deletar(rodoviariaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro ao deletar Rodoviaria :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}	
+	}
+	public void alterar(RodoviariaVO rodoviariaVO){
+		try { 
+			RodoviariaDAO dao = new RodoviariaDAO();
+			dao.alterar(rodoviariaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro ao alterar Rodoviaria :: ManterCadastroBen", e);
+			throw new EJBException(e);
+		}
+	}
+	public RodoviariaVO getRodoviaria(RodoviariaVO rodoviariaVO){
+		try {
+			RodoviariaDAO dao = new RodoviariaDAO();
+			return dao.getRodoviaria(rodoviariaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getRodoviaria :: ManterCadastroBen ",e);
+			throw new EJBException(e);
+		}
+	}
+	public List<RodoviariaVO> getListaRodoviaria(RodoviariaVO rodoviariaVO){
+		try {
+			RodoviariaDAO dao = new RodoviariaDAO();
+			return dao.getListaRodoviaria(rodoviariaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaRodoviaria :: ManterCadastroBen ", e);
+			throw new EJBException(e);
+		}
+	}
+//---------------------------------------Endereco----------------------------------------------------------------------	
+	public void insert(EnderecoVO enderecoVO){
+		try {
+			EnderecoDAO dao = new EnderecoDAO();
+			dao.insert(enderecoVO);
+		} catch (Exception e) {
+			logger.fatal("Erro ao inserir Endereco :: ManterCadastro",e);
+			throw new EJBException(e);
+		}
+	}
+	public void alterar(EnderecoVO enderecoVO){
+		try {
+			EnderecoDAO dao = new EnderecoDAO();
+			dao.alterar(enderecoVO);
+		} catch (Exception e) {
+			logger.fatal("Erro ao alterar  Endereco :: ManterCadastro",e);
+			throw new EJBException(e);
+		}
+	}
+	public EnderecoVO getEndereco(EnderecoVO enderecoVO){
+		try {
+			EnderecoDAO dao = new EnderecoDAO();
+			return dao.getEndereco(enderecoVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getEndereco :: ManterCadastro",e);
+			throw new EJBException(e);
+		}
+	}
+
+//---------------------------------VIAGEM-----------------------------------------
+	
+	public void inserir(ViagemVO viagemVO){
+		try {
+			ViagemDAO dao = new ViagemDAO();
+			dao.inserir(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em inserir Viagem :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public void deletar(ViagemVO viagemVO){
+		try {
+			ViagemDAO dao = new ViagemDAO();
+			dao.deletar(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro ao deletar Viagem :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public void alterar(ViagemVO viagemVO){
+		try {
+			ViagemDAO dao = new ViagemDAO();
+			dao.alterar(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro ao deletar Viagem :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public ViagemVO getViagem (ViagemVO viagemVO){
+		try {
+			ViagemDAO dao = new ViagemDAO();
+			return dao.getViagem(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getViagem :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public List< ViagemVO > getListaViagem (ViagemVO viagemVO){
+		try {
+			ViagemDAO dao = new ViagemDAO();
+			return dao.getListaViagem(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaViagem :: ManterCadastroBean ", e);
+			throw new EJBException(e);
+		}
+	}
 }
