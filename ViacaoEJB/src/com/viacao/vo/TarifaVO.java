@@ -1,5 +1,7 @@
 package com.viacao.vo;
 
+import java.text.DecimalFormat;
+
 public class TarifaVO {
 	
 	Integer seqTarifa; 
@@ -24,6 +26,9 @@ public class TarifaVO {
 	public void setValor(Double valor) {
 		this.valor = valor;
 	}
-
+	public String getNomValor(){
+		DecimalFormat fmt = new DecimalFormat("0.00");
+		return nomTarifa + " - R$" + fmt.format(valor);
+	}
 
 }
