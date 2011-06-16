@@ -13,10 +13,12 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
+import com.acol.util.CollectionsUtil;
 import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterItinerarioForm;
 import com.viacao.utils.Constantes;
 import com.viacao.vo.ItinerarioVo;
+import com.viacao.vo.TarifaVO;
 
 /**
  * @author Wallace Gonçalves
@@ -29,7 +31,7 @@ public class ManterItinerarioAction extends DispatchAction{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		form.inicializar();
-		
+		form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
 		return mapping.findForward("cadastrar");
 		
 		//return forwardListar(mapping, form, request, response);
@@ -51,6 +53,11 @@ public class ManterItinerarioAction extends DispatchAction{
 		ActionMessages messages = new ActionMessages();
 		
 		try{
+			
+			form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
+			
+			CollectionsUtil.sort(form.getListaTarifas(), "nomTarifa");
+			
 			EstagioServices.getManterCadastroBean().inserirItinerario(form.getItinerarioVo());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
 			
@@ -90,14 +97,95 @@ public class ManterItinerarioAction extends DispatchAction{
 		return unspecified(mapping, frm, request, response);
 	}
 	
+	/**
+	 * Método que exclui um itinerario.
+	 * @param mapping - ActionMapping
+	 * @param form - ActionForm
+	 * @param request - HttpServletRequest
+	 * @param response - HttpServletResponse
+	 * @return mapping.findForward
+	 * @throws Exception
+	 */
 	public ActionForward excluirItinerario(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm)frm;
+		ActionMessages messages = new ActionMessages();
+		
+		try{
+			EstagioServices.getManterCadastroBean().excluirItinerario(form.getItinerarioVo());
+			form.setItinerarioVo(new ItinerarioVo());			
+			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.deletar"));
+			
+		}catch (Exception e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+		}
+		
+		saveMessages(request, messages);
 		
 		return unspecified(mapping, form, request, response);
 	}
 	
-	public ActionForward forwardListar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward forwardListar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		return mapping.findForward("listar");
+	}
+	
+	/**
+	 * Adiciona o objeto TarifaVO na lista de destino.
+	 * @param mapping - ActionMapping
+	 * @param frm - ActionForm
+	 * @param request - HttpServletRequest
+	 * @param response - HttpServletResponse
+	 * @return apping.findForward
+	 * @throws Exception
+	 */
+	public ActionForward adicionarLista(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		
+		ManterItinerarioForm form = (ManterItinerarioForm)frm;
+		ActionMessages messages = new ActionMessages();
+		
+		if(form.getCboTarifa()== ""){
+			form.setIsconfirme(false);
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.selecionado"));
+		}else {
+			form.setIsconfirme(true);
+		}		
+		if(form.isIsconfirme()){
+			TarifaVO tarifaVO =(TarifaVO)CollectionsUtil.find(form.getListaTarifas(), "seqTarifa", Integer.valueOf(form.getCboTarifa()));
+			form.getListaTarifasEscolhidas().add(tarifaVO);
+			form.getListaTarifas().remove(tarifaVO);
+			form.setCboTarifa("");
+		}
+		saveMessages(request, messages);		
+		return mapping.findForward("cadastrar");
+	}
+	
+	/**
+	 * Remove o objeto TarifaVO da lista de destino e atualiza a lista de origem.
+	 * @param mapping - ActionMapping
+	 * @param frm - ActionForm
+	 * @param request - HttpServletRequest
+	 * @param response - HttpServletResponse
+	 * @return apping.findForward
+	 * @throws Exception
+	 */
+	public ActionForward removerLista(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		
+		ManterItinerarioForm form = (ManterItinerarioForm)frm;
+		ActionMessages messages = new ActionMessages();
+		
+		if(form.getCboTarifa()==""){
+			form.setIsconfirme(false);
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.selecionado"));
+		}else {
+			form.setIsconfirme(true);
+		}
+		if(form.isIsconfirme()){
+			TarifaVO tarifaVO = (TarifaVO) CollectionsUtil.find(form.getListaTarifasEscolhidas(), "seqTarifa", Integer.valueOf(form.getCboTarifa()));		
+			form.getListaTarifas().add(tarifaVO);		
+			form.getListaTarifasEscolhidas().remove(tarifaVO);
+			form.setCboTarifa("");
+		}
+		saveMessages(request, messages);		
+		return mapping.findForward("cadastrar");
 	}
 }
