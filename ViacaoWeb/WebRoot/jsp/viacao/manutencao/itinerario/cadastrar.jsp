@@ -38,19 +38,13 @@ function limparCampos(){
 					<td class="texto" align="center" width="20%">Origem:</td>
 					<td width="30%">
 						<html:select name="manterItinerarioForm" property="seq" styleClass="input">
-							<html:option value="369">NOVO RIO</html:option>
-							<html:option value="370">ANTIGA RIO</html:option>
-							<html:option value="387">ROD. NITEROI</html:option>
-							<html:option value="388">ROD. JUIZ DE FORA</html:option>							
+							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviaria" />							
 						</html:select>						
 					</td>
 					<td class="texto" align="center" width="20%">Destino:</td>
 					<td width="30%">
 						<html:select name="manterItinerarioForm" property="seq" styleClass="input">
-							<html:option value="369">NOVO RIO</html:option>
-							<html:option value="370">ANTIGA RIO</html:option>
-							<html:option value="387">ROD. NITEROI</html:option>
-							<html:option value="388">ROD. JUIZ DE FORA</html:option>
+							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaDestino" />							
 						</html:select>
 					</td>
 				</tr>
@@ -66,8 +60,7 @@ function limparCampos(){
 						<td class="texto" width="45%" align="center">Tarifas Selecionadas</td>
 					</tr>
 					<tr>
-						<td width="45%" align="right">
-							
+						<td width="45%" align="right">							
 							<html:select name="manterItinerarioForm" property="cboTarifa" style="width: 270px;" size="10" styleClass="input">
 								<html:optionsCollection name="manterItinerarioForm" property="listaTarifas" label="nomValor" value="seqTarifa" />
 							</html:select>

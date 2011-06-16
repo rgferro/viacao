@@ -9,6 +9,7 @@ import java.util.List;
 import org.apache.struts.action.ActionForm;
 
 import com.viacao.vo.ItinerarioVo;
+import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
 
 /**
@@ -23,7 +24,9 @@ public class ManterItinerarioForm extends ActionForm{
 	private List<TarifaVO> listaTarifas;
 	private List<TarifaVO> listaTarifasEscolhidas;
 	private List<ItinerarioVo> listaItinerario;
-	private String seq;
+	private List<RodoviariaVO> listaRodoviaria;
+	private List<RodoviariaVO> listaRodoviariaDestino;
+	private Integer seq;
 	private Integer cboTarifa;
 	private Integer cboTarifaDestino;
 	private String task;
@@ -34,7 +37,9 @@ public class ManterItinerarioForm extends ActionForm{
 		this.listaItinerario = new ArrayList<ItinerarioVo>();
 		this.listaTarifas = new ArrayList<TarifaVO>();
 		this.listaTarifasEscolhidas = new ArrayList<TarifaVO>();
-		this.seq = "1";
+		this.listaRodoviaria = new ArrayList<RodoviariaVO>();
+		this.listaRodoviariaDestino = new ArrayList<RodoviariaVO>();
+		this.seq = new Integer(0);
 		this.cboTarifa = new Integer(0);
 		this.cboTarifaDestino = new Integer(0);
 		this.isconfirme = false;
@@ -55,22 +60,7 @@ public class ManterItinerarioForm extends ActionForm{
 	public void setItinerarioVo(ItinerarioVo itinerarioVo) {
 		this.itinerarioVo = itinerarioVo;
 	}
-	/**
-	 * Obtém o atributo seq
-	 * @return Valor do atributo seq
-	 */
-	public String getSeq() {
-		return seq;
-	}
-
-	/**
-	 * Altera o atributo seq
-	 * @param seq Novo valor do atributo
-	 */
-	public void setSeq(String seq) {
-		this.seq = seq;
-	}
-
+	
 	/**
 	 * Obtém o atributo listaTarifas
 	 * @return Valor do atributo listaTarifas
@@ -181,6 +171,54 @@ public class ManterItinerarioForm extends ActionForm{
 	 */
 	public void setCboTarifaDestino(Integer cboTarifaDestino) {
 		this.cboTarifaDestino = cboTarifaDestino;
+	}
+
+	/**
+	 * Obtém o atributo listaRodoviaria
+	 * @return Valor do atributo listaRodoviaria
+	 */
+	public List<RodoviariaVO> getListaRodoviaria() {
+		return listaRodoviaria;
+	}
+
+	/**
+	 * Altera o atributo listaRodoviaria
+	 * @param listaRodoviaria Novo valor do atributo
+	 */
+	public void setListaRodoviaria(List<RodoviariaVO> listaRodoviaria) {
+		this.listaRodoviaria = listaRodoviaria;
+	}
+
+	/**
+	 * Obtém o atributo listaRodoviariaDestino
+	 * @return Valor do atributo listaRodoviariaDestino
+	 */
+	public List<RodoviariaVO> getListaRodoviariaDestino() {
+		return listaRodoviariaDestino;
+	}
+
+	/**
+	 * Altera o atributo listaRodoviariaDestino
+	 * @param listaRodoviariaDestino Novo valor do atributo
+	 */
+	public void setListaRodoviariaDestino(List<RodoviariaVO> listaRodoviariaDestino) {
+		this.listaRodoviariaDestino = listaRodoviariaDestino;
+	}
+
+	/**
+	 * Obtém o atributo seq
+	 * @return Valor do atributo seq
+	 */
+	public Integer getSeq() {
+		return seq;
+	}
+
+	/**
+	 * Altera o atributo seq
+	 * @param seq Novo valor do atributo
+	 */
+	public void setSeq(Integer seq) {
+		this.seq = seq;
 	}
 
 	

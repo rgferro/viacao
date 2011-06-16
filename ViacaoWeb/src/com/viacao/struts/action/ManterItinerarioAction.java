@@ -18,6 +18,7 @@ import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterItinerarioForm;
 import com.viacao.utils.Constantes;
 import com.viacao.vo.ItinerarioVo;
+import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
 
 /**
@@ -32,6 +33,9 @@ public class ManterItinerarioAction extends DispatchAction{
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		form.inicializar();
 		form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
+		form.setListaRodoviaria(EstagioServices.getManterCadastroBean().getListaRodoviaria(new RodoviariaVO()));
+		form.setListaRodoviariaDestino(EstagioServices.getManterCadastroBean().getListaRodoviaria(new RodoviariaVO()));
+		
 		return mapping.findForward("cadastrar");
 		
 		//return forwardListar(mapping, form, request, response);
