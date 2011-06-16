@@ -71,7 +71,7 @@ public class ManterOnibusAction extends DispatchAction {
 		if(frm.getAcao().equals("DELETAR")){
 			return mapping.findForward("deletar");
 		}else{
-			return mapping.findForward("inserir");
+			return mapping.findForward("alterar");
 		}
 	}
 	

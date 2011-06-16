@@ -35,6 +35,9 @@
 	<definition name=".deletar.onibus" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/onibus/deletar.jsp"/>
 	</definition>
+	<definition name=".alterar.onibus" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/onibus/alterar.jsp"/>
+	</definition>
 	
 	<!-- Manter Itinerario -->
  
