@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="../../../../css/portal.css" type="text/css"/>
+<form action="/exemplo">
+<table width="600" border="0" align="center">
+	<tr>
+		<td>
+			<table width="100%" border="0" align="center">
+				<tr>
+					<td class="titulo">Edição de Rodoviária</td>
+				</tr>
+			</table>
+			<br>
+			<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
+				<tr class="fundoescuro">
+					<td colspan="4" align="center" class="texto">Edição de Rodoviária</td>
+				</tr>
+				<tr class="fundoclaro">
+					<td class="texto" align="center" width="05%">Rodoviária</td>
+					<td width="45%"><input class="input" size="20" value="Novo Rio"/></td>
+					<td class="texto" align="center" width="05%">Estado</td>
+					<td width="45%"><input class="input" size="20" value="Rio de Janeiro"></td>
+				</tr>
+				<tr class="fundoclaro">
+					<td class="texto" align="center" width="05%">Cidade</td>
+					<td width="45%"><input class="input" size="20" value="Rio de Janeiro"></td>
+					<td class="texto" align="center" width="05%">Bairro</td>
+					<td width="45%"><input class="input" size="20" value="Santo Cristo" ></td>
+				</tr>
+				<tr class="fundoclaro">
+					<td class="texto" align="center" width="05%">Logradouro</td>
+					<td width="95%" colspan="3"><input class="input" size="101" value="Avenida Francisco Bicalho" ></td>
+				</tr>
+				<tr class="fundoclaro">
+					<td class="texto" align="center" width="05%">Número</td>
+					<td width="45%"><input class="input" size="5" value="01" ></td>
+					<td class="texto" align="center" width="05%">Complemento</td>
+					<td width="45%"><input class="input" size="20" ></td>
+				</tr>
+			</table>
+			<table width="100%" border="0" align="center">
+				<tr>
+					<td align="center"><input class="botao" value="Voltar"></td>
+					<td align="center"><input class="botao" value="Confirmar"></td>
+					<td align="center"><input class="botao" value="Limpar"></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</form>

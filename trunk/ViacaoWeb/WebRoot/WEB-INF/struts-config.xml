@@ -78,10 +78,10 @@
 	<action
 		 attribute="manterRodoviariaForm"
 		 name="manterRodoviariaForm"
-		 path="/materRodoviaria"
+		 path="/manterRodoviaria"
 		 parameter="task"
 		 scope="session"
-		 type="com.viacaostruts.action.ManterRodoviariaAction"
+		 type="com.viacao.struts.action.ManterRodoviariaAction"
 		 validate="false">
 		 <forward name="inserir"	path=".inserir.manter.rodoviaria"/>
 	</action>	 

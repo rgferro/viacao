@@ -126,8 +126,7 @@ public class EnderecoDAO extends BaseDB {
 				endereco.setComplemento(rowSet.getString("complemento"));
 				endereco.setBairro(rowSet.getString("bairro"));
 				endereco.setCidade(rowSet.getString("cidade"));
-				endereco.setEstado(rowSet.getString("estado"));
-				
+				endereco.setEstado(rowSet.getString("estado"));	
 			}
 			return endereco;
 		}catch(SQLException e){
@@ -138,7 +137,4 @@ public class EnderecoDAO extends BaseDB {
 		}
 		
 	}
-		
-		
-	
 }
