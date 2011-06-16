@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script>
 function confirmar(){
 	var frm = document.forms[0];
-	frm.task.value = 'inserirOnibus';
+		frm.task.value = 'alterarOnibus';
 	frm.submit();
 }
 
@@ -75,13 +75,13 @@ function formataPlaca(obj,e,menos){
 			<jsp:include page="/jsp/common/mensagens.jsp" />
 				<table width="100%" border="0" align="center">
 					<tr>
-						<td class="titulo">Cadastro de Ônibus</td>
+						<td class="titulo">Atualização de Ônibus</td>
 					</tr>
 				</table>
 				<br>
 				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
 					<tr class="fundoescuro">
-						<td colspan="4" align="center" class="texto">Cadastro de Ônibus</td>
+						<td colspan="4" align="center" class="texto">Atualização de Ônibus</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Empresa</td>
@@ -110,7 +110,7 @@ function formataPlaca(obj,e,menos){
 							<html:button value="Voltar" property="" styleClass="botao" onclick="voltar();"/>
 						</td>
 						<td align="center">
-							<html:button value="Cadastrar" property="" styleClass="botao" onclick="confirmar();"/>
+							<html:button value="Confirmar" property="" styleClass="botao" onclick="confirmar();"/>
 						</td>
 						<td align="center">
 							<html:reset value="Limpar" styleClass="botao"/>

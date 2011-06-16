@@ -45,7 +45,7 @@ function buscar(){
 				<table>
 					<tr>
 						<td class="link"><img src="images/fetch.gif"/>
-							<a href="<%request.getContextPath();%>?task=paginaCadastrarOnibus">Cadastrar Novo Ônibus</a>
+							<a href="<%request.getContextPath();%>?task=paginaCadastrarOnibus&acao=CADASTRAR">Cadastrar Novo Ônibus</a>
 						</td>
 					</tr>
 				</table>
