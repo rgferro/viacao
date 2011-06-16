@@ -19,7 +19,7 @@
 .input {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color: #255d4d;
+	color: #263a90;
 	border:1px solid #BFDFDF;
 }
 .inputobrigatorio {
@@ -50,7 +50,7 @@
 .bordatabela {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
-	color: #000000;
+	color: #FFFFFF;
 	border: #E4F1F1;
 	border-color: #E4F1F1;
 	border-style: solid;
@@ -64,16 +64,16 @@
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	font-weight: bold;
-	color: #255d4d;
-	background-color: #BFDFDF;
+	color: #FFFFFF;
+	background-color: #6dacd2;
 	text-align: center;
 	vertical-align: middle;
 	height: 16px;
 	width: auto;
 	cursor: hand;
 	border-top: 1px solid #FFFFFF;
-	border-right: 1px solid #255d4d;
-	border-bottom: 1px solid #255d4d;
+	border-right: 1px solid #263a90;
+	border-bottom: 1px solid #263a90;
 	border-left: 1px solid #FFFFFF;
 }
 
@@ -92,7 +92,7 @@
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	font-style: normal;
-	color: #255d4d;
+	color: #263a90;
 
 }
 .fundobranco {
@@ -100,7 +100,7 @@
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	font-style: normal;
-	color: #255d4d;
+	color: #263a90;
 
 }
 .inputfocus {
@@ -120,6 +120,12 @@
 	height: 30px;
 }
 .texto {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #263a90	;
+	border: none;
+}
+.texto2 {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
 	color: #FFFFFF	;
