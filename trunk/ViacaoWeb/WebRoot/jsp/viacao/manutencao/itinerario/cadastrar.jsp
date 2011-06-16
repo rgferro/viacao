@@ -1,96 +1,87 @@
 <%@ include file="/jsp/common/taglibs.jsp" %>
+
+<script type="text/javascript" language="javascript">
+
+function adicionar() {
+	var frm = document.forms[0];
+	frm.task.value = "adicionarLista";	
+	frm.submit();
+}
+
+function remover() {
+	var frm = document.forms[0];
+	frm.task.value = "removerLista";
+	frm.submit();
+}
+
+</script>
+
 <html:form action="/manterItinerario">
-<table width="600" border="0" align="center">
+
+<html:hidden name="manterItinerarioForm" property="task"/>
+
+<table width="600" border="0" align="center" class="bordatabela">
 	<tr>
 		<td>
 			<jsp:include page="/jsp/common/mensagens.jsp" />
-			<table width="100%" border="0" align="center">
-				<tr>
-					<td class="titulo">Cadastro de Itinerario</td>
-				</tr>
-			</table><br>
 			<table width="100%" border="0" align="center" class="bordatabela">
 				<tr class="fundoescuro">
 					<td colspan="4" align="center" class="texto">Cadastro de Itinerario</td>
 				</tr>
-				<tr class="fundoclaro">
+				<tr class="fundoescuro">
 					<td class="texto" align="center" width="20%">Origem:</td>
 					<td width="30%">
-						<select name="Origem" size="1">
-							<option>Origem</option>
-							<option>Rio de Janeiro</option>
-							<option>Juiz de Fora</option>
-							<option>Petrópolis</option>
-						</select>
+						<html:select name="manterItinerarioForm" property="seq" styleClass="input">
+							<html:option value="369">NOVO RIO</html:option>
+							<html:option value="370">ANTIGA RIO</html:option>
+							<html:option value="387">ROD. NITEROI</html:option>
+							<html:option value="388">ROD. JUIZ DE FORA</html:option>							
+						</html:select>						
 					</td>
 					<td class="texto" align="center" width="20%">Destino:</td>
 					<td width="30%">
-						<select name="Origem" size="1">
-							<option selected="selected">Destino</option>
-							<option>Rio de Janeiro</option>
-							<option>Juiz de Fora</option>
-							<option>Petrópolis</option>
-						</select>
+						<html:select name="manterItinerarioForm" property="seq" styleClass="input">
+							<html:option value="369">NOVO RIO</html:option>
+							<html:option value="370">ANTIGA RIO</html:option>
+							<html:option value="387">ROD. NITEROI</html:option>
+							<html:option value="388">ROD. JUIZ DE FORA</html:option>
+						</html:select>
 					</td>
 				</tr>
-				<tr class="fundoclaro">
+				<tr class="fundoescuro">
 					<td class="texto" align="center" width="20%">Tempo de Viagem</td>
-					<td colspan="3" width="80%"><input class="input" size="20" value="">min.</td>
-				</tr>
-				<tr class="fundoclaro">
-					<td class="texto" align="center" colspan="4">Escolha as tarifas desejadas:</td>
-				</tr>
-				<tr>
-					<td colspan="2">
-						<table class="bordatabela" cellpadding="1" cellspacing="2" width="100%">
-							<tr class="fundobranco">
-								<td>Pedagio Juiz de Fora</td>
-								<td align="right">R$ 3,00</td>
-							</tr>
-							<tr class="fundobranco">
-								<td>Pedagio Petrópolis</td>
-								<td align="right">R$ 2,00</td>
-							</tr>
-							<tr class="fundobranco">
-								<td>Embarque</td>
-								<td align="right">R$ 2,36</td>
-							</tr>
-							<tr class="fundobranco">
-								<td>Seguro</td>
-								<td align="right">R$ 8,00</td>
-							</tr>
-							<tr style="background: silver">
-								<td><b>Total:</b></td>
-								<td align="right"><b>R$ 15,36</b></td>
-							</tr>
-						</table>
-					</td>
-					<td align="center">
-						<img src="images/seta-esquerda.gif" height="20" title="Inserir"></img>
-						<img src="images/seta-direita.GIF" height="20" title="Excluir"></img>
-					</td>					
-					<td>
-						<table class="bordatabela" cellpadding="1" cellspacing="2" width="100%">
-							<tr class="fundobranco">
-								<td>&nbsp;</td>
-							</tr>
-							<tr class="fundobranco">
-								<td>&nbsp;</td>
-							</tr>
-							<tr class="fundobranco">
-								<td>&nbsp;</td>
-							</tr>
-							<tr class="fundobranco">
-								<td>&nbsp;</td>
-							</tr>
-							<tr style="background: silver">
-								<td><b>Total:</b></td>
-								<td align="right"><b>R$ 00,00</b></td>
-							</tr>
-						</table>
-					</td>			
-				</tr>
-			</table>
+					<td class="texto" colspan="3" width="80%"><input class="input" size="20" value="">min.</td>
+				</tr>				
+			</table>			
+				<table width="100%" border="0" align="center">
+					<tr>
+						<td width="45%" align="right">
+							
+							<html:select name="manterItinerarioForm" property="cboTarifa" style="width: 270px;" size="10" styleClass="input">
+								<html:optionsCollection name="manterItinerarioForm" property="listaTarifas" label="nomValor" value="seqTarifa" />
+							</html:select>
+						</td>
+						<td width="10%">
+							<table width="100%" border="0" align="center">
+								<tr>
+									<td align="center">
+										<img src="images/seta-direita.GIF" height="20" width="30" title="Inserir" onclick="javascript: adicionar()"></img>							
+									</td>	
+								</tr>
+								<tr>	
+									<td align="center">
+										<img src="images/seta-esquerda.gif" height="20" width="30" title="Remover" onclick="javascript: remover();"></img>										
+									</td>
+								</tr>
+							</table>
+						</td>
+						<td width="45%" >
+							<html:select name="manterItinerarioForm" property="cboTarifa" style="width: 270px;" size="10" styleClass="input">
+								<html:optionsCollection name="manterItinerarioForm" property="listaTarifasEscolhidas" label="nomValor" value="seqTarifa"/>
+							</html:select>
+						</td>
+					</tr>
+				</table>			
 			<table width="100%" border="0" align="center">
 				<tr>
 					<td align="center"><input class="botao" value="Voltar"></td>
