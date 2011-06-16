@@ -9,6 +9,8 @@ import javax.ejb.SessionContext;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.acol.exception.business.ChildRecordFoundException;
+import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.viacao.dao.EnderecoDAO;
 import com.viacao.dao.ItinerarioDAO;
 import com.viacao.dao.OnibusDAO;
@@ -37,30 +39,33 @@ public class ManterCadastroBean implements SessionBean {
 // Métodos de negócio
 	
 	
-	public void inserir (TarifaVO tarifaVO){ 
+	public void inserir (TarifaVO tarifaVO) throws UniqueConstraintViolatedException{ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
 			dao.inserir(tarifaVO);
 		} catch (DAOException e) {
+			e.checkUniqueConstraintViolated();
 			logger.fatal("Erro ocorrido no metodo inserir :: ManterCadastroBean", e);
 			throw new EJBException(e);
 		}
 	}	
 	
-	public void deletar(TarifaVO tarifaVO){ 
+	public void deletar(TarifaVO tarifaVO) throws ChildRecordFoundException{ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
 			dao.deletar(tarifaVO);
 		} catch (DAOException e) {
+			e.checkChildRecordFound();
 			logger.fatal("Erro ocorrido no metodo deletar :: ManterCadastroBean", e);
 			throw new EJBException(e);
-		}
+		} 
 	}	
-	public void alterar(TarifaVO tarifaVO){ 
+	public void alterar(TarifaVO tarifaVO) throws UniqueConstraintViolatedException{ 
 		try {
 			TarifaDAO dao = new TarifaDAO();
 			dao.alterar(tarifaVO);
 		} catch (DAOException e) {
+			e.checkUniqueConstraintViolated();
 			logger.fatal("Erro ocorrido no metodo alterar :: ManterCadastroBean", e);
 			throw new EJBException(e);
 		}
