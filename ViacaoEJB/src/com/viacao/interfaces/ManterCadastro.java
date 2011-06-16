@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.ejb.EJBObject;
 
+import com.acol.exception.business.ChildRecordFoundException;
+import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
@@ -12,9 +14,9 @@ import com.viacao.vo.TarifaVO;
 
 public interface ManterCadastro extends EJBObject {
 	
-	public void inserir(TarifaVO tarifaVO) throws RemoteException;	
-	public void deletar(TarifaVO tarifaVO) throws RemoteException;	
-	public void alterar(TarifaVO tarifaVO) throws RemoteException;	
+	public void inserir(TarifaVO tarifaVO) throws RemoteException, UniqueConstraintViolatedException;	
+	public void deletar(TarifaVO tarifaVO) throws RemoteException, ChildRecordFoundException;	
+	public void alterar(TarifaVO tarifaVO) throws RemoteException, UniqueConstraintViolatedException;	
 	public List<TarifaVO> getListaTarifa(TarifaVO tarifaVO) throws RemoteException;	
 	public TarifaVO getTarifa(TarifaVO tarifaVO) throws RemoteException;
 	
