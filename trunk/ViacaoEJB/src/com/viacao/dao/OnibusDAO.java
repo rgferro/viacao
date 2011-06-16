@@ -46,7 +46,7 @@ public class OnibusDAO extends BaseDB {
 			pstmt.setString(1, onibusVO.getTipo());
 			pstmt.setString(2, onibusVO.getEmpresa());
 			pstmt.setString(3, onibusVO.getPlaca());
-			pstmt.setInt(4, onibusVO.getQtdPoltrona().intValue());
+			pstmt.setInt(4, onibusVO.getQtdPoltronas().intValue());
 			
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -108,7 +108,7 @@ public class OnibusDAO extends BaseDB {
 			pstmt.setString(1, onibusVO.getTipo());
 			pstmt.setString(2, onibusVO.getEmpresa());
 			pstmt.setString(3, onibusVO.getPlaca());
-			pstmt.setInt(4, onibusVO.getQtdPoltrona().intValue());
+			pstmt.setInt(4, onibusVO.getQtdPoltronas().intValue());
 			pstmt.setInt(5, onibusVO.getSeqOnibus().intValue());
 			
 			pstmt.executeUpdate();
@@ -140,7 +140,7 @@ public class OnibusDAO extends BaseDB {
 				oniVO.setTipo(rowSet.getString("tipo"));
 				oniVO.setEmpresa(rowSet.getString("empresa"));
 				oniVO.setPlaca(rowSet.getString("placa"));
-				oniVO.setQtdPoltrona(new Integer(rowSet.getInt("qtd_poltrona")));
+				oniVO.setQtdPoltronas(new Integer(rowSet.getInt("qtd_poltrona")));
 				
 				return oniVO;
 			}
@@ -177,8 +177,8 @@ public class OnibusDAO extends BaseDB {
 			sql.append("AND placa like upper('%" + oniVO.getPlaca() + "%') ");
 		}
 		//--filtro quantidade de poltrona
-		if(oniVO.getQtdPoltrona() != null){
-			sql.append("AND qtd_poltrona = " + oniVO.getQtdPoltrona());
+		if(oniVO.getQtdPoltronas() != null){
+			sql.append("AND qtd_poltrona = " + oniVO.getQtdPoltronas());
 		}
 		
 		return sql.toString();
@@ -197,11 +197,11 @@ public class OnibusDAO extends BaseDB {
 			List<OnibusVO> listaOnibus = new ArrayList<OnibusVO>();
 			while(rowSet.next()){
 				OnibusVO oniVO = new OnibusVO();
-				oniVO.setSeqOnibus(new Integer(rowSet.getInt("qtd_poltrona")));
+				oniVO.setSeqOnibus(new Integer(rowSet.getInt("seq_onibus")));
 				oniVO.setTipo(rowSet.getString("tipo"));
 				oniVO.setEmpresa(rowSet.getString("empresa"));
 				oniVO.setPlaca(rowSet.getString("placa"));
-				oniVO.setQtdPoltrona(new Integer(rowSet.getInt("qtd_poltrona")));
+				oniVO.setQtdPoltronas(new Integer(rowSet.getInt("qtd_poltrona")));
 				
 				listaOnibus.add(oniVO);
 			}
