@@ -145,18 +145,18 @@ function mudaImagemOut(obj, acao){
 		<td>
 			<jsp:include page="/jsp/common/mensagens.jsp" />
 			
-			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" >
+			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" class="texto" >
 				<tr>
 					<td class="titulo">ManterTarifa</td>
 				</tr>
 			</table>	
 			<table width="100%" border="0" align="center" id="inserir" class="bordatabela">
 				<tr class="fundoescuro" align="center">
-					<td class="texto" width="20%" height="20">Ação</td>					
-					<td width="40%" class="texto">
+					<td class="texto2" width="20%" height="20">Ação</td>					
+					<td width="40%" class="texto2">
 						Nome da Tarifa
 					</td>
-					<td width="40%" class="texto">
+					<td width="40%" class="texto2">
 						Valor
 					</td>
 					<td width="20%" colspan="3">&nbsp;</td>
