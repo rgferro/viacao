@@ -3,8 +3,15 @@ package com.viacao.struts.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.struts.action.ActionForm;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+
+import com.acol.util.StringUtil;
+import com.viacao.utils.Constantes;
 import com.viacao.vo.TarifaVO;
 
 public class ManterTarifaForm extends ActionForm{
@@ -23,6 +30,19 @@ public class ManterTarifaForm extends ActionForm{
 		acao = "INCLUIR";
 	}
 
+	public ActionMessages validacao(ActionMapping mapping, HttpServletRequest request) {
+		ActionMessages messages = new ActionMessages();
+		if(StringUtil.empty(this.tarifaVO.getNomTarifa())){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio","Nome da Tarifa"));
+		}
+		if(this.tarifaVO.getValor().intValue() == 0){
+			this.tarifaVO.setValor(null);
+			if(messages.isEmpty()){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio","Valor da Tarifa"));
+			}
+		}
+		return messages;
+	}
 	public TarifaVO getTarifaVO() {
 		return tarifaVO;
 	}
