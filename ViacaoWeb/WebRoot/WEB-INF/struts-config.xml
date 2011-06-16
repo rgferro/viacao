@@ -57,6 +57,22 @@
 		validate="false">
 		<forward name="cadastrar"				path=".cadastrar.manter.itinerario" />
 	</action>
+	
+	<!-- manterViagemForm -->
+	
+	<action
+		attribute="manterViagemForm"
+		name="manterViagemForm"
+		path="/manterViagem"
+		parameter="task"
+		scope="session"
+		type="com.viacao.struts.action.ManterViagemAction"
+		validate="false">
+		<forward name="cadastrar"				path=".cadastrar.viagem" />
+		<forward name="deletar"				path=".deletar.viagem" />
+		<forward name="alterar"				path=".alterar.viagem" />
+		<forward name="listar"				path=".listar.viagem" />
+	</action>
 	 	
   </action-mappings>
   
