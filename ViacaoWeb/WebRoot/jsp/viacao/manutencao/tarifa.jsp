@@ -1,5 +1,4 @@
 <%@ include file="/jsp/common/taglibs.jsp" %>
-
 <script>
 function confirmar(acao) {
 	var frm = document.forms[0];
