@@ -4,11 +4,11 @@
 <struts-config>
   <form-beans>
   	<form-bean name="exemploForm" type="com.viacao.struts.form.ExemploForm" />
-  	<form-bean name="manterTarifaForm" type="com.viacao.struts.form.ManterTarifaForm" />
-  	<form-bean name="manterOnibusForm" type="com.viacao.struts.form.ManterOnibusForm" />
-  	<form-bean name="manterItinerarioForm" type="com.viacao.struts.form.ManterItinerarioForm" />
-  	
-  </form-beans>
+	<form-bean name="manterItinerarioForm" type="com.viacao.struts.form.ManterItinerarioForm" />
+  	<form-bean name="manterOnibusForm" type="com.viacao.struts.form.ManterOnibusForm"/>
+	<form-bean name="manterViagemForm" type="com.viacao.struts.form.ManterViagemForm"/>
+    
+</form-beans>
   <global-exceptions />
   <global-forwards />
   <action-mappings>
@@ -24,28 +24,15 @@
 	 </action>
 	 
 	 <action 
-		attribute="manterOnibusForm"
-        name="manterOnibusForm"
-        path="/manterOnibus"
+		attribute="manterTarifaForm"
+        name="manterTarifaForm"
+        path="/manterTarifa"
         parameter="task"
         scope="session"
-        type="com.viacao.struts.action.ManterOnibusAction"
+        type="com.viacao.struts.action.ManterTarifaAction"
         validate="false">
-        <forward name="listar" path=".onibus.listar"/>
-        <forward name="deletar" path=".onibus.deletar"/>
-        <forward name="alterar" path=".onibus.alterar"/>
-        <forward name="inserir" path=".onibus.inserir"/>
+        <forward name="listar"                path=".listar.manterTarifa"/>
 	 </action>
-	 		<action 
-			attribute="manterTarifaForm"
-            name="manterTarifaForm"
-            path="/manterTarifa"
-            parameter="task"
-            scope="session"
-            type="com.viacao.struts.action.ManterTarifaAction"
-            validate="false">
-            <forward name="listar"                path=".listar.manterTarifa"/>
-	 	</action>
 	
 	<action
 		attribute="manterItinerarioForm"
@@ -58,6 +45,20 @@
 		<forward name="cadastrar"				path=".cadastrar.manter.itinerario" />
 	</action>
 	
+	<action
+		attribute="manterOnibusForm"
+		name="manterOnibusForm" 
+		path="/manterOnibus"
+		parameter="task"
+		scope="session"
+		type="com.viacao.struts.action.ManterOnibusAction"
+		validate="false">
+		<forward name="listar" path=".listar.onibus"/>
+		<forward name="inserir" path=".inserir.onibus"/>
+		<forward name="deletar" path=".deletar.onibus"/>
+		<forward name="alterar" path=".alterar.onibus"/>
+	</action>
+
 	<!-- manterViagemForm -->
 	
 	<action
@@ -73,7 +74,6 @@
 		<forward name="alterar"				path=".alterar.viagem" />
 		<forward name="listar"				path=".listar.viagem" />
 	</action>
-	 	
   </action-mappings>
   
   <message-resources parameter="com.viacao.struts.ApplicationResources" />
