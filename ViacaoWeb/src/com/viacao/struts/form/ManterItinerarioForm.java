@@ -24,8 +24,8 @@ public class ManterItinerarioForm extends ActionForm{
 	private List<TarifaVO> listaTarifasEscolhidas;
 	private List<ItinerarioVo> listaItinerario;
 	private String seq;
-	private String cboTarifa;
-	private String cboTarifaDestino;
+	private Integer cboTarifa;
+	private Integer cboTarifaDestino;
 	private String task;
 	private boolean isconfirme;
 	
@@ -35,8 +35,8 @@ public class ManterItinerarioForm extends ActionForm{
 		this.listaTarifas = new ArrayList<TarifaVO>();
 		this.listaTarifasEscolhidas = new ArrayList<TarifaVO>();
 		this.seq = "1";
-		this.cboTarifa = "";
-		this.cboTarifaDestino = "";
+		this.cboTarifa = new Integer(0);
+		this.cboTarifaDestino = new Integer(0);
 		this.isconfirme = false;
 	}
 
@@ -155,7 +155,7 @@ public class ManterItinerarioForm extends ActionForm{
 	 * Obtém o atributo cboTarifa
 	 * @return Valor do atributo cboTarifa
 	 */
-	public String getCboTarifa() {
+	public Integer getCboTarifa() {
 		return cboTarifa;
 	}
 
@@ -163,7 +163,7 @@ public class ManterItinerarioForm extends ActionForm{
 	 * Altera o atributo cboTarifa
 	 * @param cboTarifa Novo valor do atributo
 	 */
-	public void setCboTarifa(String cboTarifa) {
+	public void setCboTarifa(Integer cboTarifa) {
 		this.cboTarifa = cboTarifa;
 	}
 
@@ -171,7 +171,7 @@ public class ManterItinerarioForm extends ActionForm{
 	 * Obtém o atributo cboTarifaDestino
 	 * @return Valor do atributo cboTarifaDestino
 	 */
-	public String getCboTarifaDestino() {
+	public Integer getCboTarifaDestino() {
 		return cboTarifaDestino;
 	}
 
@@ -179,7 +179,9 @@ public class ManterItinerarioForm extends ActionForm{
 	 * Altera o atributo cboTarifaDestino
 	 * @param cboTarifaDestino Novo valor do atributo
 	 */
-	public void setCboTarifaDestino(String cboTarifaDestino) {
+	public void setCboTarifaDestino(Integer cboTarifaDestino) {
 		this.cboTarifaDestino = cboTarifaDestino;
 	}
+
+	
 }

@@ -76,7 +76,7 @@ function remover() {
 							</table>
 						</td>
 						<td width="45%" >
-							<html:select name="manterItinerarioForm" property="cboTarifa" style="width: 270px;" size="10" styleClass="input">
+							<html:select name="manterItinerarioForm" property="cboTarifaDestino" style="width: 270px;" size="10" styleClass="input">
 								<html:optionsCollection name="manterItinerarioForm" property="listaTarifasEscolhidas" label="nomValor" value="seqTarifa"/>
 							</html:select>
 						</td>
