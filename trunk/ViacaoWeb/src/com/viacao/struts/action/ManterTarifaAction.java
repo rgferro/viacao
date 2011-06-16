@@ -10,6 +10,8 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
+import com.acol.exception.business.ChildRecordFoundException;
+import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterTarifaForm;
 import com.viacao.utils.Constantes;
@@ -38,26 +40,21 @@ public class ManterTarifaAction extends DispatchAction{
 	
 	public ActionForward incluir(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
-		ActionMessages messages = new ActionMessages();
-		if(frm.getTarifaVO().getNomTarifa().equals("")){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.nomeTarifa"));
+		ActionMessages messages = frm.validacao(mapping, request);
+		if(!messages.isEmpty()){
 			saveMessages(request, messages);
-			return unspecified(mapping, form, request, response);
-		}
-		if(frm.getTarifaVO().getValor() == 0){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.valorTarifa"));
-			saveMessages(request, messages);
-			return unspecified(mapping, form, request, response);
-		}
-		
-		try{
-			EstagioServices.getManterCadastroBean().inserir(frm.getTarifaVO());
-			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
-		}catch (Exception e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			return forwardListar(mapping, form, request, response);
+		}else{
+			try{
+				EstagioServices.getManterCadastroBean().inserir(frm.getTarifaVO());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
+			}catch (UniqueConstraintViolatedException e) {
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.insert","tarifa"));
+			}catch (Exception e) {
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			}
 		}
 		saveMessages(request, messages);
-		unspecified(mapping, form, request, response);
 		return unspecified(mapping, form, request, response);
 	}
 	
@@ -76,23 +73,20 @@ public class ManterTarifaAction extends DispatchAction{
 	
 	public ActionForward alterar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
-		ActionMessages messages = new ActionMessages();
-		if(frm.getTarifaVO().getNomTarifa().equals("")){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.nomeTarifa"));
+		ActionMessages messages = frm.validacao(mapping, request);
+		if(!messages.isEmpty()){
 			saveMessages(request, messages);
-			return unspecified(mapping, form, request, response);
-		}
-		if(frm.getTarifaVO().getValor().equals("")){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.valorTarifa"));
-			saveMessages(request, messages);
-			return unspecified(mapping, form, request, response);
-		}
-		try{
-			EstagioServices.getManterCadastroBean().alterar(frm.getTarifaVO());
-			frm.setTarifaVO(new TarifaVO());
-			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
-		}catch (Exception e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			return forwardListar(mapping, form, request, response);
+		}else{
+			try{
+				EstagioServices.getManterCadastroBean().alterar(frm.getTarifaVO());
+				frm.setTarifaVO(new TarifaVO());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
+			}catch (UniqueConstraintViolatedException e) {
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","tarifa"));
+			}catch (Exception e) {
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			}
 		}
 		saveMessages(request, messages);
 		return unspecified(mapping, form, request, response);
@@ -105,6 +99,8 @@ public class ManterTarifaAction extends DispatchAction{
 			EstagioServices.getManterCadastroBean().deletar(frm.getTarifaVO());
 			frm.setTarifaVO(new TarifaVO());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.deletar"));
+		}catch (ChildRecordFoundException e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.delete","tarifa"));
 		}catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
