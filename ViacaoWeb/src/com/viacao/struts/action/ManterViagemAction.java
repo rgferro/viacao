@@ -27,7 +27,7 @@ public class ManterViagemAction extends DispatchAction{
 		ManterViagemForm frm = (ManterViagemForm)form;
 		
 		frm.inicializar();
-		frm.setListaViagem(EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO()));
+//		frm.setListaViagem(EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO()));
 		
 			return mapping.findForward("listar");
 	}
@@ -35,7 +35,7 @@ public class ManterViagemAction extends DispatchAction{
 	public ActionForward listarViagem(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterViagemForm frm = (ManterViagemForm)form;
 		
-		frm.setListaViagem(EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO()));
+//		frm.setListaViagem(EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO()));
 		
 			return mapping.findForward("listar");
 	}
@@ -50,7 +50,7 @@ public class ManterViagemAction extends DispatchAction{
 		viagemVO.setHoraSaida(frm.getViagemVO().getHoraSaida());
 		viagemVO.setHoraChegada(frm.getViagemVO().getHoraChegada());
 		
-		EstagioServices.getManterCadastroBean().inserir(viagemVO);
+//		EstagioServices.getManterCadastroBean().inserir(viagemVO);
 		
 			return mapping.findForward("listar");
 	}
@@ -61,7 +61,7 @@ public class ManterViagemAction extends DispatchAction{
 		ViagemVO viagemVO = new ViagemVO();
 		
 		viagemVO.setSeqViagem(frm.getSeqViagem());
-		frm.setViagemVO(EstagioServices.getManterCadastroBean().getViagem(viagemVO));
+//		frm.setViagemVO(EstagioServices.getManterCadastroBean().getViagem(viagemVO));
 		
 		if(frm.getAcao().equals("deletando")){
 			
@@ -82,7 +82,7 @@ public class ManterViagemAction extends DispatchAction{
 		viagemVO.setHoraSaida(frm.getViagemVO().getHoraSaida());
 		viagemVO.setHoraChegada(frm.getViagemVO().getHoraChegada());
 			
-		EstagioServices.getManterCadastroBean().alterar(viagemVO);
+//		EstagioServices.getManterCadastroBean().alterar(viagemVO);
 			
 			return mapping.findForward("listar");
 		}
@@ -97,7 +97,7 @@ public class ManterViagemAction extends DispatchAction{
 		viagemVO.setHoraSaida(frm.getViagemVO().getHoraSaida());
 		viagemVO.setHoraChegada(frm.getViagemVO().getHoraChegada());
 			
-		EstagioServices.getManterCadastroBean().alterar(viagemVO);
+//		EstagioServices.getManterCadastroBean().alterar(viagemVO);
 			
 			return mapping.findForward("listar");
 	}
