@@ -6,7 +6,7 @@
 <%@ taglib uri="/WEB-INF/struts-nested.tld" prefix="nested"%>
 <%@ taglib uri="/WEB-INF/c-rt.tld" prefix="c" %>
 <%@ include file="/css/portal.css" %>
-<%@ taglib uri="/WEB-INF/fmt.tld" prefix="fmt"%>
+<%@ taglib uri="/WEB-INF/fmt-rt.tld" prefix="fmt"%>
 
 
 
