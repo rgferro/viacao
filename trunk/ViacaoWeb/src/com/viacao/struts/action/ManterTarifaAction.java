@@ -40,7 +40,12 @@ public class ManterTarifaAction extends DispatchAction{
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		ActionMessages messages = new ActionMessages();
 		if(frm.getTarifaVO().getNomTarifa().equals("")){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.nomeTarifa"));
+			saveMessages(request, messages);
+			return unspecified(mapping, form, request, response);
+		}
+		if(frm.getTarifaVO().getValor() == 0){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.valorTarifa"));
 			saveMessages(request, messages);
 			return unspecified(mapping, form, request, response);
 		}
@@ -73,7 +78,12 @@ public class ManterTarifaAction extends DispatchAction{
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		ActionMessages messages = new ActionMessages();
 		if(frm.getTarifaVO().getNomTarifa().equals("")){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.nomeTarifa"));
+			saveMessages(request, messages);
+			return unspecified(mapping, form, request, response);
+		}
+		if(frm.getTarifaVO().getValor().equals("")){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.valorTarifa"));
 			saveMessages(request, messages);
 			return unspecified(mapping, form, request, response);
 		}
