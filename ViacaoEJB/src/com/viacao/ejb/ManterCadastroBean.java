@@ -9,12 +9,18 @@ import javax.ejb.SessionContext;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.viacao.dao.EnderecoDAO;
 import com.viacao.dao.ItinerarioDAO;
 import com.viacao.dao.OnibusDAO;
-import com.viacao.vo.ItinerarioVo;
+import com.viacao.dao.RodoviariaDAO;
 import com.viacao.dao.TarifaDAO;
+import com.viacao.dao.ViagemDAO;
+import com.viacao.vo.EnderecoVO;
+import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
+import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
+import com.viacao.vo.ViagemVO;
 
 public class ManterCadastroBean implements SessionBean {
 	
