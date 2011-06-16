@@ -112,7 +112,7 @@ public class ManterItinerarioAction extends DispatchAction{
 		ActionMessages messages = new ActionMessages();
 		
 		try{
-			EstagioServices.getManterCadastroBean().excluirItinerario(form.getItinerarioVo());
+			EstagioServices.getManterCadastroBean().deletarItinerario(form.getItinerarioVo());
 			form.setItinerarioVo(new ItinerarioVo());			
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.deletar"));
 			
