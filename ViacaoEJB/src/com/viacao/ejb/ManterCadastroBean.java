@@ -179,7 +179,7 @@ public class ManterCadastroBean implements SessionBean {
 	 * Exclui um itinerario.
 	 * @param itinerarioVo
 	 */
-	public void deletarItinerario(ItinerarioVo itinerarioVo){
+	public void excluirItinerario(ItinerarioVo itinerarioVo){
 		try{
 			ItinerarioDAO dao = new ItinerarioDAO();
 			dao.excluir(itinerarioVo);

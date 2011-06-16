@@ -20,7 +20,7 @@ function remover() {
 
 <html:hidden name="manterItinerarioForm" property="task"/>
 
-<table width="600" border="0" align="center" class="bordatabela">
+<table width="600" border="0" align="center" >
 	<tr>
 		<td>
 			<jsp:include page="/jsp/common/mensagens.jsp" />

@@ -143,14 +143,21 @@ public class ManterItinerarioAction extends DispatchAction{
 		ManterItinerarioForm form = (ManterItinerarioForm)frm;
 		ActionMessages messages = new ActionMessages();
 		
-		if(form.getCboTarifa()== ""){
-			form.setIsconfirme(false);
+		TarifaVO tarifaVO = new TarifaVO();
+		
+		if("".equals(form.getCboTarifa())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.selecionado"));
+			form.setIsconfirme(false);			
 		}else {
-			form.setIsconfirme(true);
-		}		
+			tarifaVO =(TarifaVO)CollectionsUtil.find(form.getListaTarifas(), "seqTarifa", Integer.valueOf(form.getCboTarifa()));
+			
+			if(tarifaVO == null){
+				form.setIsconfirme(false);	
+			}else {
+				form.setIsconfirme(true);	
+			}
+		}
 		if(form.isIsconfirme()){
-			TarifaVO tarifaVO =(TarifaVO)CollectionsUtil.find(form.getListaTarifas(), "seqTarifa", Integer.valueOf(form.getCboTarifa()));
 			form.getListaTarifasEscolhidas().add(tarifaVO);
 			form.getListaTarifas().remove(tarifaVO);
 			form.setCboTarifa("");
@@ -172,18 +179,24 @@ public class ManterItinerarioAction extends DispatchAction{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm)frm;
 		ActionMessages messages = new ActionMessages();
+		TarifaVO tarifaVO = new TarifaVO();
 		
-		if(form.getCboTarifa()==""){
-			form.setIsconfirme(false);
+		if("".equals(form.getCboTarifa())){			
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.selecionado"));
+			form.setIsconfirme(false);
 		}else {
-			form.setIsconfirme(true);
+			tarifaVO = (TarifaVO) CollectionsUtil.find(form.getListaTarifasEscolhidas(), "seqTarifa", Integer.valueOf(form.getCboTarifaDestino()));
+			
+			if(tarifaVO == null){
+				form.setIsconfirme(false);
+			}else {
+				form.setIsconfirme(true);
+			}
 		}
-		if(form.isIsconfirme()){
-			TarifaVO tarifaVO = (TarifaVO) CollectionsUtil.find(form.getListaTarifasEscolhidas(), "seqTarifa", Integer.valueOf(form.getCboTarifa()));		
+		if(form.isIsconfirme()){					
 			form.getListaTarifas().add(tarifaVO);		
 			form.getListaTarifasEscolhidas().remove(tarifaVO);
-			form.setCboTarifa("");
+			form.setCboTarifaDestino("");
 		}
 		saveMessages(request, messages);		
 		return mapping.findForward("cadastrar");
