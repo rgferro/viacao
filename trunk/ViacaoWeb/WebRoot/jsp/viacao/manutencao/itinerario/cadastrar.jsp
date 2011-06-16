@@ -14,6 +14,12 @@ function remover() {
 	frm.submit();
 }
 
+function limparCampos(){
+	var frm = document.forms[0];
+	frm.task.value = "limparCamposDaTabela";
+	frm.submit();
+}
+
 </script>
 
 <html:form action="/manterItinerario">
@@ -54,6 +60,11 @@ function remover() {
 				</tr>				
 			</table>			
 				<table width="100%" border="0" align="center">
+					<tr class="fundoescuro">
+						<td class="texto" width="45%" align="center">Escolha as tarifas desejadas</td>
+						<td width="10%"></td>
+						<td class="texto" width="45%" align="center">Tarifas Selecionadas</td>
+					</tr>
 					<tr>
 						<td width="45%" align="right">
 							
@@ -86,7 +97,7 @@ function remover() {
 				<tr>
 					<td align="center"><input class="botao" value="Voltar"></td>
 					<td align="center"><input class="botao" value="Cadastrar"></td>
-					<td align="center"><input class="botao" value="Limpar"></td>
+					<td align="center"><input class="botao" value="Limpar" onclick="javascript: limparCampos();"></td>
 				</tr>
 			</table>
 		</td>

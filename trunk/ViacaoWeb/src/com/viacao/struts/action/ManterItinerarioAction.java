@@ -201,4 +201,18 @@ public class ManterItinerarioAction extends DispatchAction{
 		saveMessages(request, messages);		
 		return mapping.findForward("cadastrar");
 	}
+	
+	/**
+	 * Remove os objetos TarifaVO da lista de destino.
+	 * @param mapping - ActionMapping
+	 * @param frm - ActionForm
+	 * @param request - HttpServletRequest
+	 * @param response - HttpServletResponse
+	 * @return apping.findForward
+	 * @throws Exception
+	 */
+	public ActionForward limparCamposDaTabela(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		
+		return unspecified(mapping, frm, request, response);
+	}
 }
