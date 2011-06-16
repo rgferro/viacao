@@ -26,16 +26,16 @@
 	</definition>
 <!-- Tiles for Manter Onibus -->
 	
-	<definition name=".listar.onibus" extends="layout">
+	<definition name=".onibus.listar" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/onibus/listar.jsp"/>
 	</definition>
-	<definition name=".inserir.onibus" extends="layout">
+	<definition name=".onibus.inserir" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/onibus/inserir.jsp"/>
 	</definition>
-	<definition name=".deletar.onibus" extends="layout">
+	<definition name=".onibus.deletar" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/onibus/deletar.jsp"/>
 	</definition>
-	<definition name=".alterar.onibus" extends="layout">
+	<definition name=".onibus.alterar" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/onibus/alterar.jsp"/>
 	</definition>
 	
