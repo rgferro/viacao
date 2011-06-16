@@ -101,7 +101,6 @@ function getExemplo(acao,seq) {
 					<c:if test="${index % 2 != 0}">
 						<tr class="fundoclaro">
 					</c:if>
-					
 						<td><img title="Editar!" src="images/icon_editar.gif" onclick="javascript: getExemplo('alterar',<bean:write name="varInterno" property="seqExemplo"/>);"></td>
 						<td><img title="Deletar!" src="images/icon_lixeira.gif" onclick="javascript: getExemplo('deletar', <bean:write name="varInterno" property="seqExemplo"/>);"></td>
 						<td align="center"><bean:write name="varInterno" property="nomeExemplo"/></td>

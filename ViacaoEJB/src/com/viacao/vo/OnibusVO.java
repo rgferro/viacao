@@ -6,7 +6,7 @@ public class OnibusVO {
 	private String tipo;
 	private String empresa;
 	private String placa;
-	private Integer qtdPoltrona;
+	private Integer qtdPoltronas;
 	
 	/**
 	 * Obtém o atributo seqOnibus
@@ -68,15 +68,15 @@ public class OnibusVO {
 	 * Obtém o atributo qtdPoltrona
 	 * @return Valor do atributo qtdPoltrona
 	 */
-	public Integer getQtdPoltrona() {
-		return qtdPoltrona;
+	public Integer getQtdPoltronas() {
+		return qtdPoltronas;
 	}
 	/**
 	 * Altera o atributo qtdPoltrona
 	 * @param qtdPoltrona Novo valor do atributo
 	 */
-	public void setQtdPoltrona(Integer qtdPoltrona) {
-		this.qtdPoltrona = qtdPoltrona;
+	public void setQtdPoltronas(Integer qtdPoltronas) {
+		this.qtdPoltronas = qtdPoltronas;
 	}
 	
 }
