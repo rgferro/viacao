@@ -82,6 +82,7 @@ public class ManterOnibusAction extends DispatchAction {
 		messages = frm.validate(request);
 		
 		try{
+			onibusVO.setSeqOnibus(frm.getOnibusVO().getSeqOnibus());
 			onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
 			onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
 			onibusVO.setQtdPoltronas(frm.getOnibusVO().getQtdPoltronas());
@@ -107,6 +108,7 @@ public class ManterOnibusAction extends DispatchAction {
 		OnibusVO onibusVO = new OnibusVO();
 		
 		try{
+			onibusVO.setSeqOnibus(frm.getOnibusVO().getSeqOnibus());
 			onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
 			onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
 			onibusVO.setQtdPoltronas(frm.getOnibusVO().getQtdPoltronas());
