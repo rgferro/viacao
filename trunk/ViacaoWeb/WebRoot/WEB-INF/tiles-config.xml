@@ -59,5 +59,10 @@
 	<definition name=".cadastrar.viagem" extends="layout">
 		<put name="body" value="?/jsp/viacao/manutencao/viagem/inserir.jsp"/>
 	</definition>
+	
+	<!-- Manter Rodoviaria -->
+	<definition name=".inserir.manter.rodoviaria" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/inserir.jsp"/>
+	</definition>
 
 </tiles-definitions>
