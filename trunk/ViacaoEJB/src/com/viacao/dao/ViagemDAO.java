@@ -156,7 +156,7 @@ public class ViagemDAO extends BaseDB {
 		}
 	}
 	
-	private String getSQLListaViagem(){
+	private String getSQLListaViagem(ViagemVO vgVO){
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" SELECT  vg.seq_viagem, ");
@@ -173,22 +173,34 @@ public class ViagemDAO extends BaseDB {
 		sql.append(" WHERE 	it.seq_itinerario = vg.seq_itinerario_fk (+) ");
 		sql.append(" AND 	o.seq_onibus = vg.seq_onibus_fk ");
 		// filtro por origem da viagem
-		sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) LIKE upper('%<param_nom_rod_origem>%') ");
+		if(vgVO.getItinerarioVO().getRodoviariaOrigemVO().getNomRodoviaria() != null){
+			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) LIKE upper('%?%') ");
+		}
 		// filtro por destino da viagem
-		sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) LIKE upper('%<param_nom_rod_destino>%') ");
+		if(vgVO.getItinerarioVO().getRodoviariaDestinoVO().getNomRodoviaria() != null){
+			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) LIKE upper('%?%') ");
+		}
 		// filtro por tipo de ônibus
-		sql.append(" AND (SELECT o.tipo FROM onibus o WHERE o.seq_onibus = vg.seq_onibus_fk) LIKE upper ('%<param_tipo>%') ");
+		if(vgVO.getOnibusVO().getTipo() != null){
+			sql.append(" AND (SELECT o.tipo FROM onibus o WHERE o.seq_onibus = vg.seq_onibus_fk) LIKE upper ('%?%') ");
+		}
 		// filtro por data partida
-		sql.append(" AND to_char(vg.data_hora_saida, 'DD/MM/YYYY') = '<param_data_saida>' ");
+		if(vgVO.getHoraSaida() != null){
+			sql.append(" AND to_char(vg.data_hora_saida, 'DD/MM/YYYY') = '?' ");
+		}
 		// filtro por hora partida
-		sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '<param_hora_saida>' ");
+		if(vgVO.getHoraSaida() != null){
+			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '?' ");
+		}
+		
+		System.out.println(sql.toString());
 		
 		return sql.toString();
 	}
 	
 	public List< ViagemVO > getListaViagem (ViagemVO viagemVO)throws Exception, DAOException{
 		try{
-			pstmt = getPstmt(getSQLListaViagem());
+			pstmt = getPstmt(getSQLListaViagem(viagemVO));
 			
 			rowSet = executeQuery(pstmt);
 			List<ViagemVO> lista = new ArrayList<ViagemVO>();
