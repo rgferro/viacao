@@ -50,6 +50,18 @@ function somenteNumero(obj,e,ast,virg,ponto){
 		return false;
 	}
 }
+function somenteLetra(obj,e){
+	var tecla=(window.event)?event.keyCode:e.which;
+	if (tecla == 13) {
+		obj.focus();  obj.select();
+		return true
+	}
+	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91)){ 
+		return true;
+	}else{
+		return false;
+	}
+}
 	// Quando o usuario for digitar um numero, acrescenta uma virgula a partir do 3º caracter.
 	// E se o usuario digitar uma virgula ele nao deixa outro ponto ser inserido. 
 
@@ -145,18 +157,18 @@ function mudaImagemOut(obj, acao){
 		<td>
 			<jsp:include page="/jsp/common/mensagens.jsp" />
 			
-			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" class="texto" >
+			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" >
 				<tr>
 					<td class="titulo">ManterTarifa</td>
 				</tr>
 			</table>	
 			<table width="100%" border="0" align="center" id="inserir" class="bordatabela">
 				<tr class="fundoescuro" align="center">
-					<td class="texto2" width="20%" height="20">Ação</td>					
-					<td width="40%" class="texto2">
+					<td width="20%" height="20">Ação</td>					
+					<td width="40%">
 						Nome da Tarifa
 					</td>
-					<td width="40%" class="texto2">
+					<td width="40%">
 						Valor
 					</td>
 					<td width="20%" colspan="3">&nbsp;</td>
@@ -204,7 +216,7 @@ function mudaImagemOut(obj, acao){
 						<td><img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" onclick="javascript: getTarifa('alterar',<bean:write name="varInterno" property="seqTarifa"/>);" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')"></td>
 						<td><img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" onclick="javascript: getTarifa('deletar', <bean:write name="varInterno" property="seqTarifa"/>);" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')"></td>
 						<td align="center"><bean:write name="varInterno" property="nomTarifa"/></td>
-						<td align="center"><bean:write name="varInterno" property="valor"/></td>
+						<td align="center"><fmt:formatNumber maxFractionDigits="2" minFractionDigits="2" value="${varInterno.valor}"/></td>
 					</tr>
 				</logic:iterate>
 			</table>
