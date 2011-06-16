@@ -137,6 +137,7 @@ public class OnibusDAO extends BaseDB {
 			rowSet = executeQuery(pstmt);
 			if(rowSet.next()){
 				OnibusVO oniVO = new OnibusVO();
+				oniVO.setSeqOnibus(new Integer(rowSet.getString("seq_onibus")).intValue());
 				oniVO.setTipo(rowSet.getString("tipo"));
 				oniVO.setEmpresa(rowSet.getString("empresa"));
 				oniVO.setPlaca(rowSet.getString("placa"));
