@@ -1,258 +1,114 @@
 <%@ include file="/jsp/common/taglibs.jsp" %>
-<%
-String path = request.getContextPath();
-String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
-%>
 
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<link type="text/css" href="css/custom-theme/jquery-ui-1.8.13.custom.css" rel="stylesheet" />	
-<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
-<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
-<script type="text/javascript">
-function selecionar(acao, seq){
+<script>
+function confirmar(acao) {
 	var frm = document.forms[0];
-	frm.acao.value = acao;
-	frm.seqOnibus.value = seq;
-	frm.task.value = 'recuperarOnibus';
+	if(acao == "INCLUIR"){
+		frm.task.value = "incluir";
+	}
+	if(acao == "ALTERAR"){
+		frm.task.value = "alterar";
+	}
+	if(acao == "DELETAR"){
+		frm.task.value = "deletar";
+	}
 	frm.submit();
 }
-
-function buscar(){
-	alert('entro');
+function inicio(flag) {
 	var frm = document.forms[0];
-	alert(frm.task.value);
-	frm.task.value = 'listarOnibus';
-	alert(frm.task.value);
+	frm.busca.value = flag;
+	frm.task.value = "unspecified";
 	frm.submit();
-	alert('foi');
 }
-$(function() {
-		// a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
-		$( "#dialog:ui-dialog" ).dialog( "destroy" );
-		
-		var empresa = $( "#empresa" ),
-			tipo = $( "#tipo" ),
-			qtdPoltrona = $( "#qtdPoltrona" ),
-			placa = $( "#placa" ),
-			allFields = $( [] ).add( empresa ).add( tipo ).add( qtdPoltrona ).add( placa ),
-			tips = $( ".validateTips" );
-
-		function updateTips( t ) {
-			tips
-				.text( t )
-				.addClass( "ui-state-error" );
-			setTimeout(function() {
-				tips.removeClass( "ui-state-error", 1500 );
-			}, 500 );
-		}
-
-		function checkLength( o, n, min, max ) {
-			if ( o.val().length > max || o.val().length < min ) {
-				o.addClass( "ui-state-error" );
-				updateTips( "Em " + n + " é aceito um max. de " +
-					min + " e um min. de " + max + "." );
-				return false;
-			} else {
-				return true;
-			}
-		}
-
-		function checkRegexp( o, regexp, n ) {
-			if ( !( regexp.test( o.val() ) ) ) {
-				o.addClass( "ui-state-error" );
-				updateTips( n );
-				return false;
-			} else {
-				return true;
-			}
-		}
-		
-		$( "#dialog-form" ).dialog({
-			autoOpen: false,
-			height: 300,
-			width: 350,
-			modal: true,
-			buttons: {
-				"Cadastrar": function() {
-					var bValid = true;
-					allFields.removeClass( "ui-state-error" );
-
-					bValid = bValid && checkLength( empresa, "Empresa", 3, 16 );
-					bValid = bValid && checkLength( tipo, "Tipo", 6, 80 );
-					bValid = bValid && checkLength( qtdPoltrona, "Qtd Poltronas", 5, 16 );
-					bValid = bValid && checkLength( placa, "Placa", 5, 16 );
-
-					bValid = bValid && checkRegexp( empresa, /^[a-z]([0-9a-z_])+$/i, "Campo Empresasó aceita: a-z, 0-9" );
-					// From jquery.validate.js (by joern), contributed by Scott Gonzalez: http://projects.scottsplayground.com/email_address_validation/
-					// bValid = bValid && checkRegexp( email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "eg. ui@jquery.com" );
-					bValid = bValid && checkRegexp( tipo, /^([0-9a-zA-Z])+$/, "Campo Tipo só aceita : a-z, 0-9" );
-					bValid = bValid && checkRegexp( qtdPoltrona, /^([0-9])+$/, "Campo Qtd Poltronas só aceita : 0-9" );
-					bValid = bValid && checkRegexp( placa, /^([0-9a-zA-Z])+$/, "Campo Placa só aceita : a-z, 0-9" );
-
-					if ( bValid ) {
-						$( "#users tbody" ).append( "<tr>" +
-							"<td>" + empresa.val() + "</td>" + 
-							"<td>" + tipo.val() + "</td>" + 
-							"<td>" + qtdPoltrona.val() + "</td>" +
-							"<td>" + placa.val() + "</td>" +
-						"</tr>" ); 
-						$( this ).dialog( "close" );
-					}
-				},
-				Cancel: function() {
-					$( this ).dialog( "close" );
-				}
-			},
-			close: function() {
-				allFields.val( "" ).removeClass( "ui-state-error" );
-			}
-		});
-
-		$( "#create-user" )
-			.button()
-			.click(function() {
-				$( "#dialog-form" ).dialog( "open" );
-			});
-	});
+function getExemplo(acao,seq) {
+	var frm = document.forms[0];
+	if(acao == "alterar"){
+		frm.acao.value = "ALTERAR";
+	}
+	if(acao == "deletar"){
+		frm.acao.value = "DELETAR";
+	}
+	frm.seqExemplo.value = seq;
+	frm.task.value = "getExemplo";
+	frm.submit();
+}
 </script>
 
-<link href="css/portal.css" rel="stylesheet" type="text/css">
+<html:form action="/exemplo">
 
-<html:form action="/manterOnibus">
-<html:hidden property="task" name="manterOnibusForm"/>
-<html:hidden property="acao" name="manterOnibusForm"/>
-<html:hidden property="seqOnibus" name="manterOnibusForm"/>
-	<table width="600" border="0" align="center">
-		<tr>
-			<td>
-				<jsp:include page="/jsp/common/mensagens.jsp" />
-				<table width="100%" border="0" align="center">
+<html:hidden name="exemploForm" property="task"/>
+<html:hidden name="exemploForm" property="seqExemplo"/>
+<html:hidden name="exemploForm" property="acao"/>
+<html:hidden name="exemploForm" property="busca"/>
+<table width="600" border="0" align="center">
+	<tr>
+		<td>
+			<jsp:include page="/jsp/common/mensagens.jsp" />
+			
+			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" >
+				<tr>
+					<td class="titulo">Exemplo</td>
+				</tr>
+			</table>	
+			<table width="100%" border="0" align="center" id="inserir" class="bordatabela">
+				<tr class="fundoescuro" align="center">
+					<td class="texto" width="20%" height="20">Ação</td>					
+					<td width="40%" class="texto">
+						Nome do exemplo
+					</td>
+					<td width="40%" class="texto">
+						Descrição do exemplo
+					</td>
+					<td width="20%" colspan="3">&nbsp;</td>
+				</tr>
+				<tr class="fundoclaro">
+					<c:set var="disable" value="false"/>
+					<logic:equal name="exemploForm" property="acao" value="DELETAR">
+						<td align="center" style="color: #FF0000">
+						<c:set var="disable" value="true"/>
+					</logic:equal>
+					<logic:notEqual name="exemploForm" property="acao" value="DELETAR">
+						<td align="center" style="color: #0000FF">
+					</logic:notEqual>
+						<b><bean:write name="exemploForm" property="acao"/></b></td>
+					<td>
+						<html:text name="exemploForm" size="40" property="exemploVO.nomeExemplo" styleClass="input" disabled="${disable}"/>
+					</td>
+					<td>
+						<html:text name="exemploForm" size="40" property="exemploVO.descricao" styleClass="input" disabled="${disable}"/>
+					</td>
+					<td align="center"><img title="Pesquisar!" src="images/icon_lupa.gif" onclick="javascript: inicio('pesquisar');"></td>
+					<td align="center"><img title="Confirmar!" src="images/confirmar.gif" onclick="javascript: confirmar('<bean:write name="exemploForm" property="acao"/>');"></td>
+					<td align="center"><img title="Cancelar!" src="images/cancelar.gif" onclick="javascript: inicio('');"></td>
+				</tr>
+			</table>
+			<br>
+			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" class="bordatabela">
+				<tr class="fundoescuro">
+					<td width="10%" height="20" colspan="2">&nbsp;</td>
+					<td width="45%"  align="center">Nome do Exemplo</td>
+					<td width="45%" align="center">Descricao</td>
+				</tr>
+				<logic:empty name="exemploForm" property="listaExemplo">
 					<tr>
-						<td class="titulo">Ônibus</td>
+						<td align="center" colspan="4" class="texto">Nenhum exemplo foi cadastrado!!</td>
 					</tr>
-				</table>
-				<br>
-				<table>
-					<tr>
-						<td class="link"><img src="images/fetch.gif"/>
-							<a href="#" id="opener">Cadastrar Novo Ônibus</a>
-						</td>
-					</tr>
-				</table>
-				<table width="100%" border="0" align="center" class="bordatabela">
-					<tr class="fundoescuro">
-						<td class="texto" colspan="4" align="center">Busca de Ônibus</td>
-					</tr>
-					<tr class="fundoclaro">
-						<td class="texto" width="18%" height="20" align="center">Empresa</td>
-						<td width="32%">
-							<html:text name="manterOnibusForm" property="onibusVO.empresa" styleClass="input"/>
-						</td>
-						<td class="texto" width="05%" height="20">Tipo</td>
-						<td width="45%">
-							<html:text name="manterOnibusForm" property="onibusVO.tipo" styleClass="input"/>
-						</td>
-					</tr>
-					<tr class="fundoclaro">
-						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
-						<td width="32%">
-							<html:text name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
-						</td>
-						<td class="texto" width="05%" height="20" align="center">Placa</td>
-						<td width="45%">
-							<html:text name="manterOnibusForm" property="onibusVO.placa" styleClass="input"/>
-						</td>
-					</tr>
-				</table>
-				<table width="100%" border="0" align="center">
-					<tr>
-						<td colspan="4" align="center">
-							<html:button value="Buscar" property="" styleClass="botao" onclick="buscar();"/>
-						</td>
-					</tr>
-				</table>
-				<br>
-				<table width="100%" border="0" align="center" class="bordatabela">
-					<tr class="fundoescuro">
-						<td width="15%" height="20" colspan="2">&nbsp;</td>
-						<td width="20%"  align="center">Empresa</td>
-						<td width="20%" align="center">Tipo</td>
-						<td width="25%" align="center">Qtd Poltronas</td>
-						<td width="20%" align="center">Placa</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="6" class="texto">Nenhum ônibus foi cadastrado!</td>
-					</tr>
-					<logic:iterate id="lista" name="manterOnibusForm" property="listaOnibus">
+				</logic:empty>
+				<logic:iterate id="varInterno" name="exemploForm" property="listaExemplo" indexId="index">
+					<c:if test="${index % 2 == 0}">
+						<tr class="fundobranco">
+					</c:if>
+					<c:if test="${index % 2 != 0}">
 						<tr class="fundoclaro">
-							<td align="center">
-								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqOnibus}"/>)">
-									<img title="Editar" src="images/icon_editar.gif">
-								</a>
-							</td>
-							<td align="center">
-								<a href="javascript: selecionar('DELETAR', <c:out value="${lista.seqOnibus}"/>)">
-									<img title="Deletar" src="images/icon_lixeira.gif">
-								</a>
-							</td>
-							<td align="center">
-								<bean:write name="lista" property="empresa"/>
-							</td>
-							<td align="center">
-								<bean:write name="lista" property="tipo"/>
-							</td>
-							<td align="center">
-								<bean:write name="lista" property="qtdPoltronas"/>
-							</td>
-							<td align="center">
-								<bean:write name="lista" property="placa"/>
-							</td>
-						</tr>
-					</logic:iterate>
-				</table>
-			</td>
-		</tr>
-	</table>
-	[
-	<div id="dialog-form" title="Create new user">
-	<p class="validateTips">Todos os Campos são Obrigatórios!</p>
-
-	<form>
-	<fieldset>
-		<label for="empresa">Empresa:</label>
-		<input type="text" name="empresa" id="empresa" class="text ui-widget-content ui-corner-all" /><br>
-		<label for="tipo">Tipo:</label>
-		<input type="text" name="tipo" id="tipo" value="" class="text ui-widget-content ui-corner-all" /><br>
-		<label for="qtdPoltrona">Qtd Poltronas:</label>
-		<input type="text" name="qtdPoltrona" id="qtdPoltrona" value="" class="text ui-widget-content ui-corner-all" /><br>
-		<label for="placa">Placa:</label>
-		<input type="text" name="placa" id="placa" value="" class="text ui-widget-content ui-corner-all" /><br>
-	</fieldset>
-	</form>
-</div>
-
-
-<div id="users-contain" class="ui-widget">
-	<table id="users" class="ui-widget ui-widget-content">
-		<thead>
-			<tr class="ui-widget-header ">
-				<th>Empresa</th>
-				<th>Tipo</th>
-				<th>Qtd Poltronas</th>
-				<th>Placa</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr>
-				<td>John Doe</td>
-				<td>dsadsadas</td>
-				<td>10</td>
-				<td>ddd-5555</td>
-			</tr>
-		</tbody>
-	</table>
-</div>
-<button id="create-user">Create new user</button>
-]
-	
+					</c:if>
+						<td><img title="Editar!" src="images/icon_editar.gif" onclick="javascript: getExemplo('alterar',<bean:write name="varInterno" property="seqExemplo"/>);"></td>
+						<td><img title="Deletar!" src="images/icon_lixeira.gif" onclick="javascript: getExemplo('deletar', <bean:write name="varInterno" property="seqExemplo"/>);"></td>
+						<td align="center"><bean:write name="varInterno" property="nomeExemplo"/></td>
+						<td align="center"><bean:write name="varInterno" property="descricao"/></td>
+					</tr>
+				</logic:iterate>
+			</table>
+		</td>
+	</tr>
+</table>
 </html:form>
