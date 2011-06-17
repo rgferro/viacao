@@ -20,6 +20,44 @@ function buscar(){
 	frm.task.value = 'listarOnibus';
 	frm.submit();
 }
+function mudaImagemOver(obj, acao){
+
+	if(acao == "editar"){
+		obj.src = 'images/icon_editar3.png';
+	}
+	if(acao == "deletar"){
+		obj.src = 'images/icon_lixeira3.png';
+	}
+	if(acao == "confirmar"){
+		obj.src = 'images/accept1.png';
+	}
+	if(acao == "pesquisar"){
+		obj.src = 'images/zoom.png';
+	}
+	if(acao == "cancelar"){
+		obj.src = 'images/delete1.png';
+	}
+
+}
+function mudaImagemOut(obj, acao){
+
+	if(acao == "editar"){
+		obj.src = 'images/icon_editar3off.png';
+	}
+	if(acao == "deletar"){
+		obj.src = 'images/icon_lixeira3off.png';
+	}
+	if(acao == "confirmar"){
+		obj.src = 'images/acceptoff.png';
+	}
+	if(acao == "pesquisar"){
+		obj.src = 'images/zoomoff.png';
+	}
+	if(acao == "cancelar"){
+		obj.src = 'images/deleteoff.png';
+	}
+
+}
 </script>
 
 <link href="css/portal.css" rel="stylesheet" type="text/css">
@@ -94,12 +132,12 @@ function buscar(){
 						<tr class="fundoclaro">
 							<td align="center">
 								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqOnibus}"/>)">
-									<img title="Editar" src="images/icon_editar.gif">
+									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
 								</a>
 							</td>
 							<td align="center">
 								<a href="javascript: selecionar('DELETAR', <c:out value="${lista.seqOnibus}"/>)">
-									<img title="Deletar" src="images/icon_lixeira.gif">
+									<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
 								</a>
 							</td>
 							<td align="center">
