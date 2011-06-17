@@ -38,8 +38,7 @@ public class ManterOnibusAction extends DispatchAction {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 		ActionMessages messages = new ActionMessages();
 		OnibusVO onibusVO = new OnibusVO();
-		messages = frm.validate(request);
-		
+		messages = frm.validate(request);	
 		try{
 			onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
 			onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
