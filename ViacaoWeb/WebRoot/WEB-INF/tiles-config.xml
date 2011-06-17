@@ -48,16 +48,16 @@
 	<!-- Tile for Manter Viagem-->
 	
 	<definition name=".listar.viagem" extends="layout">
-		<put name="body" value="?/jsp/viacao/manutencao/viagem/listarViagem.jsp"/>
+		<put name="body" value="/jsp/viacao/manutencao/viagem/listarViagem.jsp"/>
 	</definition>
 	<definition name=".deletar.viagem" extends="layout">
-		<put name="body" value="?/jsp/viacao/manutencao/viagem/deletarViagem.jsp"/>
+		<put name="body" value="/jsp/viacao/manutencao/viagem/deletarViagem.jsp"/>
 	</definition>
 	<definition name=".alterar.viagem" extends="layout">
-		<put name="body" value="/?jsp/viacao/manutencao/viagem/alterarViagem.jsp"/>
+		<put name="body" value="/jsp/viacao/manutencao/viagem/alterarViagem.jsp"/>
 	</definition>
 	<definition name=".cadastrar.viagem" extends="layout">
-		<put name="body" value="?/jsp/viacao/manutencao/viagem/inserirViagem.jsp"/>
+		<put name="body" value="/jsp/viacao/manutencao/viagem/inserirViagem.jsp"/>
 	</definition>
 	
 	<!-- Manter Rodoviaria -->

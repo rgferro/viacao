@@ -16,12 +16,14 @@ public class ManterViagemForm extends ActionForm{
 	private List<ViagemVO> listaViagem;
 	private Integer seqViagem;
 	private String acao;
+	private String task;
 	
 	
 	public void inicializar(){
 		this.viagemVO = new ViagemVO();
 		this.listaViagem = new ArrayList<ViagemVO>();
 		this.seqViagem = null;
+		this.task = "";
 	}
 	
 	public ViagemVO getViagemVO() {
@@ -54,6 +56,14 @@ public class ManterViagemForm extends ActionForm{
 
 	public void setAcao(String acao) {
 		this.acao = acao;
+	}
+
+	public String getTask() {
+		return task;
+	}
+
+	public void setTask(String task) {
+		this.task = task;
 	}
 }
 
