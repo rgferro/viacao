@@ -122,4 +122,12 @@ public class ManterOnibusAction extends DispatchAction {
 		saveMessages(request, messages);
 		return unspecified(mapping, form, request, response);
 	}
+	public ActionForward limpar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ManterOnibusForm frm = (ManterOnibusForm) form;
+			frm.getOnibusVO().setQtdPoltronas(null);
+			frm.getOnibusVO().setPlaca("");
+			frm.getOnibusVO().setTipo("");
+			frm.getOnibusVO().setEmpresa("");
+		return mapping.findForward("alterar");
+	}
 }

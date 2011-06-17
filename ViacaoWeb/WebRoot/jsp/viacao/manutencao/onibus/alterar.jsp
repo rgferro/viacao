@@ -18,6 +18,11 @@ function voltar(){
 	frm.task.value = 'unspecified';
 	frm.submit();
 }
+function limpar(){
+	var frm = document.forms[0];
+	frm.task.value = 'limpar';
+	frm.submit();
+}
 function somenteNumero(obj,e,ast,virg,ponto){
 	var tecla=(window.event)?event.keyCode:e.which;
 	if (tecla == 13) {
@@ -113,7 +118,7 @@ function formataPlaca(obj,e,menos){
 							<html:button value="Confirmar" property="" styleClass="botao" onclick="confirmar();"/>
 						</td>
 						<td align="center">
-							<html:reset value="Limpar" styleClass="botao"/>
+							<html:reset value="Limpar" styleClass="botao" onclick="limpar();"/>
 						</td>
 					</tr>
 				</table>

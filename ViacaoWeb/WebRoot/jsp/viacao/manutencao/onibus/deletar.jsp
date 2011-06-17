@@ -42,21 +42,21 @@ function voltar(){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Empresa</td>
 						<td width="32%">
-							<html:text disabled="true" name="manterOnibusForm" property="onibusVO.empresa" styleClass="input"/>
+							<html:text disabled="true" name="manterOnibusForm" property="onibusVO.empresa" styleClass="inputdeletar"/>
 						</td>
 						<td class="texto" width="05%" height="20">Tipo</td>
 						<td width="45%">
-							<html:text disabled="true" name="manterOnibusForm" property="onibusVO.tipo" styleClass="input"/>
+							<html:text disabled="true" name="manterOnibusForm" property="onibusVO.tipo" styleClass="inputdeletar"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-							<html:text disabled="true" onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
+							<html:text disabled="true" onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="inputdeletar"/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
-							<html:text disabled="true" onkeypress="return formataPlaca(this,event,true)" name="manterOnibusForm" property="onibusVO.placa" styleClass="input"/>
+							<html:text disabled="true" onkeypress="return formataPlaca(this,event,true)" name="manterOnibusForm" property="onibusVO.placa" styleClass="inputdeletar"/>
 						</td>
 					</tr>
 				</table>
