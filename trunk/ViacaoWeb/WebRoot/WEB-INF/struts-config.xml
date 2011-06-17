@@ -70,7 +70,7 @@
 		scope="session"
 		type="com.viacao.struts.action.ManterViagemAction"
 		validate="false">
-		<forward name="cadastrar"				path=".cadastrar.viagem" />
+		<forward name="cadastrar"			path=".cadastrar.viagem" />
 		<forward name="deletar"				path=".deletar.viagem" />
 		<forward name="alterar"				path=".alterar.viagem" />
 		<forward name="listar"				path=".listar.viagem" />

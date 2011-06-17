@@ -12,6 +12,8 @@ import com.acol.exception.DAOException;
 import com.acol.vo.DataVO;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.ItinerarioVo;
+import com.viacao.vo.OnibusVO;
+import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.ViagemVO;
 
 public class ViagemDAO extends BaseDB {
@@ -173,15 +175,15 @@ public class ViagemDAO extends BaseDB {
 		sql.append(" WHERE 	it.seq_itinerario = vg.seq_itinerario_fk (+) ");
 		sql.append(" AND 	o.seq_onibus = vg.seq_onibus_fk ");
 		// filtro por origem da viagem
-		if(vgVO.getItinerarioVO().getRodoviariaOrigemVO().getNomRodoviaria() != null){
+		if(vgVO.getItinerarioVO() != null){
 			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) LIKE upper('%?%') ");
 		}
 		// filtro por destino da viagem
-		if(vgVO.getItinerarioVO().getRodoviariaDestinoVO().getNomRodoviaria() != null){
+		if(vgVO.getItinerarioVO() != null){
 			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) LIKE upper('%?%') ");
 		}
 		// filtro por tipo de ônibus
-		if(vgVO.getOnibusVO().getTipo() != null){
+		if(vgVO.getOnibusVO() != null){
 			sql.append(" AND (SELECT o.tipo FROM onibus o WHERE o.seq_onibus = vg.seq_onibus_fk) LIKE upper ('%?%') ");
 		}
 		// filtro por data partida
@@ -193,7 +195,6 @@ public class ViagemDAO extends BaseDB {
 			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '?' ");
 		}
 		
-		System.out.println(sql.toString());
 		
 		return sql.toString();
 	}
@@ -208,8 +209,12 @@ public class ViagemDAO extends BaseDB {
 			while(rowSet.next()){
 				ViagemVO viagem = new ViagemVO();
 				viagem.setSeqViagem(new Integer(rowSet.getInt("seq_viagem")));
-				viagem.getItinerarioVO().getRodoviariaOrigemVO().setSeqRodoviaria(new Integer(rowSet.getInt("origem")));
-				viagem.getItinerarioVO().getRodoviariaDestinoVO().setSeqRodoviaria(new Integer(rowSet.getInt("destino")));
+				viagem.setItinerarioVO(new ItinerarioVo());
+				viagem.getItinerarioVO().setRodoviariaOrigemVO(new RodoviariaVO());
+				viagem.getItinerarioVO().setRodoviariaDestinoVO(new RodoviariaVO());
+				viagem.getItinerarioVO().getRodoviariaOrigemVO().setNomRodoviaria(rowSet.getString("origem"));
+				viagem.getItinerarioVO().getRodoviariaDestinoVO().setNomRodoviaria(rowSet.getString("destino"));
+				viagem.setOnibusVO(new OnibusVO());
 				viagem.getOnibusVO().setTipo(rowSet.getString("tipo"));
 				viagem.setHoraSaida(new DataVO(rowSet.getString("data_hora_saida")));
 				viagem.setHoraChegada(new DataVO(rowSet.getString("data_hora_chegada")));
