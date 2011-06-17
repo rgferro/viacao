@@ -35,15 +35,16 @@ function somenteNumeroLetra(obj,e,numero,letra){
 			return true;
 		}
 	}
-	if((tecla == 9)) return true;
-	if ((tecla == 8)) return true;
-	if ((tecla == 0)) return true;
 	return false;
 }
 
 function formataPlaca(obj,e,menos){
 	var tecla=(window.event)?event.keyCode:e.which;
 	var teste = obj.value.search("[-]");
+	
+	if((tecla == 9)) return true;
+	if ((tecla == 8)) return true;
+	if ((tecla == 0)) return true;
 	
 	if(obj.value.length < 3){
 		return somenteNumeroLetra(obj,e,false,true);
@@ -52,7 +53,7 @@ function formataPlaca(obj,e,menos){
 		obj.value = obj.value + "-";
 		return somenteNumeroLetra(obj,e,true,false);
 	} else
-	if(obj.value.length > 3){
+	if(obj.value.length > 3 && obj.value.length < 8){
 		if(teste == -1 && tecla ==45){
 			return true;
 		}
