@@ -21,10 +21,17 @@ public class ManterOnibusForm extends ActionForm {
 	private Integer seqOnibus;
 	private String acao;
 	private String task;
+	
+	private String empresaParam;
+	private String tipoParam;
+	private String qtdPoltronaParam;
+	private String placaParam;
+	
 
 	public void inicializar(){
 		this.onibusVO = new OnibusVO();
 		this.onibusVO.setQtdPoltronas(0);
+		this.onibusVO.setEmpresa("");
 		this.listaOnibus = new ArrayList<OnibusVO>();
 		this.seqOnibus = null;
 		this.task = "";
@@ -90,5 +97,37 @@ public class ManterOnibusForm extends ActionForm {
 
 	public void setTask(String task) {
 		this.task = task;
+	}
+
+	public String getEmpresaParam() {
+		return empresaParam;
+	}
+
+	public void setEmpresaParam(String empresaParam) {
+		this.empresaParam = empresaParam;
+	}
+
+	public String getTipoParam() {
+		return tipoParam;
+	}
+
+	public void setTipoParam(String tipoParam) {
+		this.tipoParam = tipoParam;
+	}
+
+	public String getQtdPoltronaParam() {
+		return qtdPoltronaParam;
+	}
+
+	public void setQtdPoltronaParam(String qtdPoltronaParam) {
+		this.qtdPoltronaParam = qtdPoltronaParam;
+	}
+
+	public String getPlacaParam() {
+		return placaParam;
+	}
+
+	public void setPlacaParam(String placaParam) {
+		this.placaParam = placaParam;
 	}
 }
