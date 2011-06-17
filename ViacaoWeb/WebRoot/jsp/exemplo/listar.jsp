@@ -32,6 +32,8 @@ function getExemplo(acao,seq) {
 	frm.task.value = "getExemplo";
 	frm.submit();
 }
+function oi(){
+}
 </script>
 
 <html:form action="/exemplo">
