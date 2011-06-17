@@ -38,12 +38,37 @@ public class ManterOnibusAction extends DispatchAction {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 		ActionMessages messages = new ActionMessages();
 		OnibusVO onibusVO = new OnibusVO();
-		messages = frm.validate(request);	
-		try{
+		messages = frm.validate(request);
+
+		try{			
 			onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
 			onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
 			onibusVO.setQtdPoltronas(frm.getOnibusVO().getQtdPoltronas());
 			onibusVO.setTipo(frm.getOnibusVO().getTipo());
+			
+			if(messages.isEmpty()){
+				EstagioServices.getManterCadastroBean().inserir(onibusVO);
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
+			}else{
+				saveMessages(request, messages);
+				return mapping.findForward("inserir");
+			}
+		}catch (Exception e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+		}
+		saveMessages(request, messages);
+		return unspecified(mapping, form, request, response);
+	}
+	public ActionForward inserirOnibusNovo(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+		ManterOnibusForm frm = (ManterOnibusForm) form;
+		ActionMessages messages = new ActionMessages();
+		OnibusVO onibusVO = new OnibusVO();
+
+		try{
+			onibusVO.setEmpresa(frm.getEmpresaParam());
+			onibusVO.setPlaca(frm.getPlacaParam());
+			onibusVO.setQtdPoltronas(new Integer(frm.getQtdPoltronaParam()));
+			onibusVO.setTipo(frm.getTipoParam());
 			
 			if(messages.isEmpty()){
 				EstagioServices.getManterCadastroBean().inserir(onibusVO);
