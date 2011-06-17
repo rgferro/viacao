@@ -8,6 +8,7 @@
   	<form-bean name="manterOnibusForm" type="com.viacao.struts.form.ManterOnibusForm" />
   	<form-bean name="manterItinerarioForm" type="com.viacao.struts.form.ManterItinerarioForm" />
   	<form-bean name="manterRodoviariaForm" type="com.viacao.struts.form.ManterRodoviariaForm"/>
+  	<form-bean name="manterViagemForm" type="com.viacao.struts.form.ManterViagemForm"/>
   </form-beans>
   <global-exceptions />
   <global-forwards />
