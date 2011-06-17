@@ -1,6 +1,5 @@
 package com.viacao.dao;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,7 +7,6 @@ import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
 import com.viacao.services.persistence.BaseDB;
-import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.RodoviariaVO;
 
 public class RodoviariaDAO  extends BaseDB{
