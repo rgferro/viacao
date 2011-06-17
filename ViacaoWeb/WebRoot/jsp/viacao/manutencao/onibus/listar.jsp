@@ -16,13 +16,9 @@ function selecionar(acao, seq){
 }
 
 function buscar(){
-	alert('entro');
 	var frm = document.forms[0];
-	alert(frm.task.value);
 	frm.task.value = 'listarOnibus';
-	alert(frm.task.value);
 	frm.submit();
-	alert('foi');
 }
 </script>
 
@@ -41,7 +37,6 @@ function buscar(){
 						<td class="titulo">Ônibus</td>
 					</tr>
 				</table>
-				<br>
 				<table>
 					<tr>
 						<td class="link"><img src="images/fetch.gif"/>
@@ -66,7 +61,7 @@ function buscar(){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-							<html:text name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
+							<html:text name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input" value=""/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
@@ -90,9 +85,11 @@ function buscar(){
 						<td width="25%" align="center">Qtd Poltronas</td>
 						<td width="20%" align="center">Placa</td>
 					</tr>
+					<logic:empty name="manterOnibusForm" property="listaOnibus">
 					<tr>
-						<td align="center" colspan="6" class="texto">Nenhum ônibus foi cadastrado!</td>
+						<td align="center" colspan="6" class="texto">Nenhum ônibus foi encontrado!</td>
 					</tr>
+					</logic:empty>	
 					<logic:iterate id="lista" name="manterOnibusForm" property="listaOnibus">
 						<tr class="fundoclaro">
 							<td align="center">

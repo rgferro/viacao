@@ -24,6 +24,7 @@ public class ManterOnibusForm extends ActionForm {
 
 	public void inicializar(){
 		this.onibusVO = new OnibusVO();
+		this.onibusVO.setQtdPoltronas(0);
 		this.listaOnibus = new ArrayList<OnibusVO>();
 		this.seqOnibus = null;
 		this.task = "";

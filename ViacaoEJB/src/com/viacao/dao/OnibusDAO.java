@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.OnibusVO;
 
@@ -166,19 +167,19 @@ public class OnibusDAO extends BaseDB {
 		sql.append("FROM onibus ");
 		sql.append("WHERE 1=1 ");
 		//--filtro tipo
-		if(oniVO.getTipo() != null){
+		if(!(("".equals(oniVO.getTipo())) || (oniVO.getTipo() == null))){
 			sql.append("AND tipo like upper('%" + oniVO.getTipo() + "%')");
 		}
 		//--filtro empresa
-		if(oniVO.getEmpresa() != null){
+		if(!(("".equals(oniVO.getEmpresa())) || (oniVO.getEmpresa() == null))){
 			sql.append("AND empresa like upper('%" + oniVO.getEmpresa() + "%') ");
 		}
 		//--filtro placa
-		if(oniVO.getPlaca() != null){
+		if(!(("".equals(oniVO.getPlaca())) || (oniVO.getPlaca() == null))){
 			sql.append("AND placa like upper('%" + oniVO.getPlaca() + "%') ");
 		}
 		//--filtro quantidade de poltrona
-		if(oniVO.getQtdPoltronas() != null){
+		if(!(oniVO.getQtdPoltronas() == 0 || oniVO.getQtdPoltronas() == null)){
 			sql.append("AND qtd_poltrona = " + oniVO.getQtdPoltronas());
 		}
 		
