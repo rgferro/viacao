@@ -45,7 +45,7 @@
 							Tipo
 						</td>
 						<td width="45%">
-							<html:text name="manterViagemForm" property="viagemVO.onibusVO.tipo"/>
+							<html:text name="manterViagemForm" property=""/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">
 							Data	
@@ -59,7 +59,7 @@
 							Hora
 						</td>
 						<td width="45%" colspan="3">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida"/>
+							<html:text name="manterViagemForm" property=""/>
 						</td>
 					</tr>
 				</table>

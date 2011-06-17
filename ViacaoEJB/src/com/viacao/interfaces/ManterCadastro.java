@@ -11,6 +11,7 @@ import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
+import com.viacao.vo.ViagemVO;
 
 public interface ManterCadastro extends EJBObject {
 	
@@ -37,4 +38,10 @@ public interface ManterCadastro extends EJBObject {
 	public void alterar(RodoviariaVO rodoviariaVO) throws RemoteException;
 	public RodoviariaVO getRodoviaria(RodoviariaVO rodoviariaVO) throws RemoteException;
 	public List<RodoviariaVO> getListaRodoviaria (RodoviariaVO rodoviariaVO) throws RemoteException;
+	
+	public void inserir(ViagemVO viagemVO) throws RemoteException;	
+	public void deletar(ViagemVO viagemVO) throws RemoteException;	
+	public void alterar(ViagemVO viagemVO) throws RemoteException;	
+	public ViagemVO getViagem(ViagemVO viagemVO) throws RemoteException;
+	public List<ViagemVO> getListaViagem(ViagemVO viagemVO) throws RemoteException;
 }
