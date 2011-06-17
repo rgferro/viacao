@@ -22,6 +22,12 @@
 	color: #263a90;
 	border:1px solid #BFDFDF;
 }
+.inputdeletar {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #781515;
+	border:1px solid #BFDFDF;
+}
 .inputobrigatorio {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 10px;
