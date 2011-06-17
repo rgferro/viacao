@@ -72,6 +72,25 @@ function formataPlaca(obj,e,menos){
 		return false;
 	}
 }
+
+function somenteNumero(obj,e,ast,virg,ponto){
+	var tecla=(window.event)?event.keyCode:e.which;
+	if (tecla == 13) {
+		obj.focus();  obj.select();
+		return true
+	}
+	if((tecla > 47 && tecla < 58)){ 
+		return true;
+	}else{
+		if((tecla == 9)) return true;
+		if ((tecla == 8)) return true;
+		if ((tecla == 0)) return true;
+		if ((tecla == 42)&&(ast)) return true; //permite asterísco
+		if ((tecla == 44)&&(virg)) return true; //permite vírgula
+		if ((tecla == 46)&&(ponto)) return true; //permite ponto
+		return false;
+	}
+}
 </script>
 <link href="css/portal.css" rel="stylesheet" type="text/css">
 <html:form action="/manterOnibus">
@@ -103,7 +122,11 @@ function formataPlaca(obj,e,menos){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
+<<<<<<< .mine
+							<html:text onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="qtdPoltronas" styleClass="input"/>
+=======
 							<html:text onkeypress="return somenteNumeroLetra(this,event,true,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
+>>>>>>> .r187
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
