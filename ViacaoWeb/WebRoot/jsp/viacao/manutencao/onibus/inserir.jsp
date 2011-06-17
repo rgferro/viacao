@@ -6,7 +6,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
-<script>
+<script type="text/javascript">
 function confirmar(){
 	var frm = document.forms[0];
 	frm.task.value = 'inserirOnibus';
@@ -18,54 +18,61 @@ function voltar(){
 	frm.task.value = 'unspecified';
 	frm.submit();
 }
-function somenteNumero(obj,e,ast,virg,ponto){
+
+function somenteNumeroLetra(obj,e,numero,letra){
 	var tecla=(window.event)?event.keyCode:e.which;
 	if (tecla == 13) {
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 47 && tecla < 58)){ 
-		return true;
-	}else{
-		if((tecla == 9)) return true;
-		if ((tecla == 8)) return true;
-		if ((tecla == 0)) return true;
-		if ((tecla == 42)&&(ast)) return true; //permite asterísco
-		if ((tecla == 44)&&(virg)) return true; //permite vírgula
-		if ((tecla == 46)&&(ponto)) return true; //permite ponto
-		return false;
+	if(letra){
+		if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91)){ 
+			return true;
+		}
 	}
+	if(numero){
+		if((tecla > 47 && tecla < 58)){ 
+			return true;
+		}
+	}
+	if((tecla == 9)) return true;
+	if ((tecla == 8)) return true;
+	if ((tecla == 0)) return true;
+	return false;
 }
-function somenteLetra(obj,e){
-	var tecla=(window.event)?event.keyCode:e.which;
-	if (tecla == 13) {
-		obj.focus();  obj.select();
-		return true
-	}
-	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91)){ 
-		return true;
-	}else{
-		return false;
-	}
-}
+
 function formataPlaca(obj,e,menos){
 	var tecla=(window.event)?event.keyCode:e.which;
 	var teste = obj.value.search("[-]");
+	
 	if(obj.value.length < 3){
-		return somenteLetra(obj,e);
+		return somenteNumeroLetra(obj,e,false,true);
 	} else
 	if(obj.value.length == 3 && teste == -1){
 		obj.value = obj.value + "-";
-		return somenteNumero(obj,e,'false','false','false');;
+		return somenteNumeroLetra(obj,e,true,false);
 	} else
-	if(obj.value.length > 3 && obj.value.length < 8){
-		return somenteNumero(obj,e,'false','false','false');
+	if(obj.value.length > 3){
+		if(teste == -1 && tecla ==45){
+			return true;
+		}
+		var cont = 0;
+		for(var i=0 ; i < 3; i++){
+			if(obj.value.substring(0,3)[i].search("[a-z^A-Z]") < 0){
+				cont++;
+			}
+		}
+		if(cont > 0){
+			return somenteNumeroLetra(obj,e,false,true);
+			
+		}else{
+			return somenteNumeroLetra(obj,e,true,false);
+		}
 	} else{
 		return false;
 	}
 }
 </script>
-
 <link href="css/portal.css" rel="stylesheet" type="text/css">
 <html:form action="/manterOnibus">
 <html:hidden property="task" name="manterOnibusForm"/>
@@ -96,11 +103,11 @@ function formataPlaca(obj,e,menos){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-							<html:text value="" onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
+							<html:text onkeypress="return somenteNumeroLetra(this,event,true,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
-							<html:text onkeypress="return formataPlaca(this,event,true)" name="manterOnibusForm" property="onibusVO.placa" styleClass="input"/>
+							<html:text onkeypress="return formataPlaca(this,event,true)" name="manterOnibusForm" property="onibusVO.placa" styleClass="input" maxlength="8"/>
 						</td>
 					</tr>
 				</table>
