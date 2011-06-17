@@ -189,12 +189,12 @@ function formataPlaca(obj,e,menos){
 						<tr class="fundoclaro">
 							<td align="center">
 								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqOnibus}"/>)">
-									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
+									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
 								</a>
 							</td>
 							<td align="center">
 								<a href="javascript: selecionar('DELETAR', <c:out value="${lista.seqOnibus}"/>)">
-									<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
+									<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
 								</a>
 							</td>
 							<td align="center">
