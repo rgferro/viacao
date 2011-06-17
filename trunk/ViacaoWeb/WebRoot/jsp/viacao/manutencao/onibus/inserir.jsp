@@ -104,7 +104,6 @@ function somenteNumero(obj,e,ast,virg,ponto){
 						<td class="titulo">Cadastro de Ônibus</td>
 					</tr>
 				</table>
-				<br>
 				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
 					<tr class="fundoescuro">
 						<td colspan="4" align="center" class="texto">Cadastro de Ônibus</td>
@@ -122,11 +121,7 @@ function somenteNumero(obj,e,ast,virg,ponto){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-<<<<<<< .mine
-							<html:text onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="qtdPoltronas" styleClass="input"/>
-=======
-							<html:text onkeypress="return somenteNumeroLetra(this,event,true,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
->>>>>>> .r187
+							<html:text value="" onkeypress="return somenteNumeroLetra(this,event,true,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
