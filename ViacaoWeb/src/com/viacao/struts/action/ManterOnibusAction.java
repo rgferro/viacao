@@ -25,12 +25,24 @@ public class ManterOnibusAction extends DispatchAction {
 	
 	public ActionForward listarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
-		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(frm.getOnibusVO()));
+		OnibusVO onibusVO = new OnibusVO();
+		
+		onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
+		onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
+		if(frm.getQtdPoltronas().equals("") || frm.getQtdPoltronas() == null){
+			onibusVO.setQtdPoltronas(0);
+		}else{
+			onibusVO.setQtdPoltronas(new Integer(frm.getQtdPoltronas()));
+		}
+		onibusVO.setTipo(frm.getOnibusVO().getTipo());
+		
+		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(onibusVO));
 		return mapping.findForward("listar");
 	}
 	
 	public ActionForward paginaCadastrarOnibus(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
+		frm.inicializar();
 		return mapping.findForward("inserir");
 	}
 	
@@ -43,7 +55,12 @@ public class ManterOnibusAction extends DispatchAction {
 		try{			
 			onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
 			onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
-			onibusVO.setQtdPoltronas(frm.getOnibusVO().getQtdPoltronas());
+			
+			if(frm.getQtdPoltronas().equals("") || frm.getQtdPoltronas() == null){
+				onibusVO.setQtdPoltronas(0);
+			}else{
+				onibusVO.setQtdPoltronas(new Integer(frm.getQtdPoltronas()));
+			}
 			onibusVO.setTipo(frm.getOnibusVO().getTipo());
 			
 			if(messages.isEmpty()){
@@ -91,6 +108,7 @@ public class ManterOnibusAction extends DispatchAction {
 		
 		onibusVO.setSeqOnibus(frm.getSeqOnibus());
 		frm.setOnibusVO(EstagioServices.getManterCadastroBean().getOnibus(onibusVO));
+		frm.setQtdPoltronas(frm.getOnibusVO().getQtdPoltronas().toString());
 		
 		if(frm.getAcao().equals("DELETAR")){
 			return mapping.findForward("deletar");
@@ -109,7 +127,12 @@ public class ManterOnibusAction extends DispatchAction {
 			onibusVO.setSeqOnibus(frm.getOnibusVO().getSeqOnibus());
 			onibusVO.setEmpresa(frm.getOnibusVO().getEmpresa());
 			onibusVO.setPlaca(frm.getOnibusVO().getPlaca());
-			onibusVO.setQtdPoltronas(frm.getOnibusVO().getQtdPoltronas());
+			
+			if(frm.getQtdPoltronas().equals("") || frm.getQtdPoltronas() == null){
+				onibusVO.setQtdPoltronas(0);
+			}else{
+				onibusVO.setQtdPoltronas(new Integer(frm.getQtdPoltronas()));
+			}
 			onibusVO.setTipo(frm.getOnibusVO().getTipo());
 			
 			if(messages.isEmpty()){
@@ -146,6 +169,7 @@ public class ManterOnibusAction extends DispatchAction {
 		saveMessages(request, messages);
 		return unspecified(mapping, form, request, response);
 	}
+	
 	public ActionForward limpar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterOnibusForm frm = (ManterOnibusForm) form;
 			frm.getOnibusVO().setQtdPoltronas(null);

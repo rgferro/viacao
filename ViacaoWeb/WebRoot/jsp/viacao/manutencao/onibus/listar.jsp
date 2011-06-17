@@ -22,6 +22,7 @@ function buscar(){
 	frm.task.value = 'listarOnibus';
 	frm.submit();
 }
+
 function mudaImagemOver(obj, acao){
 
 	if(acao == "editar"){
@@ -41,6 +42,7 @@ function mudaImagemOver(obj, acao){
 	}
 
 }
+
 function mudaImagemOut(obj, acao){
 
 	if(acao == "editar"){
@@ -60,6 +62,7 @@ function mudaImagemOut(obj, acao){
 	}
 
 }
+
 function somenteNumero(obj,e,ast,virg,ponto){
 	var tecla=(window.event)?event.keyCode:e.which;
 	if (tecla == 13) {
@@ -78,6 +81,7 @@ function somenteNumero(obj,e,ast,virg,ponto){
 		return false;
 	}
 }
+
 function somenteLetra(obj,e){
 	var tecla=(window.event)?event.keyCode:e.which;
 	if (tecla == 13) {
@@ -90,6 +94,7 @@ function somenteLetra(obj,e){
 		return false;
 	}
 }
+
 function formataPlaca(obj,e,menos){
 	var tecla=(window.event)?event.keyCode:e.which;
 	var teste = obj.value.search("[-]");
@@ -151,7 +156,7 @@ function formataPlaca(obj,e,menos){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-							<html:text name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input" value=""/>
+							<html:text name="manterOnibusForm" property="qtdPoltronas" styleClass="input" onkeypress="return somenteNumero(this,event,false,false,true)"/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">

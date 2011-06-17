@@ -101,7 +101,7 @@ function formataPlaca(obj,e,menos){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-							<html:text onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="onibusVO.qtdPoltronas" styleClass="input"/>
+							<html:text onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="qtdPoltronas" styleClass="input"/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
