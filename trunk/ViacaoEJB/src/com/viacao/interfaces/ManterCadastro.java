@@ -7,12 +7,13 @@ import javax.ejb.EJBObject;
 
 import com.acol.exception.business.ChildRecordFoundException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
+import com.acol.exception.business.UniqueConstraintViolatedException;
+import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
 import com.viacao.vo.ViagemVO;
-
 public interface ManterCadastro extends EJBObject {
 	
 	public void inserir(TarifaVO tarifaVO) throws RemoteException, UniqueConstraintViolatedException;	
@@ -38,6 +39,11 @@ public interface ManterCadastro extends EJBObject {
 	public void alterar(RodoviariaVO rodoviariaVO) throws RemoteException;
 	public RodoviariaVO getRodoviaria(RodoviariaVO rodoviariaVO) throws RemoteException;
 	public List<RodoviariaVO> getListaRodoviaria (RodoviariaVO rodoviariaVO) throws RemoteException;
+
+	public void insert(EnderecoVO enderecoVO) throws  RemoteException;
+	public void alterar(EnderecoVO enderecoVO) throws RemoteException;
+	public EnderecoVO getEndereco(EnderecoVO enderecoVO) throws  RemoteException;
+	
 	
 	public void inserir(ViagemVO viagemVO) throws RemoteException;	
 	public void deletar(ViagemVO viagemVO) throws RemoteException;	
