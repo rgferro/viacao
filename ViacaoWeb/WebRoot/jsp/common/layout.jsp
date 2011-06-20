@@ -12,6 +12,7 @@
 
 <link href="<%=request.getContextPath() %>/css/portal.css" rel="stylesheet" type="text/css">
 <script src="<%=request.getContextPath() %>/script/validation.js"></script>
+<script src="<%=request.getContextPath() %>/js/viacao.js"></script>
 <jsp:include page="cabecalhoLogado.jsp"></jsp:include>
 </head>
 <body>
