@@ -64,5 +64,8 @@
 	<definition name=".inserir.manter.rodoviaria" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/inserir.jsp"/>
 	</definition>
+	<definition name=".listar.manter.rodoviaria" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/listar.jsp"/>
+	</definition>
 
 </tiles-definitions>
