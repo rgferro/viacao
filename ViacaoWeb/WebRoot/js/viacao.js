@@ -28,11 +28,14 @@ function formataPlaca(obj,e,menos){
 		return somenteNumeroLetra(obj,e,false,true);
 	} else
 	if(obj.value.length == 3 && teste == -1){
+		if((tecla == 9)) return true;
+		if ((tecla == 8)) return true;
+		if ((tecla == 0)) return true;
 		obj.value = obj.value + "-";
 		return somenteNumeroLetra(obj,e,true,false);
 	} else
 	if(obj.value.length > 3){
-		if(teste == -1 && tecla ==45){
+		if(teste == -1 && tecla == 45){
 			return true;
 		}
 		var cont = 0;
@@ -41,7 +44,7 @@ function formataPlaca(obj,e,menos){
 				cont++;
 			}
 		}
-		if(cont > 0){
+		if(cont > 4){
 			return somenteNumeroLetra(obj,e,false,true);
 			
 		}else{
