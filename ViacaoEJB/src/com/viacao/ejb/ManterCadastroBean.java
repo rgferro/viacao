@@ -235,6 +235,8 @@ public class ManterCadastroBean implements SessionBean {
 	
 	public void inserir(RodoviariaVO rodoviariaVO){
 		try{
+			insert(rodoviariaVO.getEnderecoVO());
+			rodoviariaVO.setEnderecoVO(getEndereco(rodoviariaVO.getEnderecoVO()));
 			RodoviariaDAO dao = new RodoviariaDAO();
 		    dao.inserir(rodoviariaVO);
 		}catch(DAOException e){
