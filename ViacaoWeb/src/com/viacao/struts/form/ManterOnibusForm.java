@@ -55,6 +55,10 @@ public class ManterOnibusForm extends ActionForm {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.placa"));
 		}
 		
+		if(onibusVO.getPlaca().length() != 8){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.qtd.caracteres","Placa",8));
+		}
+		
 		return messages;
 	}
 
