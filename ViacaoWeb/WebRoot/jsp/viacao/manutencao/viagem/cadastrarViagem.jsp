@@ -1,91 +1,104 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="/WEB-INF/struts-html.tld" prefix="html"%>
-<%@ taglib uri="/WEB-INF/struts-bean.tld" prefix="bean"%>  
-<%@ taglib uri="/WEB-INF/struts-logic.tld" prefix="logic"%>
-<%@ taglib uri="/WEB-INF/struts-nested.tld" prefix="nested"%>
-<%@ taglib uri="/WEB-INF/c.tld" prefix="c"%>
-
+<%@ include file="/jsp/common/taglibs.jsp" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
 
 <script type="text/javascript">
+
 function cadastrar(){
-	frm = document.forms[0];
+	var frm = document.forms[0];
 	frm.task.value = 'cadastrarViagem';
+	frm.submit();
+}
+
+function voltar(){
+	var frm = document.forms[0];
+	frm.task.value = 'unspecified';
+	frm.submit();
 }
 </script>
 
-<link href="css/portal.css" rel="stylesheet" type="text/css">
 
-<form action="/manterViagem">
+<link href="css/portal.css" rel="stylesheet" type="text/css">
+<html:form action="/manterViagem">
+<html:hidden property="task" name="manterViagemForm"/>
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
+			<jsp:include page="/jsp/common/mensagens.jsp" />
 				<table width="100%" border="0" align="center">
 					<tr>
-						<td class="titulo">Cadastro de Viagem
+						<td class="titulo">Cadastramento de Viagens
+						</td>
+					</tr>
+					<br>
+					<tr class="fundoescuro">
+						<td colspan="4" align="center" class="texto">Cadastrar Viagem
+						</td>
+					</tr>
+				</table>
+				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
+					<tr class="fundoclaro">
+						<td class="texto" width="13%" height="20" align="center">Itinerário
+						</td>
+						<td width="37%">
+							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="inputobrigatorio">
+    							<html:option value="">SELECIONE</html:option>
+    							<html:optionsCollection  name="manterViagemForm" property="listaItinerario" label="origemDestino" value="seqItinerario"/>
+    						</html:select>
+						</td>
+						<td class="texto" width="13%" height="20" align="center">Data
+						</td>
+						<td width="37%">
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida.data"/><img src="images/icone-calendario.jpg" class="link" align="center"/>
+						</td>	
+					</tr>
+					<br>
+					<tr class="fundoclaro">
+						<td class="texto" width="05%" align="center">Hora Saída
+						</td>
+						<td width="37%">
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinutoSegundo"/>
+						</td>
+						<td class="texto" width="05%" align="center">Hora Chegada
+						</td>
+						<td width="37%">
+							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinutoSegundo"/>
+						</td>
+					</tr>
+					<br>
+					<tr class="fundoclaro">
+						<td class="texto" width="13%" height="20" align="center">Tipo de Ônibus
+						</td>
+						<td width="37%">
+							<html:select name="manterViagemForm" property="listaOnibus" styleId="lista" styleClass="inputobrigatorio">
+    							<html:option value=""></html:option>
+    							<logic:iterate id="lista" name="manterViagemForm" property="listaOnibus">
+    								<html:option value="${lista.seqOnibus}">
+    									<c:out value="${lista.tipo}"/>
+    								</html:option>
+    							</logic:iterate>
+    						</html:select>
 						</td>
 					</tr>
 				</table>
 				<br>
-				
-				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
-					<tr class="fundoescuro">
-						<td colspan="4" align="center" class="texto">Cadastro de Viagem
-						</td>
-					</tr>
-					<tr class="fundoclaro">
-						<td class="texto" align="center" width="15%">Itinerário
-						</td>
-						<td width="85%" colspan="3">
-							<select name="Origem" size="1">
-								<option selected="selected">Itinerário
-								<option>Rio de Janeiro - Juiz de Fora
-								<option>Rio de Janeiro - Petrópolis
-								<option>Juiz de Fora - Rio de Janeiro
-								<option>Juiz de Fora - Petrópolis
-							</select>
-						</td>
-					</tr>
-					
-					<tr class="fundoclaro">
-						<td class="texto" align="center" width="15%">Tipo
-						</td>
-						<td width="35%">
-							<select name="Origem" size="1">
-								<option selected="selected">Ônibus
-								<option>Convencional
-								<option>Convencional c/ ar
-								<option>Executivo
-							</select>
-						</td>
-						<td class="texto" align="center" width="18%">Data
-						</td>
-						<td width="32%"><input class="input" size="15" value="" align="center"> 
-							<img src="images/icone-calendario.jpg" align="center"/>
-						</td>
-					</tr>
-					
-					<tr class="fundoclaro">
-						<td align="center" width="15%" class="texto">Hora de partida
-						</td>
-						<td width="15%"><input class="input" size="8" value=""/>
-						<td align="center" width="18%" class="texto">Hora de chegada
-						</td>
-						<td width="32%"><input class="input" size="8" value="">
-						</td>
-					</tr>
-				</table>
 				<table width="100%" border="0" align="center">
 					<tr>
-						<td align="center"><input class="botao" value="Voltar"/>
-						<td align="center"><input class="botao" value="Cadastrar"/>
-						<td align="center"><input class="botao" value="Limpar"/>
+						<td align="center">
+							<html:button styleClass="botao" value="Voltar" property="" onclick="voltar();"/>
+						</td>	
+						<td align="center">
+							<html:button styleClass="botao" value="Cadastrar" property="" onclick="confirmar();"/>
+						</td>	
+						<td align="center">
+							<html:reset styleClass="botao" value="Limpar"/>
+						</td>	
 					</tr>
 				</table>
-			</td>
 		</tr>
 	</table>	
-</form>
+</html:form>
