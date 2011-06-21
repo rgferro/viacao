@@ -28,6 +28,14 @@
         <li class="item"><a href="<%=request.getContextPath()%>/manterRodoviaria.do">Rodoviaria</a></li>                                      
         <li class="item"><a href="<%=request.getContextPath()%>/manterItinerario.do">Itinerario</a></li>                                      
         <li class="item"><a href="<%=request.getContextPath()%>/manterViagem.do">Viagem</a></li>                                      
+        <li class="item"><a href="<%=request.getContextPath()%>/login.do">Cliente</a></li>                                      
+      </ul>
+   </li>
+   <li class="submenu"><a href="<%=request.getContextPath()%>/exemplo.do">Menu</a>
+      <ul class="menu">      
+      	<li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Conta</a></li>
+        <li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Compras</a></li>
+        <li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Dados do Cartao</a></li>                                    
       </ul>
    </li>
  </ul>
