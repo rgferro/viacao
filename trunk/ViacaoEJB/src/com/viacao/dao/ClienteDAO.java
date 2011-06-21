@@ -368,6 +368,11 @@ public class ClienteDAO extends BaseDB{
 	
 	
 	
+	/**
+	 * SQL InserirJuridica
+	 * @return query InserirJuridica
+	 * @throws DAOException
+	 */
 	public String getSQLInserirJuridica() throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
@@ -389,6 +394,11 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * Cadastra um cliente juridico no banco de dados
+	 * @param JuridicaVO
+	 * @throws DAOException
+	 */
 	public void inserirJuridica(JuridicaVO juridicaVO) throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLInserirJuridica());
@@ -562,7 +572,7 @@ public class ClienteDAO extends BaseDB{
 				listaClienteJuridica.add(juriVO);
 			}
 			
-			return listaClienteJuridica;
+			return (List<ClienteVO>) listaClienteJuridica;
 		}
 		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
