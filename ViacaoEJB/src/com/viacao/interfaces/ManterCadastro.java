@@ -8,7 +8,9 @@ import javax.ejb.EJBObject;
 import com.acol.exception.business.ChildRecordFoundException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
+import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
+import com.viacao.vo.FisicaVO;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
@@ -50,4 +52,12 @@ public interface ManterCadastro extends EJBObject {
 	public void alterar(ViagemVO viagemVO) throws RemoteException;	
 	public ViagemVO getViagem(ViagemVO viagemVO) throws RemoteException;
 	public List<ViagemVO> getListaViagem(ViagemVO viagemVO) throws RemoteException;
+	
+	public void inserirCliente(ClienteVO clienteVO) throws RemoteException;
+	public void inserirFisica(FisicaVO fisicaVO) throws RemoteException;
+	public void deletarCliente(ClienteVO clienteVO) throws RemoteException;
+	public void alterarCliente(ClienteVO clienteVO) throws RemoteException;
+	public void alterarFisica(FisicaVO fisicaVO) throws RemoteException;
+	public FisicaVO getClienteFisica (FisicaVO fisicaVO) throws RemoteException;
+	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO) throws RemoteException;
 }

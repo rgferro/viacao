@@ -67,5 +67,23 @@
 	<definition name=".listar.manter.rodoviaria" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/listar.jsp"/>
 	</definition>
+	
+	<!-- Tiles for Manter Cliente -->
+	
+	<definition name=".cadastrar.cliente" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/cadastrarCliente.jsp"/>
+	</definition>
+	<definition name=".deletar.cliente" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/deletarCliente.jsp"/>
+	</definition>
+	<definition name=".alterar.cliente" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/alterarCliente.jsp"/>
+	</definition>
+	<definition name=".listar.cliente" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/listarFisico.jsp"/>
+	</definition>
+	<definition name=".consultar.cliente" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/consultarCliente.jsp"/>
+	</definition>
 
 </tiles-definitions>

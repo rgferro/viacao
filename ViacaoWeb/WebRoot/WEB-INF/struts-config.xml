@@ -9,6 +9,7 @@
   	<form-bean name="manterItinerarioForm" type="com.viacao.struts.form.ManterItinerarioForm" />
   	<form-bean name="manterRodoviariaForm" type="com.viacao.struts.form.ManterRodoviariaForm"/>
   	<form-bean name="manterViagemForm" type="com.viacao.struts.form.ManterViagemForm"/>
+  	<form-bean name="manterClienteForm" type="com.viacao.struts.form.ManterClienteForm"/>
   </form-beans>
   <global-exceptions />
   <global-forwards />
@@ -24,16 +25,20 @@
             <forward name="listar"                path=".listar.exemplo"/>
 	 </action>
 	 
-	 	<action 
-			attribute="manterTarifaForm"
-            name="manterTarifaForm"
-            path="/manterTarifa"
-            parameter="task"
-            scope="session"
-            type="com.viacao.struts.action.ManterTarifaAction"
-            validate="false">
-            <forward name="listar"                path=".listar.manterTarifa"/>
-	 	</action>
+	 <!-- manterTarifaForm -->
+	 
+ 	<action 
+		attribute="manterTarifaForm"
+           name="manterTarifaForm"
+           path="/manterTarifa"
+           parameter="task"
+           scope="session"
+           type="com.viacao.struts.action.ManterTarifaAction"
+           validate="false">
+           <forward name="listar"                path=".listar.manterTarifa"/>
+ 	</action>
+ 	
+ 	<!-- manterItinerarioForm -->
 	
 	<action
 		attribute="manterItinerarioForm"
@@ -45,6 +50,8 @@
 		validate="false">
 		<forward name="cadastrar"				path=".cadastrar.manter.itinerario" />
 	</action>
+	
+	<!-- manterOnibusForm -->
 	
 	<action 
 		attribute="manterOnibusForm"
@@ -75,7 +82,9 @@
 		<forward name="alterar"				path=".alterar.viagem" />
 		<forward name="listar"				path=".listar.viagem" />
 	</action>
-	 	
+	
+	<!-- manterRodoviariaForm -->
+		
 	<action
 		 attribute="manterRodoviariaForm"
 		 name="manterRodoviariaForm"
@@ -86,7 +95,25 @@
 		 validate="false">
 		 <forward name="inserir"	path=".inserir.manter.rodoviaria"/>
 		 <forward name="listar"	path=".listar.manter.rodoviaria"/>
-	</action>	 
+	</action>	
+	
+	<!-- manterClienteForm -->
+	
+	<action
+		attribute="manterClienteForm"
+		name="manterClienteForm"
+		path="/manterCliente"
+		parameter="task"
+		scope="session"
+		type="com.viacao.struts.action.ManterClienteAction"
+		validate="false">
+		
+		<forward name="cadastrarCliente"			path=".cadastrar.cliente" />
+		<forward name="deletarCliente"				path=".deletar.cliente" />
+		<forward name="alterarCliente"				path=".alterar.cliente" />
+		<forward name="listarFisico"				path=".listar.cliente" />
+		<forward name="consultarCliente"			path=".consultar.cliente" />
+	</action> 
    
    </action-mappings>
   
