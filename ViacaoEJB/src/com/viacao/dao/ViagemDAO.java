@@ -4,13 +4,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 import org.apache.log4j.Logger;
 
-
 import com.acol.exception.DAOException;
-import com.acol.vo.DataVO;
 import com.viacao.services.persistence.BaseDB;
+import com.viacao.vo.DataVO;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
@@ -42,7 +40,7 @@ public class ViagemDAO extends BaseDB {
 	public void inserir(ViagemVO viagemVO)throws DAOException {
 		try{
 			pstmt = getPstmt(getSQLInserir());
-			pstmt.setInt(1, viagemVO.getItinerarioVO().getSeqItinerario());
+			pstmt.setInt(1, viagemVO.getItinerarioVo().getSeqItinerario());
 			pstmt.setInt(2, viagemVO.getOnibusVO().getSeqOnibus());
 			pstmt.setString(3, viagemVO.getHoraSaida().getHoraMinutoSegundo());
 			pstmt.setString(4, viagemVO.getHoraChegada().getHoraMinutoSegundo());
@@ -94,7 +92,7 @@ public class ViagemDAO extends BaseDB {
 	public void alterar(ViagemVO viagemVO)throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLAlterar());
-			pstmt.setInt(1, viagemVO.getItinerarioVO().getSeqItinerario());
+			pstmt.setInt(1, viagemVO.getItinerarioVo().getSeqItinerario());
 			pstmt.setInt(2, viagemVO.getOnibusVO().getSeqOnibus());
 			pstmt.setString(3, viagemVO.getHoraSaida().getData());
 			pstmt.setString(4, viagemVO.getHoraChegada().getData());
@@ -122,8 +120,10 @@ public class ViagemDAO extends BaseDB {
 		sql.append("         	FROM	rodoviaria r ");
 		sql.append("         	WHERE 	r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) destino, ");
 		sql.append("		o.tipo, ");
-		sql.append("        to_char(vg.data_hora_saida, 'DD/MM/YYYY HH24:MI:SS') data_hora_saida, ");
-		sql.append("        to_char(vg.data_hora_chegada, 'DD/MM/YYYY HH24:MI:SS') data_hora_chegada ");
+		sql.append("         to_char(vg.data_hora_saida, 'DD/MM/YYYY') data_saida, ");
+		sql.append("        to_char(vg.data_hora_saida, 'HH24:MI:SS') hora_saida, ");
+		sql.append("        to_char(vg.data_hora_chegada, 'DD/MM/YYYY') data_chegada, ");
+		sql.append("        to_char(vg.data_hora_chegada, 'HH24:MI:SS') hora_chegada ");
 		sql.append(" FROM	itinerario it, viagem vg, onibus o ");
 		sql.append(" WHERE	it.seq_itinerario = vg.seq_itinerario_fk ");
 		sql.append(" AND	o.seq_onibus = vg.seq_onibus_fk");
@@ -141,11 +141,17 @@ public class ViagemDAO extends BaseDB {
 			ViagemVO vgVO = new ViagemVO();
 			if(rowSet.next()){
 				vgVO.setSeqViagem(new Integer(rowSet.getInt("seq_viagem")));
-				vgVO.getItinerarioVO().getRodoviariaOrigemVO().setSeqRodoviaria(new Integer(rowSet.getInt("origem")));
-				vgVO.getItinerarioVO().getRodoviariaDestinoVO().setSeqRodoviaria(new Integer(rowSet.getInt("destino")));
+				vgVO.setItinerarioVo(new ItinerarioVo());
+				vgVO.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
+				vgVO.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
+				vgVO.getItinerarioVo().getRodoviariaOrigemVO().setNomRodoviaria(rowSet.getString("origem"));
+				vgVO.getItinerarioVo().getRodoviariaDestinoVO().setNomRodoviaria(rowSet.getString("destino"));
+				vgVO.setOnibusVO(new OnibusVO());
 				vgVO.getOnibusVO().setTipo(rowSet.getString("tipo"));
-				vgVO.setHoraSaida(new DataVO(rowSet.getString("data_hora_saida")));
-				vgVO.setHoraChegada(new DataVO(rowSet.getString("data_hora_chegada")));
+				vgVO.setHoraSaida(new DataVO(rowSet.getString("data_saida")));
+				vgVO.getHoraSaida().setHoraMinutoSegundo(rowSet.getString("hora_saida"));
+				vgVO.setHoraChegada(new DataVO(rowSet.getString("data_chegada")));
+				vgVO.getHoraChegada().setHoraMinutoSegundo(rowSet.getString("hora_chegada"));
 			}
 			return vgVO;
 		}
@@ -169,30 +175,32 @@ public class ViagemDAO extends BaseDB {
 		sql.append("         	FROM 	rodoviaria r ");
 		sql.append("         	WHERE 	r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) destino, ");
 		sql.append("        o.tipo, ");
-		sql.append("        to_char(vg.data_hora_saida, 'DD/MM/YYYY HH24:MI:SS') data_hora_saida, ");
-		sql.append("        to_char(vg.data_hora_chegada, 'DD/MM/YYYY HH24:MI:SS') data_hora_chegada ");
+		sql.append("        to_char(vg.data_hora_saida, 'DD/MM/YYYY') data_saida, ");
+		sql.append("        to_char(vg.data_hora_saida, 'HH24:MI:SS') hora_saida, ");
+		sql.append("        to_char(vg.data_hora_chegada, 'DD/MM/YYYY') data_chegada, ");
+		sql.append("        to_char(vg.data_hora_chegada, 'HH24:MI:SS') hora_chegada ");
 		sql.append(" FROM 	itinerario it, viagem vg, onibus o ");
 		sql.append(" WHERE 	it.seq_itinerario = vg.seq_itinerario_fk (+) ");
 		sql.append(" AND 	o.seq_onibus = vg.seq_onibus_fk ");
 		// filtro por origem da viagem
-		if(vgVO.getItinerarioVO() != null){
-			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) LIKE upper('%?%') ");
+		if(vgVO.getItinerarioVo() != null){
+			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) LIKE upper('%" + vgVO.getItinerarioVo().getRodoviariaOrigemVO().getNomRodoviaria() + "%') ");
 		}
 		// filtro por destino da viagem
-		if(vgVO.getItinerarioVO() != null){
-			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) LIKE upper('%?%') ");
+		if(vgVO.getItinerarioVo() != null){
+			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) LIKE upper('%" + vgVO.getItinerarioVo().getRodoviariaDestinoVO().getNomRodoviaria() + "%') ");
 		}
 		// filtro por tipo de ônibus
 		if(vgVO.getOnibusVO() != null){
-			sql.append(" AND (SELECT o.tipo FROM onibus o WHERE o.seq_onibus = vg.seq_onibus_fk) LIKE upper ('%?%') ");
+			sql.append(" AND (SELECT o.tipo FROM onibus o WHERE o.seq_onibus = vg.seq_onibus_fk) LIKE upper ('%"+ vgVO.getOnibusVO().getTipo() +"%') ");
 		}
 		// filtro por data partida
 		if(vgVO.getHoraSaida() != null){
-			sql.append(" AND to_char(vg.data_hora_saida, 'DD/MM/YYYY') = '?' ");
+			sql.append(" AND to_char(vg.data_hora_saida, 'DD/MM/YYYY') = '"+ vgVO.getHoraSaida().getData() +"' ");
 		}
 		// filtro por hora partida
 		if(vgVO.getHoraSaida() != null){
-			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '?' ");
+			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '"+ vgVO.getHoraSaida().getHoraMinutoSegundo() +"' ");
 		}
 		
 		
@@ -209,16 +217,17 @@ public class ViagemDAO extends BaseDB {
 			while(rowSet.next()){
 				ViagemVO viagem = new ViagemVO();
 				viagem.setSeqViagem(new Integer(rowSet.getInt("seq_viagem")));
-				viagem.setItinerarioVO(new ItinerarioVo());
-				viagem.getItinerarioVO().setRodoviariaOrigemVO(new RodoviariaVO());
-				viagem.getItinerarioVO().setRodoviariaDestinoVO(new RodoviariaVO());
-				viagem.getItinerarioVO().getRodoviariaOrigemVO().setNomRodoviaria(rowSet.getString("origem"));
-				viagem.getItinerarioVO().getRodoviariaDestinoVO().setNomRodoviaria(rowSet.getString("destino"));
+				viagem.setItinerarioVo(new ItinerarioVo());
+				viagem.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
+				viagem.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
+				viagem.getItinerarioVo().getRodoviariaOrigemVO().setNomRodoviaria(rowSet.getString("origem"));
+				viagem.getItinerarioVo().getRodoviariaDestinoVO().setNomRodoviaria(rowSet.getString("destino"));
 				viagem.setOnibusVO(new OnibusVO());
 				viagem.getOnibusVO().setTipo(rowSet.getString("tipo"));
-				viagem.setHoraSaida(new DataVO(rowSet.getString("data_hora_saida")));
-				viagem.setHoraChegada(new DataVO(rowSet.getString("data_hora_chegada")));
-				
+				viagem.setHoraSaida(new DataVO(rowSet.getString("data_saida")));
+				viagem.getHoraSaida().setHoraMinutoSegundo(rowSet.getString("hora_saida"));
+				viagem.setHoraChegada(new DataVO(rowSet.getString("data_chegada")));
+				viagem.getHoraChegada().setHoraMinutoSegundo(rowSet.getString("hora_chegada"));
 				lista.add(viagem);
 			}
 			return lista;
