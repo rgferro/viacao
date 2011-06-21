@@ -11,6 +11,7 @@ import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.FisicaVO;
+import com.viacao.vo.JuridicaVO;
 
 
 public class ClienteDAO extends BaseDB{
@@ -327,7 +328,7 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
-	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO) throws DAOException{
+	public List<FisicaVO> getListaClienteFisica (FisicaVO fisicaVO) throws DAOException{
 		
 		try{
 			pstmt = getPstmt(getSQLListaClienteFisica(fisicaVO));
@@ -364,4 +365,211 @@ public class ClienteDAO extends BaseDB{
 			release();
 		}
 	}
+	
+	
+	
+	public String getSQLInserirJuridica() throws DAOException{
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append(" INSERT INTO juridica(");
+		sql.append("			 	seq_juridica, ");
+		sql.append("			 	seq_cliente_fk, ");
+		sql.append("			 	razao_social, ");
+		sql.append("			 	nom_fantasia, ");
+		sql.append("			 	cnpj, ");
+		sql.append("			 	num_inscricao) ");
+		sql.append(" VALUES 	 seq_juridica.nextval, ");
+		sql.append("			 ?, ");
+		sql.append("			 upper ('?'), ");
+		sql.append("			 upper ('?'), ");
+		sql.append("			 upper ('?'), ");
+		sql.append("			 upper ('?'), ");
+		sql.append("			 upper ('?')) ");
+	   
+		return sql.toString();
+	}
+	
+	public void inserirJuridica(JuridicaVO juridicaVO) throws DAOException{
+		try{
+			pstmt = getPstmt(getSQLInserirJuridica());
+			pstmt.setInt(1, juridicaVO.getClienteVO().getSeqCliente());
+			pstmt.setString(2, juridicaVO.getRazaoSocial());
+			pstmt.setString(3, juridicaVO.getNomFantasia());
+			pstmt.setString(4, juridicaVO.getNomResponsavel());
+			pstmt.setString(5, juridicaVO.getCnpj());
+			pstmt.setString(6, juridicaVO.getNumInscricao());
+			
+			pstmt.executeUpdate();
+		}
+		catch(SQLException e){
+			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
+		}finally{
+			release();
+		}
+	}
+	
+	public String getSQLAlterarJuridica() throws DAOException{
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("UPDATE 	juridica ");
+		sql.append("SET 	razao_social = 		upper (?), ");
+		sql.append("		nom_fantasia = 		upper (?), ");
+		sql.append("		nom_responsavel = 	upper (?), ");
+		sql.append("		cnpj = 				upper (?), ");
+		sql.append("		num_inscricao = 	upper (?) ");
+		sql.append("WHERE 	seq_juridica = 		?");
+		
+		return sql.toString();
+	}
+	
+	public void alterarJuridica(JuridicaVO juridicaVO) throws DAOException{
+		try{
+			pstmt = getPstmt(getSQLAlterarJuridica());
+			pstmt.setString(1, juridicaVO.getRazaoSocial());
+			pstmt.setString(2, juridicaVO.getNomFantasia());
+			pstmt.setString(3, juridicaVO.getNomResponsavel());
+			pstmt.setString(4, juridicaVO.getCnpj());
+			pstmt.setString(5, juridicaVO.getNumInscricao());
+			pstmt.setInt(6, juridicaVO.getSeqJuridica());
+			
+			pstmt.executeUpdate();
+		}
+		catch(SQLException e){
+			logger.fatal("Erro ocorrido no metodo alterar juridica em :: ClienteDAO", e);
+		}finally{
+			release();
+		}
+	}
+	
+	public String getSQLGetClienteJuridica() throws DAOException{
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("SELECT 	c.login 			LOGIN, ");
+		sql.append("   		c.senha 			SENHA, ");
+		sql.append("   		c.email 			EMAIL, ");
+		sql.append("		j.razao_social 		RAZAO_SOCIAL, ");
+		sql.append("		j.nom_fantasia 		NOM_FANTASIA, ");
+		sql.append("		j.nom_responsavel 	NOM_RESPONSAVEL, ");
+		sql.append("		j.cnpj 				CNPJ, ");
+		sql.append("		j.num_inscricao 	NUM_INSCRICAO, ");
+		sql.append("      	e.logradouro 		LOGRADOURO, ");
+		sql.append("      	e.numero 			NUMERO, ");
+		sql.append("    	e.complemento 		COMPLEMENTO, ");
+		sql.append("      	e.bairro 			BAIRRO, ");
+		sql.append("      	e.cidade 			CIDADE, ");
+		sql.append("      	e.estado 			ESTADO");
+		sql.append("FROM 	endereco e, cliente c, juridica j ");
+		sql.append("WHERE 	j.seq_cliente_fk = c.seq_cliente ");
+		sql.append("   AND 	c.seq_endereco_fk = e.seq_endereco ");
+		sql.append("   AND 	seq_juridica = <param_seq_juridica>");
+		
+		return sql.toString();
+	}
+	
+	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO) throws DAOException{
+		try{
+			pstmt = getPstmt(getSQLGetClienteJuridica());
+			pstmt.setInt(1, juridicaVO.getSeqJuridica());
+			
+			rowSet = executeQuery(pstmt);
+			
+			JuridicaVO juriVO = new JuridicaVO();
+			if(rowSet.next()){
+				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
+				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
+				juriVO.getClienteVO().setEmail(rowSet.getString("EMAIL"));
+				juriVO.setRazaoSocial(rowSet.getString("RAZAO_SOCIAL"));
+				juriVO.setNomFantasia(rowSet.getString("NOM_FANTASIA"));
+				juriVO.setNomResponsavel(rowSet.getString("NOM_RESPONSAVEL"));
+				juriVO.setCnpj(rowSet.getString("CNPJ"));
+				juriVO.setNumInscricao(rowSet.getString("NUM_INSCRICAO"));
+				juriVO.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("LOGRADOURO"));
+				juriVO.getClienteVO().getEnderecoVO().setNumero(rowSet.getString("NUMERO"));
+				juriVO.getClienteVO().getEnderecoVO().setComplemento(rowSet.getString("COMPLEMENTO"));
+				juriVO.getClienteVO().getEnderecoVO().setBairro(rowSet.getString("BAIRRO"));
+				juriVO.getClienteVO().getEnderecoVO().setCidade(rowSet.getString("CIDADE"));
+				juriVO.getClienteVO().getEnderecoVO().setEstado(rowSet.getString("ESTADO"));
+			}
+			
+			return juriVO;
+		}
+		catch(SQLException e){
+			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
+			throw new DAOException(e);
+		}finally{
+			release();
+		}
+	}
+	
+	public String getSQLGetListaClienteJuridica(JuridicaVO juridicaVO) throws DAOException{
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("SELECT 		c.login 			LOGIN, ");
+		sql.append("   			c.senha 			SENHA, ");
+		sql.append("   			c.email 			EMAIL, ");
+		sql.append("   			j.razao_social 		RAZAO_SOCIAL, ");
+		sql.append("			j.nom_fantasia 		NOM_FANTASIA, ");
+		sql.append("			j.nom_responsavel 	NOM_RESPOSAVEL, ");
+		sql.append("			j.cnpj 				CNPJ, ");
+		sql.append("			j.num_inscricao 	NUM_INSCRICAO, ");
+		sql.append("      		e.logradouro 		LOGRADOURO, ");
+		sql.append("      		e.numero 			NUMERO, ");
+		sql.append("      		e.complemento 		COMPLEMENTO, ");
+		sql.append("      		e.bairro 			BAIRRO, ");
+		sql.append("      		e.cidade 			CIDADE, ");
+		sql.append("      		e.estado 			ESTADO ");
+		sql.append("FROM 		endereco e, cliente c, juridica j ");
+		sql.append("WHERE 		j.seq_cliente_fk = c.seq_cliente ");
+		sql.append("   	  AND 	c.seq_endereco_fk = e.seq_endereco ");
+		if(juridicaVO.getRazaoSocial() != null){
+			sql.append("      AND 	j.razao_social LIKE upper ('%" + juridicaVO.getRazaoSocial() + "%') ");
+		}
+		if(juridicaVO.getClienteVO().getLogin() != null){
+			sql.append("      AND 	c.login LIKE upper ('%" + juridicaVO.getClienteVO().getLogin() + "%') ");
+		}
+		if(juridicaVO.getClienteVO().getEmail() != null){
+			sql.append("      AND 	c.email LIKE upper ('%" + juridicaVO.getClienteVO().getEmail() + "%')");
+		}
+
+		
+		return sql.toString();
+	}
+	
+	public List<ClienteVO> getListaClienteJuridica (JuridicaVO juridicaVO) throws DAOException{
+		try{
+			pstmt = getPstmt(getSQLGetListaClienteJuridica(juridicaVO));
+			
+			rowSet = executeQuery(pstmt);
+			
+			JuridicaVO juriVO = new JuridicaVO();
+			List listaClienteJuridica = new ArrayList();
+			while(rowSet.next()){
+				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
+				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
+				juriVO.getClienteVO().setEmail(rowSet.getString("EMAIL"));
+				juriVO.setRazaoSocial(rowSet.getString("RAZAO_SOCIAL"));
+				juriVO.setNomFantasia(rowSet.getString("NOM_FANTASIA"));
+				juriVO.setNomResponsavel(rowSet.getString("NOM_RESPONSAVEL"));
+				juriVO.setCnpj(rowSet.getString("CNPJ"));
+				juriVO.setNumInscricao(rowSet.getString("NUM_INSCRICAO"));
+				juriVO.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("LOGRADOURO"));
+				juriVO.getClienteVO().getEnderecoVO().setNumero(rowSet.getString("NUMERO"));
+				juriVO.getClienteVO().getEnderecoVO().setComplemento(rowSet.getString("COMPLEMENTO"));
+				juriVO.getClienteVO().getEnderecoVO().setBairro(rowSet.getString("BAIRRO"));
+				juriVO.getClienteVO().getEnderecoVO().setCidade(rowSet.getString("CIDADE"));
+				juriVO.getClienteVO().getEnderecoVO().setEstado(rowSet.getString("ESTADO"));
+				
+				listaClienteJuridica.add(juriVO);
+			}
+			
+			return listaClienteJuridica;
+		}
+		catch(SQLException e){
+			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
+			throw new DAOException(e);
+		}finally{
+			release();
+		}
+	}
+	
 }
