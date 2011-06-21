@@ -13,7 +13,20 @@
 <link href="<%=request.getContextPath() %>/css/portal.css" rel="stylesheet" type="text/css">
 <script src="<%=request.getContextPath() %>/script/validation.js"></script>
 <script src="<%=request.getContextPath() %>/js/viacao.js"></script>
-<jsp:include page="cabecalhoLogado.jsp"></jsp:include>
+
+<c:set var="clienteVO" value="<%= session.getAttribute("ClienteVO")%>"></c:set>
+<c:set var="adm" value="<%= session.getAttribute("Adm")%>"></c:set>
+
+<c:if test="${session == null && adm == null}">
+	<jsp:include page="cabecalhoGeral.jsp"></jsp:include>
+</c:if>
+<c:if test="${clienteVO != null}">
+	<jsp:include page="cabecalhoCliente.jsp"></jsp:include>
+</c:if>
+<c:if test="${adm != null}">
+	<jsp:include page="cabecalhoAdm.jsp"></jsp:include>
+</c:if>
+
 </head>
 <body>
 <table width="100%" border="0" cellspacing="0" cellpadding="0">

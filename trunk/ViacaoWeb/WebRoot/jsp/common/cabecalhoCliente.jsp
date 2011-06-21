@@ -17,10 +17,13 @@
  <tr>
  <td>
 <ul id="menu_dropdown" class="menubar">
-   <li class="submenu"><a href="<%=request.getContextPath()%>/gerenciarTimes.do?task=listarTodosOsTimes">Login</a>
-   	<ul class="menu">
-   	</ul>
-  </li>
+  <li class="submenu"><a href="<%=request.getContextPath()%>/exemplo.do">Menu</a>
+      <ul class="menu">      
+      	<li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Conta</a></li>
+        <li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Compras</a></li>
+        <li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Dados do Cartao</a></li>                                    
+      </ul>
+   </li>
  </ul>
 </td>
 </tr>
