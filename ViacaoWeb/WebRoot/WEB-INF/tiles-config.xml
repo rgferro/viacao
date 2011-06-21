@@ -57,7 +57,7 @@
 		<put name="body" value="/jsp/viacao/manutencao/viagem/alterarViagem.jsp"/>
 	</definition>
 	<definition name=".cadastrar.viagem" extends="layout">
-		<put name="body" value="/jsp/viacao/manutencao/viagem/inserirViagem.jsp"/>
+		<put name="body" value="/jsp/viacao/manutencao/viagem/cadastrarViagem.jsp"/>
 	</definition>
 	
 	<!-- Manter Rodoviaria -->
