@@ -418,6 +418,11 @@ public class ClienteDAO extends BaseDB{
 		}
 	}
 	
+	/**
+	 * SQL AlterarJuridica
+	 * @return query AlterarJuridica
+	 * @throws DAOException
+	 */
 	public String getSQLAlterarJuridica() throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
@@ -432,6 +437,11 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * Altera um cliente juridico no banco de dados
+	 * @param JuridicaVO
+	 * @throws DAOException
+	 */
 	public void alterarJuridica(JuridicaVO juridicaVO) throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLAlterarJuridica());
@@ -451,6 +461,11 @@ public class ClienteDAO extends BaseDB{
 		}
 	}
 	
+	/**
+	 * SQL getClienteJuridica
+	 * @return query getClienteJuridica
+	 * @throws DAOException
+	 */
 	public String getSQLGetClienteJuridica() throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
@@ -476,6 +491,12 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * Recupera um cliente juridico no banco de dados
+	 * @param JuridicaVO
+	 * @throws DAOException
+	 * @return JuridicaVO
+	 */
 	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO) throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLGetClienteJuridica());
@@ -511,6 +532,11 @@ public class ClienteDAO extends BaseDB{
 		}
 	}
 	
+	/**
+	 * SQL getListaClienteJuridica
+	 * @return query getListaClienteJuridica
+	 * @throws DAOException
+	 */
 	public String getSQLGetListaClienteJuridica(JuridicaVO juridicaVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
@@ -545,6 +571,12 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * Recupera lista de clientes juridicos no banco de dados
+	 * @param JuridicaVO
+	 * @throws DAOException
+	 * @return List<ClienteVO>
+	 */
 	public List<ClienteVO> getListaClienteJuridica (JuridicaVO juridicaVO) throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLGetListaClienteJuridica(juridicaVO));
