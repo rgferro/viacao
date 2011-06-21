@@ -11,13 +11,16 @@ import org.apache.log4j.Logger;
 import com.acol.exception.DAOException;
 import com.acol.exception.business.ChildRecordFoundException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
+import com.viacao.dao.ClienteDAO;
 import com.viacao.dao.EnderecoDAO;
 import com.viacao.dao.ItinerarioDAO;
 import com.viacao.dao.OnibusDAO;
 import com.viacao.dao.RodoviariaDAO;
 import com.viacao.dao.TarifaDAO;
 import com.viacao.dao.ViagemDAO;
+import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
+import com.viacao.vo.FisicaVO;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
@@ -226,7 +229,7 @@ public class ManterCadastroBean implements SessionBean {
 		try{
 			ItinerarioDAO dao = new ItinerarioDAO();
 			return dao.listaItinerario(itinerarioVo);
-		}catch (DAOException e) {
+		}catch (Exception e) {
 			logger.fatal("Erro ao buscar a lista de itinerarios", e);
 			throw new EJBException(e);
 		}
@@ -358,6 +361,78 @@ public class ManterCadastroBean implements SessionBean {
 			return dao.getListaViagem(viagemVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em getListaViagem :: ManterCadastroBean ", e);
+			throw new EJBException(e);
+		}
+	}
+
+//--------------------------------CLIENTE-----------------------------------------
+	
+	public void inserirCliente(ClienteVO clienteVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.inserirCliente(clienteVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em inserirCliente :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+
+	public void inserirFisica(FisicaVO fisicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.inserirFisica(fisicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em inserirFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public void deletarCliente(ClienteVO clienteVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.deletarCliente(clienteVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em deletarCliente :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public void alterarCliente(ClienteVO clienteVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.alterarCliente(clienteVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em alterarCliente :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+
+	public void alterarFisica(FisicaVO fisicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.alterarFisica(fisicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em alterarFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public FisicaVO getClienteFisica (FisicaVO fisicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			return dao.getClienteFisica(fisicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getClienteFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			return dao.getListaClienteFisica(fisicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaClienteFisica :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}
