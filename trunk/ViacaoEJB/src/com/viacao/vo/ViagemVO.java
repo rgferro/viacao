@@ -1,23 +1,14 @@
 package com.viacao.vo;
 
-import com.acol.vo.DataVO;
+import com.viacao.vo.DataVO;
 
 public class ViagemVO {
 
-	private String ViagemVO;
 	private Integer  seqViagem; 
-	private ItinerarioVo itinerarioVO;
+	private ItinerarioVo itinerarioVo;
 	private OnibusVO onibusVO;
 	private DataVO horaSaida;
 	private DataVO horaChegada;
-	
-	
-	public String getViagemVO() {
-		return ViagemVO;
-	}
-	public void setViagemVO(String viagemVO) {
-		ViagemVO = viagemVO;
-	}
 	
 	/**
 	 * Obtém o atributo seqViagem
@@ -36,11 +27,11 @@ public class ViagemVO {
 	}
 	
 	
-	public ItinerarioVo getItinerarioVO() {
-		return itinerarioVO;
+	public ItinerarioVo getItinerarioVo() {
+		return itinerarioVo;
 	}
-	public void setItinerarioVO(ItinerarioVo itinerarioVO) {
-		this.itinerarioVO = itinerarioVO;
+	public void setItinerarioVo(ItinerarioVo itinerarioVo) {
+		this.itinerarioVo = itinerarioVo;
 	}
 	public OnibusVO getOnibusVO() {
 		return onibusVO;
@@ -48,7 +39,7 @@ public class ViagemVO {
 	public void setOnibusVO(OnibusVO onibusVO) {
 		this.onibusVO = onibusVO;
 	}
-	public DataVO getHoraSaida() {
+	public DataVO getHoraSaida() {
 		return horaSaida;
 	}
 	public void setHoraSaida(DataVO horaSaida) {
