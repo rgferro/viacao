@@ -10,6 +10,7 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
+import com.acol.exception.DAOException;
 import com.acol.exception.business.ChildRecordFoundException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.viacao.services.util.EstagioServices;
@@ -21,6 +22,11 @@ import com.viacao.vo.TarifaVO;
 
 public class ManterTarifaAction extends DispatchAction{
 	
+	/**
+	 * Retorna à jsp
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public ActionForward unspecified(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		try{
@@ -38,6 +44,11 @@ public class ManterTarifaAction extends DispatchAction{
 		return forwardListar(mapping, form, request, response);
 	}
 	
+	/**
+	 * Insere uma nova tarifa
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public ActionForward incluir(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		ActionMessages messages = frm.validacao(mapping, request);
@@ -58,6 +69,11 @@ public class ManterTarifaAction extends DispatchAction{
 		return unspecified(mapping, form, request, response);
 	}
 	
+	/**
+	 * Recupera tarifas
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public ActionForward getTarifa(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		try{
@@ -71,6 +87,11 @@ public class ManterTarifaAction extends DispatchAction{
 		return forwardListar(mapping, form, request, response);
 	}
 	
+	/**
+	 * Altera uma nova tarifa
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public ActionForward alterar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		ActionMessages messages = frm.validacao(mapping, request);
@@ -92,6 +113,11 @@ public class ManterTarifaAction extends DispatchAction{
 		return unspecified(mapping, form, request, response);
 	}
 	
+	/**
+	 * Deleta uma nova tarifa
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public ActionForward deletar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterTarifaForm frm = (ManterTarifaForm)form;
 		ActionMessages messages = new ActionMessages();

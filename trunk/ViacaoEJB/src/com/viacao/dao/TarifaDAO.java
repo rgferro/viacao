@@ -144,6 +144,11 @@ public class TarifaDAO extends BaseDB{
 		}
 	}
 	
+	/**
+	 * Recupera todas as tarifas
+	 * @return
+	 * @throws DAOException
+	 */
 	public TarifaVO getTarifa(TarifaVO tarifaVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
