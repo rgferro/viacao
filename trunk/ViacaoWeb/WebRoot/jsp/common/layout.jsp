@@ -14,10 +14,10 @@
 <script src="<%=request.getContextPath() %>/script/validation.js"></script>
 <script src="<%=request.getContextPath() %>/js/viacao.js"></script>
 
-<c:set var="clienteVO" value="<%= session.getAttribute("ClienteVO")%>"></c:set>
-<c:set var="adm" value="<%= session.getAttribute("Adm")%>"></c:set>
+<c:set var="clienteVO" value="<%= request.getSession().getAttribute("clienteVO")%>"></c:set>
+<c:set var="adm" value="<%= request.getSession().getAttribute("Adm")%>"></c:set>
 
-<c:if test="${session == null && adm == null}">
+<c:if test="${clienteVO == null && adm == null}">
 	<jsp:include page="cabecalhoGeral.jsp"></jsp:include>
 </c:if>
 <c:if test="${clienteVO != null}">

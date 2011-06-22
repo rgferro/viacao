@@ -17,7 +17,7 @@
  <tr>
  <td>
 <ul id="menu_dropdown" class="menubar">
-   <li class="submenu"><a href="<%=request.getContextPath()%>/gerenciarTimes.do?task=listarTodosOsTimes">Login</a>
+   <li class="submenu"><a href="<%=request.getContextPath()%>/login.do">Login</a>
    	<ul class="menu">
    	</ul>
   </li>

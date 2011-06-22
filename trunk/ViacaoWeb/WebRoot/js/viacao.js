@@ -20,6 +20,11 @@ function somenteNumeroLetra(obj,e,numero,letra){
 	return false;
 }
 
+function go(local) {	
+	document.forms[0].action = local;
+	document.forms[0].submit();
+}
+
 function formataPlaca(obj,e,menos){
 	var tecla=(window.event)?event.keyCode:e.which;
 	var teste = obj.value.search("[-]");
