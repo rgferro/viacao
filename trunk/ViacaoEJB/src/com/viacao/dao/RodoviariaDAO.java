@@ -7,6 +7,7 @@ import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
 import com.viacao.services.persistence.BaseDB;
+import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.RodoviariaVO;
 
 public class RodoviariaDAO  extends BaseDB{
@@ -29,21 +30,19 @@ public class RodoviariaDAO  extends BaseDB{
 		sql.append("   nom_rodoviaria)                      ");
 		sql.append("  VALUES (                              ");
 		sql.append("    seq_rodoviaria.nextval,             ");
-		sql.append("    <param_seq_endereco>,               ");
-		sql.append("    upper('<param_nom_rodoviaria>'))    ");
+		sql.append("    ?,                                  ");
+		sql.append("    upper(?))    ");
 		
 		return sql.toString();
 	}
-	
 	/*
 	 * SQL-04
 	 * */
 	public void inserir(RodoviariaVO rodoviariaVO)throws DAOException{
 		try {
 			pstmt = getPstmt(getInserirSQL());
-			pstmt.setInt(1, rodoviariaVO.getSeqRodoviaria());
-			pstmt.setInt(2, rodoviariaVO.getEnderecoVO().getSeqEndereco());
-			pstmt.setString(3, rodoviariaVO.getNomRodoviaria());
+			pstmt.setInt(1, rodoviariaVO.getEnderecoVO().getSeqEndereco());
+			pstmt.setString(2, rodoviariaVO.getNomRodoviaria());
 			
 			pstmt.executeUpdate();
 			
@@ -111,7 +110,7 @@ public class RodoviariaDAO  extends BaseDB{
 	/*
 	 * SQL-07
 	 * */
-	private String getOnibusSQL(){
+	private String getRodoviariaSQL(){
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT 	r.seq_rodoviaria,                      ");
 		sql.append("         e.seq_endereco,                           ");
@@ -136,12 +135,13 @@ public class RodoviariaDAO  extends BaseDB{
 	 * */
 	public RodoviariaVO getRodoviaria(RodoviariaVO rodoviariaVO)throws DAOException{
 	try {
-		pstmt = getPstmt(getOnibusSQL());
+		pstmt = getPstmt(getRodoviariaSQL());
 		pstmt.setInt(1, rodoviariaVO.getSeqRodoviaria());
 		rowSet = executeQuery(pstmt);
 		RodoviariaVO rodoviaria =  new RodoviariaVO();
 		if(next()){
 			rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_Rodoviaria")));
+			rodoviaria.setEnderecoVO(new EnderecoVO());
 			rodoviaria.getEnderecoVO().setSeqEndereco(new Integer(rowSet.getString("seq_Endereco")));
 			rodoviaria.setNomRodoviaria(rowSet.getString("nom_Rodoviaria"));
 			rodoviaria.getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
@@ -165,25 +165,25 @@ public class RodoviariaDAO  extends BaseDB{
 	 * */
 	private String getListaRodoviariaSQL(RodoviariaVO rodoviariaVO){
 		StringBuffer sql = new StringBuffer();
-		sql.append(" SELECT r.seq_rodoviaria,                                       ");
-		sql.append("        e.seq_endereco,                                         ");
-		sql.append("        r.nom_rodoviaria,                                       ");
-		sql.append("        e.logradouro,                                           ");
-		sql.append("        e.numero,                                               ");
-		sql.append("        e.complemento,                                          ");
-		sql.append("        e.bairro,                                               ");
-		sql.append("        e.cidade,                                               ");
-		sql.append("        e.estado                                                ");
-		sql.append("  FROM endereco e,                                              ");
-		sql.append("       rodoviaria r                                             ");
-		sql.append("  WHERE r.seq_endereco_fk = e.seq_endereco                      ");
-		sql.append("   AND r.seq_rodoviaria = "+ rodoviariaVO.getSeqRodoviaria()     );
+		sql.append(" SELECT r.seq_rodoviaria,                                       			 	");
+		sql.append("        e.seq_endereco,                                         			 	");
+		sql.append("        r.nom_rodoviaria,                                       			 	");
+		sql.append("        e.logradouro,                                           			 	");
+		sql.append("        e.numero,                                               			 	");
+		sql.append("        e.complemento,                                          			 	");
+		sql.append("        e.bairro,                                               			 	");
+		sql.append("        e.cidade,                                               			 	");
+		sql.append("        e.estado                                                			 	");
+		sql.append("  FROM endereco e,                                              			 	");
+		sql.append("       rodoviaria r                                                          	");
+		sql.append("  WHERE r.seq_endereco_fk = e.seq_endereco                                   	");
+		sql.append("   AND r.seq_rodoviaria = "+ rodoviariaVO.getSeqRodoviaria()                 	 );
 		              //filtro por nome da rodoviaria                                            
-		sql.append("   AND r.nom_rodoviaria like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')  ");
+		sql.append("   AND r.nom_rodoviaria like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')  	");
 		              //filtro por cidade                                         
-		sql.append("   AND e.cidade like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')          ");
+		sql.append("   AND e.cidade like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')          	");
 		              //filtro por estado                                         
-		sql.append("   AND e.estado like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')          ");
+		sql.append("   AND e.estado like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')          	");
 		
 		return sql.toString();
 	}
@@ -213,5 +213,56 @@ public class RodoviariaDAO  extends BaseDB{
 			release();
 		}
 		
+	}
+	
+	
+	public String listaInicioRodoviariaSQL(RodoviariaVO rodoviariaVO){
+		StringBuffer sql = new StringBuffer();
+		sql.append(" SELECT 	r.seq_rodoviaria,                             ");
+		sql.append(" 		    e.seq_endereco,                               ");
+		sql.append(" 		    r.nom_rodoviaria,                             ");
+		sql.append(" 	      e.logradouro,                                   ");
+		sql.append(" 		    e.numero,                                     ");
+		sql.append(" 		    e.complemento,                                ");
+		sql.append(" 		    e.bairro,                                     ");
+		sql.append(" 		    e.cidade,                                     ");
+		sql.append(" 	      e.estado                                        ");
+		sql.append("    FROM  endereco e,                                     ");
+		sql.append("          rodoviaria r                                    ");
+		sql.append("     WHERE                                                ");
+		sql.append("        r.seq_endereco_fk = e.seq_endereco                ");
+	
+		return sql.toString();
+	} 
+	
+	
+	public List<RodoviariaVO> listaInicioRodoviaria(RodoviariaVO rodoviariaVO)throws DAOException{
+		try {
+			pstmt = getPstmt(listaInicioRodoviariaSQL(rodoviariaVO));
+			rowSet = executeQuery(pstmt);
+			List<RodoviariaVO> listaInicioRodoviaria = new ArrayList<RodoviariaVO>();
+			while(next()){
+				RodoviariaVO rodoviaria =  new RodoviariaVO();
+				rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_Rodoviaria")));
+				rodoviaria.setEnderecoVO(new EnderecoVO());
+				rodoviaria.getEnderecoVO().setSeqEndereco(new Integer(rowSet.getString("seq_Endereco")));
+				rodoviaria.setNomRodoviaria(rowSet.getString("nom_Rodoviaria"));
+				rodoviaria.getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
+				rodoviaria.getEnderecoVO().setNumero(rowSet.getString("numero"));
+				rodoviaria.getEnderecoVO().setComplemento(rowSet.getString("complemento"));
+				rodoviaria.getEnderecoVO().setBairro(rowSet.getString("bairro"));
+				rodoviaria.getEnderecoVO().setCidade(rowSet.getString("cidade"));
+				rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));
+			listaInicioRodoviaria.add(rodoviaria);
+			}
+			return listaInicioRodoviaria;
+		} catch (Exception e) {
+			logger.fatal("Erro ocorrido no metodo listaRodoviaria em :: RodoviariaDAO", e);
+			throw new DAOException(e);
+		}finally{
+			release();
+		}
+		
+
 	}
 }
