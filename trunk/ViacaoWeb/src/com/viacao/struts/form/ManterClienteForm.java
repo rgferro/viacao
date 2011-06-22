@@ -8,12 +8,13 @@ import org.apache.struts.action.ActionForm;
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.FisicaVO;
+import com.viacao.vo.JuridicaVO;
 
 public class ManterClienteForm extends ActionForm{
 	
 	private FisicaVO fisicaVO;
-	private List<FisicaVO> listaClienteFisico;
-	
+	private List<FisicaVO> listaClienteFisico;	
+
 	public void inicializar(){
 		this.fisicaVO = new FisicaVO();
 		this.fisicaVO.setClienteVO(new ClienteVO());
@@ -36,4 +37,6 @@ public class ManterClienteForm extends ActionForm{
 	public void setListaClienteFisico(List<FisicaVO> listaClienteFisico) {
 		this.listaClienteFisico = listaClienteFisico;
 	}
+	
+	
 }
