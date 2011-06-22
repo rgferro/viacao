@@ -16,6 +16,7 @@ public class ManterClienteAction extends DispatchAction{
 	
 	public ActionForward unspecified(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteForm frm = (ManterClienteForm)form;
+		frm.inicializar();
 		
 		FisicaVO fisicaVO = new FisicaVO();
 		
