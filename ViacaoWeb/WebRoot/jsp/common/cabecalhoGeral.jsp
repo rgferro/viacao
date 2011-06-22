@@ -30,8 +30,8 @@
         <li class="item"><a href="<%=request.getContextPath()%>/manterViagem.do">Viagem</a></li>
          <li class="submenu2"><a href="#"> Cliente</a>
      		 <ul class="menu">                                        
-       			<li class="item"><a href="<%=request.getContextPath()%>/manterCliente.do">Fisico</a></li> 
-       			<li class="item"><a href="<%=request.getContextPath()%>/manterCliente.do">Juridico</a></li> 
+       			<li class="item"><a href="<%=request.getContextPath()%>/manterClienteFisica.do">Fisica</a></li> 
+       			<li class="item"><a href="<%=request.getContextPath()%>/manterClienteJuridica.do">Juridica</a></li> 
        		</ul>
        	</li>                                    
       </ul>
