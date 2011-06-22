@@ -42,7 +42,11 @@ public class ManterCadastroBean implements SessionBean {
 	
 // Métodos de negócio
 	
-	
+	/**
+	 * Insere uma nova tarifa
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public void inserir (TarifaVO tarifaVO) throws UniqueConstraintViolatedException{ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
@@ -54,6 +58,11 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}	
 	
+	/**
+	 * Deleta uma tarifa
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public void deletar(TarifaVO tarifaVO) throws ChildRecordFoundException{ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
@@ -64,6 +73,12 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		} 
 	}	
+	
+	/**
+	 * Altera uma tarifa
+	 * @param TarifaVO
+	 * @throws DAOException
+	 */
 	public void alterar(TarifaVO tarifaVO) throws UniqueConstraintViolatedException{ 
 		try {
 			TarifaDAO dao = new TarifaDAO();
@@ -73,7 +88,13 @@ public class ManterCadastroBean implements SessionBean {
 			logger.fatal("Erro ocorrido no metodo alterar :: ManterCadastroBean", e);
 			throw new EJBException(e);
 		}
-	}	
+	}
+	
+	/**
+	 * Recupera todas as tarifas
+	 * @return
+	 * @throws DAOException
+	 */
 	public List<TarifaVO> getListaTarifa(TarifaVO tarifaVO){ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
@@ -83,6 +104,12 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}	
+	
+	/**
+	 * Recupera todas as tarifas
+	 * @return
+	 * @throws DAOException
+	 */
 	public TarifaVO getTarifa(TarifaVO tarifaVO){ 
 		try {
 			TarifaDAO dao = new TarifaDAO(); 
