@@ -17,16 +17,18 @@ function menuDropDown(tema) {
    temas(tema);  // Funçao que retorna as cores escolhidas para o menu
    if(moz || nav == 'Opera') {
 	   // Regras CSS para o Firefox, Safari e Opera
+       document.styleSheets[0].cssRules[11].style.backgroundImage = cor_Menu_Submenu_NaoAtiva; 
        document.styleSheets[0].cssRules[2].style.backgroundImage = cor_Menu_NaoAtiva; 
        document.styleSheets[0].cssRules[4].style.color = cor_Fonte_Menu_NaoAtiva;    
        document.styleSheets[0].cssRules[5].style.backgroundColor = cor_Submenu_NaoAtiva;    
        document.styleSheets[0].cssRules[7].style.color = cor_Fonte_Submenu_NaoAtiva;
-       document.styleSheets[0].cssRules[9].style.backgroundColor = cor_Submenu_NaoAtiva;       
+       document.styleSheets[0].cssRules[9].style.backgroundColor = cor_Submenu_NaoAtiva;      
        document.styleSheets[0].cssRules[10].style.color = cor_Fonte_Submenu_NaoAtiva;;
    }
    else  
    {
        // Regras CSS apenas para o Internet Explorer
+       document.styleSheets[0].rules[11].style.backgroundImage = cor_Menu_Submenu_NaoAtiva; 
        document.styleSheets[0].rules[2].style.backgroundImage = cor_Menu_NaoAtiva; 
        document.styleSheets[0].rules[4].style.color = cor_Fonte_Menu_NaoAtiva;    
        document.styleSheets[0].rules[5].style.backgroundImage = cor_Submenu_NaoAtiva;    
@@ -45,6 +47,18 @@ function menuDropDown(tema) {
 			navItems[i].getElementsByTagName('ul')[0].style.display="none";navItems[i].style.backgroundImage = cor_Menu_NaoAtiva;
 			navItems[i].onmouseover=function() {this.getElementsByTagName('ul')[0].style.display="block";this.style.backgroundImage = cor_Menu_Ativa;}
             navItems[i].onmouseout=function() {this.getElementsByTagName('ul')[0].style.display="none";this.style.backgroundImage = cor_Menu_NaoAtiva;}
+			// Alterar a cor da fonte da classe submenu
+			links[i].onmouseover=function() {this.style.color = cor_Fonte_Menu_Ativa;}
+		    links[i].onmouseout=function() {this.style.color = cor_Fonte_Menu_NaoAtiva;}			
+         } // fim if menu
+      } // fim if submenu
+      if(navItems[i].className == "submenu2") {
+         if(navItems[i].getElementsByTagName('ul')[0] != null) {
+			// Controla a exibiçao dos menus verticais e altera a cor de fundo dos mesmos
+			navItems[i].getElementsByTagName('ul')[0].style.display="block";navItems[i].style.backgroundImage = cor_Menu_Submenu_Ativa;
+			navItems[i].getElementsByTagName('ul')[0].style.display="none";navItems[i].style.backgroundImage = cor_Menu_Submenu_NaoAtiva;
+			navItems[i].onmouseover=function() {this.getElementsByTagName('ul')[0].style.display="block";this.style.backgroundImage = cor_Menu_Submenu_Ativa;}
+            navItems[i].onmouseout=function() {this.getElementsByTagName('ul')[0].style.display="none";this.style.backgroundImage = cor_Menu_Submenu_NaoAtiva;}
 			// Alterar a cor da fonte da classe submenu
 			links[i].onmouseover=function() {this.style.color = cor_Fonte_Menu_Ativa;}
 		    links[i].onmouseout=function() {this.style.color = cor_Fonte_Menu_NaoAtiva;}			
@@ -107,6 +121,8 @@ function temas(tema) {
 		   cor_Fonte_Menu_NaoAtiva = '#000000';
 		   cor_Submenu_Ativa = 'url(cabecalho/fundoclaro4.jpg)';
 		   cor_Submenu_NaoAtiva = 'url(cabecalho/fundo4.jpg)';
+		   cor_Menu_Submenu_Ativa = 'url(cabecalho/fundoclaro4.jpg)';
+		   cor_Menu_Submenu_NaoAtiva = 'url(cabecalho/fundo4.jpg)';
 		   cor_Fonte_Submenu_Ativa = '#000000';
 		   cor_Fonte_Submenu_NaoAtiva = '#000000';
            break
