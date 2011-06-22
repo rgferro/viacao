@@ -262,7 +262,7 @@ public class ManterCadastroBean implements SessionBean {
 			RodoviariaDAO dao = new RodoviariaDAO();
 			dao.alterar(rodoviariaVO);
 		} catch (Exception e) {
-			logger.fatal("Erro ao alterar Rodoviaria :: ManterCadastroBen", e);
+			logger.fatal("Erro ao alterar Rodoviaria :: ManterCadastroBean", e);
 			throw new EJBException(e);
 		}
 	}
@@ -271,7 +271,7 @@ public class ManterCadastroBean implements SessionBean {
 			RodoviariaDAO dao = new RodoviariaDAO();
 			return dao.getRodoviaria(rodoviariaVO);
 		} catch (Exception e) {
-			logger.fatal("Erro em getRodoviaria :: ManterCadastroBen ",e);
+			logger.fatal("Erro em getRodoviaria :: ManterCadastroBean ",e);
 			throw new EJBException(e);
 		}
 	}
@@ -280,7 +280,16 @@ public class ManterCadastroBean implements SessionBean {
 			RodoviariaDAO dao = new RodoviariaDAO();
 			return dao.getListaRodoviaria(rodoviariaVO);
 		} catch (Exception e) {
-			logger.fatal("Erro em getListaRodoviaria :: ManterCadastroBen ", e);
+			logger.fatal("Erro em getListaRodoviaria :: ManterCadastroBean ", e);
+			throw new EJBException(e);
+		}
+	}
+	public List<RodoviariaVO> listaInicioRodoviaria(RodoviariaVO rodoviariaVO){
+		try {
+			RodoviariaDAO dao = new RodoviariaDAO();
+			return dao.listaInicioRodoviaria(rodoviariaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em listaInicioRodoviaria :: ManterCadastroBean");
 			throw new EJBException(e);
 		}
 	}
