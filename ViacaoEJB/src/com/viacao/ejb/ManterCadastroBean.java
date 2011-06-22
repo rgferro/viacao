@@ -349,6 +349,16 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
+	public void deletarEndereco(EnderecoVO enderecoVO){
+		try {
+			EnderecoDAO dao= new EnderecoDAO();
+			dao.deletarEndereco(enderecoVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em deletarEndereco :: MnaterCAdastro", e);
+			throw new EJBException(e);
+		}
+	}
+
 
 //---------------------------------VIAGEM-----------------------------------------
 	
