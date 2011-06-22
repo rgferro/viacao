@@ -23,8 +23,13 @@
         <li class="item"><a href="<%=request.getContextPath()%>/manterOnibus.do">Onibus</a></li>
         <li class="item"><a href="<%=request.getContextPath()%>/manterRodoviaria.do">Rodoviaria</a></li>                                      
         <li class="item"><a href="<%=request.getContextPath()%>/manterItinerario.do">Itinerario</a></li>                                      
-        <li class="item"><a href="<%=request.getContextPath()%>/manterViagem.do">Viagem</a></li>                                      
-        <li class="item"><a href="<%=request.getContextPath()%>/manterCliente.do">Cliente</a></li>                                      
+        <li class="item"><a href="<%=request.getContextPath()%>/manterViagem.do">Viagem</a></li>
+         <li class="submenu">Cliente
+     		 <ul class="menu">                                        
+       			<li class="item"><a href="<%=request.getContextPath()%>/manterCliente.do">Fisico</a></li> 
+       			<li class="item"><a href="<%=request.getContextPath()%>/manterCliente.do">Juridico</a></li> 
+       		</ul>
+       	</li>                                    
       </ul>
    </li>
  </ul>
