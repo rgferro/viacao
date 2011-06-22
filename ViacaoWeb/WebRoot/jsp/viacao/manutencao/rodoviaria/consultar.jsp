@@ -1,47 +1,91 @@
-<link rel="stylesheet" href="../../../../css/portal.css" type="text/css"/>
-<form action="/exemplo">
-<table width="600" border="0" align="center">
-	<tr>
-		<td>
-			<table width="100%" border="0" align="center">
-				<tr>
-					<td class="titulo">Consulta de Rodoviária</td>
-				</tr>
-			</table>
-			<br>
-			<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
-				<tr class="fundoescuro">
-					<td colspan="4" align="center" class="texto">Consulta de Rodoviária</td>
-				</tr>
-				<tr class="fundoclaro">
-					<td class="texto" align="center" width="05%">Rodoviária</td>
-					<td width="45%"><input class="input" size="20" value="Novo Rio" disabled="disabled"></td>
-					<td class="texto" align="center" width="05%">Estado</td>
-					<td width="45%"><input class="input" size="20" value="Rio de Janeiro" disabled="disabled"></td>
-				</tr>
-				<tr class="fundoclaro">
-					<td class="texto" align="center" width="05%">Cidade</td>
-					<td width="45%"><input class="input" size="20" value="Rio de Janeiro" disabled="disabled"></td>
-					<td class="texto" align="center" width="05%">Bairro</td>
-					<td width="45%"><input class="input" size="20" value="Santo Cristo" disabled="disabled"></td>
-				</tr>
-				<tr class="fundoclaro">
-					<td class="texto" align="center" width="05%">Logradouro</td>
-					<td width="95%" colspan="3"><input class="input" size="101" value="Avenida Francisco Bicalho" disabled="disabled"></td>
-				</tr>
-				<tr class="fundoclaro">
-					<td class="texto" align="center" width="05%">Número</td>
-					<td width="45%"><input class="input" size="5" value="01" disabled="disabled"></td>
-					<td class="texto" align="center" width="05%">Complemento</td>
-					<td width="45%"><input class="input" size="20" disabled="disabled"></td>
-				</tr>
-			</table>
-			<table width="100%" border="0" align="center">
-				<tr>
-					<td align="center"><input class="botao" value="Voltar"></td>
-				</tr>
-			</table>
-		</td>
-	</tr>
-</table>
-</form>
+<%@ include file="/jsp/common/taglibs.jsp"%>
+
+<script type="text/javascript">
+
+</script>
+<html:form action="/exemplo">
+	<table width="600" border="0" align="center">
+		<tr>
+			<td>
+				<table width="100%" border="0" align="center">
+					<tr>
+						<td class="titulo">
+							Consulta de Rodoviária
+						</td>
+					</tr>
+				</table>
+				<br>
+				<table width="100%" border="0" align="center" id="cadastrar"
+					class="bordatabela">
+					<tr class="fundoescuro">
+						<td colspan="4" align="center" class="texto">
+							Consulta de Rodoviária
+						</td>
+					</tr>
+					<tr class="fundoclaro">
+						<td class="texto" align="center" width="05%">
+							Rodoviária
+						</td>
+						<td width="45%">
+							<input class="input" size="20" value="Novo Rio"
+								disabled="disabled">
+						</td>
+						<td class="texto" align="center" width="05%">
+							Estado
+						</td>
+						<td width="45%">
+							<input class="input" size="20" value="Rio de Janeiro"
+								disabled="disabled">
+						</td>
+					</tr>
+					<tr class="fundoclaro">
+						<td class="texto" align="center" width="05%">
+							Cidade
+						</td>
+						<td width="45%">
+							<input class="input" size="20" value="Rio de Janeiro"
+								disabled="disabled">
+						</td>
+						<td class="texto" align="center" width="05%">
+							Bairro
+						</td>
+						<td width="45%">
+							<input class="input" size="20" value="Santo Cristo"
+								disabled="disabled">
+						</td>
+					</tr>
+					<tr class="fundoclaro">
+						<td class="texto" align="center" width="05%">
+							Logradouro
+						</td>
+						<td width="95%" colspan="3">
+							<input class="input" size="101" value="Avenida Francisco Bicalho"
+								disabled="disabled">
+						</td>
+					</tr>
+					<tr class="fundoclaro">
+						<td class="texto" align="center" width="05%">
+							Número
+						</td>
+						<td width="45%">
+							<input class="input" size="5" value="01" disabled="disabled">
+						</td>
+						<td class="texto" align="center" width="05%">
+							Complemento
+						</td>
+						<td width="45%">
+							<input class="input" size="20" disabled="disabled">
+						</td>
+					</tr>
+				</table>
+				<table width="100%" border="0" align="center">
+					<tr>
+						<td align="center">
+							<input class="botao" value="Voltar">
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</html:form>
