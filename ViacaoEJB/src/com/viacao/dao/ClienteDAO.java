@@ -614,4 +614,42 @@ public class ClienteDAO extends BaseDB{
 		}
 	}
 	
+	
+	public String getSQLGetCliente() throws DAOException{
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append(" SELECT c.seq_cliente, c.login, c.senha, c.email, c.seq_endereco_fk ");
+		sql.append(" FROM cliente c ");		
+		sql.append(" WHERE c.senha LIKE upper (?) ");
+		sql.append(" AND c.login LIKE upper (?) ");
+	
+		return sql.toString();
+	}
+	
+	public ClienteVO getCliente (ClienteVO clienteVO) throws DAOException{
+		try{
+			pstmt = getPstmt(getSQLGetCliente());
+			pstmt.setString(1,"%"+clienteVO.getSenha()+"%");
+			pstmt.setString(2, "%"+clienteVO.getLogin()+"%");
+			
+			rowSet = executeQuery(pstmt);
+			ClienteVO clienteVO2 = new ClienteVO();
+			while(rowSet.next()){
+				clienteVO2 = new ClienteVO();
+				clienteVO2.setLogin(rowSet.getString("login"));
+				clienteVO2.setEmail(rowSet.getString("email"));
+				clienteVO2.setSenha(rowSet.getString("senha"));
+				clienteVO2.setSeqCliente(new Integer(rowSet.getInt("seq_cliente")));
+				clienteVO2.setEnderecoVO(new EnderecoVO());
+				clienteVO2.getEnderecoVO().setSeqEndereco(new Integer(rowSet.getInt("seq_endereco_fk")));
+			}
+		return clienteVO2;
+		}
+		catch(SQLException e){
+			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
+			throw new DAOException(e);
+		}finally{
+			release();
+		}
+	}
 }
