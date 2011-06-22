@@ -1,5 +1,8 @@
 package com.viacao.vo;
 
+import com.acol.util.IntegerUtils;
+import com.acol.util.StringUtil;
+
 public class ClienteVO {
 	
 	Integer seqCliente;
@@ -7,6 +10,22 @@ public class ClienteVO {
 	String login;
 	String senha;
 	String email;
+	
+	public boolean isEmpty(){
+		if(IntegerUtils.empty(this.seqCliente)){
+			return true;
+		}
+		if(StringUtil.empty(this.login)){
+			return true;
+		}
+		if(StringUtil.empty(this.senha)){
+			return true;
+		}
+		if(StringUtil.empty(this.email)){
+			return true;
+		}
+		return false;
+	}
 	
 	public Integer getSeqCliente() {
 		return seqCliente;
