@@ -513,4 +513,22 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
+	/**
+	 * Seleciona um clienteVO, e recupera o seu enderecoVO.
+	 * @return ClienteVO e o seu EnderecoVO
+	 */
+	public ClienteVO getCliente (ClienteVO clienteVO){
+		try{
+			ClienteDAO dao = new ClienteDAO();
+			ClienteVO clienteVO2 = dao.getCliente(clienteVO);
+			if (clienteVO2.isEmpty() == false){
+				EnderecoDAO dao2 = new EnderecoDAO();
+				clienteVO2.setEnderecoVO(dao2.getEndereco(clienteVO2.getEnderecoVO()));
+			}
+			return clienteVO2;
+		}catch (Exception e) {
+			logger.fatal("Erro em getCliente :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
 }
