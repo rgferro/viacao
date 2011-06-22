@@ -43,7 +43,7 @@ public class EnderecoDAO extends BaseDB {
 	public void insert(EnderecoVO enderecoVO)throws DAOException{
 		try {
 			pstmt = getPstmt(getInsertSQL());
-			
+		
 			pstmt.setString(1, enderecoVO.getLogradouro());
 			pstmt.setString(2, enderecoVO.getNumero());
 			pstmt.setString(3, enderecoVO.getComplemento());
@@ -121,6 +121,7 @@ public class EnderecoDAO extends BaseDB {
 			EnderecoVO endereco = new EnderecoVO();
 			
 			if(rowSet.next()){
+				endereco.setSeqEndereco(Integer.valueOf(rowSet.getString("seq_endereco")));
 				endereco.setLogradouro(rowSet.getString("logradouro"));
 				endereco.setNumero(rowSet.getString("numero"));
 				endereco.setComplemento(rowSet.getString("complemento"));
