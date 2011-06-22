@@ -17,14 +17,22 @@ public class ManterRodoviariaForm extends ActionForm {
 	
 	private static final long serialVersionUID = 1L;
 	private RodoviariaVO rodoviariaVO;
+
 	private List<RodoviariaVO> listaRodoviaria;
+	private List<RodoviariaVO> listaInicioRodoviaria;
+	private List<RodoviariaVO> recuperaRodoviaria;
+	
 	private String task;
 	private String acao;
-	
+	private Integer seqRodoviaria;
+
 	public void inicializar(){
 		rodoviariaVO = new RodoviariaVO();
+	
 		rodoviariaVO.setEnderecoVO(new EnderecoVO());
 		listaRodoviaria = new ArrayList<RodoviariaVO>();
+		this.listaInicioRodoviaria = new ArrayList<RodoviariaVO>();
+		this.recuperaRodoviaria = new ArrayList<RodoviariaVO>();
 		task = "";
 	}
 	public ActionMessages validate(HttpServletRequest request){
@@ -66,11 +74,30 @@ public class ManterRodoviariaForm extends ActionForm {
 	public void setRodoviariaVO(RodoviariaVO rodoviariaVO) {
 		this.rodoviariaVO = rodoviariaVO;
 	}
+	
+	/**
+	 * @return the listaRodoviaria
+	 */
 	public List<RodoviariaVO> getListaRodoviaria() {
 		return listaRodoviaria;
 	}
+	/**
+	 * @param listaRodoviaria the listaRodoviaria to set
+	 */
 	public void setListaRodoviaria(List<RodoviariaVO> listaRodoviaria) {
 		this.listaRodoviaria = listaRodoviaria;
+	}
+	/**
+	 * @return the recuperaRodoviaria
+	 */
+	public List<RodoviariaVO> getRecuperaRodoviaria() {
+		return recuperaRodoviaria;
+	}
+	/**
+	 * @param recuperaRodoviaria the recuperaRodoviaria to set
+	 */
+	public void setRecuperaRodoviaria(List<RodoviariaVO> recuperaRodoviaria) {
+		this.recuperaRodoviaria = recuperaRodoviaria;
 	}
 	public String getTask() {
 		return task;
@@ -83,5 +110,29 @@ public class ManterRodoviariaForm extends ActionForm {
 	}
 	public void setAcao(String acao) {
 		this.acao = acao;
+	}
+	/**
+	 * @return the listaInicioRodoviaria
+	 */
+	public List<RodoviariaVO> getListaInicioRodoviaria() {
+		return listaInicioRodoviaria;
+	}
+	/**
+	 * @param listaInicioRodoviaria the listaInicioRodoviaria to set
+	 */
+	public void setListaInicioRodoviaria(List<RodoviariaVO> listaInicioRodoviaria) {
+		this.listaInicioRodoviaria = listaInicioRodoviaria;
+	}
+	/**
+	 * @return the seqRodoviaria
+	 */
+	public Integer getSeqRodoviaria() {
+		return seqRodoviaria;
+	}
+	/**
+	 * @param seqRodoviaria the seqRodoviaria to set
+	 */
+	public void setSeqRodoviaria(Integer seqRodoviaria) {
+		this.seqRodoviaria = seqRodoviaria;
 	}
 }
