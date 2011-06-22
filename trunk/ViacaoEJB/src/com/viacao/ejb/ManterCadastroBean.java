@@ -22,6 +22,7 @@ import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.FisicaVO;
 import com.viacao.vo.ItinerarioVo;
+import com.viacao.vo.JuridicaVO;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
@@ -442,6 +443,46 @@ public class ManterCadastroBean implements SessionBean {
 			return dao.getListaClienteFisica(fisicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em getListaClienteFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public void inserirJuridica(JuridicaVO juridicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.inserirJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em inserirJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public void alterarJuridica(JuridicaVO juridicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			dao.alterarJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em alterarJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			return dao.getClienteJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getClienteJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public List<JuridicaVO> getListaClienteJuridica (JuridicaVO juridicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			return dao.getListaClienteJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaClienteJuridica :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}
