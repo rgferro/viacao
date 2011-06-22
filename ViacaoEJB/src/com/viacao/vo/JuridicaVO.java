@@ -1,5 +1,8 @@
 package com.viacao.vo;
 
+import com.acol.util.IntegerUtils;
+import com.acol.util.StringUtil;
+
 public class JuridicaVO {
 
 	private Integer  seqJuridica;
@@ -10,6 +13,27 @@ public class JuridicaVO {
 	private String numInscricao;
 	private String nomFantasia;
 	
+	public boolean isEmpty(){
+		if(IntegerUtils.empty(this.seqJuridica)){
+			return true;
+		}
+		if (StringUtil.empty(this.razaoSocial)){
+			return true;
+		}
+		if (StringUtil.empty(this.nomResponsavel)){
+			return true;
+		}
+		if (StringUtil.empty(this.cnpj)){
+			return true;
+		}
+		if (StringUtil.empty(this.numInscricao)){
+			return true;
+		}
+		if (StringUtil.empty(this.nomFantasia)){
+			return true;
+		}
+		return false;
+	}
 
 	public Integer getSeqJuridica() {
 		return seqJuridica;

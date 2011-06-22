@@ -1,4 +1,4 @@
-package com.viacao.struts.form;
+	package com.viacao.struts.form;
 
 import java.util.ArrayList;
 import java.util.List;
