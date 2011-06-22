@@ -11,6 +11,7 @@ import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.FisicaVO;
 import com.viacao.vo.ItinerarioVo;
+import com.viacao.vo.JuridicaVO;
 import com.viacao.vo.OnibusVO;
 import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
@@ -60,4 +61,10 @@ public interface ManterCadastro extends EJBObject {
 	public void alterarFisica(FisicaVO fisicaVO) throws RemoteException;
 	public FisicaVO getClienteFisica (FisicaVO fisicaVO) throws RemoteException;
 	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO) throws RemoteException;
+	
+	public void inserirJuridica(JuridicaVO juridicaVO) throws RemoteException;
+	public void alterarJuridica(JuridicaVO juridicaVO) throws RemoteException;
+	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO) throws RemoteException;
+	public List<JuridicaVO> getListaClienteJuridica (JuridicaVO juridicaVO) throws RemoteException;
+
 }

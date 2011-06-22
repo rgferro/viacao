@@ -577,14 +577,14 @@ public class ClienteDAO extends BaseDB{
 	 * @throws DAOException
 	 * @return List<ClienteVO>
 	 */
-	public List<ClienteVO> getListaClienteJuridica (JuridicaVO juridicaVO) throws DAOException{
+	public List<JuridicaVO> getListaClienteJuridica (JuridicaVO juridicaVO) throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLGetListaClienteJuridica(juridicaVO));
 			
 			rowSet = executeQuery(pstmt);
 			
 			JuridicaVO juriVO = new JuridicaVO();
-			List listaClienteJuridica = new ArrayList();
+			List<JuridicaVO> listaClienteJuridica = new ArrayList();
 			while(rowSet.next()){
 				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
 				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
@@ -604,7 +604,7 @@ public class ClienteDAO extends BaseDB{
 				listaClienteJuridica.add(juriVO);
 			}
 			
-			return (List<ClienteVO>) listaClienteJuridica;
+			return listaClienteJuridica;
 		}
 		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
