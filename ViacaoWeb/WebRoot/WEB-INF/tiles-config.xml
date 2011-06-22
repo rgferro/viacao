@@ -86,4 +86,9 @@
 		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/consultarCliente.jsp"/>
 	</definition>
 
+	<!-- Tiles for Login -->
+	
+	<definition name=".login" extends="layout">
+		<put name="body" value="/jsp/viacao/login/login.jsp"/>
+	</definition>
 </tiles-definitions>

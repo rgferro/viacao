@@ -10,6 +10,7 @@
   	<form-bean name="manterRodoviariaForm" type="com.viacao.struts.form.ManterRodoviariaForm"/>
   	<form-bean name="manterViagemForm" type="com.viacao.struts.form.ManterViagemForm"/>
   	<form-bean name="manterClienteForm" type="com.viacao.struts.form.ManterClienteForm"/>
+  	<form-bean name="loginForm" type="com.viacao.struts.form.LoginForm"/>
   </form-beans>
   <global-exceptions />
   <global-forwards />
@@ -114,7 +115,16 @@
 		<forward name="listarFisico"				path=".listar.cliente" />
 		<forward name="consultarCliente"			path=".consultar.cliente" />
 	</action> 
-   
+   	<action 
+			attribute="loginForm"
+            name="loginForm"
+            path="/login"
+            parameter="task"
+            scope="session"
+            type="com.viacao.struts.action.LoginAction"
+            validate="false">
+            <forward name="login"                path=".login"/>
+	 </action>
    </action-mappings>
   
   <message-resources parameter="com.viacao.struts.ApplicationResources" />
