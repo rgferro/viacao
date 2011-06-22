@@ -67,8 +67,8 @@ public class RodoviariaDAO  extends BaseDB{
 	public void deletar(RodoviariaVO rodoviariaVO)throws DAOException{
     try {
 			pstmt = getPstmt(getDeletarSQL());
-			pstmt.setInt(1, rodoviariaVO.getSeqRodoviaria());
-			pstmt.executeUpdate();
+			pstmt.setInt(1, rodoviariaVO.getEnderecoVO().getSeqEndereco());
+			rowSet = executeQuery(pstmt);
         } catch (Exception e) {
 		   logger.fatal("Erro ocorrido no metodo deletar em :: RodoviariaDAO", e);
 		   throw new DAOException(e);
@@ -212,10 +212,8 @@ public class RodoviariaDAO  extends BaseDB{
 		}finally{
 			release();
 		}
-		
 	}
-	
-	
+		
 	public String listaInicioRodoviariaSQL(RodoviariaVO rodoviariaVO){
 		StringBuffer sql = new StringBuffer();
 		sql.append(" SELECT 	r.seq_rodoviaria,                             ");
@@ -262,7 +260,5 @@ public class RodoviariaDAO  extends BaseDB{
 		}finally{
 			release();
 		}
-		
-
 	}
 }
