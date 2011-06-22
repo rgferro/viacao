@@ -45,6 +45,7 @@ public interface ManterCadastro extends EJBObject {
 
 	public void insert(EnderecoVO enderecoVO) throws  RemoteException;
 	public void alterar(EnderecoVO enderecoVO) throws RemoteException;
+	public void deletarEndereco(EnderecoVO enderecoVO) throws RemoteException;
 	public EnderecoVO getEndereco(EnderecoVO enderecoVO) throws  RemoteException;
 	
 	
