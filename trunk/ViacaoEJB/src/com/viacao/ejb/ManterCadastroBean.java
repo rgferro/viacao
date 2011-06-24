@@ -286,7 +286,9 @@ public class ManterCadastroBean implements SessionBean {
 		}	
 	}
 	public void alterar(RodoviariaVO rodoviariaVO){
-		try { 
+		try {
+			alterarEndereco(rodoviariaVO.getEnderecoVO());
+			rodoviariaVO.setEnderecoVO(getEndereco(rodoviariaVO.getEnderecoVO()));
 			RodoviariaDAO dao = new RodoviariaDAO();
 			dao.alterar(rodoviariaVO);
 		} catch (Exception e) {
@@ -331,10 +333,10 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
-	public void alterar(EnderecoVO enderecoVO){
+	public void alterarEndereco(EnderecoVO enderecoVO){
 		try {
 			EnderecoDAO dao = new EnderecoDAO();
-			dao.alterar(enderecoVO);
+			dao.alterarEndereco(enderecoVO);
 		} catch (Exception e) {
 			logger.fatal("Erro ao alterar  Endereco :: ManterCadastro",e);
 			throw new EJBException(e);

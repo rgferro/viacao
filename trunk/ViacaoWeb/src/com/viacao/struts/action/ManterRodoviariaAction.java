@@ -13,7 +13,6 @@ import org.apache.struts.actions.DispatchAction;
 import com.acol.exception.SystemException;
 import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterRodoviariaForm;
-import com.viacao.vo.RodoviariaVO;
 
 
 
@@ -46,8 +45,6 @@ public class ManterRodoviariaAction extends DispatchAction{
 	
 	public ActionForward deletar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		ManterRodoviariaForm frm = (ManterRodoviariaForm)form;
-		
-	
 		getRodoviaria(frm);
 		return mapping.findForward("deletar");
 	}
@@ -68,6 +65,7 @@ public class ManterRodoviariaAction extends DispatchAction{
 	public ActionForward confirmaAlterar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		ManterRodoviariaForm frm = (ManterRodoviariaForm)form;
 		EstagioServices.getManterCadastroBean().alterar(frm.getRodoviariaVO());
+		
 		return unspecified(mapping, form, request, response);
 	}
 	
@@ -79,7 +77,7 @@ public class ManterRodoviariaAction extends DispatchAction{
 	
 	public ActionForward buscarRodoviaria(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception{
 		ManterRodoviariaForm frm = (ManterRodoviariaForm)form;
-		frm.setListaRodoviaria(EstagioServices.getManterCadastroBean().getListaRodoviaria(frm.getRodoviariaVO()));
+		frm.setListaInicioRodoviaria(EstagioServices.getManterCadastroBean().getListaRodoviaria(frm.getRodoviariaVO()));
 		return forward(mapping, form, request, response);
 	}
 	

@@ -6,6 +6,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.RodoviariaVO;
@@ -79,14 +80,14 @@ public class RodoviariaDAO  extends BaseDB{
 	/*
 	 * SQL-06
 	 * */
-	private String getAlterarSQL(){
+	private String getAlterarSQL(RodoviariaVO rodoviariaVO){
 		
 		StringBuffer sql = new StringBuffer();
-		sql.append(" UPDATE rodoviaria                                    ");
-		sql.append("    SET 		                                      ");
-		sql.append(" 	      nom_rodoviaria = upper(?)                   ");
-		sql.append("   WHERE                                              ");
-		sql.append("     seq_rodoviaria = ?	                              ");
+		sql.append(" UPDATE rodoviaria                                   					 					");
+		sql.append("    SET 		                                      										");
+		sql.append(" 	      nom_rodoviaria = upper('"+rodoviariaVO.getNomRodoviaria()+"')                  	");
+		sql.append("   WHERE                                              										");
+		sql.append("     seq_rodoviaria = "+rodoviariaVO.getSeqRodoviaria()                                      );
 		
 		return sql.toString();
 	}
@@ -95,9 +96,7 @@ public class RodoviariaDAO  extends BaseDB{
 	 * */
 	public void alterar(RodoviariaVO rodoviariaVO)throws DAOException{
 		try {
-			pstmt = getPstmt(getAlterarSQL());
-			pstmt.setString(1, rodoviariaVO.getNomRodoviaria());
-			pstmt.setInt(3, rodoviariaVO.getSeqRodoviaria());
+			pstmt = getPstmt(getAlterarSQL(rodoviariaVO));
 			pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -177,14 +176,18 @@ public class RodoviariaDAO  extends BaseDB{
 		sql.append("  FROM endereco e,                                              			 	");
 		sql.append("       rodoviaria r                                                          	");
 		sql.append("  WHERE r.seq_endereco_fk = e.seq_endereco                                   	");
-		sql.append("   AND r.seq_rodoviaria = "+ rodoviariaVO.getSeqRodoviaria()                 	 );
-		              //filtro por nome da rodoviaria                                            
-		sql.append("   AND r.nom_rodoviaria like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')  	");
+		if(!StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
+			 //filtro por nome da rodoviaria                                            
+			sql.append("   AND r.nom_rodoviaria like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')  	");
+		}
+		if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())){			 
 		              //filtro por cidade                                         
-		sql.append("   AND e.cidade like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')          	");
+		sql.append("   AND e.cidade like upper('%"+rodoviariaVO.getEnderecoVO().getCidade()+"%')          	");
+		}
+		if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())){
 		              //filtro por estado                                         
-		sql.append("   AND e.estado like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')          	");
-		
+		sql.append("   AND e.estado like upper('%"+rodoviariaVO.getEnderecoVO().getEstado()+"%')          	");
+		}
 		return sql.toString();
 	}
 	public List<RodoviariaVO> getListaRodoviaria(RodoviariaVO rodoviariaVO)throws DAOException{
@@ -194,15 +197,31 @@ public class RodoviariaDAO  extends BaseDB{
 			List<RodoviariaVO> listaRodoviaria = new ArrayList<RodoviariaVO>();
 			while(next()){
 				RodoviariaVO rodoviaria = new RodoviariaVO();
-				rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_rodoviaria")));
-				rodoviaria.getEnderecoVO().setSeqEndereco(new Integer(rowSet.getString("seq_endereco")));
-				rodoviaria.getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
-				rodoviaria.getEnderecoVO().setNumero(rowSet.getString("numero"));
-				rodoviaria.getEnderecoVO().setComplemento(rowSet.getString("complemento"));
-				rodoviaria.getEnderecoVO().setBairro(rowSet.getString("bairro"));
-				rodoviaria.getEnderecoVO().setCidade(rowSet.getString("cidade"));
-				rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));
-			   listaRodoviaria.add(rodoviaria);
+				if(!StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
+					
+					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
+					
+					rodoviaria.setEnderecoVO(new EnderecoVO());
+					rodoviaria.getEnderecoVO().setCidade(rowSet.getString("cidade"));
+					rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));
+				}
+				
+				if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())){
+					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
+					
+					rodoviaria.setEnderecoVO(new EnderecoVO());
+					rodoviaria.getEnderecoVO().setCidade(rowSet.getString("cidade"));
+					rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));		
+				
+				}
+				if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())){
+					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
+					
+					rodoviaria.setEnderecoVO(new EnderecoVO());
+					rodoviaria.getEnderecoVO().setCidade(rowSet.getString("cidade"));
+					rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));
+				}
+				listaRodoviaria.add(rodoviaria);
 			}
 			return listaRodoviaria;
 			

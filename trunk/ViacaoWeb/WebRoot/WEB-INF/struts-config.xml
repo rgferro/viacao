@@ -94,8 +94,11 @@
 		 scope="session"
 		 type="com.viacao.struts.action.ManterRodoviariaAction"
 		 validate="false">
-		 <forward name="inserir"	path=".inserir.manter.rodoviaria"/>
-		 <forward name="listar"	path=".listar.manter.rodoviaria"/>
+		 <forward name="inserir"		path=".inserir.manter.rodoviaria"/>
+		 <forward name="listar"			path=".listar.manter.rodoviaria"/>
+		 <forward name="deletar"		path=".deletar.manter.rodoviaria"/>
+		 <forward name="alterar"		path=".alterar.manter.rodoviaria"/>
+		 <forward name="consultar"		path=".consultar.manter.rodoviaria"/>
 	</action>	
 	
 	<!-- manterClienteForm -->
