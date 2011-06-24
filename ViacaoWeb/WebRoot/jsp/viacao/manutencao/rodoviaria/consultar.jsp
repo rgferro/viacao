@@ -1,9 +1,14 @@
 <%@ include file="/jsp/common/taglibs.jsp"%>
 
 <script type="text/javascript">
-
+function voltar(){
+var frm = document.forms[0];
+	frm.task.value = 'unspecified';
+	frm.submit();
+}
 </script>
-<html:form action="/exemplo">
+<html:form action="/manterRodoviaria">
+<html:hidden property="task" name="manterRodoviariaForm" />
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
@@ -27,15 +32,13 @@
 							Rodoviária
 						</td>
 						<td width="45%">
-							<input class="input" size="20" value="Novo Rio"
-								disabled="disabled">
+							<html:text disabled="true" styleClass="inputdeletar" size="20" name="manterRodoviariaForm" property="rodoviariaVO.nomRodoviaria"/>
 						</td>
 						<td class="texto" align="center" width="05%">
 							Estado
 						</td>
 						<td width="45%">
-							<input class="input" size="20" value="Rio de Janeiro"
-								disabled="disabled">
+							<html:text disabled="true" name="manterRodoviariaForm" size="20"  property="rodoviariaVO.enderecoVO.estado"/>							
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -43,15 +46,14 @@
 							Cidade
 						</td>
 						<td width="45%">
-							<input class="input" size="20" value="Rio de Janeiro"
-								disabled="disabled">
+							<html:text disabled="true" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.cidade"/>
+
 						</td>
 						<td class="texto" align="center" width="05%">
 							Bairro
 						</td>
 						<td width="45%">
-							<input class="input" size="20" value="Santo Cristo"
-								disabled="disabled">
+							<html:text disabled="true" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.bairro"/>						 	
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -59,8 +61,9 @@
 							Logradouro
 						</td>
 						<td width="95%" colspan="3">
-							<input class="input" size="101" value="Avenida Francisco Bicalho"
-								disabled="disabled">
+							<html:text disabled="true" name="manterRodoviariaForm" size="101" property="rodoviariaVO.enderecoVO.logradouro"/>
+
+					
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -68,20 +71,22 @@
 							Número
 						</td>
 						<td width="45%">
-							<input class="input" size="5" value="01" disabled="disabled">
+							<html:text disabled="true" name="manterRodoviariaForm" size="5" property="rodoviariaVO.enderecoVO.numero"/>						
+
+							
 						</td>
 						<td class="texto" align="center" width="05%">
 							Complemento
 						</td>
 						<td width="45%">
-							<input class="input" size="20" disabled="disabled">
+							<html:text disabled="true" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.complemento"/>
 						</td>
 					</tr>
 				</table>
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td align="center">
-							<input class="botao" value="Voltar">
+							<input type="button" class="botao" value="Voltar" onclick="voltar();">
 						</td>
 					</tr>
 				</table>

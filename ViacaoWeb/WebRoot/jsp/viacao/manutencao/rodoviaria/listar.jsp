@@ -4,7 +4,8 @@
 
 function buscar(){
 	var frm = document.forms[0];
-		frm.task.value ='getListaRodoviaria';
+		frm.task.value ='buscarRodoviaria';
+
 	frm.submit();
 }
 function alterar(seqRodoviaria){
@@ -21,7 +22,14 @@ alert(seqRodoviaria);
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'deletar';
 	frm.submit();
-alert('oooo');
+}
+function consultar(seqRodoviaria){
+alert(seqRodoviaria);
+	var frm = document.forms[0];
+		frm.seqRodoviaria.value = seqRodoviaria;
+		frm.task.value = 'consultar';
+	frm.submit();
+alert(seqRodoviaria);		
 }
 </script>
 
@@ -81,7 +89,7 @@ alert('oooo');
 					<tr>
 						<td colspan="4" align="center">
 							<html:button property="" styleClass="botao" value="Buscar"
-								onclick="buscar();" />
+								onclick="javascript: buscar();" />
 						</td>
 					</tr>
 				</table>
@@ -123,7 +131,10 @@ alert('oooo');
 									<img title="Deletar" src="images/icon_lixeira.gif" /> </a>
 							</td>
 							<td align="center">
-								<img title="Consultar" src="images/icon_lupa.gif" />
+								<a
+									href="javascript: consultar('<c:out value="${idLista.seqRodoviaria}"/>')">
+								<img title="Consultar" src="images/icon_lupa.gif" /> </a>
+							
 							</td>
 							<td align="center">
 								<bean:write name="idLista" property="nomRodoviaria" />

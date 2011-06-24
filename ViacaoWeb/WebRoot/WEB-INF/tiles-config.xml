@@ -67,6 +67,15 @@
 	<definition name=".listar.manter.rodoviaria" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/listar.jsp"/>
 	</definition>
+	<definition name=".deletar.manter.rodoviaria" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/deletar.jsp"/>
+	</definition>
+	<definition name=".alterar.manter.rodoviaria" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/alterar.jsp"/>
+	</definition>
+	<definition name=".consultar.manter.rodoviaria" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/consultar.jsp"/>
+	</definition>
 	
 	<!-- Tiles for Manter Cliente -->
 	

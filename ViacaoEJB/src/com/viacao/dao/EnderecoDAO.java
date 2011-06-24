@@ -62,13 +62,13 @@ public class EnderecoDAO extends BaseDB {
 		
 	}
 	
-	private String getAlterarSQL(EnderecoVO enderecoVO){
+	private String getAlterarEnderecoSQL(EnderecoVO enderecoVO){
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" UPDATE endereco                                                                    ");
 		sql.append("  SET 	                                                                            ");
 		sql.append("       logradouro = upper('"+enderecoVO.getLogradouro()+"'),                        ");
-		sql.append(" 	      numero = upper('"+enderecoVO.getNumero() +"),			                    ");
+		sql.append(" 	      numero = upper('"+enderecoVO.getNumero() +"'),			                    ");
 		sql.append("        complemento = upper('"+enderecoVO.getComplemento()+"'),                     ");
 		sql.append("        bairro = upper('"+enderecoVO.getBairro()+"'),                               ");
 		sql.append("        cidade = upper('"+enderecoVO.getCidade()+"'),                               ");
@@ -77,10 +77,10 @@ public class EnderecoDAO extends BaseDB {
 		
 		return sql.toString();
 	}
-	public void alterar(EnderecoVO enderecoVO)throws DAOException{
+	public void alterarEndereco(EnderecoVO enderecoVO)throws DAOException{
 		try {
-			pstmt = getPstmt(getAlterarSQL(enderecoVO));
-			rowSet = executeQuery(pstmt);
+			pstmt = getPstmt(getAlterarEnderecoSQL(enderecoVO));
+			pstmt.executeUpdate();
 		} catch (Exception e) {
 			logger.fatal("Erro ocorrido no metodo alterar em :: EnderecoDAO", e);
 		}finally{

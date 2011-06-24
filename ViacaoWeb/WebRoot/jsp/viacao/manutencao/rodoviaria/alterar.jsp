@@ -7,10 +7,12 @@ function voltar(){
 		frm.submit();
 }
 function confirmar(seqRodoviaria){
+alert(seqRodoviaria);
 	var frm = document.forms[0];
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'confirmaAlterar';
 		frm.submit();
+alert(seqRodoviaria);
 }
 </script>
 <html:form action="/manterRodoviaria">
