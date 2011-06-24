@@ -46,7 +46,7 @@ function voltar(){
 						</td>
 						<td width="37%">
 							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="inputobrigatorio">
-    							<html:option value="">SELECIONE</html:option>
+    							<html:option value="">CADASTRAR</html:option>
     							<html:optionsCollection  name="manterViagemForm" property="listaItinerario" label="origemDestino" value="seqItinerario"/>
     						</html:select>
 						</td>

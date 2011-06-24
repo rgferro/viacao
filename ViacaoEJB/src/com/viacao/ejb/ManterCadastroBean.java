@@ -361,7 +361,11 @@ public class ManterCadastroBean implements SessionBean {
 
 
 //---------------------------------VIAGEM-----------------------------------------
-	
+	/**
+	 * Insere uma nova viagem no banco.
+	 * @param ViagemVO.
+	 * @throws DAOException.
+	 */
 	public void inserir(ViagemVO viagemVO){
 		try {
 			ViagemDAO dao = new ViagemDAO();
@@ -372,6 +376,11 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 	
+	/**
+	 * Deleta uma viagem do banco.
+	 * @param ViagemVO.
+	 * @throws DAOException.
+	 */
 	public void deletar(ViagemVO viagemVO){
 		try {
 			ViagemDAO dao = new ViagemDAO();
@@ -382,6 +391,11 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 	
+	/**
+	 * Altera as informação de uma viagem no banco.
+	 * @param ViagemVO.
+	 * @throws DAOException.
+	 */
 	public void alterar(ViagemVO viagemVO){
 		try {
 			ViagemDAO dao = new ViagemDAO();
@@ -392,6 +406,12 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 	
+	/**
+	 * Recupera uma viagem do banco.
+	 * @param ViagemVO.
+	 * @throws DAOException.
+	 * *@return ViagemVO.
+	 */
 	public ViagemVO getViagem (ViagemVO viagemVO){
 		try {
 			ViagemDAO dao = new ViagemDAO();
@@ -402,6 +422,12 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 	
+	/**
+	 * Recupera uma lista de viagens cadastradas no banco.
+	 * @param ViagemVO.
+	 * @throws DAOException.
+	 * @return List.
+	 */
 	public List< ViagemVO > getListaViagem (ViagemVO viagemVO){
 		try {
 			ViagemDAO dao = new ViagemDAO();

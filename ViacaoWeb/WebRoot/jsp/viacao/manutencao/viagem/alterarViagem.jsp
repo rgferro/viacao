@@ -63,9 +63,15 @@ function limpar(){
 			</table>
 			<table width="100%" border="0" align="center">
 				<tr>
-					<td align="center"><input class="botao" value="Voltar"></td>
-					<td align="center"><input class="botao" value="Confirmar"></td>
-					<td align="center"><input class="botao" value="Limpar"></td>
+					<td align="center">
+							<html:button styleClass="botao" value="Voltar" property="" onclick="voltar();"/>
+						</td>	
+						<td align="center">
+							<html:button styleClass="botao" value="Cadastrar" property="" onclick="confirmar();"/>
+						</td>	
+						<td align="center">
+							<html:reset styleClass="botao" value="Limpar"/>
+						</td>	
 				</tr>
 			</table>
 		</td>
