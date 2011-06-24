@@ -149,11 +149,34 @@ public class EnderecoDAO extends BaseDB {
 			}
 			return endereco;
 		}catch(SQLException e){
-			logger.fatal("Erro ocorrido no metodo getOnibus em :: OnibusDAO", e);
+			logger.fatal("Erro ocorrido no metodo getOnibus em :: EnderecoDAO", e);
 			throw new DAOException(e);
 		}finally{
 			release();
 		}
 		
 	}
+	
+	
+	private String deletarEnderecoSQL(){
+		StringBuffer sql = new StringBuffer();
+		sql.append(" DELETE  endereco         ");
+		sql.append(" WHERE   seq_endereco = ? ");
+		
+		return sql.toString();
+		
+	}
+	public void deletarEndereco(EnderecoVO enderecoVO)throws DAOException{
+		try {
+			pstmt = getPstmt(deletarEnderecoSQL());
+			pstmt.setInt(1, enderecoVO.getSeqEndereco());
+			pstmt.executeUpdate();
+		} catch (Exception e) {
+			logger.fatal("Erro ocorrido no metodo deletarEnedereco :: EnderecoDAO", e);
+			throw new DAOException(e);
+		}finally{
+			release();
+		}
+	}
+	
 }
