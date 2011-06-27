@@ -19,67 +19,61 @@ var frm = document.forms[0];
 						</td>
 					</tr>
 				</table>
-				<br>
 				<table width="100%" border="0" align="center" id="cadastrar"
 					class="bordatabela">
-					<tr class="fundoescuro">
-						<td colspan="4" align="center" class="texto">
-							Consulta de Rodoviária
+					<tr class="fundoclaro">
+						<td class="texto" align="left" width="05%">
+							Rodoviária:
+						</td>
+						<td width="45%">
+							<html:text disabled="true" styleClass="inputconsultar" size="30" name="manterRodoviariaForm" property="rodoviariaVO.nomRodoviaria"/>
+						</td>
+						<td class="texto" align="left" width="05%">
+							Estado:
+						</td>
+						<td width="45%">
+							<html:text disabled="true" styleClass="inputconsultar" name="manterRodoviariaForm" size="20"  property="rodoviariaVO.enderecoVO.estado"/>							
 						</td>
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" align="center" width="05%">
-							Rodoviária
+						<td class="texto" align="left" width="05%">
+							Cidade:
 						</td>
 						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" size="20" name="manterRodoviariaForm" property="rodoviariaVO.nomRodoviaria"/>
-						</td>
-						<td class="texto" align="center" width="05%">
-							Estado
-						</td>
-						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20"  property="rodoviariaVO.enderecoVO.estado"/>							
-						</td>
-					</tr>
-					<tr class="fundoclaro">
-						<td class="texto" align="center" width="05%">
-							Cidade
-						</td>
-						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.cidade"/>
+							<html:text disabled="true" styleClass="inputconsultar" name="manterRodoviariaForm" size="30" property="rodoviariaVO.enderecoVO.cidade"/>
 
 						</td>
-						<td class="texto" align="center" width="05%">
-							Bairro
+						<td class="texto" align="left" width="05%">
+							Bairro:
 						</td>
 						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.bairro"/>						 	
+							<html:text disabled="true" styleClass="inputconsultar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.bairro"/>						 	
 						</td>
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" align="center" width="05%">
-							Logradouro
+						<td class="texto" align="left" width="05%">
+							Logradouro:
 						</td>
 						<td width="95%" colspan="3">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="101" property="rodoviariaVO.enderecoVO.logradouro"/>
+							<html:text disabled="true" styleClass="inputconsultar" name="manterRodoviariaForm" size="85" property="rodoviariaVO.enderecoVO.logradouro"/>
 
 					
 						</td>
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" align="center" width="05%">
-							Número
+						<td class="texto" align="left" width="05%">
+							Número:
 						</td>
 						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="5" property="rodoviariaVO.enderecoVO.numero"/>						
+							<html:text disabled="true" styleClass="inputconsultar" name="manterRodoviariaForm" size="7" property="rodoviariaVO.enderecoVO.numero"/>						
 
 							
 						</td>
-						<td class="texto" align="center" width="05%">
-							Complemento
+						<td class="texto" align="left" width="05%">
+							Complemento:
 						</td>
 						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.complemento"/>
+							<html:text disabled="true" styleClass="inputconsultar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.complemento"/>
 						</td>
 					</tr>
 				</table>
