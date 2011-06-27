@@ -73,7 +73,7 @@ function mudaImagemOut(obj, acao){
 		<tr>
 			<td>
 				<jsp:include page="/jsp/common/mensagens.jsp" />
-				
+
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">
@@ -155,18 +155,27 @@ function mudaImagemOut(obj, acao){
 							<td align="center">
 								<a
 									href="javascript: alterar('<c:out value="${idLista.seqRodoviaria}"/>')">
-									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')"> </a>
+									<img title="Editar!" src="images/icon_editar3off.png"
+										height="20" width="20"
+										onmouseover="mudaImagemOver(this,'editar');"
+										onmouseout="mudaImagemOut(this, 'editar')"> </a>
 							</td>
 							<td align="center">
 								<a
 									href="javascript: deletar('<c:out value="${idLista.seqRodoviaria}"/>')">
-									<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')"> </a>
+									<img title="Deletar!" src="images/icon_lixeira3off.png"
+										height="20" width="20"
+										onmouseover="mudaImagemOver(this,'deletar');"
+										onmouseout="mudaImagemOut(this, 'deletar')"> </a>
 							</td>
 							<td align="center">
 								<a
 									href="javascript: consultar('<c:out value="${idLista.seqRodoviaria}"/>')">
-								<img title="Pesquisar!" src="images/zoomoff.png" border="0" height="20" width="20" onmouseover="mudaImagemOver(this,'pesquisar');" onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
-							
+									<img title="Pesquisar!" src="images/zoomoff.png" border="0"
+										height="20" width="20"
+										onmouseover="mudaImagemOver(this,'pesquisar');"
+										onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
+
 							</td>
 							<td align="center">
 								<bean:write name="idLista" property="nomRodoviaria" />

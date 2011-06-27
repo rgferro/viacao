@@ -75,7 +75,6 @@ public class ManterRodoviariaForm extends ActionForm {
 	public void setRodoviariaVO(RodoviariaVO rodoviariaVO) {
 		this.rodoviariaVO = rodoviariaVO;
 	}
-	
 	/**
 	 * @return the listaRodoviaria
 	 */

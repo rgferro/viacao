@@ -84,7 +84,8 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="20" maxlength="20"
-								name="manterRodoviariaForm" onkeypress="return somenteLetra(this,event)"
+								name="manterRodoviariaForm"
+								onkeypress="return somenteLetra(this,event)"
 								property="rodoviariaVO.enderecoVO.estado" />
 						</td>
 					</tr>
@@ -95,14 +96,16 @@ function somenteLetraENumero(obj,e){
 						<td width="45%">
 							<html:text styleClass="input" size="30" maxlength="50"
 								name="manterRodoviariaForm"
-								property="rodoviariaVO.enderecoVO.cidade" onkeypress="return somenteLetra(this,event)" />
+								property="rodoviariaVO.enderecoVO.cidade"
+								onkeypress="return somenteLetra(this,event)" />
 						</td>
 						<td class="texto" align="left" width="05%">
 							Bairro:
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="20"
-								name="manterRodoviariaForm" onkeypress="return somenteLetra(this,event)"
+								name="manterRodoviariaForm"
+								onkeypress="return somenteLetra(this,event)"
 								property="rodoviariaVO.enderecoVO.bairro" />
 						</td>
 					</tr>
@@ -113,7 +116,8 @@ function somenteLetraENumero(obj,e){
 						<td width="95%" colspan="3">
 							<html:text styleClass="input" size="85"
 								name="manterRodoviariaForm"
-								property="rodoviariaVO.enderecoVO.logradouro" onkeypress="return somenteLetra(this,event)" />
+								property="rodoviariaVO.enderecoVO.logradouro"
+								onkeypress="return somenteLetra(this,event)" />
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -123,7 +127,8 @@ function somenteLetraENumero(obj,e){
 						<td width="45%">
 							<html:text styleClass="input" size="7" maxlength="5"
 								name="manterRodoviariaForm"
-								property="rodoviariaVO.enderecoVO.numero" onkeypress="return somenteNumero(this,event,false,false,false)" />
+								property="rodoviariaVO.enderecoVO.numero"
+								onkeypress="return somenteNumero(this,event,false,false,false)" />
 						</td>
 						<td class="texto" align="left" width="05%">
 							Complemento:
@@ -131,7 +136,8 @@ function somenteLetraENumero(obj,e){
 						<td width="45%">
 							<html:text styleClass="input" size="20"
 								name="manterRodoviariaForm"
-								property="rodoviariaVO.enderecoVO.complemento" onkeypress="return somenteLetraENumero(this,event)" />
+								property="rodoviariaVO.enderecoVO.complemento"
+								onkeypress="return somenteLetraENumero(this,event)" />
 						</td>
 					</tr>
 				</table>

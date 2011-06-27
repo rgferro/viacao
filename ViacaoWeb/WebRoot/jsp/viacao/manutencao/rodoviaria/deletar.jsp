@@ -34,14 +34,17 @@ function voltar(){
 							Rodoviária:
 						</td>
 						<td width="45%">
-							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm"  size="30" property="rodoviariaVO.nomRodoviaria"/>
+							<html:text disabled="true" styleClass="inputdeletar"
+								name="manterRodoviariaForm" size="30"
+								property="rodoviariaVO.nomRodoviaria" />
 						</td>
 						<td class="texto" align="left" width="05%">
 							Estado:
 						</td>
 						<td width="45%">
-							<html:text styleClass="inputdeletar" size="20"  name="manterRodoviariaForm" property="rodoviariaVO.enderecoVO.estado"
-								disabled="true"/>
+							<html:text styleClass="inputdeletar" size="20"
+								name="manterRodoviariaForm"
+								property="rodoviariaVO.enderecoVO.estado" disabled="true" />
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -49,15 +52,17 @@ function voltar(){
 							Cidade
 						</td>
 						<td width="45%">
-							<html:text styleClass="inputdeletar" size="30"  name="manterRodoviariaForm" property="rodoviariaVO.enderecoVO.cidade"
-								disabled="true"/>
+							<html:text styleClass="inputdeletar" size="30"
+								name="manterRodoviariaForm"
+								property="rodoviariaVO.enderecoVO.cidade" disabled="true" />
 						</td>
 						<td class="texto" align="left" width="05%">
 							Bairro:
 						</td>
 						<td width="45%">
-							<html:text styleClass="inputdeletar" size="20"  name="manterRodoviariaForm" property="rodoviariaVO.enderecoVO.bairro"
-								disabled="true"/>
+							<html:text styleClass="inputdeletar" size="20"
+								name="manterRodoviariaForm"
+								property="rodoviariaVO.enderecoVO.bairro" disabled="true" />
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -65,8 +70,9 @@ function voltar(){
 							Logradouro:
 						</td>
 						<td width="95%" colspan="3">
-							<html:text styleClass="inputdeletar" size="85"  name="manterRodoviariaForm"  property="rodoviariaVO.enderecoVO.logradouro"
-								disabled="true"/>
+							<html:text styleClass="inputdeletar" size="85"
+								name="manterRodoviariaForm"
+								property="rodoviariaVO.enderecoVO.logradouro" disabled="true" />
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -74,15 +80,17 @@ function voltar(){
 							Número:
 						</td>
 						<td width="45%">
-							<html:text styleClass="inputdeletar" size="7"  name="manterRodoviariaForm" property="rodoviariaVO.enderecoVO.numero"
-								disabled="true"/>
+							<html:text styleClass="inputdeletar" size="7"
+								name="manterRodoviariaForm"
+								property="rodoviariaVO.enderecoVO.numero" disabled="true" />
 						</td>
 						<td class="texto" align="left" width="05%">
 							Complemento:
 						</td>
 						<td width="45%">
-							<html:text styleClass="inputdeletar" size="20"  name="manterRodoviariaForm"  property="rodoviariaVO.enderecoVO.complemento"
-								disabled="true"/>
+							<html:text styleClass="inputdeletar" size="20"
+								name="manterRodoviariaForm"
+								property="rodoviariaVO.enderecoVO.complemento" disabled="true" />
 						</td>
 					</tr>
 				</table>
