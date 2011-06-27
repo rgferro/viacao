@@ -162,17 +162,17 @@ public class RodoviariaDAO  extends BaseDB{
 		sql.append("  FROM endereco e,                                              			 	");
 		sql.append("       rodoviaria r                                                          	");
 		sql.append("  WHERE r.seq_endereco_fk = e.seq_endereco                                   	");
-		if(!StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
+		if(!StringUtil.empty(rodoviariaVO.getNomRodoviaria().trim())){
 			 //filtro por nome da rodoviaria                                            
-			sql.append("   AND r.nom_rodoviaria like upper('%"+rodoviariaVO.getNomRodoviaria()+"%')  	");
+			sql.append("   AND r.nom_rodoviaria like upper('%"+rodoviariaVO.getNomRodoviaria().trim()+"%')  	");
 		}
 		if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())){			 
 		              //filtro por cidade                                         
-		sql.append("   AND e.cidade like upper('%"+rodoviariaVO.getEnderecoVO().getCidade()+"%')          	");
+		sql.append("   AND e.cidade like upper('%"+rodoviariaVO.getEnderecoVO().getCidade().trim()+"%')          	");
 		}
 		if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())){
 		              //filtro por estado                                         
-		sql.append("   AND e.estado like upper('%"+rodoviariaVO.getEnderecoVO().getEstado()+"%')          	");
+		sql.append("   AND e.estado like upper('%"+rodoviariaVO.getEnderecoVO().getEstado().trim()+"%')          	");
 		}
 		return sql.toString();
 	}
