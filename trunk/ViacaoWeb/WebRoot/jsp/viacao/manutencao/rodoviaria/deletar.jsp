@@ -1,12 +1,11 @@
 <%@ include file="/jsp/common/taglibs.jsp"%>
 <script type="text/javascript">
 function confirmar(seqRodoviaria){
-alert(seqRodoviaria);
 	var frm = document.forms[0];
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'confirmaDeletar';
 		frm.submit();
-alert('oooo');
+
 }
 function voltar(){
 	var frm = document.forms[0];

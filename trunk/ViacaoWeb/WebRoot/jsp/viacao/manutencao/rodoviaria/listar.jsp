@@ -5,11 +5,9 @@
 function buscar(){
 	var frm = document.forms[0];
 		frm.task.value ='buscarRodoviaria';
-
 	frm.submit();
 }
 function alterar(seqRodoviaria){
-alert(seqRodoviaria);
 	var frm = document.forms[0];
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'alterar';
@@ -17,27 +15,22 @@ alert(seqRodoviaria);
 
 }
 function deletar(seqRodoviaria){
-alert(seqRodoviaria);
 	var frm = document.forms[0];
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'deletar';
 	frm.submit();
 }
 function consultar(seqRodoviaria){
-alert(seqRodoviaria);
 	var frm = document.forms[0];
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'consultar';
-	frm.submit();
-alert(seqRodoviaria);		
+	frm.submit();	
 }
 </script>
 
 <html:form action="/manterRodoviaria">
 	<html:hidden property="task" name="manterRodoviariaForm" />
 	<html:hidden property="seqRodoviaria" name="manterRodoviariaForm" />
-
-
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>

@@ -114,6 +114,8 @@ public class RodoviariaDAO  extends BaseDB{
 		return sql.toString();
 	}
 	/*
+	 * busca os dados de uma rodoviaria para ações de: consultar, alterar, deletar;
+	 * referentes ao seq da rodoviaria selecionada 
 	 * SQL-07
 	 * */
 	public RodoviariaVO getRodoviaria(RodoviariaVO rodoviariaVO)throws DAOException{
@@ -174,6 +176,12 @@ public class RodoviariaDAO  extends BaseDB{
 		}
 		return sql.toString();
 	}
+	/*
+	 * Busca as rodoviarias de acordo com: 
+	 * o nome da rodoviaria e/ou nome da cidade  e/ou nome do estado;
+	 * ( buscas com nome aproximado) 
+	 * SQL-08
+	 * */
 	public List<RodoviariaVO> getListaRodoviaria(RodoviariaVO rodoviariaVO)throws DAOException{
 		try {
 			pstmt = getPstmt(getListaRodoviariaSQL(rodoviariaVO));
@@ -182,7 +190,7 @@ public class RodoviariaDAO  extends BaseDB{
 			while(next()){
 				RodoviariaVO rodoviaria = new RodoviariaVO();
 				if(!StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
-					
+					rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_Rodoviaria")));
 					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
 					
 					rodoviaria.setEnderecoVO(new EnderecoVO());
@@ -191,6 +199,7 @@ public class RodoviariaDAO  extends BaseDB{
 				}
 				
 				if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())){
+					rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_Rodoviaria")));
 					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
 					
 					rodoviaria.setEnderecoVO(new EnderecoVO());
@@ -199,6 +208,7 @@ public class RodoviariaDAO  extends BaseDB{
 				
 				}
 				if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())){
+					rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_Rodoviaria")));
 					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
 					
 					rodoviaria.setEnderecoVO(new EnderecoVO());
@@ -206,6 +216,7 @@ public class RodoviariaDAO  extends BaseDB{
 					rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));
 				}
 				if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())&& StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())&& StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
+					rodoviaria.setSeqRodoviaria(new Integer(rowSet.getString("seq_Rodoviaria")));
 					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
 					
 					rodoviaria.setEnderecoVO(new EnderecoVO());
@@ -243,7 +254,10 @@ public class RodoviariaDAO  extends BaseDB{
 		return sql.toString();
 	} 
 	
-	
+	/*
+	 * busca todas as rodoviarias cadastradas
+	 * SQL-07(modificada)
+	 * */
 	public List<RodoviariaVO> listaInicioRodoviaria(RodoviariaVO rodoviariaVO)throws DAOException{
 		try {
 			pstmt = getPstmt(listaInicioRodoviariaSQL(rodoviariaVO));

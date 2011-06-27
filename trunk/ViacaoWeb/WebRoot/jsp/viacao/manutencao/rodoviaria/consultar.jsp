@@ -38,7 +38,7 @@ var frm = document.forms[0];
 							Estado
 						</td>
 						<td width="45%">
-							<html:text disabled="true" name="manterRodoviariaForm" size="20"  property="rodoviariaVO.enderecoVO.estado"/>							
+							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20"  property="rodoviariaVO.enderecoVO.estado"/>							
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -46,14 +46,14 @@ var frm = document.forms[0];
 							Cidade
 						</td>
 						<td width="45%">
-							<html:text disabled="true" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.cidade"/>
+							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.cidade"/>
 
 						</td>
 						<td class="texto" align="center" width="05%">
 							Bairro
 						</td>
 						<td width="45%">
-							<html:text disabled="true" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.bairro"/>						 	
+							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.bairro"/>						 	
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -61,7 +61,7 @@ var frm = document.forms[0];
 							Logradouro
 						</td>
 						<td width="95%" colspan="3">
-							<html:text disabled="true" name="manterRodoviariaForm" size="101" property="rodoviariaVO.enderecoVO.logradouro"/>
+							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="101" property="rodoviariaVO.enderecoVO.logradouro"/>
 
 					
 						</td>
@@ -71,7 +71,7 @@ var frm = document.forms[0];
 							Número
 						</td>
 						<td width="45%">
-							<html:text disabled="true" name="manterRodoviariaForm" size="5" property="rodoviariaVO.enderecoVO.numero"/>						
+							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="5" property="rodoviariaVO.enderecoVO.numero"/>						
 
 							
 						</td>
@@ -79,7 +79,7 @@ var frm = document.forms[0];
 							Complemento
 						</td>
 						<td width="45%">
-							<html:text disabled="true" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.complemento"/>
+							<html:text disabled="true" styleClass="inputdeletar" name="manterRodoviariaForm" size="20" property="rodoviariaVO.enderecoVO.complemento"/>
 						</td>
 					</tr>
 				</table>
