@@ -67,7 +67,9 @@ public class EnderecoDAO extends BaseDB {
 		}
 		
 	}
-	
+	/*
+	 * SQL-02 
+	 * */
 	private String getAlterarEnderecoSQL(EnderecoVO enderecoVO){
 		StringBuffer sql = new StringBuffer();
 		
@@ -83,6 +85,9 @@ public class EnderecoDAO extends BaseDB {
 		
 		return sql.toString();
 	}
+	/*
+	 * SQL-02 
+	 * */
 	public void alterarEndereco(EnderecoVO enderecoVO)throws DAOException{
 		try {
 			pstmt = getPstmt(getAlterarEnderecoSQL(enderecoVO));

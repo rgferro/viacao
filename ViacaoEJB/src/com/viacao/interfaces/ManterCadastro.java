@@ -37,7 +37,7 @@ public interface ManterCadastro extends EJBObject {
 	public List<ItinerarioVo> listaItinerario(ItinerarioVo itinerarioVo) throws RemoteException;
 
 	public void inserir(RodoviariaVO rodoviariaVO) throws RemoteException;
-	public void deletar(RodoviariaVO rodoviariaVO) throws RemoteException;
+	
 	public void alterar(RodoviariaVO rodoviariaVO) throws RemoteException;
 	public RodoviariaVO getRodoviaria(RodoviariaVO rodoviariaVO) throws RemoteException;
 	public List<RodoviariaVO> getListaRodoviaria (RodoviariaVO rodoviariaVO) throws RemoteException;
