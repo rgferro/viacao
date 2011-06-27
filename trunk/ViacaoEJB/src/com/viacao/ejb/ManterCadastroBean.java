@@ -276,15 +276,7 @@ public class ManterCadastroBean implements SessionBean {
 		}
 		
 	}
-	public void deletar(RodoviariaVO rodoviariaVO){
-		try {
-			RodoviariaDAO dao = new RodoviariaDAO();
-			dao.deletar(rodoviariaVO);
-		} catch (Exception e) {
-			logger.fatal("Erro ao deletar Rodoviaria :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}	
-	}
+
 	public void alterar(RodoviariaVO rodoviariaVO){
 		try {
 			alterarEndereco(rodoviariaVO.getEnderecoVO());

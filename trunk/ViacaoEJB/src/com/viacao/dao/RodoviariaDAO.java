@@ -38,7 +38,9 @@ public class RodoviariaDAO  extends BaseDB{
 		return sql.toString();
 	}
 	/*
-	 * insere uma nova rodoviaria juntamente com o nome da rodoviaria, apos ter inserido o endereço na query SQL-01 que encontra-se na classe EnderecoDAO 
+	 * insere uma nova rodoviaria juntamente com o nome da rodoviaria,
+	 * apos ter inserido o endereço na query SQL-01 que encontra-se na classe EnderecoDAO 
+	 * (inserção controlada na classe ManterCadastroBean)
 	 * SQL-04
 	 * */
 	public void inserir(RodoviariaVO rodoviariaVO)throws DAOException{
@@ -72,7 +74,8 @@ public class RodoviariaDAO  extends BaseDB{
 		return sql.toString();
 	}
 	/*
-	 * altera o nome da rodoviaria apos ter
+	 * altera o nome da rodoviaria apos ter alterado os enderecos na query SQL-02 
+	 * localizado na classe EnderecoDAO (alteraçao controlada na classe ManterCadastroBean)
 	 * SQL-06
 	 * */
 	public void alterar(RodoviariaVO rodoviariaVO)throws DAOException{
