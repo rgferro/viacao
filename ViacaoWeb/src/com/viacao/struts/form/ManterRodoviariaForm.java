@@ -6,9 +6,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 
+import com.acol.util.StringUtil;
 import com.viacao.utils.Constantes;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.RodoviariaVO;
@@ -28,7 +30,6 @@ public class ManterRodoviariaForm extends ActionForm {
 
 	public void inicializar(){
 		rodoviariaVO = new RodoviariaVO();
-	
 		rodoviariaVO.setEnderecoVO(new EnderecoVO());
 		listaRodoviaria = new ArrayList<RodoviariaVO>();
 		this.listaInicioRodoviaria = new ArrayList<RodoviariaVO>();
@@ -39,28 +40,28 @@ public class ManterRodoviariaForm extends ActionForm {
 		ActionMessages messages = new ActionMessages();
 		
 		if(rodoviariaVO.getNomRodoviaria().equals("") || rodoviariaVO.getNomRodoviaria() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.nomRodoviaria"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome da Rodoviária"));
 		}
 		
 		if(rodoviariaVO.getEnderecoVO().getLogradouro().equals("") || rodoviariaVO.getEnderecoVO().getLogradouro() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.logradouro"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Logradouro"));
 		}		
 		
 		if(rodoviariaVO.getEnderecoVO().getNumero().equals("") || rodoviariaVO.getEnderecoVO().getNumero() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.numero"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Número"));
 		}
 
 		if(rodoviariaVO.getEnderecoVO().getComplemento().equals("") ||rodoviariaVO.getEnderecoVO().getComplemento() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.complemento"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Complemento"));
 		}
 		if(rodoviariaVO.getEnderecoVO().getBairro().equals("") || rodoviariaVO.getEnderecoVO().getBairro() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("erro.vazio.bairro"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Bairro"));
 		}
 		if(rodoviariaVO.getEnderecoVO().getCidade().equals("") || rodoviariaVO.getEnderecoVO().getCidade() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("erro.vazio.cidade"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Cidade"));
 		}
 		if(rodoviariaVO.getEnderecoVO().getEstado().equals("") || rodoviariaVO.getEnderecoVO().getEstado() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("erro.vazio.estado"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Estado"));
 		}
 		
 		return messages;

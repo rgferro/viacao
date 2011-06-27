@@ -26,6 +26,44 @@ function consultar(seqRodoviaria){
 		frm.task.value = 'consultar';
 	frm.submit();	
 }
+function mudaImagemOver(obj, acao){
+
+	if(acao == "editar"){
+		obj.src = 'images/icon_editar3.png';
+	}
+	if(acao == "deletar"){
+		obj.src = 'images/icon_lixeira3.png';
+	}
+	if(acao == "confirmar"){
+		obj.src = 'images/accept1.png';
+	}
+	if(acao == "pesquisar"){
+		obj.src = 'images/zoom.png';
+	}
+	if(acao == "cancelar"){
+		obj.src = 'images/delete1.png';
+	}
+
+}
+function mudaImagemOut(obj, acao){
+
+	if(acao == "editar"){
+		obj.src = 'images/icon_editar3off.png';
+	}
+	if(acao == "deletar"){
+		obj.src = 'images/icon_lixeira3off.png';
+	}
+	if(acao == "confirmar"){
+		obj.src = 'images/acceptoff.png';
+	}
+	if(acao == "pesquisar"){
+		obj.src = 'images/zoomoff.png';
+	}
+	if(acao == "cancelar"){
+		obj.src = 'images/deleteoff.png';
+	}
+
+}
 </script>
 
 <html:form action="/manterRodoviaria">
@@ -34,6 +72,8 @@ function consultar(seqRodoviaria){
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
+				<jsp:include page="/jsp/common/mensagens.jsp" />
+				
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">
@@ -41,7 +81,6 @@ function consultar(seqRodoviaria){
 						</td>
 					</tr>
 				</table>
-				<br>
 				<table>
 					<tr>
 						<td class="link">
@@ -52,20 +91,20 @@ function consultar(seqRodoviaria){
 				</table>
 				<table width="100%" border="0" align="center" id="consulta"
 					class="bordatabela">
-					<tr class="fundoescuro">
+					<tr class="fundoclaro">
 						<td class="texto" width="05%" height="20" align="center">
 							Rodoviária
 						</td>
 						<td width="45%">
 							<html:text name="manterRodoviariaForm" size="20"
-								property="rodoviariaVO.nomRodoviaria" />
+								property="rodoviariaVO.nomRodoviaria" styleClass="input" />
 						</td>
 						<td class="texto" width="05%" height="20">
 							Estado
 						</td>
 						<td width="45%">
 							<html:text name="manterRodoviariaForm" size="20"
-								property="rodoviariaVO.enderecoVO.estado" />
+								property="rodoviariaVO.enderecoVO.estado" styleClass="input" />
 						</td>
 					</tr>
 					<tr class="fundoclaro">
@@ -74,7 +113,7 @@ function consultar(seqRodoviaria){
 						</td>
 						<td width="45%" colspan="3">
 							<html:text name="manterRodoviariaForm" size="20"
-								property="rodoviariaVO.enderecoVO.cidade" />
+								property="rodoviariaVO.enderecoVO.cidade" styleClass="input" />
 						</td>
 					</tr>
 				</table>
@@ -116,17 +155,17 @@ function consultar(seqRodoviaria){
 							<td align="center">
 								<a
 									href="javascript: alterar('<c:out value="${idLista.seqRodoviaria}"/>')">
-									<img title="Editar" src="images/icon_editar.gif" /> </a>
+									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')"> </a>
 							</td>
 							<td align="center">
 								<a
 									href="javascript: deletar('<c:out value="${idLista.seqRodoviaria}"/>')">
-									<img title="Deletar" src="images/icon_lixeira.gif" /> </a>
+									<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')"> </a>
 							</td>
 							<td align="center">
 								<a
 									href="javascript: consultar('<c:out value="${idLista.seqRodoviaria}"/>')">
-								<img title="Consultar" src="images/icon_lupa.gif" /> </a>
+								<img title="Pesquisar!" src="images/zoomoff.png" border="0" height="20" width="20" onmouseover="mudaImagemOver(this,'pesquisar');" onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
 							
 							</td>
 							<td align="center">
