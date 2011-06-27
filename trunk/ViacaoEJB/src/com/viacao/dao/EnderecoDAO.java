@@ -18,6 +18,9 @@ public class EnderecoDAO extends BaseDB {
 		super();
 		
 	}
+	/*
+	 * SQL-01 
+	 * */
 	private String getInsertSQL(){
 		StringBuffer sql = new StringBuffer();
 		
@@ -41,6 +44,9 @@ public class EnderecoDAO extends BaseDB {
 		return sql.toString();
 	}
 	
+	/*
+	 * SQL-01 
+	 * */ 
 	public void insert(EnderecoVO enderecoVO)throws DAOException{
 		try {
 			pstmt = getPstmt(getInsertSQL());
