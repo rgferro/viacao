@@ -20,6 +20,7 @@ public class RodoviariaDAO  extends BaseDB{
 	}
 	
 	/*
+	 *
 	 * SQL-04
 	 * */
 	private String getInserirSQL(){
@@ -37,6 +38,7 @@ public class RodoviariaDAO  extends BaseDB{
 		return sql.toString();
 	}
 	/*
+	 * insere uma nova rodoviaria juntamente com o nome da rodoviaria, apos ter inserido o endereço na query SQL-01 que encontra-se na classe EnderecoDAO 
 	 * SQL-04
 	 * */
 	public void inserir(RodoviariaVO rodoviariaVO)throws DAOException{
@@ -54,29 +56,7 @@ public class RodoviariaDAO  extends BaseDB{
 			release();
 		}
 	}
-	
-	/*
-	 * SQL-05
-	 * */
-	private String getDeletarSQL(){
-		StringBuffer sql = new StringBuffer();
-		sql.append(" DELETE 	rodoviaria     ");
-		sql.append(" WHERE 	seq_rodoviaria = ? ");
-		return sql.toString();
 		
-	}
-	public void deletar(RodoviariaVO rodoviariaVO)throws DAOException{
-    try {
-			pstmt = getPstmt(getDeletarSQL());
-			pstmt.setInt(1, rodoviariaVO.getEnderecoVO().getSeqEndereco());
-			rowSet = executeQuery(pstmt);
-        } catch (Exception e) {
-		   logger.fatal("Erro ocorrido no metodo deletar em :: RodoviariaDAO", e);
-		   throw new DAOException(e);
-	    } finally {
-		release();
-	    }
-	}	
 	/*
 	 * SQL-06
 	 * */
@@ -92,6 +72,7 @@ public class RodoviariaDAO  extends BaseDB{
 		return sql.toString();
 	}
 	/*
+	 * altera o nome da rodoviaria apos ter
 	 * SQL-06
 	 * */
 	public void alterar(RodoviariaVO rodoviariaVO)throws DAOException{
@@ -215,6 +196,13 @@ public class RodoviariaDAO  extends BaseDB{
 				
 				}
 				if(!StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())){
+					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
+					
+					rodoviaria.setEnderecoVO(new EnderecoVO());
+					rodoviaria.getEnderecoVO().setCidade(rowSet.getString("cidade"));
+					rodoviaria.getEnderecoVO().setEstado(rowSet.getString("estado"));
+				}
+				if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())&& StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())&& StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
 					rodoviaria.setNomRodoviaria(rowSet.getString("nom_rodoviaria"));
 					
 					rodoviaria.setEnderecoVO(new EnderecoVO());
