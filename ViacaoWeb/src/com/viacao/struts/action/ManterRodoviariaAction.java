@@ -14,6 +14,7 @@ import org.apache.struts.actions.DispatchAction;
 
 import com.acol.exception.SystemException;
 import com.acol.exception.business.ChildRecordFoundException;
+import com.sun.accessibility.internal.resources.accessibility;
 import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterRodoviariaForm;
 import com.viacao.utils.Constantes;
@@ -107,6 +108,17 @@ public class ManterRodoviariaAction extends DispatchAction{
 		ManterRodoviariaForm frm = (ManterRodoviariaForm)form;
 		frm.setListaInicioRodoviaria(EstagioServices.getManterCadastroBean().getListaRodoviaria(frm.getRodoviariaVO()));
 		return forward(mapping, form, request, response);
+	}
+	public ActionForward limpar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ManterRodoviariaForm frm = (ManterRodoviariaForm)form;
+		frm.getRodoviariaVO().setNomRodoviaria("");
+		frm.getRodoviariaVO().getEnderecoVO().setBairro("");
+		frm.getRodoviariaVO().getEnderecoVO().setCidade("");
+		frm.getRodoviariaVO().getEnderecoVO().setComplemento("");
+		frm.getRodoviariaVO().getEnderecoVO().setEstado("");
+		frm.getRodoviariaVO().getEnderecoVO().setLogradouro("");
+		frm.getRodoviariaVO().getEnderecoVO().setNumero("");
+		return mapping.findForward("alterar");
 	}
 	public ActionForward forward(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		return mapping.findForward("listar"); 
