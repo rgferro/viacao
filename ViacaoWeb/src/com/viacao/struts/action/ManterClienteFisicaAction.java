@@ -84,10 +84,21 @@ public class ManterClienteFisicaAction extends DispatchAction{
 		FisicaVO fisicaVO = new FisicaVO();
 		
 		try{
+			fisicaVO.getClienteVO().setLogin(frm.getFisicaVO().getClienteVO().getLogin());
+			fisicaVO.getClienteVO().setSenha(frm.getFisicaVO().getClienteVO().getSenha());
+			
 			fisicaVO.setSeqFisica(frm.getFisicaVO().getSeqFisica());
 			fisicaVO.setCpfPessoa(frm.getFisicaVO().getCpfPessoa());
 			fisicaVO.setNomPessoa(frm.getFisicaVO().getNomPessoa());
 			fisicaVO.setRgPessoa(frm.getFisicaVO().getRgPessoa());
+			fisicaVO.getClienteVO().setEmail(frm.getFisicaVO().getClienteVO().getEmail());
+			
+			fisicaVO.getClienteVO().getEnderecoVO().setLogradouro(frm.getFisicaVO().getClienteVO().getEnderecoVO().getLogradouro());
+			fisicaVO.getClienteVO().getEnderecoVO().setNumero(frm.getFisicaVO().getClienteVO().getEnderecoVO().getNumero());
+			fisicaVO.getClienteVO().getEnderecoVO().setComplemento(frm.getFisicaVO().getClienteVO().getEnderecoVO().getComplemento());
+			fisicaVO.getClienteVO().getEnderecoVO().setBairro(frm.getFisicaVO().getClienteVO().getEnderecoVO().getComplemento());
+			fisicaVO.getClienteVO().getEnderecoVO().setCidade(frm.getFisicaVO().getClienteVO().getEnderecoVO().getCidade());
+			fisicaVO.getClienteVO().getEnderecoVO().setEstado(frm.)
 			
 			EstagioServices.getManterCadastroBean().alterarFisica(fisicaVO);
 		}catch (Exception e) {
