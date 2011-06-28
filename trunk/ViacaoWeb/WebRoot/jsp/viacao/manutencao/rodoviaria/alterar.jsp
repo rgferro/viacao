@@ -18,7 +18,7 @@ function somenteNumero(obj,e,ast,virg,ponto){
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 47 && tecla < 58)){ 
+	if((tecla > 47 && tecla < 58) || (tecla == 8) || (tecla == 0)){ 
 		return true;
 	}else{
 		if((tecla == 9)) return true;
@@ -36,7 +36,7 @@ function somenteLetra(obj,e){
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32)){ 
+	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32) || (tecla == 8) || (tecla == 0)){ 
 		return true;
 	}else{
 		return false;
@@ -48,7 +48,7 @@ function somenteLetraENumero(obj,e){
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32) || (tecla > 47 && tecla < 58) || (tecla == 46) || (tecla == 44)){
+	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32) || (tecla > 47 && tecla < 58) || (tecla == 46) || (tecla == 44) || (tecla == 8) || (tecla == 0)){
 		return true;
 	}else{
 		return false;
@@ -69,6 +69,8 @@ function somenteLetraENumero(obj,e){
 						</td>
 					</tr>
 				</table>
+		<tr>
+			<td>
 				<table width="100%" border="0" align="left" id="cadastrar"
 					class="bordatabela">
 					<tr class="fundoclaro">
@@ -142,22 +144,25 @@ function somenteLetraENumero(obj,e){
 						</td>
 					</tr>
 				</table>
-				<table width="100%" border="0" align="center">
-					<tr>
-						<td align="center">
-							<input type="button" class="botao" value="Voltar"
-								onclick="voltar()">
-						</td>
-						<td align="center">
-							<input type="button" class="botao" value="Confirmar"
-								onclick="confirmar('<c:out value="${manterRodoviariaForm.seqRodoviaria}"/>')">
-						</td>
-						<td align="center">
-							<html:reset value="Resetar" styleClass="botao" />
-						</td>
-					</tr>
-				</table>
 			</td>
 		</tr>
+		<td>
+			<table width="100%" border="0" align="center">
+				<tr>
+					<td align="center">
+						<input type="button" class="botao" value="Voltar"
+							onclick="voltar()">
+					</td>
+					<td align="center">
+						<input type="button" class="botao" value="Confirmar"
+							onclick="confirmar('<c:out value="${manterRodoviariaForm.seqRodoviaria}"/>')">
+					</td>
+					<td align="center">
+						<html:reset value="Resetar" styleClass="botao" />
+					</td>
+				</tr>
+			</table>
+		</td>
+	
 	</table>
 </html:form>

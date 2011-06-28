@@ -18,7 +18,7 @@ function somenteNumero(obj,e,ast,virg,ponto){
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 47 && tecla < 58)){ 
+	if((tecla > 47 && tecla < 58) || (tecla == 8) || (tecla == 0)){ 
 		return true;
 	}else{
 		if((tecla == 9)) return true;
@@ -36,7 +36,7 @@ function somenteLetra(obj,e){
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32)){ 
+	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32) || (tecla == 8) || (tecla == 0)){ 
 		return true;
 	}else{
 		return false;
@@ -48,7 +48,7 @@ function somenteLetraENumero(obj,e){
 		obj.focus();  obj.select();
 		return true
 	}
-	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32) || (tecla > 47 && tecla < 58) || (tecla == 46) || (tecla == 44)){
+	if((tecla > 96 && tecla < 123) || (tecla > 64 && tecla < 91) || (tecla == 32) || (tecla > 47 && tecla < 58) || (tecla == 46) || (tecla == 44) || (tecla == 8) || (tecla == 0)){
 		return true;
 	}else{
 		return false;
@@ -61,6 +61,7 @@ function somenteLetraENumero(obj,e){
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
+			<jsp:include page="/jsp/common/mensagens.jsp" />
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">
