@@ -98,7 +98,7 @@ public class ManterClienteFisicaAction extends DispatchAction{
 			fisicaVO.getClienteVO().getEnderecoVO().setComplemento(frm.getFisicaVO().getClienteVO().getEnderecoVO().getComplemento());
 			fisicaVO.getClienteVO().getEnderecoVO().setBairro(frm.getFisicaVO().getClienteVO().getEnderecoVO().getComplemento());
 			fisicaVO.getClienteVO().getEnderecoVO().setCidade(frm.getFisicaVO().getClienteVO().getEnderecoVO().getCidade());
-			fisicaVO.getClienteVO().getEnderecoVO().setEstado(frm.)
+			fisicaVO.getClienteVO().getEnderecoVO().setEstado(frm.getFisicaVO().getClienteVO().getEnderecoVO().getCidade());
 			
 			EstagioServices.getManterCadastroBean().alterarFisica(fisicaVO);
 		}catch (Exception e) {
