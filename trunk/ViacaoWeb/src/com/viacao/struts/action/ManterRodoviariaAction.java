@@ -83,7 +83,7 @@ public class ManterRodoviariaAction extends DispatchAction{
 		ActionMessages messages = frm.validate(request);
 		if(!messages.isEmpty()){
 			saveMessages(request, messages);
-			return forward(mapping, form, request, response);
+			return mapping.findForward("alterar");
 		}else{
 			try{
 				EstagioServices.getManterCadastroBean().alterar(frm.getRodoviariaVO());
