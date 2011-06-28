@@ -254,6 +254,8 @@ public class ClienteDAO extends BaseDB{
 		sql.append(" AND	c.seq_endereco_fk = e.seq_endereco ");
 		sql.append(" AND 	seq_fisica = ? ");
 		
+		System.out.println(sql.toString());
+		
 		return sql.toString();
 	}
 	
@@ -266,7 +268,6 @@ public class ClienteDAO extends BaseDB{
 			
 			FisicaVO fVO = new FisicaVO();;
 			if(rowSet.next()){
-				fVO.setSeqFisica(new Integer(rowSet.getInt("seq_fisica")));
 				fVO.setClienteVO(new ClienteVO());
 				fVO.getClienteVO().setLogin(rowSet.getString("login"));
 				fVO.getClienteVO().setSenha(rowSet.getString("senha"));
@@ -293,10 +294,19 @@ public class ClienteDAO extends BaseDB{
 		}
 	}
 	
+	/**
+	 * 
+	 * @param fisicaVO
+	 * @return
+	 */
 	private String getSQLListaClienteFisica(FisicaVO fisicaVO){
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append(" SELECT	c.login, ");
+		sql.append(" SELECT	f.seq_fisica, ");
+		sql.append("  		c.seq_cliente, ");
+		sql.append("  		e.seq_endereco, ");
+		sql.append("  		c.seq_endereco_fk, ");
+		sql.append("  		c.login, ");
 		sql.append("  		c.senha, ");
 		sql.append("        c.email, ");
 		sql.append("        f.nom_pessoa, ");
@@ -317,11 +327,11 @@ public class ClienteDAO extends BaseDB{
 			sql.append(" AND f.nom_pessoa LIKE upper ('%"+ fisicaVO.getNomPessoa() +"%') ");
 		}
 		// filtro por login cliente
-		if(fisicaVO.getClienteVO().getLogin() != null){
+		if(fisicaVO.getClienteVO() != null){
 			sql.append(" AND c.login LIKE upper ('%"+ fisicaVO.getClienteVO().getLogin() +"%') ");
 		}
 		// filtro por email cliente
-		if(fisicaVO.getClienteVO().getEmail() != null){
+		if(fisicaVO.getClienteVO() != null){
 			sql.append(" AND c.email LIKE upper ('%"+ fisicaVO.getClienteVO().getEmail() +"%') ");
 		}
 		
@@ -340,6 +350,9 @@ public class ClienteDAO extends BaseDB{
 				FisicaVO fisica = new FisicaVO();
 				fisica.setSeqFisica(new Integer(rowSet.getInt("seq_fisica")));
 				fisica.setClienteVO(new ClienteVO());
+				fisica.getClienteVO().setEnderecoVO(new EnderecoVO());
+				fisica.getClienteVO().setSeqCliente(new Integer(rowSet.getInt("seq_cliente")));
+				fisica.getClienteVO().getEnderecoVO().setSeqEndereco(new Integer(rowSet.getInt("seq_endereco")));
 				fisica.getClienteVO().setLogin(rowSet.getString("login"));
 				fisica.getClienteVO().setSenha(rowSet.getString("senha"));
 				fisica.getClienteVO().setEmail(rowSet.getString("email"));
@@ -347,6 +360,7 @@ public class ClienteDAO extends BaseDB{
 				fisica.setCpfPessoa(rowSet.getString("cpf_pessoa"));
 				fisica.setRgPessoa(rowSet.getString("rg_pessoa"));
 				fisica.getClienteVO().setEnderecoVO(new EnderecoVO());
+				fisica.getClienteVO().getEnderecoVO().setSeqEndereco(rowSet.getInt("seq_endereco_fk"));
 				fisica.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
 				fisica.getClienteVO().getEnderecoVO().setNumero(rowSet.getString("numero"));
 				fisica.getClienteVO().getEnderecoVO().setComplemento(rowSet.getString("complemento"));
@@ -366,7 +380,7 @@ public class ClienteDAO extends BaseDB{
 		}
 	}
 	
-	
+//------------------------------------- JURIDICA -------------------------------------------------------------	
 	
 	/**
 	 * SQL InserirJuridica
@@ -567,7 +581,7 @@ public class ClienteDAO extends BaseDB{
 			sql.append("      AND 	c.email LIKE upper ('%" + juridicaVO.getClienteVO().getEmail() + "%')");
 		}
 
-		
+		System.out.println(sql.toString());
 		return sql.toString();
 	}
 	
@@ -583,15 +597,17 @@ public class ClienteDAO extends BaseDB{
 			
 			rowSet = executeQuery(pstmt);
 			
-			JuridicaVO juriVO = new JuridicaVO();
 			List<JuridicaVO> listaClienteJuridica = new ArrayList();
 			while(rowSet.next()){
+				JuridicaVO juriVO = new JuridicaVO();
+				juriVO.setClienteVO(new ClienteVO());
+				juriVO.getClienteVO().setEnderecoVO(new EnderecoVO());
 				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
 				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
 				juriVO.getClienteVO().setEmail(rowSet.getString("EMAIL"));
 				juriVO.setRazaoSocial(rowSet.getString("RAZAO_SOCIAL"));
 				juriVO.setNomFantasia(rowSet.getString("NOM_FANTASIA"));
-				juriVO.setNomResponsavel(rowSet.getString("NOM_RESPONSAVEL"));
+				juriVO.setNomResponsavel(rowSet.getString("NOM_RESPOSAVEL"));
 				juriVO.setCnpj(rowSet.getString("CNPJ"));
 				juriVO.setNumInscricao(rowSet.getString("NUM_INSCRICAO"));
 				juriVO.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("LOGRADOURO"));
