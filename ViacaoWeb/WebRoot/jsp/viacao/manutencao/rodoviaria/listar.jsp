@@ -85,7 +85,7 @@ function mudaImagemOut(obj, acao){
 					<tr>
 						<td class="link">
 							<a href="<%request.getContextPath();%>?task=inserir"><img
-									src="images/fetch.gif" /> Cadastrar Nova Rodoviária</a>
+									src="images/fetch.gif" border="0" /> Cadastrar Nova Rodoviária</a>
 						</td>
 					</tr>
 				</table>
@@ -156,7 +156,7 @@ function mudaImagemOut(obj, acao){
 								<a
 									href="javascript: alterar('<c:out value="${idLista.seqRodoviaria}"/>')">
 									<img title="Editar!" src="images/icon_editar3off.png"
-										height="20" width="20"
+										height="20" width="20" border="0"
 										onmouseover="mudaImagemOver(this,'editar');"
 										onmouseout="mudaImagemOut(this, 'editar')"> </a>
 							</td>
@@ -164,7 +164,7 @@ function mudaImagemOut(obj, acao){
 								<a
 									href="javascript: deletar('<c:out value="${idLista.seqRodoviaria}"/>')">
 									<img title="Deletar!" src="images/icon_lixeira3off.png"
-										height="20" width="20"
+										height="20" width="20" border="0"
 										onmouseover="mudaImagemOver(this,'deletar');"
 										onmouseout="mudaImagemOut(this, 'deletar')"> </a>
 							</td>
@@ -172,7 +172,7 @@ function mudaImagemOut(obj, acao){
 								<a
 									href="javascript: consultar('<c:out value="${idLista.seqRodoviaria}"/>')">
 									<img title="Pesquisar!" src="images/zoomoff.png" border="0"
-										height="20" width="20"
+										height="20" width="20" border="0"
 										onmouseover="mudaImagemOver(this,'pesquisar');"
 										onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
 
