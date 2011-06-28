@@ -61,14 +61,14 @@ function somenteLetraENumero(obj,e){
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
-			<jsp:include page="/jsp/common/mensagens.jsp" />
-				<table width="100%" border="0" align="center">
-					<tr>
-						<td class="titulo">
-							Cadastro de Rodoviária
-						</td>
-					</tr>
-				</table>
+				<jsp:include page="/jsp/common/mensagens.jsp" />
+					<table width="100%" border="0" align="center">
+						<tr>
+							<td class="titulo">
+								Cadastro de Rodoviária
+							</td>
+						</tr>
+					</table>
 				<table width="100%" border="0" align="center" id="cadastrar"
 					class="bordatabela">
 					<tr class="fundoclaro">

@@ -40,7 +40,7 @@ public class ManterRodoviariaForm extends ActionForm {
 		ActionMessages messages = new ActionMessages();
 		
 		if(rodoviariaVO.getNomRodoviaria().equals("") || rodoviariaVO.getNomRodoviaria() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome da Rodoviária"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Rodoviária"));
 		}
 		
 		if(rodoviariaVO.getEnderecoVO().getLogradouro().equals("") || rodoviariaVO.getEnderecoVO().getLogradouro() == null){
