@@ -16,10 +16,20 @@ function buscar(){
 	frm.task.value = 'listarJuridica';
 	frm.submit();
 }
+
+function getJuridica(seq, acao){
+	var frm = document.forms[0];
+	frm.seqJuridica.value = seq;
+	frm.acao.value = acao;
+	frm.task.value = 'getJuridica';
+	frm.submit();
+}
 </script>
 
 <html:form action="/manterCliente">
 <html:hidden property="task" name="manterJuridicaForm"/>
+<html:hidden property="seqJuridica" name="manterJuridicaForm"/>
+<html:hidden property="acao" name="manterJuridicaForm"/>
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
@@ -88,17 +98,17 @@ function buscar(){
 						<logic:iterate id="listaJuridica" name="manterJuridicaForm" property="listaClienteJuridico">
 							<tr class="fundoclaro">
 								<td align="center">
-									<a href="<%request.getContextPath();%>?task=getJuridica&seqjuridica="+<c:out value="${listaJuridica.seqjuridica}"/>+"&acao=ALTERAR">
+									<a href="javascript: getJuridica('<c:out value="${listaJuridica.seqJuridica}"/>', 'ALTERAR');">
 										<img title="Editar" src="images/icon_editar.gif">
 									</a>
 								</td>
 								<td align="center">
-									<a href="<%request.getContextPath();%>?task=getJuridica&acao=DELETAR">
+									<a href="javascript: getJuridica('<c:out value="${listaJuridica.seqJuridica}"/>', 'DELETAR');">
 										<img title="Deletar" src="images/icon_lixeira.gif">
 									</a>
 								</td>
 								<td align="center">
-									<a href="<%request.getContextPath();%>?task=getJuridica&acao=CONSULTAR">
+									<a href="javascript: getJuridica('<c:out value="${listaJuridica.seqJuridica}"/>', 'CONSULTAR');">
 										<img title="Deletar" src="images/icon_lupa.gif">
 									</a>
 								</td>

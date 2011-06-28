@@ -17,7 +17,7 @@ import com.viacao.vo.JuridicaVO;
 
 public class ManterJuridicaForm extends ActionForm {
 
-	private Integer seqjuridica;
+	private Integer seqJuridica;
 	private JuridicaVO juridicaVO;
 	private List<JuridicaVO> listaClienteJuridico;
 	private String task;
@@ -48,29 +48,31 @@ public class ManterJuridicaForm extends ActionForm {
 		if(this.tipUsuario.equals("") || this.tipUsuario == null){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.radio", "Usuário"));
 		}
-
-		if(juridicaVO.getNomResponsavel().equals("") || juridicaVO.getNomResponsavel() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome Responsável"));
-		}
-
-		if(juridicaVO.getClienteVO().getEmail().equals("") || juridicaVO.getClienteVO().getEmail() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "E-mail"));
-		}
-
-		if(juridicaVO.getNomFantasia().equals("") || juridicaVO.getNomFantasia() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome Fantasia"));
-		}
-
-		if(juridicaVO.getRazaoSocial().equals("") || juridicaVO.getRazaoSocial() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Razão Social"));
-		}
 		
-		if(juridicaVO.getCnpj().equals("") || juridicaVO.getCnpj() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "CNPJ"));
-		}
-		
-		if(juridicaVO.getNumInscricao().equals("") || juridicaVO.getNumInscricao() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Inscrição estadual"));
+		if(tipUsuario.equals("USUARIO")){
+			if(juridicaVO.getNomResponsavel().equals("") || juridicaVO.getNomResponsavel() == null){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome Responsável"));
+			}
+	
+			if(juridicaVO.getClienteVO().getEmail().equals("") || juridicaVO.getClienteVO().getEmail() == null){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "E-mail"));
+			}
+	
+			if(juridicaVO.getNomFantasia().equals("") || juridicaVO.getNomFantasia() == null){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome Fantasia"));
+			}
+	
+			if(juridicaVO.getRazaoSocial().equals("") || juridicaVO.getRazaoSocial() == null){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Razão Social"));
+			}
+			
+			if(juridicaVO.getCnpj().equals("") || juridicaVO.getCnpj() == null){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "CNPJ"));
+			}
+			
+			if(juridicaVO.getNumInscricao().equals("") || juridicaVO.getNumInscricao() == null){
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Inscrição estadual"));
+			}
 		}
 		
 		if(juridicaVO.getClienteVO().getEnderecoVO().getLogradouro().equals("")
@@ -117,12 +119,12 @@ public class ManterJuridicaForm extends ActionForm {
 		this.listaClienteJuridico = listaClienteJuridico;
 	}
 
-	public Integer getSeqjuridica() {
-		return seqjuridica;
+	public Integer getSeqJuridica() {
+		return seqJuridica;
 	}
 
-	public void setSeqjuridica(Integer seqjuridica) {
-		this.seqjuridica = seqjuridica;
+	public void setSeqJuridica(Integer seqJuridica) {
+		this.seqJuridica = seqJuridica;
 	}
 
 	public String getTask() {
