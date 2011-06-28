@@ -8,6 +8,12 @@
 		frm.task.value = 'getFisica';
 		frm.submit();
 	}
+	
+	function confirmar(){
+		var frm = document.forms[0];
+		frm.task.value = 'alterarFisica';
+		frm.submit();
+	}
 </script>
 
 <html:form action="/manterClienteFisica">
