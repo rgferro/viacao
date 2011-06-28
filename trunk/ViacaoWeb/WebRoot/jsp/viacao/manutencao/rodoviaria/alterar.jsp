@@ -1,6 +1,11 @@
 <%@ include file="/jsp/common/taglibs.jsp"%>
 
 <script type="text/javascript">
+function limpar(){
+	var frm = document.forms[0];
+		frm.task.value = 'limpar';
+		frm.submit();
+}
 function voltar(){
 	var frm = document.forms[0];
 		frm.task.value = 'unspecified';
@@ -159,7 +164,8 @@ function somenteLetraENumero(obj,e){
 							onclick="confirmar('<c:out value="${manterRodoviariaForm.seqRodoviaria}"/>')">
 					</td>
 					<td align="center">
-						<html:reset value="Limpar" title="limpa as modificações dos campos voltando ao original" styleClass="botao" />
+					<!-- 	<html:reset value="Limpar" title="limpa as modificações dos campos voltando ao original" styleClass="botao" /> -->
+						<input  value="Limpar" type="button" class="botao" onclick="limpar();"/>
 					</td>
 				</tr>
 			</table>
