@@ -63,13 +63,13 @@ function somenteLetraENumero(obj,e){
 		<tr>
 			<td>
 				<jsp:include page="/jsp/common/mensagens.jsp" />
-					<table width="100%" border="0" align="left">
-						<tr>
-							<td class="titulo">
-								Edição de Rodoviária
-							</td>
-						</tr>
-					</table>
+				<table width="100%" border="0" align="left">
+					<tr>
+						<td class="titulo">
+							Edição de Rodoviária
+						</td>
+					</tr>
+				</table>
 		<tr>
 			<td>
 				<table width="100%" border="0" align="left" id="cadastrar"
@@ -164,6 +164,6 @@ function somenteLetraENumero(obj,e){
 				</tr>
 			</table>
 		</td>
-	
+
 	</table>
 </html:form>

@@ -69,6 +69,7 @@ function somenteLetraENumero(obj,e){
 							</td>
 						</tr>
 					</table>
+					
 				<table width="100%" border="0" align="center" id="cadastrar"
 					class="bordatabela">
 					<tr class="fundoclaro">

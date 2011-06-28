@@ -42,15 +42,12 @@ public class ManterRodoviariaForm extends ActionForm {
 		if(rodoviariaVO.getNomRodoviaria().equals("") || rodoviariaVO.getNomRodoviaria() == null){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Rodoviária"));
 		}
-		
 		if(rodoviariaVO.getEnderecoVO().getLogradouro().equals("") || rodoviariaVO.getEnderecoVO().getLogradouro() == null){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Logradouro"));
 		}		
-		
 		if(rodoviariaVO.getEnderecoVO().getNumero().equals("") || rodoviariaVO.getEnderecoVO().getNumero() == null){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Número"));
 		}
-
 		if(rodoviariaVO.getEnderecoVO().getComplemento().equals("") ||rodoviariaVO.getEnderecoVO().getComplemento() == null){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Complemento"));
 		}

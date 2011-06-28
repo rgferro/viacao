@@ -100,6 +100,7 @@ var frm = document.forms[0];
 					</tr>
 				</table>
 			</td>
+			
 		</tr>
 	</table>
 </html:form>
