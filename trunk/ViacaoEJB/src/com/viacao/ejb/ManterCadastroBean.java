@@ -506,7 +506,10 @@ public class ManterCadastroBean implements SessionBean {
 	
 	public void inserirJuridica(JuridicaVO juridicaVO){
 		try {
+			EnderecoDAO enderDao = new EnderecoDAO();
 			ClienteDAO dao = new ClienteDAO();
+			enderDao.insert(juridicaVO.getClienteVO().getEnderecoVO());
+			dao.inserirCliente(juridicaVO.getClienteVO());
 			dao.inserirJuridica(juridicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em inserirJuridica :: ManterCadastroBean",e);
@@ -516,7 +519,10 @@ public class ManterCadastroBean implements SessionBean {
 	
 	public void alterarJuridica(JuridicaVO juridicaVO){
 		try {
+			EnderecoDAO enderDao = new EnderecoDAO();
 			ClienteDAO dao = new ClienteDAO();
+			enderDao.alterarEndereco(juridicaVO.getClienteVO().getEnderecoVO());
+			dao.alterarCliente(juridicaVO.getClienteVO());
 			dao.alterarJuridica(juridicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em alterarJuridica :: ManterCadastroBean",e);

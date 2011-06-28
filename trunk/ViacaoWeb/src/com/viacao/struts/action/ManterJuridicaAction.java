@@ -55,7 +55,7 @@ public class ManterJuridicaAction extends DispatchAction {
 				EstagioServices.getManterCadastroBean().inserirJuridica(frm.getJuridicaVO());
 			}else{
 				saveMessages(request, messages);
-				return mapping.findForward("inserir");
+				return mapping.findForward("cadastrar");
 			}
 		}catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
@@ -88,7 +88,7 @@ public class ManterJuridicaAction extends DispatchAction {
 		ActionMessages messages = new ActionMessages();
 		JuridicaVO juridicaVO = new JuridicaVO();
 		
-		juridicaVO.setSeqJuridica(frm.getSeqjuridica());
+		juridicaVO.setSeqJuridica(frm.getSeqJuridica());
 		
 		List<JuridicaVO> listaClienteJuridico = EstagioServices.getManterCadastroBean().getListaClienteJuridica(juridicaVO);
 		frm.setListaClienteJuridico(listaClienteJuridico);

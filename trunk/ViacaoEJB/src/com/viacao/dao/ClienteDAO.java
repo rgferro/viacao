@@ -557,6 +557,7 @@ public class ClienteDAO extends BaseDB{
 		sql.append("SELECT 		c.login 			LOGIN, ");
 		sql.append("   			c.senha 			SENHA, ");
 		sql.append("   			c.email 			EMAIL, ");
+		sql.append("   			j.seq_juridica 		SEQ_JURIDICA, ");
 		sql.append("   			j.razao_social 		RAZAO_SOCIAL, ");
 		sql.append("			j.nom_fantasia 		NOM_FANTASIA, ");
 		sql.append("			j.nom_responsavel 	NOM_RESPOSAVEL, ");
@@ -605,6 +606,7 @@ public class ClienteDAO extends BaseDB{
 				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
 				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
 				juriVO.getClienteVO().setEmail(rowSet.getString("EMAIL"));
+				juriVO.setSeqJuridica(new Integer(rowSet.getString("SEQ_JURIDICA")));
 				juriVO.setRazaoSocial(rowSet.getString("RAZAO_SOCIAL"));
 				juriVO.setNomFantasia(rowSet.getString("NOM_FANTASIA"));
 				juriVO.setNomResponsavel(rowSet.getString("NOM_RESPOSAVEL"));
