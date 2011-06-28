@@ -8,12 +8,15 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
 import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterClienteFisicaForm;
 import com.viacao.struts.form.ManterJuridicaForm;
 import com.viacao.struts.form.ManterOnibusForm;
+import com.viacao.utils.Constantes;
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.FisicaVO;
 import com.viacao.vo.JuridicaVO;
@@ -75,6 +78,8 @@ public class ManterClienteFisicaAction extends DispatchAction{
 	
 	public ActionForward alterarFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
+		ActionMessages messages = new ActionMessages();
+		messages = frm.validate(request);
 		
 		FisicaVO fisicaVO = new FisicaVO();
 		
@@ -86,10 +91,10 @@ public class ManterClienteFisicaAction extends DispatchAction{
 			
 			EstagioServices.getManterCadastroBean().alterarFisica(fisicaVO);
 		}catch (Exception e) {
-			// TODO: handle exception
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
 		
-		return null;
+		return unspecified(mapping, form, request, response);
 	}
 	
 	public ActionForward alterarCliente(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {

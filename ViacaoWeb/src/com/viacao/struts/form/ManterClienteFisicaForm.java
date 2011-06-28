@@ -3,7 +3,10 @@ package com.viacao.struts.form;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMessages;
 
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
@@ -29,6 +32,12 @@ public class ManterClienteFisicaForm extends ActionForm{
 		this.task = "";
 		this.acao = "";
 	}
+	
+	public ActionMessages validate(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 	public FisicaVO getFisicaVO() {
 		return fisicaVO;
@@ -77,6 +86,5 @@ public class ManterClienteFisicaForm extends ActionForm{
 	public void setSeqEndereco(Integer seqEndereco) {
 		this.seqEndereco = seqEndereco;
 	}
-	
-	
+		
 }
