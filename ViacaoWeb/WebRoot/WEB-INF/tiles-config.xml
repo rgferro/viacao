@@ -77,22 +77,34 @@
 		<put name="body" value="/jsp/viacao/manutencao/rodoviaria/consultar.jsp"/>
 	</definition>
 	
-	<!-- Tiles for Manter Cliente -->
+	<!-- Tiles for Manter Cliente Fisica -->
 	
-	<definition name=".cadastrar.cliente" extends="layout">
-		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/cadastrarCliente.jsp"/>
+	<definition name=".viacao.manutencao.clienteFisica.cadastrar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/cadastrar.jsp"/>
 	</definition>
-	<definition name=".deletar.cliente" extends="layout">
-		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/deletarCliente.jsp"/>
+	<definition name=".viacao.manutencao.clienteFisica.deletar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/deletar.jsp"/>
 	</definition>
-	<definition name=".alterar.cliente" extends="layout">
-		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/alterarCliente.jsp"/>
+	<definition name=".viacao.manutencao.clienteFisica.alterar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/alterar.jsp"/>
 	</definition>
-	<definition name=".listar.cliente" extends="layout">
-		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/listarFisico.jsp"/>
+	<definition name=".viacao.manutencao.clienteFisica.listar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/listar.jsp"/>
 	</definition>
-	<definition name=".consultar.cliente" extends="layout">
-		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/consultarCliente.jsp"/>
+	<definition name=".viacao.manutencao.clienteFisica.consultar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteFisico/consultar.jsp"/>
+	</definition>
+	
+	<!-- Tiles for Manter Cliente Juridica -->
+	
+	<definition name="listar.juridica" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/listar.jsp"/>
+	</definition>
+	<definition name="cadastrar.juridica" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/cadastrar.jsp"/>
+	</definition>
+	<definition name="alterar.juridica" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/alterar.jsp"/>
 	</definition>
 
 	<!-- Tiles for Login -->

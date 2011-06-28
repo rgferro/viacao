@@ -9,7 +9,8 @@
   	<form-bean name="manterItinerarioForm" type="com.viacao.struts.form.ManterItinerarioForm" />
   	<form-bean name="manterRodoviariaForm" type="com.viacao.struts.form.ManterRodoviariaForm"/>
   	<form-bean name="manterViagemForm" type="com.viacao.struts.form.ManterViagemForm"/>
-  	<form-bean name="manterClienteForm" type="com.viacao.struts.form.ManterClienteForm"/>
+  	<form-bean name="manterClienteFisicaForm" type="com.viacao.struts.form.ManterClienteFisicaForm"/>
+  	<form-bean name="manterJuridicaForm" type="com.viacao.struts.form.ManterJuridicaForm"/>
   	<form-bean name="loginForm" type="com.viacao.struts.form.LoginForm"/>
   </form-beans>
   <global-exceptions />
@@ -101,22 +102,39 @@
 		 <forward name="consultar"		path=".consultar.manter.rodoviaria"/>
 	</action>	
 	
-	<!-- manterClienteForm -->
+	<!-- manterClienteFisicaForm -->
 	
 	<action
-		attribute="manterClienteForm"
-		name="manterClienteForm"
+		attribute="manterClienteFisicaForm"
+		name="manterClienteFisicaForm"
+		path="/manterClienteFisica"
+		parameter="task"
+		scope="session"
+		type="com.viacao.struts.action.ManterClienteFisicaAction"
+		validate="false">
+		
+		<forward name="cadastrar"			path=".viacao.manutencao.clienteFisica.cadastrar" />
+		<forward name="deletar"				path=".viacao.manutencao.clienteFisica.deletar" />
+		<forward name="alterar"				path=".viacao.manutencao.clienteFisica.alterar" />
+		<forward name="listar"				path=".viacao.manutencao.clienteFisica.listar" />
+		<forward name="consultar"			path=".viacao.manutencao.clienteFisica.consultar" />
+	</action> 
+	
+	<!-- ManterJuridicaForm -->
+	
+	<action
+		attribute="manterJuridicaForm"
+		name="manterJuridicaForm"
 		path="/manterCliente"
 		parameter="task"
 		scope="session"
-		type="com.viacao.struts.action.ManterClienteAction"
+		type="com.viacao.struts.action.ManterJuridicaAction"
 		validate="false">
 		
-		<forward name="cadastrarCliente"			path=".cadastrar.cliente" />
-		<forward name="deletarCliente"				path=".deletar.cliente" />
-		<forward name="alterarCliente"				path=".alterar.cliente" />
-		<forward name="listarFisico"				path=".listar.cliente" />
-		<forward name="consultarCliente"			path=".consultar.cliente" />
+		<forward name="listar" path="listar.juridica" />
+		<forward name="cadastrar" path="cadastrar.juridica" />
+		<forward name="alterar" path="alterar.juridica" />
+		
 	</action> 
    	<action 
 			attribute="loginForm"
