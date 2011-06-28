@@ -78,3 +78,42 @@ function somenteNumero(obj,e,ast,virg,ponto){
 		return false;
 	}
 }
+
+function mudaImagemOver(obj, acao){
+
+	if(acao == "editar"){
+		obj.src = 'images/icon_editar3.png';
+	}
+	if(acao == "deletar"){
+		obj.src = 'images/icon_lixeira3.png';
+	}
+	if(acao == "confirmar"){
+		obj.src = 'images/accept1.png';
+	}
+	if(acao == "pesquisar"){
+		obj.src = 'images/zoom.png';
+	}
+	if(acao == "cancelar"){
+		obj.src = 'images/delete1.png';
+	}
+
+}
+function mudaImagemOut(obj, acao){
+
+	if(acao == "editar"){
+		obj.src = 'images/icon_editar3off.png';
+	}
+	if(acao == "deletar"){
+		obj.src = 'images/icon_lixeira3off.png';
+	}
+	if(acao == "confirmar"){
+		obj.src = 'images/acceptoff.png';
+	}
+	if(acao == "pesquisar"){
+		obj.src = 'images/zoomoff.png';
+	}
+	if(acao == "cancelar"){
+		obj.src = 'images/deleteoff.png';
+	}
+
+}
