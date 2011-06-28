@@ -80,7 +80,7 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="30"
-								name="manterRodoviariaForm"
+								name="manterRodoviariaForm" maxlength="20"
 								property="rodoviariaVO.nomRodoviaria" />
 						</td>
 						<td class="texto" align="left" width="05%">
@@ -88,7 +88,7 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="20" maxlength="20"
-								name="manterRodoviariaForm"
+								name="manterRodoviariaForm" 
 								property="rodoviariaVO.enderecoVO.estado"
 								onkeypress="return somenteLetra(this,event)" />
 						</td>
@@ -99,7 +99,7 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="30"
-								name="manterRodoviariaForm"
+								name="manterRodoviariaForm" maxlength="30"
 								property="rodoviariaVO.enderecoVO.cidade"
 								onkeypress="return somenteLetra(this,event)" />
 						</td>
@@ -108,7 +108,7 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="20"
-								name="manterRodoviariaForm"
+								name="manterRodoviariaForm"  maxlength="30"
 								property="rodoviariaVO.enderecoVO.bairro"
 								onkeypress="return somenteLetra(this,event)" />
 						</td>
@@ -119,7 +119,7 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="95%" colspan="3">
 							<html:text styleClass="input" size="85"
-								name="manterRodoviariaForm"
+								name="manterRodoviariaForm" maxlength="50"
 								property="rodoviariaVO.enderecoVO.logradouro"
 								onkeypress="return somenteLetra(this,event)" />
 						</td>
@@ -139,7 +139,7 @@ function somenteLetraENumero(obj,e){
 						</td>
 						<td width="45%">
 							<html:text styleClass="input" size="20"
-								name="manterRodoviariaForm"
+								name="manterRodoviariaForm" maxlength="20"
 								property="rodoviariaVO.enderecoVO.complemento"
 								onkeypress="return somenteLetraENumero(this,event)" />
 						</td>
@@ -151,15 +151,15 @@ function somenteLetraENumero(obj,e){
 			<table width="100%" border="0" align="center">
 				<tr>
 					<td align="center">
-						<input type="button" class="botao" value="Voltar"
+						<input type="button" class="botao" title="Volta para a pagina de busca e lista de rodoviarias" value="Voltar"
 							onclick="voltar()">
 					</td>
 					<td align="center">
-						<input type="button" class="botao" value="Confirmar"
+						<input type="button" class="botao" value="Confirmar" title="Envia as modificações dos campos, tornando-as originais"
 							onclick="confirmar('<c:out value="${manterRodoviariaForm.seqRodoviaria}"/>')">
 					</td>
 					<td align="center">
-						<html:reset value="Resetar" styleClass="botao" />
+						<html:reset value="Limpar" title="limpa as modificações dos campos voltando ao original" styleClass="botao" />
 					</td>
 				</tr>
 			</table>
