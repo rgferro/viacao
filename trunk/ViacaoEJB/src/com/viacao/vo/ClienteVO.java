@@ -5,11 +5,11 @@ import com.acol.util.StringUtil;
 
 public class ClienteVO {
 	
-	Integer seqCliente;
-	EnderecoVO enderecoVO;
-	String login;
-	String senha;
-	String email;
+	private Integer seqCliente;
+	private EnderecoVO enderecoVO;
+	private String login;
+	private String senha;
+	private String email;
 	
 	public boolean isEmpty(){
 		if(IntegerUtils.empty(this.seqCliente)){
