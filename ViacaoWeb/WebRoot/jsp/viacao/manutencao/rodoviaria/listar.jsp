@@ -73,7 +73,6 @@ function mudaImagemOut(obj, acao){
 		<tr>
 			<td>
 				<jsp:include page="/jsp/common/mensagens.jsp" />
-
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">

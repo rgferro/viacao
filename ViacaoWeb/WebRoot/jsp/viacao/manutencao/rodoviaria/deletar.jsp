@@ -16,7 +16,6 @@ function voltar(){
 <html:form action="/manterRodoviaria">
 	<html:hidden property="seqRodoviaria" name="manterRodoviariaForm" />
 	<html:hidden property="task" name="manterRodoviariaForm" />
-
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>

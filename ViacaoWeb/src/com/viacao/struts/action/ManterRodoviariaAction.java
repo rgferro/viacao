@@ -78,6 +78,7 @@ public class ManterRodoviariaAction extends DispatchAction{
 		getRodoviaria(frm);
 		return mapping.findForward("alterar");
 	}
+	
 	public ActionForward confirmaAlterar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		ManterRodoviariaForm frm = (ManterRodoviariaForm)form;
 		ActionMessages messages = frm.validate(request);
