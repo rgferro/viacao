@@ -83,8 +83,7 @@ function mudaImagemOut(obj, acao){
 				<table>
 					<tr>
 						<td class="link">
-							<a href="<%request.getContextPath();%>?task=inserir"><img
-									src="images/fetch.gif" border="0" /> Cadastrar Nova Rodoviária</a>
+							<img src="images/fetch.gif" border="0" /> <a href="<%request.getContextPath();%>?task=inserir">Cadastrar Nova Rodoviária</a>
 						</td>
 					</tr>
 				</table>
