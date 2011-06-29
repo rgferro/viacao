@@ -96,5 +96,9 @@ public interface IBaseDB {
 	 * @throws DAOException Em caso de SQLException
 	 */
 	public abstract CachedRowSet executeQuery(PreparedStatement p) throws DAOException;
-
+	
+	public abstract CachedRowSet executeQuery(String statement) throws DAOException;
+	
+	public abstract int getSequenceNextValue(String seqName) throws DAOException;
+	
 }

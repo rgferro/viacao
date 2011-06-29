@@ -186,6 +186,19 @@ public abstract class BaseDB implements IBaseDB{
 	 * @return Uma implementação do CachedRowSet
 	 * @throws DAOException Em caso de ocorrência de SQLException
 	 */
+	public CachedRowSet executeQuery(PreparedStatement p) throws DAOException{
+		try {
+			rowSet = new CachedRowSet();
+			rowSet.populate(p.executeQuery());
+			rowSet.beforeFirst();
+		
+			return rowSet; 
+		} catch (SQLException e) {
+			logger.fatal("Erro ao executar query", e);
+			throw new DAOException(e);
+		}
+	}
+	
 	public CachedRowSet executeQuery(String statement) throws DAOException {
 		try {
 			if (stmt == null) {
@@ -201,7 +214,15 @@ public abstract class BaseDB implements IBaseDB{
 			throw new DAOException(e) ;
 		}
 	}
-
+	
+	/**
+	 * Obs.: Cuidado ao utilizar esse método pois ele abrira uma conection (<code>connect()</code>) e ao final,
+	 * executará o <code>release()</code>. Portanto, se vc o utilizar no meio do seu metodo, ele irá fechar a conection
+	 * atual do dao. Use esse método no inicio de seus métodos.
+	 * @param seqName String
+	 * @return int next sequence value
+	 * @throws DAOException - erro inesperado
+	 */
 	public int getSequenceNextValue(String seqName) throws DAOException {
 		try {
 			String sql = "SELECT " + seqName + ".NEXTVAL FROM DUAL";
@@ -212,9 +233,12 @@ public abstract class BaseDB implements IBaseDB{
 				return -1;
 			}
 		} catch (Exception e) {
-			throw new DAOException(e);
+			throw new DAOException(e) ;
 		} finally {
 			release();
 		}
 	}
+
+
+
 }
