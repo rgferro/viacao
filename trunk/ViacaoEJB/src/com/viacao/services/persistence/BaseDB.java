@@ -186,18 +186,35 @@ public abstract class BaseDB implements IBaseDB{
 	 * @return Uma implementação do CachedRowSet
 	 * @throws DAOException Em caso de ocorrência de SQLException
 	 */
-	public CachedRowSet executeQuery(PreparedStatement p) throws DAOException{
+	public CachedRowSet executeQuery(String statement) throws DAOException {
 		try {
+			if (stmt == null) {
+				getStmt();
+			}
+			
 			rowSet = new CachedRowSet();
-			rowSet.populate(p.executeQuery());
+			rowSet.populate(stmt.executeQuery(statement));
 			rowSet.beforeFirst();
-		
+			
 			return rowSet; 
 		} catch (SQLException e) {
-			logger.fatal("Erro ao executar query", e);
-			throw new DAOException(e);
+			throw new DAOException(e) ;
 		}
 	}
 
-
+	public int getSequenceNextValue(String seqName) throws DAOException {
+		try {
+			String sql = "SELECT " + seqName + ".NEXTVAL FROM DUAL";
+			CachedRowSet rs = executeQuery(sql);
+			if (rs.next()) {
+				return rs.getInt(1);
+			} else {
+				return -1;
+			}
+		} catch (Exception e) {
+			throw new DAOException(e);
+		} finally {
+			release();
+		}
+	}
 }
