@@ -14,7 +14,7 @@ function alterar(seqRodoviaria){
 	frm.submit();
 
 }
-function deletar(seqRodoviaria){
+function deletar(seqRodoviaria){ 
 	var frm = document.forms[0];
 		frm.seqRodoviaria.value = seqRodoviaria;
 		frm.task.value = 'deletar';
