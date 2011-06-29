@@ -27,7 +27,6 @@ function consultar(seqRodoviaria){
 	frm.submit();	
 }
 function mudaImagemOver(obj, acao){
-
 	if(acao == "editar"){
 		obj.src = 'images/icon_editar3.png';
 	}
