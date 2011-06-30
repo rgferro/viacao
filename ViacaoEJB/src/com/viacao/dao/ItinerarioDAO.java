@@ -35,13 +35,13 @@ public class ItinerarioDAO extends BaseDB{
 		sql.append(" seq_itinerario,  \n");
 		sql.append(" seq_rodoviaria_origem_fk,  \n");
 		sql.append(" seq_rodoviaria_destino_fk,  \n");
-		sql.append(" tempo_viagem, valor_passagem)  \n");
+		sql.append(" tempo_viagem)  \n");
 		sql.append(" VALUES ( \n");
 		sql.append(" seq_itinerario.nextval,  \n");
 		sql.append(" ?,  \n");
 		sql.append(" ?,  \n");
-		sql.append(" to_date( ?, 'HH24:MI:SS'),  \n");
-		sql.append(" ?) \n");
+		sql.append(" to_date( ? )) \n");
+		//sql.append(" ?) \n");
 		
 		return sql.toString();
 	}
@@ -57,8 +57,8 @@ public class ItinerarioDAO extends BaseDB{
 			pstmt = getPstmt(getSQLInserir());
 			pstmt.setInt(1, itinerarioVo.getRodoviariaOrigemVO().getSeqRodoviaria());
 			pstmt.setInt(2, itinerarioVo.getRodoviariaDestinoVO().getSeqRodoviaria());
-			pstmt.setString(3, itinerarioVo.getTempoViagem().getHoraMinutoSegundo());
-			pstmt.setDouble(4, itinerarioVo.getValorPassagem());
+			pstmt.setString(3, itinerarioVo.getTempoViagem());
+			//pstmt.setDouble(4, itinerarioVo.getValorPassagem());
 			pstmt.executeQuery();
 			
 		} catch(SQLException e) {
@@ -119,7 +119,7 @@ public class ItinerarioDAO extends BaseDB{
 			pstmt = getPstmt(getSQLAlterar());
 			pstmt.setInt(1, itinerarioVo.getRodoviariaOrigemVO().getSeqRodoviaria());
 			pstmt.setInt(2, itinerarioVo.getRodoviariaDestinoVO().getSeqRodoviaria());
-			pstmt.setString(3, itinerarioVo.getTempoViagem().getData());
+			pstmt.setString(3, itinerarioVo.getTempoViagem());
 			pstmt.setDouble(4, itinerarioVo.getValorPassagem());
 			pstmt.setInt(5, itinerarioVo.getSeqItinerario());
 			pstmt.executeUpdate();
