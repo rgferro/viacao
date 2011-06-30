@@ -84,7 +84,7 @@ function somenteLetraENumero(obj,e){
 							Rodoviária:
 						</td>
 						<td width="45%">
-							<html:text styleClass="input" size="30"
+							<html:text styleClass="inputobrigatorio" size="30"
 								name="manterRodoviariaForm" maxlength="20"
 								property="rodoviariaVO.nomRodoviaria" />
 						</td>
@@ -92,7 +92,7 @@ function somenteLetraENumero(obj,e){
 							Estado:
 						</td>
 						<td width="45%">
-							<html:text styleClass="input" size="20" maxlength="20"
+							<html:text styleClass="inputobrigatorio" size="20" maxlength="20"
 								name="manterRodoviariaForm" 
 								property="rodoviariaVO.enderecoVO.estado"
 								onkeypress="return somenteLetra(this,event)" />
@@ -103,7 +103,7 @@ function somenteLetraENumero(obj,e){
 							Cidade:
 						</td>
 						<td width="45%">
-							<html:text styleClass="input" size="30"
+							<html:text styleClass="inputobrigatorio" size="30"
 								name="manterRodoviariaForm" maxlength="30"
 								property="rodoviariaVO.enderecoVO.cidade"
 								onkeypress="return somenteLetra(this,event)" />
@@ -112,7 +112,7 @@ function somenteLetraENumero(obj,e){
 							Bairro:
 						</td>
 						<td width="45%">
-							<html:text styleClass="input" size="20"
+							<html:text styleClass="inputobrigatorio" size="20"
 								name="manterRodoviariaForm"  maxlength="30"
 								property="rodoviariaVO.enderecoVO.bairro"
 								onkeypress="return somenteLetra(this,event)" />
@@ -123,7 +123,7 @@ function somenteLetraENumero(obj,e){
 							Logradouro:
 						</td>
 						<td width="95%" colspan="3">
-							<html:text styleClass="input" size="85"
+							<html:text styleClass="inputobrigatorio" size="85"
 								name="manterRodoviariaForm" maxlength="50"
 								property="rodoviariaVO.enderecoVO.logradouro"
 								onkeypress="return somenteLetra(this,event)" />
@@ -134,7 +134,7 @@ function somenteLetraENumero(obj,e){
 							Número:
 						</td>
 						<td width="45%">
-							<html:text styleClass="input" size="7" maxlength="5"
+							<html:text styleClass="inputobrigatorio" size="7" maxlength="5"
 								name="manterRodoviariaForm"
 								property="rodoviariaVO.enderecoVO.numero"
 								onkeypress="return somenteNumero(this,event,false,false,false)" />
@@ -170,6 +170,6 @@ function somenteLetraENumero(obj,e){
 				</tr>
 			</table>
 		</td>
-
+		
 	</table>
 </html:form>
