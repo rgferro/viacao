@@ -33,13 +33,10 @@ public class ManterItinerarioAction extends DispatchAction{
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		form.inicializar();
 		form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
-		form.setListaRodoviaria(EstagioServices.getManterCadastroBean().getListaRodoviaria(new RodoviariaVO()));
-		form.setListaRodoviariaDestino(EstagioServices.getManterCadastroBean().getListaRodoviaria(new RodoviariaVO()));
+		form.setListaRodoviaria(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
+		form.setListaRodoviariaDestino(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
 		
-		return mapping.findForward("cadastrar");
-		
-		//return forwardListar(mapping, form, request, response);
-		
+		return mapping.findForward("cadastrar");		
 	}
 	
 	/**
@@ -61,6 +58,10 @@ public class ManterItinerarioAction extends DispatchAction{
 			form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
 			
 			CollectionsUtil.sort(form.getListaTarifas(), "nomTarifa");
+			
+			form.getItinerarioVo().setListaTarifas(form.getListaTarifasEscolhidas());
+			form.getItinerarioVo().setRodoviariaOrigemVO(form.getListaRodoviaria().get(0));
+			form.getItinerarioVo().setRodoviariaDestinoVO(form.getListaRodoviaria().get(0));
 			
 			EstagioServices.getManterCadastroBean().inserirItinerario(form.getItinerarioVo());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
