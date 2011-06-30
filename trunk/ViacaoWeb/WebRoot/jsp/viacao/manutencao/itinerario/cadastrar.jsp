@@ -20,11 +20,18 @@ function limparCampos(){
 	frm.submit();
 }
 
+function cadastrar(){
+	var frm = document.forms[0];
+	frm.task.value = "cadastrarItinerario";
+	frm.submit();
+}
+
 </script>
 
 <html:form action="/manterItinerario">
 
 <html:hidden name="manterItinerarioForm" property="task"/>
+<html:hidden name="manterItinerarioForm" property="seqRodoviaria"/>
 
 <table width="600" border="0" align="center" >
 	<tr>
@@ -37,20 +44,20 @@ function limparCampos(){
 				<tr class="fundoescuro">
 					<td class="texto" align="center" width="20%">Origem:</td>
 					<td width="30%">
-						<html:select name="manterItinerarioForm" property="seq" styleClass="input">
-							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviaria" />							
+						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.seqRodoviaria" styleClass="input">
+							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviaria" label="nomRodoviaria" value="seqRodoviaria" />							
 						</html:select>						
 					</td>
 					<td class="texto" align="center" width="20%">Destino:</td>
 					<td width="30%">
-						<html:select name="manterItinerarioForm" property="seq" styleClass="input">
-							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaDestino" />							
+						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.seqRodoviaria" styleClass="input">
+							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaDestino" label="nomRodoviaria" value="seqRodoviaria" />							
 						</html:select>
 					</td>
 				</tr>
 				<tr class="fundoescuro">
 					<td class="texto" align="center" width="20%">Tempo de Viagem</td>
-					<td class="texto" colspan="3" width="80%"><input class="input" size="20" value="">min.</td>
+					<td class="texto" colspan="3" width="80%"><html:text styleClass="input" size="20" name="manterItinerarioForm" property="itinerarioVo.tempoViagem" />min.</td>					
 				</tr>				
 			</table>			
 				<table width="100%" border="0" align="center">
@@ -88,9 +95,9 @@ function limparCampos(){
 				</table>			
 			<table width="100%" border="0" align="center">
 				<tr>
-					<td align="center"><input class="botao" value="Voltar"></td>
-					<td align="center"><input class="botao" value="Cadastrar"></td>
-					<td align="center"><input class="botao" value="Limpar" onclick="javascript: limparCampos();"></td>
+					<td align="center"><html:button value="Voltar" property="" styleClass="botao" /></td>
+					<td align="center"><html:button value="Cadastrar" property="" styleClass="botao" onclick="javascript: cadastrar();" /></td>
+					<td align="center"><html:button value="Limpar" property="" styleClass="botao" onclick="javascript: limparCampos();" /></td>
 				</tr>
 			</table>
 		</td>
