@@ -5,8 +5,6 @@ package com.viacao.vo;
 
 import java.util.List;
 
-import com.acol.vo.DataVO;
-
 /**
  * @author Wallace Gonçalves
  *
@@ -20,7 +18,7 @@ public class ItinerarioVo {
 	private RodoviariaVO rodoviariaDestinoVO;
 	private TarifaVO tarifaVO;	
 	private List<TarifaVO> listaTarifas;
-	private DataVO tempoViagem;
+	private String tempoViagem;
 	
 	
 	/**
@@ -112,14 +110,14 @@ public class ItinerarioVo {
 	 * Obtém o atributo tempoViagem
 	 * @return Valor do atributo tempoViagem
 	 */
-	public DataVO getTempoViagem() {
+	public String getTempoViagem() {
 		return tempoViagem;
 	}
 	/**
 	 * Altera o atributo tempoViagem
 	 * @param tempoViagem Novo valor do atributo
 	 */
-	public void setTempoViagem(DataVO tempoViagem) {
+	public void setTempoViagem(String tempoViagem) {
 		this.tempoViagem = tempoViagem;
 	}
 }
