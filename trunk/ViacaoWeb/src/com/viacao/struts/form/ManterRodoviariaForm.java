@@ -39,25 +39,25 @@ public class ManterRodoviariaForm extends ActionForm {
 	public ActionMessages validate(HttpServletRequest request){
 		ActionMessages messages = new ActionMessages();
 		
-		if(rodoviariaVO.getNomRodoviaria().equals("") || rodoviariaVO.getNomRodoviaria() == null){
+		if(StringUtil.empty(rodoviariaVO.getNomRodoviaria())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Rodoviária"));
 		}
-		if(rodoviariaVO.getEnderecoVO().getLogradouro().equals("") || rodoviariaVO.getEnderecoVO().getLogradouro() == null){
+		if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getLogradouro())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Logradouro"));
 		}		
-		if(rodoviariaVO.getEnderecoVO().getNumero().equals("") || rodoviariaVO.getEnderecoVO().getNumero() == null){
+		if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getNumero())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Número"));
 		}
-		if(rodoviariaVO.getEnderecoVO().getComplemento().equals("") ||rodoviariaVO.getEnderecoVO().getComplemento() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Complemento"));
-		}
-		if(rodoviariaVO.getEnderecoVO().getBairro().equals("") || rodoviariaVO.getEnderecoVO().getBairro() == null){
+//		if(rodoviariaVO.getEnderecoVO().getComplemento().equals("") ||rodoviariaVO.getEnderecoVO().getComplemento() == null){
+//			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Complemento"));
+//		}
+		if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getBairro())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Bairro"));
 		}
-		if(rodoviariaVO.getEnderecoVO().getCidade().equals("") || rodoviariaVO.getEnderecoVO().getCidade() == null){
+		if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getCidade())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Cidade"));
 		}
-		if(rodoviariaVO.getEnderecoVO().getEstado().equals("") || rodoviariaVO.getEnderecoVO().getEstado() == null){
+		if(StringUtil.empty(rodoviariaVO.getEnderecoVO().getEstado())){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Estado"));
 		}
 		
