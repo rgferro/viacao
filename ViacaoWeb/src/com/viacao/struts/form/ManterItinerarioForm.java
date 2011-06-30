@@ -26,10 +26,11 @@ public class ManterItinerarioForm extends ActionForm{
 	private List<ItinerarioVo> listaItinerario;
 	private List<RodoviariaVO> listaRodoviaria;
 	private List<RodoviariaVO> listaRodoviariaDestino;
-	private Integer seq;
+	private Integer seqRodoviaria;
 	private Integer cboTarifa;
 	private Integer cboTarifaDestino;
 	private String task;
+	private String tempoViagem;
 	private boolean isconfirme;
 	
 	public void inicializar(){
@@ -39,10 +40,12 @@ public class ManterItinerarioForm extends ActionForm{
 		this.listaTarifasEscolhidas = new ArrayList<TarifaVO>();
 		this.listaRodoviaria = new ArrayList<RodoviariaVO>();
 		this.listaRodoviariaDestino = new ArrayList<RodoviariaVO>();
-		this.seq = new Integer(0);
+		this.seqRodoviaria = new Integer(0);
 		this.cboTarifa = new Integer(0);
 		this.cboTarifaDestino = new Integer(0);
 		this.isconfirme = false;
+		this.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
+		this.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
 	}
 
 	/**
@@ -203,23 +206,37 @@ public class ManterItinerarioForm extends ActionForm{
 	 */
 	public void setListaRodoviariaDestino(List<RodoviariaVO> listaRodoviariaDestino) {
 		this.listaRodoviariaDestino = listaRodoviariaDestino;
+	}	
+
+	/**
+	 * Obtém o atributo tempoViagem
+	 * @return Valor do atributo tempoViagem
+	 */
+	public String getTempoViagem() {
+		return tempoViagem;
 	}
 
 	/**
-	 * Obtém o atributo seq
-	 * @return Valor do atributo seq
+	 * Altera o atributo tempoViagem
+	 * @param tempoViagem Novo valor do atributo
 	 */
-	public Integer getSeq() {
-		return seq;
+	public void setTempoViagem(String tempoViagem) {
+		this.tempoViagem = tempoViagem;
 	}
 
 	/**
-	 * Altera o atributo seq
-	 * @param seq Novo valor do atributo
+	 * Obtém o atributo seqRodoviaria
+	 * @return Valor do atributo seqRodoviaria
 	 */
-	public void setSeq(Integer seq) {
-		this.seq = seq;
+	public Integer getSeqRodoviaria() {
+		return seqRodoviaria;
 	}
 
-	
+	/**
+	 * Altera o atributo seqRodoviaria
+	 * @param seqRodoviaria Novo valor do atributo
+	 */
+	public void setSeqRodoviaria(Integer seqRodoviaria) {
+		this.seqRodoviaria = seqRodoviaria;
+	}	
 }
