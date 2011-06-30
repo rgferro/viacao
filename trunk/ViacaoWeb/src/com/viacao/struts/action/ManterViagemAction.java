@@ -35,15 +35,15 @@ public class ManterViagemAction extends DispatchAction{
 	public ActionForward listarViagem(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterViagemForm frm = (ManterViagemForm)form;
 		ViagemVO viagemVO = new ViagemVO();
-//		frm.setListaViagem(EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO()));
+		frm.setListaViagem(EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO()));
 		
 			return mapping.findForward("listar");
 	}
 	
 	public ActionForward paginaCadastrarViagem(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterViagemForm frm = (ManterViagemForm)form;
-//		frm.setListaItinerario(EstagioServices.getManterCadastroBean().listaItinerario(new ItinerarioVo()));
-//		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(new OnibusVO()));
+		frm.setListaItinerario(EstagioServices.getManterCadastroBean().listaItinerario(new ItinerarioVo()));
+		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(new OnibusVO()));
 		
 			return mapping.findForward("cadastrar");
 	}
