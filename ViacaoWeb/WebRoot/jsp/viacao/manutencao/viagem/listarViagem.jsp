@@ -6,11 +6,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <link type="text/css" href="css/custom-theme/jquery-ui-1.8.13.custom.css" rel="stylesheet"/>	
-<script type="text/javascript" src="js/jquery-1.5.1.min.js"/>
-<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"/>
-<script type="text/javascript"/>
+<script type="text/javascript" src="js/jquery-1.5.1.min.js">
+<script type="text/javascript"></script>
 
-
+<script>
 function selecionar(acao, seq){
 	var frm = document.forms[0];
 	frm.acao.value = acao;
@@ -70,12 +69,13 @@ function mudaImagemOut(obj, acao){
 
 <html:form action="/manterViagem">
 <html:hidden property="task" name="manterViagemForm"/>
-<html:hidden property="acao" name="manterViagemmanterForm"/>
-<html:hidden property="empresaParam" name="manterViagemForm"/>
-<html:hidden property="tipoParam" name="manterViagemForm"/>
-<html:hidden property="qtdPoltronaParam" name="manterViagemForm"/>
-<html:hidden property="placaParam" name="manterViagemForm"/>
-<html:hidden property="seqOnibus" name="manterViagemForm"/>
+<html:hidden property="acao" name="manterViagemForm"/>
+<html:hidden property="viagemVO" name="manterViagemForm"/>
+<html:hidden property="listaViagem" name="manterViagemForm"/>
+<html:hidden property="listaItinerario" name="manterViagemForm"/>
+<html:hidden property="seqViagem" name="manterViagemForm"/>
+<html:hidden property="horaSaida" name="manterViagemForm"/>
+<html:hidden property="horaChegada" name="manterViagemForm"/>
 	
 	<table width="600" border="0" align="center">
 		<tr>
