@@ -3,8 +3,12 @@
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 
+<link href="css/portal.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/custom-theme/jquery-ui-1.8.13.custom.css" type="text/css"></link>
+
+<script type="text/javascript" src="js/jquery-ui-1.8.13.custom.min.js"></script>
+<script type="text/javascript" src="js/jquery-1.5.1.min.js"></script>
 
 <script type="text/javascript">
 
@@ -19,12 +23,39 @@ function voltar(){
 	frm.task.value = 'unspecified';
 	frm.submit();
 }
+
+function adicionar() {
+	var frm = document.forms[0];
+	frm.task.value = "adicionarLista";	
+	frm.submit();
+}
+
+function remover() {
+	var frm = document.forms[0];
+	frm.task.value = "removerLista";
+	frm.submit();
+}
+
+$(function() {
+	$( "#datepicker" ).datepicker({
+		showOn: "button",
+		buttonImage: "images/calendar.gif",
+		buttonImageOnly: true
+	});
+});
 </script>
 
 
-<link href="css/portal.css" rel="stylesheet" type="text/css">
 <html:form action="/manterViagem">
-<html:hidden property="task" name="manterViagemForm"/>
+
+<html:hidden name="manterViagemForm" property="task"/>
+<html:hidden name="manterViagemForm" property="viagemVO"/>
+<html:hidden name="manterViagemForm" property="listaViagem"/>
+<html:hidden name="manterViagemForm" property="listaItinerario"/>
+<html:hidden name="manterViagemForm" property="listaOnibus"/>
+<html:hidden name="manterViagemForm" property="acao"/>
+<html:hidden name="manterViagemForm" property="cadastrar"/>
+
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
@@ -34,54 +65,41 @@ function voltar(){
 						<td class="titulo">Cadastramento de Viagens
 						</td>
 					</tr>
-					<br>
-					<tr class="fundoescuro">
-						<td colspan="4" align="center" class="texto">Cadastrar Viagem
-						</td>
-					</tr>
 				</table>
 				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
 					<tr class="fundoclaro">
-						<td class="texto" width="13%" height="20" align="center">Itinerário
+						<td class="texto" width="20%" height="20" align="center">Itinerário
 						</td>
 						<td width="37%">
-							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="inputobrigatorio">
-    							<html:option value="">CADASTRAR</html:option>
+							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="input">
     							<html:optionsCollection  name="manterViagemForm" property="listaItinerario" label="origemDestino" value="seqItinerario"/>
+    						</html:select>
+						</td>
+					</tr>
+					<tr class="fundoclaro">
+						<td class="texto" width="13%" height="20" align="center">Tipo de Ônibus
+						</td>
+						<td width="37%">
+							<html:select name="manterViagemForm" property="viagemVO.onibuisVO.seqOnibus" styleId="lista" styleClass="input">
+								<html:optionsCollection  name="manterViagemForm" property="listaOnibus" label="listaTipoOnibus" value="seqOnibus"/>	
     						</html:select>
 						</td>
 						<td class="texto" width="13%" height="20" align="center">Data
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida.data"/><img src="images/icone-calendario.jpg" class="link" align="center"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input" styleId="datepicker"/>
 						</td>	
 					</tr>
-					<br>
 					<tr class="fundoclaro">
 						<td class="texto" width="05%" align="center">Hora Saída
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinutoSegundo"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/>
 						</td>
 						<td class="texto" width="05%" align="center">Hora Chegada
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinutoSegundo"/>
-						</td>
-					</tr>
-					<br>
-					<tr class="fundoclaro">
-						<td class="texto" width="13%" height="20" align="center">Tipo de Ônibus
-						</td>
-						<td width="37%">
-							<html:select name="manterViagemForm" property="listaOnibus" styleId="lista" styleClass="inputobrigatorio">
-    							<html:option value=""></html:option>
-    							<logic:iterate id="lista" name="manterViagemForm" property="listaOnibus">
-    								<html:option value="${lista.seqOnibus}">
-    									<c:out value="${lista.tipo}"/>
-    								</html:option>
-    							</logic:iterate>
-    						</html:select>
+							<html:text name="manterViagemForm" property="viagemVO.horaChegada" styleClass="input"/>
 						</td>
 					</tr>
 				</table>
@@ -89,16 +107,16 @@ function voltar(){
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td align="center">
-							<html:button styleClass="botao" value="Voltar" property="" onclick="voltar();"/>
+							<img title="Voltar" property="" src="images/seta-esquerda.gif.png" border="0" height="20" width="20" onclick="executar();"/>
 						</td>	
 						<td align="center">
-							<html:button styleClass="botao" value="Cadastrar" property="" onclick="confirmar();"/>
+							<html:reset title="Limpar" styleClass="botao" value="Limpar"/>
 						</td>	
 						<td align="center">
-							<html:reset styleClass="botao" value="Limpar"/>
+							<img title="Confirmar Cadastro" property="" src="images/confirmar.png" border="0" height="20" width="20" onclick="confirmar();"/>
 						</td>	
 					</tr>
-				</table>
+			</table>
 		</tr>
 	</table>	
 </html:form>
