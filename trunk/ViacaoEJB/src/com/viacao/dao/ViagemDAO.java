@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 import com.acol.exception.DAOException;
+import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.DataVO;
 import com.viacao.vo.ItinerarioVo;
@@ -186,23 +187,23 @@ public class ViagemDAO extends BaseDB {
 		sql.append(" WHERE 	it.seq_itinerario = vg.seq_itinerario_fk (+) ");
 		sql.append(" AND 	o.seq_onibus = vg.seq_onibus_fk ");
 		// filtro por origem da viagem
-		if(vgVO.getItinerarioVo() != null){
+		if(!StringUtil.empty(vgVO.getItinerarioVo().getRodoviariaOrigemVO().getNomRodoviaria())){
 			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) LIKE upper('%" + vgVO.getItinerarioVo().getRodoviariaOrigemVO().getNomRodoviaria() + "%') ");
 		}
 		// filtro por destino da viagem
-		if(vgVO.getItinerarioVo() != null){
+		if(!StringUtil.empty(vgVO.getItinerarioVo().getRodoviariaDestinoVO().getNomRodoviaria())){
 			sql.append(" AND (SELECT r.nom_rodoviaria FROM rodoviaria r WHERE r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) LIKE upper('%" + vgVO.getItinerarioVo().getRodoviariaDestinoVO().getNomRodoviaria() + "%') ");
 		}
 		// filtro por tipo de ônibus
-		if(vgVO.getOnibusVO() != null){
+		if(!StringUtil.empty(vgVO.getOnibusVO().getTipo())){
 			sql.append(" AND (SELECT o.tipo FROM onibus o WHERE o.seq_onibus = vg.seq_onibus_fk) LIKE upper ('%"+ vgVO.getOnibusVO().getTipo() +"%') ");
 		}
 		// filtro por data partida
-		if(vgVO.getHoraSaida() != null){
+		if(!StringUtil.empty(vgVO.getHoraSaida().getData())){
 			sql.append(" AND to_char(vg.data_hora_saida, 'DD/MM/YYYY') = '"+ vgVO.getHoraSaida().getData() +"' ");
 		}
 		// filtro por hora partida
-		if(vgVO.getHoraSaida() != null){
+		if(!StringUtil.empty(vgVO.getHoraSaida().getHora())){
 			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '"+ vgVO.getHoraSaida().getHoraMinutoSegundo() +"' ");
 		}
 		
@@ -210,14 +211,14 @@ public class ViagemDAO extends BaseDB {
 		return sql.toString();
 	}
 	
-	public List< ViagemVO > getListaViagem (ViagemVO viagemVO)throws Exception, DAOException{
+	public List<ViagemVO> getListaViagem (ViagemVO viagemVO)throws Exception, DAOException{
 		try{
 			pstmt = getPstmt(getSQLListaViagem(viagemVO));
 			
 			rowSet = executeQuery(pstmt);
 			List<ViagemVO> lista = new ArrayList<ViagemVO>();
 			
-			while(rowSet.next()){
+			while(next()){
 				ViagemVO viagem = new ViagemVO();
 				viagem.setSeqViagem(new Integer(rowSet.getInt("seq_viagem")));
 				viagem.setItinerarioVo(new ItinerarioVo());
@@ -242,11 +243,6 @@ public class ViagemDAO extends BaseDB {
 		finally{
 			release();
 		}
-	}
-
-	public CachedRowSet executeQuery(PreparedStatement p) throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 }

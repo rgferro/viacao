@@ -73,7 +73,7 @@ function voltar(){
 						<td class="texto" align="left" width="13%">Data
 						</td>
 						<td width="33%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input" styleId="datepicker" disabled="disabled"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/><img src="images/calendar.gif" styleId="datepicker"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">

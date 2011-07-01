@@ -59,7 +59,14 @@ $(function() {
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
-			<jsp:include page="/jsp/common/mensagens.jsp" />
+			<jsp:include page="/jsp/common/mensagens.jsp"/>
+			<table width="100%" border="0" align="center">
+				<tr>
+					<td class="titulo">Cadastrar Viagem
+					</td>
+				</tr>
+				</table>
+				<br>
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">Cadastramento de Viagens
@@ -68,7 +75,7 @@ $(function() {
 				</table>
 				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
 					<tr class="fundoclaro">
-						<td class="texto" width="20%" height="20" align="center">Itinerário
+						<td class="texto" width="20%" height="20" align="left">Itinerário
 						</td>
 						<td width="37%">
 							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="input">
@@ -77,26 +84,26 @@ $(function() {
 						</td>
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" width="13%" height="20" align="center">Tipo de Ônibus
+						<td class="texto" width="13%" height="20" align="left">Tipo de Ônibus
 						</td>
 						<td width="37%">
 							<html:select name="manterViagemForm" property="viagemVO.onibuisVO.seqOnibus" styleId="lista" styleClass="input">
 								<html:optionsCollection  name="manterViagemForm" property="listaOnibus" label="listaTipoOnibus" value="seqOnibus"/>	
     						</html:select>
 						</td>
-						<td class="texto" width="13%" height="20" align="center">Data
+						<td class="texto" width="13%" height="20" align="left">Data
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input" styleId="datepicker"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/><img src="images/calendar.gif" styleId="datepicker"/>
 						</td>	
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" width="05%" align="center">Hora Saída
+						<td class="texto" width="05%" align="left">Hora Saída
 						</td>
 						<td width="37%">
 							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/>
 						</td>
-						<td class="texto" width="05%" align="center">Hora Chegada
+						<td class="texto" width="05%" align="left">Hora Chegada
 						</td>
 						<td width="37%">
 							<html:text name="manterViagemForm" property="viagemVO.horaChegada" styleClass="input"/>

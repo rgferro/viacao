@@ -42,13 +42,16 @@ public class ViagemVO {
 	public DataVO getHoraSaida() {
 		return horaSaida;
 	}
-	public void setHoraSaida(DataVO Saida) {
-		this.horaSaida = horaSaida;
-	}
+
 	public DataVO getHoraChegada() {
 		return horaChegada;
 	}
-	public void setHoraChegada(DataVO Chegada) {
-		this.horaChegada =horaChegada;
+
+	public void setHoraChegada(DataVO horaChegada) {
+		this.horaChegada = horaChegada;
+	}
+
+	public void setHoraSaida(DataVO horaSaida) {
+		this.horaSaida = horaSaida;
 	}
 }

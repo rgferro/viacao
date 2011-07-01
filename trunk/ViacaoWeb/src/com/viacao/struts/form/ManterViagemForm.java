@@ -23,6 +23,7 @@ public class ManterViagemForm extends ActionForm {
 	private List<ViagemVO> listaViagem;
 	private List<ItinerarioVo> listaItinerario;
 	private List<OnibusVO> listaOnibus;
+	private Integer seqOnibus;
 	private Integer seqViagem;
 	private String acao;
 	private String task;
@@ -41,6 +42,7 @@ public class ManterViagemForm extends ActionForm {
 		this.listaOnibus = new ArrayList<OnibusVO>();
 		this.seqViagem = null;
 		this.task = "";
+		this.acao = "";
 	}
 	
 	public ActionMessages validate(HttpServletRequest request){
@@ -119,6 +121,14 @@ public class ManterViagemForm extends ActionForm {
 
 	public void setListaOnibus(List<OnibusVO> listaOnibus) {
 		this.listaOnibus = listaOnibus;
+	}
+
+	public Integer getSeqOnibus() {
+		return seqOnibus;
+	}
+
+	public void setSeqOnibus(Integer seqOnibus) {
+		this.seqOnibus = seqOnibus;
 	}
 
 }

@@ -9,18 +9,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <script type="text/javascript">
 
-function selecionar(acao, seq){
-	var frm = document.forms[0];
-	frm.acao.value = acao;
-	frm.seqOnibus.value = seq;
-	frm.task.value = 'recuperarViagem';
-	frm.submit();
-}
-
 function buscar(){
 	var frm = document.forms[0];
-	frm.task.value = 'listarViagem';
+		frm.task.value ='listar';
 	frm.submit();
+}
+function recuperarViagem(seqViagem, acao){
+	var frm = document.forms[0];
+		frm.acao.value = acao;
+		frm.seqViagem.value = seqViagem;
+		frm.task.value = 'alterar';
+	frm.submit();
+
 }
 
 function mudaImagemOver(obj, acao){
@@ -74,8 +74,8 @@ function mudaImagemOut(obj, acao){
 <html:hidden name="manterViagemForm" property="listaItinerario"/>
 <html:hidden name="manterViagemForm" property="listaOnibus"/>
 <html:hidden name="manterViagemForm" property="seqViagem"/>
+<html:hidden name="manterViagemForm" property="seqOnibus"/>
 <html:hidden name="manterViagemForm" property="acao"/>
-<html:hidden name="manterViagemForm" property="listar"/>
 
 	<table width="600" border="0" align="center">
 		<tr>
@@ -121,7 +121,7 @@ function mudaImagemOut(obj, acao){
 							<td class="texto" height="20" align="left">Data
 							</td>
 							<td width="37%">
-								<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/>
+								<html:text name="manterViagemForm" property="viagemVO.horaSaida.data" styleClass="input"/><img src="images/calendar.gif" styleId="datepicker"/>
 							</td>
 						<tr class="fundoclaro">
 							<td align="left" class="texto">Hora Saída
@@ -140,37 +140,51 @@ function mudaImagemOut(obj, acao){
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td colspan="4" align="center">
-							<html:button styleClass="botao" value="Buscar" title="Consultar"property="" onclick="link();"/>
+							<html:button styleClass="botao" value="Buscar" title="Consultar" property="" onclick="pesquisar();"/>
 						</td>
 					</tr>
 				</table>
 				<br>
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="15%"  align="center"></td>
-						<td width="15%"  align="center">Origem</td>
-						<td width="15%" align="center">Destino</td>
-						<td width="15%" align="center">Tipo de Ônibus</td>
-						<td width="15%" align="center">Data</td>
-						<td width="15%" align="center">Hora Saída</td>
-						<td width="15%" align="center">Hora Chegada</td>
-					</tr>
-					<tr>
-						<td align="center" colspan="7" class="texto">Nenhuma viagem foi cadastrada!</td>
+						<td width="15%" colspan="3" align="center">
+						</td>
+						<td width="15%"  align="center">Origem
+						</td>
+						<td width="15%" align="center">Destino
+						</td>
+						<td width="15%" align="center">Tipo de Ônibus
+						</td>
+						<td width="15%" align="center">Data
+						</td>
+						<td width="15%" align="center">Hora Saída
+						</td>
+						<td width="15%" align="center">Hora Chegada
+						</td>
 					</tr>
 						<logic:iterate id="lista" name="manterViagemForm" property="listaViagem">
 							<tr class="fundoclaro">
 								<td align="center">
-									<a href="javascript: selecionar('ALTERANDO', '<c:out value="${}"/>');">
-										<img title="Editar" src="images/icon_editar.gif"></a>
+									<a href="javascript: recuperar('<c:out value="${idLista.seqViagem}"/>', 'ALTERAR')">
+										<img title="Editar!" src="images/icon_editar3off.png"
+											height="20" width="20" border="0"
+											onmouseover="mudaImagemOver(this,'editar');"
+											onmouseout="mudaImagemOut(this, 'editar')"> </a>
 								</td>
 								<td align="center">
-									<a href="javascript: selecionar('DELETANDO', '<c:out value="${}"/>');">
-										<img title="Deletar" src="images/icon_lixeira.gif"></a>
+									<a href="javascript: recuperar('<c:out value="${idLista.seqViagem}"/>', 'DELETAR')">
+										<img title="Deletar!" src="images/icon_lixeira3off.png"
+											height="20" width="20" border="0"
+											onmouseover="mudaImagemOver(this,'deletar');"
+											onmouseout="mudaImagemOut(this, 'deletar')"> </a>
 								</td>
 								<td align="center">
-									<a href="javascript: selecionar('CONSULTANDO', '<c:out value="${}"/>');">
-										<img title="Editar" src="images/icon_lupa.gif"></img></a>
+									<a href="javascript: recuperar('<c:out value="${idLista.seqViagem}"/>', 'CONSULTAR')">
+										<img title="Pesquisar!" src="images/zoomoff.png" border="0"
+											height="20" width="20" border="0"
+											onmouseover="mudaImagemOver(this,'pesquisar');"
+											onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
+	
 								</td>
 								<td align="center">
 									<bean:write name="lista" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/>

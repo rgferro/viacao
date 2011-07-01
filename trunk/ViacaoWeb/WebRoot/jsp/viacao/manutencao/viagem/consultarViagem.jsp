@@ -54,30 +54,40 @@ $(function() {
 				<br>
 				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
 					<tr class="fundoescuro">
-						<td class="texto" align="left" width="13%">Viagem</td>
-						<td colspan="3"><input class="input" size="41" value="Rio de Janeiro - Juiz de Fora" disabled="disabled">
+						<td class="texto" align="left" width="13%">Viagem
+						</td>
+						<td colspan="3">
+							<input class="input" size="41" value="Rio de Janeiro - Juiz de Fora" disabled="disabled">
 						</td>
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" align="left" width="13%">Tipo Ônibus</td>
-						<td width="37%"><input class="input" size="17" value="Executivo" disabled="disabled">
+						<td class="texto" align="left" width="13%">Tipo Ônibus
 						</td>
-						<td class="texto" align="left" width="13%">Data</td>
-						<td width="33%"><input class="input" size="17" value="06/06/2011" disabled="disabled" id="datepicker">
+						<td width="37%">
+							<input class="input" size="17" value="Executivo" disabled="disabled">
+						</td>
+						<td class="texto" align="left" width="13%">Data
+						</td>
+						<td width="37%">
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/><img src="images/calendar.gif" styleId="datepicker"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" align="left" width="13%">Hora Saída</td>
-						<td width="37%"><input class="input" size="8" value="18:00" disabled="disabled">
+						<td class="texto" align="left" width="13%">Hora Saída
 						</td>
-						<td class="texto" align="left" width="16%">Hora Chegada</td>
-						<td width="37%"><input class="input" size="8" value="22:00" disabled="disabled">
+						<td width="37%">
+							<input class="input" size="8" value="18:00">
+						</td>
+						<td class="texto" align="left" width="16%">Hora Chegada
+						</td>
+						<td width="37%">
+							<input class="input" size="8" value="22:00" disabled="disabled">
 						</td>
 					</tr>
 				</table>
 					<tr>
 						<td align="center">
-							<img title="Consultar" property="seqViagem" src="images/lupagif.png" border="0" height="20" width="20" onmouseover="mudaImagemOver(this,'pesquisar');" onmouseout="mudaImagemOut(this, 'pesquisar')" onclick="javascript: inicio('pesquisar');"/>			
+							<html:button value="Buscar" property="" styleClass="botao" title="Buscar" onclick="pesquisar();"/>
 					</tr>
 	</table>
 </html:form>
