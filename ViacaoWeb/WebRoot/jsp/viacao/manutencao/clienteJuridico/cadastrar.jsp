@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script type="text/javascript">
 function cadastrar(){
 	var frm = document.forms[0];
-	frm.task.value = 'inserirJuridica';
+	frm.task.value = 'inserirFisica';
 	frm.submit();
 }
 
@@ -31,8 +31,10 @@ function abre(acao){
 
 <link href="css/portal.css" rel="stylesheet" type="text/css">
 
-<html:form action="/manterCliente">
-<html:hidden property="task" name="manterJuridicaForm"/>
+<html:form action="/manterClienteFisica">
+<html:hidden property="task" name="manterClienteFisicaForm"/>
+<html:hidden property="tipUsuario" name="manterClienteFisicaForm"/>
+	
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>

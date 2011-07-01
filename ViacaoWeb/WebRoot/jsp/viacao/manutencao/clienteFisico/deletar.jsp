@@ -7,6 +7,12 @@
 		frm.task.value = 'unspecified';
 		frm.submit();
 	}
+	
+	function confirmar(){
+		var frm = document.forms[0];
+		frm.task.value = 'deletarFisica';
+		frm.submit();
+	}
 </script>
 
 <link href="css/portal.css" rel="stylesheet" type="text/css">

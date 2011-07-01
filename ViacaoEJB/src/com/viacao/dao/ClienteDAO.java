@@ -1,10 +1,13 @@
 package com.viacao.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import sun.jdbc.rowset.CachedRowSet;
 
 import com.acol.exception.DAOException;
 import com.viacao.services.persistence.BaseDB;
@@ -26,7 +29,7 @@ public class ClienteDAO extends BaseDB{
 	 * @return query InserirCliente
 	 * @throws DAOException
 	 */
-	public String getSQLInserirCliente() throws DAOException {
+	public String getSQLInserirCliente(ClienteVO clienteVO) throws DAOException {
 		StringBuffer sql = new StringBuffer();
 	
 		sql.append(" INSERT INTO cliente ( ");
@@ -35,11 +38,13 @@ public class ClienteDAO extends BaseDB{
 		sql.append("						login, ");
 		sql.append("						senha, ");
 		sql.append("						email ) ");
-		sql.append(" VALUES 	seq_cliente.nextval, ");
-		sql.append("			?, ");
-		sql.append("			upper ('?'), ");
-		sql.append("			upper ('?'), ");
-		sql.append("			upper ('?')) ");
+		sql.append(" VALUES (	?, ");
+		sql.append("			"+clienteVO.getEnderecoVO().getSeqEndereco().intValue()+", ");
+		sql.append("			upper ('"+clienteVO.getLogin()+"'), ");
+		sql.append("			upper ('"+clienteVO.getSenha()+"'), ");
+		sql.append("			upper ('"+clienteVO.getEmail()+"')) ");
+		
+		System.out.println(sql.toString());
 	   
 		return sql.toString();
 	}
@@ -49,24 +54,27 @@ public class ClienteDAO extends BaseDB{
 	 * @param clienteVO
 	 * @throws DAOException
 	 */
-	public void inserirCliente(ClienteVO clienteVO) throws DAOException{
-		
+	public Integer inserirCliente(ClienteVO clienteVO) throws DAOException{	
 		try{
-			pstmt = getPstmt(getSQLInserirCliente());
-			pstmt.setInt(1, clienteVO.getEnderecoVO().getSeqEndereco().intValue());
-			pstmt.setString(2, clienteVO.getLogin());
-			pstmt.setString(3, clienteVO.getSenha());
-			pstmt.setString(4, clienteVO.getEmail());
+			Integer seq = getSequenceNextValue("seq_cliente");
+			
+			connect();
+			
+			pstmt = getPstmt(getSQLInserirCliente(clienteVO));
+			
+			pstmt.setInt(1, seq.intValue());
 			
 			pstmt.executeUpdate();
+			
+			return seq;
 		}
 		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo inserir cliente em :: ClienteDAO", e);
+			throw new DAOException(e);
 		}
 		finally{
 			release();
 		}
-		
 	}
 	
 	/**
@@ -74,7 +82,7 @@ public class ClienteDAO extends BaseDB{
 	 * @return query InserirFisica
 	 * @throws DAOException
 	 */
-	public String getSQLInserirFisica() throws DAOException {
+	public String getSQLInserirFisica(FisicaVO fisicaVO) throws DAOException {
 		StringBuffer sql = new StringBuffer();
 	
 		sql.append(" INSERT INTO fisica ( ");
@@ -83,11 +91,13 @@ public class ClienteDAO extends BaseDB{
 		sql.append("						nom_pessoa, ");
 		sql.append("						cpf_pessoa, ");
 		sql.append("						rg_pessoa ) ");
-		sql.append(" VALUES 	seq_fisica.nextval, ");
-		sql.append("			?, ");
-		sql.append("			upper ('?'), ");
-		sql.append("			upper ('?'), ");
-		sql.append("			upper ('?')) ");
+		sql.append(" VALUES (	?, ");
+		sql.append("			"+fisicaVO.getClienteVO().getSeqCliente().intValue()+", ");
+		sql.append("			upper ('"+fisicaVO.getNomPessoa()+"'), ");
+		sql.append("			upper ('"+fisicaVO.getCpfPessoa()+"'), ");
+		sql.append("			upper ('"+fisicaVO.getRgPessoa()+"')) ");
+		
+		System.out.println(sql.toString());
 	   
 		return sql.toString();
 	}
@@ -97,19 +107,24 @@ public class ClienteDAO extends BaseDB{
 	 * @param fisicaVO
 	 * @throws DAOException
 	 */
-	public void inserirFisica(FisicaVO fisicaVO) throws DAOException{
+	public Integer inserirFisica(FisicaVO fisicaVO) throws DAOException{
 		
 		try{
-			pstmt = getPstmt(getSQLInserirFisica());
-			pstmt.setInt(1, fisicaVO.getClienteVO().getSeqCliente().intValue());
-			pstmt.setString(2, fisicaVO.getNomPessoa());
-			pstmt.setString(3, fisicaVO.getCpfPessoa());
-			pstmt.setString(4, fisicaVO.getRgPessoa());
+			Integer seq = getSequenceNextValue("seq_fisica");
+			
+			connect();
+			
+			pstmt = getPstmt(getSQLInserirFisica(fisicaVO));
+			
+			pstmt.setInt(1, seq.intValue());
 			
 			pstmt.executeUpdate();
+			
+			return seq;
 		}
 		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo inserir fisica em :: ClienteDAO", e);
+			throw new DAOException(e);
 		}
 		finally{
 			release();
@@ -149,14 +164,16 @@ public class ClienteDAO extends BaseDB{
 	 * @return query AlterarCliente
 	 * @throws DAOException
 	 */
-	public String getSQLAlterarCliente() throws DAOException {;
+	public String getSQLAlterarCliente(ClienteVO clienteVO) throws DAOException {;
 		StringBuffer sql = new StringBuffer();
 	
 		sql.append(" UPDATE	cliente ");
-		sql.append(" SET 	login	= upper ('?'), ");
-		sql.append("		senha   = upper ('?'), ");
-		sql.append("		email 	= upper ('?') ");
-		sql.append(" WHERE	seq_cliente = ? ");
+		sql.append(" SET 	login	= upper ('"+ clienteVO.getLogin().trim() +"'), ");
+		sql.append("		senha   = upper ('"+ clienteVO.getSenha() +"'), ");
+		sql.append("		email 	= upper ('"+ clienteVO.getEmail().trim() +"') ");
+		sql.append(" WHERE	seq_cliente = "+ clienteVO.getSeqCliente() +" ");
+		
+		System.out.println(sql.toString());
 	
 		return sql.toString();
 	}
@@ -169,13 +186,10 @@ public class ClienteDAO extends BaseDB{
 	public void alterarCliente(ClienteVO clienteVO) throws DAOException{
 		
 		try{
-			pstmt = getPstmt(getSQLAlterarCliente());
-			pstmt.setString(1, clienteVO.getLogin());
-			pstmt.setString(2, clienteVO.getSenha());
-			pstmt.setString(3, clienteVO.getEmail());
-			pstmt.setInt(4, clienteVO.getSeqCliente().intValue());
+			pstmt = getPstmt(getSQLAlterarCliente(clienteVO));	
 			
 			pstmt.executeUpdate();
+			
 		}
 		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo alterarCliente em :: ClienteDAO", e);
@@ -192,14 +206,16 @@ public class ClienteDAO extends BaseDB{
 	 * @return query AlterarFisica
 	 * @throws DAOException
 	 */
-	public String getSQLAlterarFisica() throws DAOException {;
+	public String getSQLAlterarFisica(FisicaVO fisicaVO) throws DAOException {;
 		StringBuffer sql = new StringBuffer();
 	
 		sql.append(" UPDATE	fisica ");
-		sql.append(" SET 	nom_pessoa	= upper ('?'), ");
-		sql.append("		CPF_pessoa	= upper ('?'), ");
-		sql.append("		RG_pessoa	= upper ('?') ");
-		sql.append(" WHERE	seq_fisica	= ? ");
+		sql.append(" SET 	nom_pessoa	= upper ('"+fisicaVO.getNomPessoa()+"'), ");
+		sql.append("		CPF_pessoa	= upper ('"+fisicaVO.getCpfPessoa()+"'), ");
+		sql.append("		RG_pessoa	= upper ('"+fisicaVO.getRgPessoa()+"') ");
+		sql.append(" WHERE	seq_fisica	=  "+ fisicaVO.getSeqFisica()+"  ");
+		
+		System.out.println(sql.toString());
 	
 		return sql.toString();
 	}
@@ -212,12 +228,8 @@ public class ClienteDAO extends BaseDB{
 	public void alterarFisica(FisicaVO fisicaVO) throws DAOException{
 		
 		try{
-			pstmt = getPstmt(getSQLAlterarFisica());
-			pstmt.setString(1, fisicaVO.getNomPessoa());
-			pstmt.setString(2, fisicaVO.getCpfPessoa());
-			pstmt.setString(3, fisicaVO.getRgPessoa());
-			pstmt.setInt(4, fisicaVO.getSeqFisica().intValue());
-			
+			pstmt = getPstmt(getSQLAlterarFisica(fisicaVO));
+	
 			pstmt.executeUpdate();
 		}
 		catch(SQLException e){
@@ -250,9 +262,9 @@ public class ClienteDAO extends BaseDB{
 		sql.append("        e.cidade, ");
 		sql.append("        e.estado ");
 		sql.append(" FROM	endereco e, cliente c, fisica f ");
-		sql.append(" WHERE	f.seq_cliente_fk = c.seq_cliente ");
+		sql.append(" WHERE	f.seq_cliente_fk(+) = c.seq_cliente ");
 		sql.append(" AND	c.seq_endereco_fk = e.seq_endereco ");
-		sql.append(" AND 	seq_fisica = ? ");
+		sql.append(" AND 	c.seq_cliente = ? ");
 		
 		System.out.println(sql.toString());
 		
@@ -263,19 +275,25 @@ public class ClienteDAO extends BaseDB{
 		
 		try{
 			pstmt = getPstmt(getSQLClienteFisica());
-			pstmt.setInt(1, fisicaVO.getSeqFisica().intValue());
+			pstmt.setInt(1, fisicaVO.getClienteVO().getSeqCliente());
 			rowSet = executeQuery(pstmt);
 			
-			FisicaVO fVO = new FisicaVO();;
+			FisicaVO fVO = new FisicaVO();
+			fVO.setClienteVO(new ClienteVO());
+			fVO.getClienteVO().setEnderecoVO(new EnderecoVO());
 			if(rowSet.next()){
-				fVO.setClienteVO(new ClienteVO());
 				fVO.getClienteVO().setLogin(rowSet.getString("login"));
 				fVO.getClienteVO().setSenha(rowSet.getString("senha"));
 				fVO.getClienteVO().setEmail(rowSet.getString("email"));
-				fVO.setNomPessoa(rowSet.getString("nom_pessoa"));
-				fVO.setCpfPessoa(rowSet.getString("cpf_pessoa"));
-				fVO.setRgPessoa(rowSet.getString("rg_pessoa"));
-				fVO.getClienteVO().setEnderecoVO(new EnderecoVO());
+				if(rowSet.getString("nom_pessoa") != null){
+					fVO.setNomPessoa(rowSet.getString("nom_pessoa"));
+				}
+				if(rowSet.getString("nom_pessoa") != null){
+					fVO.setCpfPessoa(rowSet.getString("cpf_pessoa").trim());
+				}
+				if(rowSet.getString("nom_pessoa") != null){
+					fVO.setRgPessoa(rowSet.getString("rg_pessoa").trim());
+				}
 				fVO.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
 				fVO.getClienteVO().getEnderecoVO().setNumero(rowSet.getString("numero"));
 				fVO.getClienteVO().getEnderecoVO().setComplemento(rowSet.getString("complemento"));
@@ -319,7 +337,7 @@ public class ClienteDAO extends BaseDB{
 		sql.append("        e.cidade, ");
 		sql.append("        e.estado ");
 		sql.append(" FROM	endereco e, cliente c, fisica f ");
-		sql.append(" WHERE	f.seq_cliente_fk = c.seq_cliente ");
+		sql.append(" WHERE	f.seq_cliente_fk (+) = c.seq_cliente ");
 		sql.append(" AND 	c.seq_endereco_fk = e.seq_endereco ");
 		
 		// filtro por nome pessoa
@@ -358,7 +376,7 @@ public class ClienteDAO extends BaseDB{
 				fisica.getClienteVO().setEmail(rowSet.getString("email"));
 				fisica.setNomPessoa(rowSet.getString("nom_pessoa"));
 				fisica.setCpfPessoa(rowSet.getString("cpf_pessoa"));
-				fisica.setRgPessoa(rowSet.getString("rg_pessoa"));
+				fisica.setRgPessoa(rowSet.getString("rg_pessoa"));				
 				fisica.getClienteVO().setEnderecoVO(new EnderecoVO());
 				fisica.getClienteVO().getEnderecoVO().setSeqEndereco(rowSet.getInt("seq_endereco_fk"));
 				fisica.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
@@ -413,8 +431,10 @@ public class ClienteDAO extends BaseDB{
 	 * @param JuridicaVO
 	 * @throws DAOException
 	 */
-	public void inserirJuridica(JuridicaVO juridicaVO) throws DAOException{
+	public Integer inserirJuridica(JuridicaVO juridicaVO) throws DAOException{
 		try{
+			Integer seq = getSequenceNextValue("seq_juridica");
+			
 			pstmt = getPstmt(getSQLInserirJuridica());
 			pstmt.setInt(1, juridicaVO.getClienteVO().getSeqCliente());
 			pstmt.setString(2, juridicaVO.getRazaoSocial());
@@ -424,9 +444,12 @@ public class ClienteDAO extends BaseDB{
 			pstmt.setString(6, juridicaVO.getNumInscricao());
 			
 			pstmt.executeUpdate();
+			
+			return seq;
 		}
 		catch(SQLException e){
 			logger.fatal("Erro ocorrido no metodo inserir juridica em :: ClienteDAO", e);
+			throw new DAOException(e);
 		}finally{
 			release();
 		}

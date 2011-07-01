@@ -1,30 +1,30 @@
 <%@ include file="/jsp/common/taglibs.jsp" %>
 
 <script type="text/javascript">
-	function selecionar(acao, seq){
+	function selecionar(acao, seqF, seqE, seqC){
 		var frm = document.forms[0];
-		frm.seqFisica.value = seq;
+		frm.seqFisica.value = seqF;
+		frm.seqEndereco.value = seqE;
+		frm.seqCliente.value = seqC;
 		frm.acao.value = acao;
 		frm.task.value = 'getFisica';
 		frm.submit();
 	}
 	
-	function confirmar(){
-		var frm = document.forms[0];
-		frm.task.value = 'alterarFisica';
-		frm.submit();
-	}
+	
 </script>
 
 <html:form action="/manterClienteFisica">
 <html:hidden property="task" name="manterClienteFisicaForm"/>
 <html:hidden property="seqFisica" name="manterClienteFisicaForm"/>
 <html:hidden property="seqEndereco" name="manterClienteFisicaForm"/>
+<html:hidden property="seqCliente" name="manterClienteFisicaForm"/>
 <html:hidden property="acao" name="manterClienteFisicaForm"/>
 
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
+				<jsp:include page="/jsp/common/mensagens.jsp" />
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">Usuário Físico</td>
@@ -83,17 +83,17 @@
 					<logic:iterate id="lista" name="manterClienteFisicaForm" property="listaClienteFisico">
 						<tr class="fundoclaro">
 							<td align="center">
-								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqFisica}"/>)">
+								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqFisica}"/>, <c:out value="${lista.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${lista.clienteVO.seqCliente}"/>)">
 									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
 								</a>
 							</td>
 							<td align="center">
-								<a href="javascript: selecionar('DELETAR', <c:out value="${lista.seqFisica}"/>)">
+								<a href="javascript: selecionar('DELETAR', <c:out value="${lista.seqFisica}"/>, <c:out value="${lista.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${lista.clienteVO.seqCliente}"/>)">
 									<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
 								</a>
 							</td>
 							<td align="center">
-								<a href="javascript: selecionar('CONSULTAR', <c:out value="${lista.seqFisica}"/>)">
+								<a href="javascript: selecionar('CONSULTAR', <c:out value="${lista.seqFisica}"/>, <c:out value="${lista.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${lista.clienteVO.seqCliente}"/>)">
 									<img title="Consultar!" src="images/icon_lupa.gif" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'consultar');" onmouseout="mudaImagemOut(this, 'consultar')">
 								</a>
 							</td>

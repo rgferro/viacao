@@ -12,14 +12,13 @@ import org.apache.struts.action.ActionMessage;
 import org.apache.struts.action.ActionMessages;
 import org.apache.struts.actions.DispatchAction;
 
+import com.acol.exception.business.ChildRecordFoundException;
+import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.viacao.services.util.EstagioServices;
 import com.viacao.struts.form.ManterClienteFisicaForm;
-import com.viacao.struts.form.ManterJuridicaForm;
-import com.viacao.struts.form.ManterOnibusForm;
 import com.viacao.utils.Constantes;
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.FisicaVO;
-import com.viacao.vo.JuridicaVO;
 
 public class ManterClienteFisicaAction extends DispatchAction{
 	
@@ -51,21 +50,29 @@ public class ManterClienteFisicaAction extends DispatchAction{
 	
 	public ActionForward inserirFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
-		
-		FisicaVO fisicaVO = new FisicaVO();
+		ActionMessages messages = frm.validate(request);
 		
 		try{
-			fisicaVO.setSeqFisica(frm.getSeqFisica());
-			fisicaVO.setCpfPessoa(frm.getFisicaVO().getCpfPessoa());
-			fisicaVO.setNomPessoa(frm.getFisicaVO().getNomPessoa());
-			fisicaVO.setRgPessoa(frm.getFisicaVO().getRgPessoa());
-			
-			EstagioServices.getManterCadastroBean().inserirFisica(fisicaVO);
+			if(messages.isEmpty()){
+				if(frm.getTipUsuario().equals("ADMINISTRADOR")){
+					frm.getFisicaVO().setCpfPessoa("");
+					frm.getFisicaVO().setNomPessoa("");
+					frm.getFisicaVO().setRgPessoa("");
+				}
+				
+				EstagioServices.getManterCadastroBean().inserirFisica(frm.getFisicaVO());
+				
+			}else{
+				saveMessages(request, messages);
+				return mapping.findForward("cadastrar");
+			}
 		}catch (Exception e) {
-			// TODO: handle exception
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			saveMessages(request, messages);
 		}
-		
-		return null;
+		messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
+		saveMessages(request, messages);
+		return unspecified(mapping, form, request, response);
 	}
 	
 	public ActionForward paginaCadastrarClienteFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -81,65 +88,84 @@ public class ManterClienteFisicaAction extends DispatchAction{
 		ActionMessages messages = new ActionMessages();
 		messages = frm.validate(request);
 		
-		FisicaVO fisicaVO = new FisicaVO();
-		
 		try{
-			fisicaVO.getClienteVO().setLogin(frm.getFisicaVO().getClienteVO().getLogin());
-			fisicaVO.getClienteVO().setSenha(frm.getFisicaVO().getClienteVO().getSenha());
 			
-			fisicaVO.setSeqFisica(frm.getFisicaVO().getSeqFisica());
-			fisicaVO.setCpfPessoa(frm.getFisicaVO().getCpfPessoa());
-			fisicaVO.setNomPessoa(frm.getFisicaVO().getNomPessoa());
-			fisicaVO.setRgPessoa(frm.getFisicaVO().getRgPessoa());
-			fisicaVO.getClienteVO().setEmail(frm.getFisicaVO().getClienteVO().getEmail());
+			frm.getFisicaVO().setSeqFisica(frm.getSeqFisica());
+			frm.getFisicaVO().getClienteVO().setSeqCliente(frm.getSeqCliente());
+			frm.getFisicaVO().getClienteVO().getEnderecoVO().setSeqEndereco(frm.getSeqEndereco());
 			
-			fisicaVO.getClienteVO().getEnderecoVO().setLogradouro(frm.getFisicaVO().getClienteVO().getEnderecoVO().getLogradouro());
-			fisicaVO.getClienteVO().getEnderecoVO().setNumero(frm.getFisicaVO().getClienteVO().getEnderecoVO().getNumero());
-			fisicaVO.getClienteVO().getEnderecoVO().setComplemento(frm.getFisicaVO().getClienteVO().getEnderecoVO().getComplemento());
-			fisicaVO.getClienteVO().getEnderecoVO().setBairro(frm.getFisicaVO().getClienteVO().getEnderecoVO().getComplemento());
-			fisicaVO.getClienteVO().getEnderecoVO().setCidade(frm.getFisicaVO().getClienteVO().getEnderecoVO().getCidade());
-			fisicaVO.getClienteVO().getEnderecoVO().setEstado(frm.getFisicaVO().getClienteVO().getEnderecoVO().getCidade());
+			EstagioServices.getManterCadastroBean().alterarFisica(frm.getFisicaVO());
 			
-			EstagioServices.getManterCadastroBean().alterarFisica(fisicaVO);
-		}catch (Exception e) {
+		}
+//		catch (UniqueConstraintViolatedException e) {
+//			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","tarifa"));
+//		}
+		catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
 		
 		return unspecified(mapping, form, request, response);
 	}
 	
-	public ActionForward alterarCliente(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward deletarFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
-		
-		ClienteVO clienteVO = new ClienteVO();
+		ActionMessages messages = frm.validate(request);		
 		
 		try{
-			clienteVO.setSeqCliente(frm.getFisicaVO().getClienteVO().getSeqCliente());
-			clienteVO.setEmail(frm.getFisicaVO().getClienteVO().getEmail());
-			clienteVO.setEnderecoVO(frm.getFisicaVO().getClienteVO().getEnderecoVO());
-			clienteVO.setLogin(frm.getFisicaVO().getClienteVO().getLogin());
-			clienteVO.setSenha(frm.getFisicaVO().getClienteVO().getSenha());
-			
-			EstagioServices.getManterCadastroBean().alterarCliente(clienteVO);
-		}catch (Exception e) {
-			// TODO: handle exception
+			if(messages.isEmpty()){
+				frm.getFisicaVO().getClienteVO().getEnderecoVO().setSeqEndereco(frm.getSeqEndereco());
+				EstagioServices.getManterCadastroBean().deletarCliente(frm.getFisicaVO().getClienteVO());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.deletar"));
+			}else{
+				saveMessages(request, messages);
+				return mapping.findForward("deletar");
+			}
 		}
-		
-		return null;
+//		catch (ChildRecordFoundException e) {
+//			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.delete","fisica"));
+//		}
+		catch (Exception e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+		}
+		saveMessages(request, messages);
+		return unspecified(mapping, form, request, response);
 	}
+	
+//	public ActionForward alterarCliente(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+//		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
+//		
+//		ClienteVO clienteVO = new ClienteVO();
+//		
+//		try{
+//			clienteVO.setSeqCliente(frm.getFisicaVO().getClienteVO().getSeqCliente());
+//			clienteVO.setEmail(frm.getFisicaVO().getClienteVO().getEmail());
+//			clienteVO.setEnderecoVO(frm.getFisicaVO().getClienteVO().getEnderecoVO());
+//			clienteVO.setLogin(frm.getFisicaVO().getClienteVO().getLogin());
+//			clienteVO.setSenha(frm.getFisicaVO().getClienteVO().getSenha());
+//			
+//			EstagioServices.getManterCadastroBean().alterarCliente(clienteVO);
+//		}catch (Exception e) {
+//			// TODO: handle exception
+//		}
+//		
+//		return null;
+//	}
 	
 	public ActionForward getFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
 		
 		FisicaVO fisicaVO = new FisicaVO();
 		
-		frm.getAcao();
-		
-		fisicaVO.setSeqFisica(frm.getSeqFisica());
+		fisicaVO.setClienteVO(new ClienteVO());
+		fisicaVO.getClienteVO().setSeqCliente(frm.getSeqCliente());
 		
 		frm.setFisicaVO(EstagioServices.getManterCadastroBean().getClienteFisica(fisicaVO));
 		
-		frm.getFisicaVO();
+		if(frm.getFisicaVO().getNomPessoa() == null){
+			frm.setTipUsuario("ADMINISTRADOR");
+		}else{
+			frm.setTipUsuario("USUARIO");
+		}
 		
 		if(frm.getAcao().equals("DELETAR")){
 			return mapping.findForward("deletar");

@@ -1,9 +1,12 @@
 package com.viacao.dao;
 
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import org.apache.log4j.Logger;
+
+import sun.jdbc.rowset.CachedRowSet;
 
 import com.acol.exception.DAOException;
 import com.acol.util.StringUtil;
@@ -21,25 +24,27 @@ public class EnderecoDAO extends BaseDB {
 	/*
 	 * SQL-01 
 	 * */
-	private String getInsertSQL(){
+	private String getInsertSQL(EnderecoVO enderecoVO){
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("  INSERT INTO endereco(            ");
-		sql.append("    seq_endereco,                  ");
-		sql.append("    logradouro,                    ");
-		sql.append("    numero,                        ");
-		sql.append("    complemento,                   ");
-		sql.append("    bairro,                        ");
-		sql.append("    cidade,                        ");
-		sql.append("    estado)                        ");
-		sql.append("   VALUES(                         ");
-		sql.append("     seq_endereco.nextval,         ");
-		sql.append("     upper(?),  				   ");
-		sql.append("     upper(?),       			   ");
-		sql.append("     upper(?), 					   ");
-		sql.append("     upper(?),       			   ");
-		sql.append("     upper(?),      			   ");
-		sql.append("     upper(?))      			   ");
+		sql.append("  INSERT INTO	endereco(            ");
+		sql.append("    			seq_endereco,                  ");
+		sql.append("    			logradouro,                    ");
+		sql.append("   				numero,                        ");
+		sql.append("    			complemento,                   ");
+		sql.append("    			bairro,                        ");
+		sql.append("    			cidade,                        ");
+		sql.append("    			estado)                        ");
+		sql.append("   VALUES(                         						");
+		sql.append("     		?,							   				");
+		sql.append("     		upper('"+enderecoVO.getLogradouro()+"'),	");
+		sql.append("     		upper("+enderecoVO.getNumero()+"),			");
+		sql.append("     		upper('"+enderecoVO.getComplemento()+"'),	");
+		sql.append("     		upper('"+enderecoVO.getBairro()+"'),		");
+		sql.append("     		upper('"+enderecoVO.getCidade()+"'),		");
+		sql.append("     		upper('"+enderecoVO.getEstado()+"'))		");
+		
+		System.out.println(sql.toString());
 		
 		return sql.toString();
 	}
@@ -47,18 +52,21 @@ public class EnderecoDAO extends BaseDB {
 	/*
 	 * SQL-01 
 	 * */ 
-	public void insert(EnderecoVO enderecoVO)throws DAOException{
+	public Integer insert(EnderecoVO enderecoVO)throws DAOException{
 		try {
-			pstmt = getPstmt(getInsertSQL());
-		
-			pstmt.setString(1, enderecoVO.getLogradouro());
-			pstmt.setString(2, enderecoVO.getNumero());
-			pstmt.setString(3, enderecoVO.getComplemento());
-			pstmt.setString(4, enderecoVO.getBairro());
-			pstmt.setString(5, enderecoVO.getCidade());
-			pstmt.setString(6, enderecoVO.getEstado());
+			
+			Integer seq = getSequenceNextValue("seq_endereco");
+			
+			connect();
+			
+			pstmt = getPstmt(getInsertSQL(enderecoVO));
+			
+			pstmt.setInt(1, seq.intValue());
 			
 			pstmt.executeUpdate();
+			
+			return seq;
+			
 		} catch (SQLException e) {
 			logger.fatal("Erro ocorrido no metodo insert em :: EnderecoDAO", e);
 			throw new DAOException(e);
@@ -83,6 +91,7 @@ public class EnderecoDAO extends BaseDB {
 		sql.append("        estado = upper('"+enderecoVO.getEstado()+"')                                ");
 		sql.append("  WHERE seq_endereco = "+enderecoVO.getSeqEndereco()                                 );
 		
+		
 		return sql.toString();
 	}
 	/*
@@ -90,13 +99,18 @@ public class EnderecoDAO extends BaseDB {
 	 * */
 	public void alterarEndereco(EnderecoVO enderecoVO)throws DAOException{
 		try {
-			pstmt = getPstmt(getAlterarEnderecoSQL(enderecoVO));
+			
+			pstmt = getPstmt(getAlterarEnderecoSQL(enderecoVO));		
+			
 			pstmt.executeUpdate();
+			
 		} catch (Exception e) {
 			logger.fatal("Erro ocorrido no metodo alterar em :: EnderecoDAO", e);
+			throw new DAOException(e);
 		}finally{
 			release();
 		}
+	
 	}
 	
 	private String getEnderecoSQL(EnderecoVO enderecoVO){
