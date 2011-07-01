@@ -71,7 +71,7 @@ function limpar(){
 						<td class="texto" align="center" width="13%">Data
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input" styleId="datepicker"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida" styleClass="input"/><img src="images/calendar.gif" styleId="datepicker"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">

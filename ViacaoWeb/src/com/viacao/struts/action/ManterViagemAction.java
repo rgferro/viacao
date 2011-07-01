@@ -120,13 +120,19 @@ public class ManterViagemAction extends DispatchAction{
 //		frm.setViagemVO(EstagioServices.getManterCadastroBean().getViagem(viagemVO));
 //		frm.setOnibusVO(frm.setViagemVO().getOnibusVO(). toString());
 		
-		if(frm.getAcao().equals("DELETAR")){
+		if(frm.getSeqViagem().equals("DELETAR")){
 			return mapping.findForward("deletar");
 		}
-		else{
+			else{
+				return mapping.findForward("alterar");
+			}
+		if(frm.getSeqViagem().equals("ALTERAR")){
 			return mapping.findForward("alterar");
 		}
-	}		
+			else{
+				return mapping.findForward("listar");
+			}
+	}
 	
 	public ActionForward alterarViagem(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterViagemForm frm = (ManterViagemForm) form;
