@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 import com.acol.exception.DAOException;
 import com.acol.exception.business.ChildRecordFoundException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
+import com.acol.util.StringUtil;
 import com.viacao.dao.ClienteDAO;
 import com.viacao.dao.EnderecoDAO;
 import com.viacao.dao.ItinerarioDAO;
@@ -447,28 +448,37 @@ public class ManterCadastroBean implements SessionBean {
 	public void inserirFisica(FisicaVO fisicaVO){
 		try {
 			ClienteDAO dao = new ClienteDAO();
-			dao.inserirFisica(fisicaVO);
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			Integer seq = enderecoDAO.insert(fisicaVO.getClienteVO().getEnderecoVO());
+			fisicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
+			fisicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(fisicaVO.getClienteVO()));
+			if(!StringUtil.empty(fisicaVO.getNomPessoa())){
+				dao = new ClienteDAO();
+				dao.inserirFisica(fisicaVO);
+			}
 		} catch (Exception e) {
 			logger.fatal("Erro em inserirFisica :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}
 	
-	public void deletarCliente(ClienteVO clienteVO){
+	public void deletarCliente(ClienteVO clienteVO)throws ChildRecordFoundException{
 		try {
 			ClienteDAO dao = new ClienteDAO();
 			dao.deletarCliente(clienteVO);
-		} catch (Exception e) {
-			logger.fatal("Erro em deletarCliente :: ManterCadastroBean",e);
+		} catch (DAOException e) {
+//			e.checkChildRecordFound();
+			logger.fatal("Erro ocorrido no metodo deletarCliente :: ManterCadastroBean", e);
 			throw new EJBException(e);
-		}
+		} 
 	}
 	
-	public void alterarCliente(ClienteVO clienteVO){
+	public void alterarCliente(ClienteVO clienteVO)throws UniqueConstraintViolatedException{
 		try {
 			ClienteDAO dao = new ClienteDAO();
 			dao.alterarCliente(clienteVO);
 		} catch (Exception e) {
+//			e.checkUniqueConstraintViolated();
 			logger.fatal("Erro em alterarCliente :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
@@ -477,6 +487,9 @@ public class ManterCadastroBean implements SessionBean {
 	public void alterarFisica(FisicaVO fisicaVO){
 		try {
 			ClienteDAO dao = new ClienteDAO();
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			enderecoDAO.alterarEndereco(fisicaVO.getClienteVO().getEnderecoVO());
+			dao.alterarCliente(fisicaVO.getClienteVO());
 			dao.alterarFisica(fisicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em alterarFisica :: ManterCadastroBean",e);
@@ -508,8 +521,9 @@ public class ManterCadastroBean implements SessionBean {
 		try {
 			EnderecoDAO enderDao = new EnderecoDAO();
 			ClienteDAO dao = new ClienteDAO();
-			enderDao.insert(juridicaVO.getClienteVO().getEnderecoVO());
-			dao.inserirCliente(juridicaVO.getClienteVO());
+			Integer seq = enderDao.insert(juridicaVO.getClienteVO().getEnderecoVO());
+			juridicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
+			juridicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(juridicaVO.getClienteVO()));
 			dao.inserirJuridica(juridicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em inserirJuridica :: ManterCadastroBean",e);
