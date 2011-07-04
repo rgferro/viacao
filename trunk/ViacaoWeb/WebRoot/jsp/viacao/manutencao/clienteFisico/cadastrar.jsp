@@ -82,7 +82,7 @@
 					<tr class="fundoclaro">
 						<td align="center">Confirme a sua senha</td>
 						<td align="left" colspan="3">
-							<input type="password" name="testSenha" size="20" class="inputobrigatorio" maxlength="20" size="20" maxlength="20"/>
+							<input type="password" name="testSenha" size="20" class="inputobrigatorio" maxlength="20" size="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
