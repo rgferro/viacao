@@ -467,7 +467,7 @@ public class ManterCadastroBean implements SessionBean {
 			ClienteDAO dao = new ClienteDAO();
 			dao.deletarCliente(clienteVO);
 		} catch (DAOException e) {
-//			e.checkChildRecordFound();
+			e.checkChildRecordFound();
 			logger.fatal("Erro ocorrido no metodo deletarCliente :: ManterCadastroBean", e);
 			throw new EJBException(e);
 		} 
@@ -477,21 +477,25 @@ public class ManterCadastroBean implements SessionBean {
 		try {
 			ClienteDAO dao = new ClienteDAO();
 			dao.alterarCliente(clienteVO);
-		} catch (Exception e) {
-//			e.checkUniqueConstraintViolated();
+		} catch (DAOException e) {
+			e.checkUniqueConstraintViolated();
 			logger.fatal("Erro em alterarCliente :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}
 
-	public void alterarFisica(FisicaVO fisicaVO){
+	public void alterarFisica(FisicaVO fisicaVO)throws UniqueConstraintViolatedException{
 		try {
 			ClienteDAO dao = new ClienteDAO();
 			EnderecoDAO enderecoDAO = new EnderecoDAO();
 			enderecoDAO.alterarEndereco(fisicaVO.getClienteVO().getEnderecoVO());
 			dao.alterarCliente(fisicaVO.getClienteVO());
-			dao.alterarFisica(fisicaVO);
-		} catch (Exception e) {
+			if(!StringUtil.empty(fisicaVO.getNomPessoa())){
+				dao = new ClienteDAO();
+				dao.alterarFisica(fisicaVO);
+			}
+		} catch (DAOException e) {
+			e.checkUniqueConstraintViolated();
 			logger.fatal("Erro em alterarFisica :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
@@ -506,6 +510,10 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
+	
+	
+	
+	
 	
 	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO){
 		try {
