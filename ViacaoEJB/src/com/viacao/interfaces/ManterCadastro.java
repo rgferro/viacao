@@ -56,9 +56,9 @@ public interface ManterCadastro extends EJBObject {
 	
 	public void inserirCliente(ClienteVO clienteVO) throws RemoteException;
 	public void inserirFisica(FisicaVO fisicaVO) throws RemoteException;
-	public void deletarCliente(ClienteVO clienteVO) throws RemoteException;
-	public void alterarCliente(ClienteVO clienteVO) throws RemoteException;
-	public void alterarFisica(FisicaVO fisicaVO) throws RemoteException;
+	public void deletarCliente(ClienteVO clienteVO) throws RemoteException, ChildRecordFoundException;
+	public void alterarCliente(ClienteVO clienteVO) throws RemoteException, UniqueConstraintViolatedException;
+	public void alterarFisica(FisicaVO fisicaVO) throws RemoteException, UniqueConstraintViolatedException;
 	public FisicaVO getClienteFisica (FisicaVO fisicaVO) throws RemoteException;
 	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO) throws RemoteException;
 	public ClienteVO getCliente (ClienteVO clienteVO) throws RemoteException;
