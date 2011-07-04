@@ -5,26 +5,26 @@
 function adicionar() {
 	var frm = document.forms[0];
 	frm.task.value = "adicionarLista";	
-	frm.pagina.value = 'cadastrar';
+	frm.pagina.value = 'alterar';
 	frm.submit();
 }
 
 function remover() {
 	var frm = document.forms[0];
 	frm.task.value = "removerLista";
-	frm.pagina.value = 'cadastrar';
+	frm.pagina.value = 'alterar';
 	frm.submit();
 }
 
 function limparCampos(){
 	var frm = document.forms[0];
-	frm.task.value = "linkCadastrar";
+	frm.task.value = "limparCamposDaTabela";
 	frm.submit();
 }
 
-function cadastrar(){
+function alterar(){
 	var frm = document.forms[0];
-	frm.task.value = "cadastrarItinerario";
+	frm.task.value = "confirmAlterar";
 	frm.submit();
 }
 
@@ -37,7 +37,7 @@ function limpar(obj,acao){
 		frm.seqRodoviariaDestino.value = obj.value;
 		frm.task.value = 'limparOrigem';
 	}
-	frm.pagina.value = 'cadastrar';
+	frm.pagina.value = 'alterar';
 	frm.submit();
 }
 </script>
@@ -80,7 +80,7 @@ function limpar(obj,acao){
 					</td>					
 					<td class="texto" height="20" align="center">Valor (em R$)</td>
 					<td>
-							<html:text name="manterItinerarioForm" size="40" property="itinerarioVo.valorPassagem" styleClass="input" onchange="formataValor(this,6);" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
+						<html:text name="manterItinerarioForm" size="40" property="itinerarioVo.valorPassagem" styleClass="input" onchange="formataValor(this,6);" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
 					</td>					
 				</tr>				
 			</table>			
@@ -131,11 +131,11 @@ function limpar(obj,acao){
 						</td>
 					</tr>
 				</table>			
-			<table width="100%" border="0" align="center">
+			<table width="50%" border="0" align="center">
 				<tr>
-					<td align="center"><html:button value="Voltar" property="" styleClass="botao"  onclick="go('manterItinerario.do?task=unspecified')"/></td>
-					<td align="center"><html:button value="Cadastrar" property="" styleClass="botao" onclick="javascript: cadastrar();" /></td>
-					<td align="center"><html:button value="Limpar" property="" styleClass="botao" onclick="go('manterItinerario.do?task=linkCadastrar')" /></td>
+								<td align="center"><html:button value="Voltar" property="" styleClass="botao"  onclick="go('manterItinerario.do?task=unspecified')"/></td>
+					<td align="center"><html:button value="Alterar" property="" styleClass="botao" onclick="javascript: alterar();" /></td>
+					
 				</tr>
 			</table>
 		</td>

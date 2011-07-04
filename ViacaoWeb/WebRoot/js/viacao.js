@@ -115,5 +115,97 @@ function mudaImagemOut(obj, acao){
 	if(acao == "cancelar"){
 		obj.src = 'images/deleteoff.png';
 	}
-
+}
+function formataHoraMin(obj){
+	if(obj.value.length > 0){
+		var teste = obj.value.search("[:]");
+		var horaForamatada = "";
+		if(teste == -1){
+			for(var i=0; i < 4; i++){
+				if(obj.value.length >= 2){
+					obj.value = obj.value + '0';
+				}
+				if(obj.value.length == 1){
+					obj.value = '0' + obj.value;
+				}
+				horaForamatada = horaForamatada + obj.value[i];
+				if(i == 1){
+					horaForamatada = horaForamatada + ':';
+				}
+			}
+		}
+		obj.value = horaForamatada;
+	}
+}
+function formataValor(obj,maxlength){
+	if(obj.value.length > 0){
+		obj.value = obj.value.replace(",",".");
+		var teste = obj.value.search("[.]");
+		var valorFmt = "";
+		var length = obj.value.length;
+		var total = obj.value.length+3;
+		if(teste == -1){
+			for(var i=0; i < total ; i++){
+				if(length == i){
+					obj.value = obj.value + '.';
+				}
+				if(length < i){
+					obj.value = obj.value + '0';
+				}
+				valorFmt = valorFmt + obj.value[i];
+			}
+			obj.value = valorFmt;
+		}
+		else 
+		if(length < teste + 3){
+				for(var i=0 ; i < teste + 3 ; i++){
+				if(length < teste + i){
+					obj.value = obj.value + '0';
+				}
+				valorFmt = valorFmt + obj.value[i];
+			}
+			obj.value = valorFmt;
+		}
+	}
+}
+function formataCampoDecimal(maxlength,obj,e,ast,virg,ponto){
+	var tecla=(window.event)?event.keyCode:e.which;
+	var teste = obj.value.search("[.]");
+	if(somenteNumero(obj,e,ast,virg,ponto)){
+		if ((tecla == 46)&&(ponto)){
+			if(teste == -1){
+				if(obj.value.length == 0){
+					obj.value = obj.value + "0.";
+					return false;
+				}else{
+					return true;
+				}
+			}else{
+				return false;
+			}
+		}else{
+			if(teste == -1 && tecla != 8){
+				if(obj.value.length == maxlength - 3){
+					if(maxlength == 3){
+						obj.value = obj.value + "0.";
+					}else{
+						obj.value = obj.value + ".";
+					}
+				}
+				return true;
+			}else{
+				if(tecla != 8){
+					for(var i=3; i <= obj.value.length;i++){
+						if(obj.value.length == i){
+							if(obj.value.indexOf(".")== i-3){
+									return false;
+								}
+						}
+					}
+				}
+			}
+		}
+	}else{
+		return false;
+	}
 }
