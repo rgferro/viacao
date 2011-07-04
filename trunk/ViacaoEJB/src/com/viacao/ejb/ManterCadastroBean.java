@@ -532,7 +532,11 @@ public class ManterCadastroBean implements SessionBean {
 			Integer seq = enderDao.insert(juridicaVO.getClienteVO().getEnderecoVO());
 			juridicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
 			juridicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(juridicaVO.getClienteVO()));
-			dao.inserirJuridica(juridicaVO);
+			
+			if(!StringUtil.empty(juridicaVO.getNomResponsavel())){
+				dao = new ClienteDAO();
+				dao.inserirJuridica(juridicaVO);
+			}
 		} catch (Exception e) {
 			logger.fatal("Erro em inserirJuridica :: ManterCadastroBean",e);
 			throw new EJBException(e);
