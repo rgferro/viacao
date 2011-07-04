@@ -45,6 +45,10 @@ public class ManterJuridicaForm extends ActionForm {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Senha"));
 		}
 		
+		if(juridicaVO.getClienteVO().getEmail().equals("") || juridicaVO.getClienteVO().getEmail() == null){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "E-mail"));
+		}
+		
 		if(this.tipUsuario.equals("") || this.tipUsuario == null){
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.radio", "Usuário"));
 		}
@@ -52,10 +56,6 @@ public class ManterJuridicaForm extends ActionForm {
 		if(tipUsuario.equals("USUARIO")){
 			if(juridicaVO.getNomResponsavel().equals("") || juridicaVO.getNomResponsavel() == null){
 				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Nome Responsável"));
-			}
-	
-			if(juridicaVO.getClienteVO().getEmail().equals("") || juridicaVO.getClienteVO().getEmail() == null){
-				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "E-mail"));
 			}
 	
 			if(juridicaVO.getNomFantasia().equals("") || juridicaVO.getNomFantasia() == null){
