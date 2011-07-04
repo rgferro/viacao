@@ -519,11 +519,13 @@ public class ClienteDAO extends BaseDB{
 		sql.append("    	e.complemento 		COMPLEMENTO, ");
 		sql.append("      	e.bairro 			BAIRRO, ");
 		sql.append("      	e.cidade 			CIDADE, ");
-		sql.append("      	e.estado 			ESTADO");
+		sql.append("      	e.estado 			ESTADO ");
 		sql.append("FROM 	endereco e, cliente c, juridica j ");
 		sql.append("WHERE 	j.seq_cliente_fk = c.seq_cliente ");
 		sql.append("   AND 	c.seq_endereco_fk = e.seq_endereco ");
 		sql.append("   AND 	seq_juridica = ?");
+		
+		System.out.println(sql.toString());
 		
 		return sql.toString();
 	}

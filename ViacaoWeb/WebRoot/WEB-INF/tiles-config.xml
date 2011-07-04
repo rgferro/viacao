@@ -106,6 +106,9 @@
 	<definition name="alterar.juridica" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/alterar.jsp"/>
 	</definition>
+	<definition name="consultar.juridica" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/consultar.jsp"/>
+	</definition>
 
 	<!-- Tiles for Login -->
 	

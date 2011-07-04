@@ -125,7 +125,7 @@
 	<action
 		attribute="manterJuridicaForm"
 		name="manterJuridicaForm"
-		path="/manterCliente"
+		path="/manterClienteJuridica"
 		parameter="task"
 		scope="session"
 		type="com.viacao.struts.action.ManterJuridicaAction"
@@ -134,6 +134,7 @@
 		<forward name="listar" path="listar.juridica" />
 		<forward name="cadastrar" path="cadastrar.juridica" />
 		<forward name="alterar" path="alterar.juridica" />
+		<forward name="consultar" path="consultar.juridica" />
 		
 	</action> 
    	<action 
