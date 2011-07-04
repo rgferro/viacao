@@ -16,7 +16,6 @@ public class ItinerarioVo {
 	
 	private RodoviariaVO rodoviariaOrigemVO;
 	private RodoviariaVO rodoviariaDestinoVO;
-	private TarifaVO tarifaVO;	
 	private List<TarifaVO> listaTarifas;
 	private String tempoViagem;
 	
@@ -50,20 +49,7 @@ public class ItinerarioVo {
 	public void setListaTarifas(List<TarifaVO> listaTarifas) {
 		this.listaTarifas = listaTarifas;
 	}	
-	/**
-	 * Obtém o atributo tarifaVO
-	 * @return Valor do atributo tarifaVO
-	 */
-	public TarifaVO getTarifaVO() {
-		return tarifaVO;
-	}
-	/**
-	 * Altera o atributo tarifaVO
-	 * @param tarifaVO Novo valor do atributo
-	 */
-	public void setTarifaVO(TarifaVO tarifaVO) {
-		this.tarifaVO = tarifaVO;
-	}
+
 	/**
 	 * Obtém o atributo rodoviariaOrigemVO
 	 * @return Valor do atributo rodoviariaOrigemVO

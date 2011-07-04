@@ -3,6 +3,8 @@
  */
 package com.viacao.struts.action;
 
+import java.util.Iterator;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -32,12 +34,57 @@ public class ManterItinerarioAction extends DispatchAction{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		form.inicializar();
+		
+		return buscar(mapping, frm, request, response);	
+	}
+	
+	public ActionForward linkCadastrar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
+		form.inicializar();
 		form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
-		form.setListaRodoviaria(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
 		form.setListaRodoviariaDestino(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
+		form.setListaRodoviariaOrigem(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
 		
 		return mapping.findForward("cadastrar");		
 	}
+	
+	public ActionForward buscar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
+		form.setListaItinerario(EstagioServices.getManterCadastroBean().getListaItinerario(form.getItinerarioVo()));
+		
+		return mapping.findForward("listar");		
+	}
+	
+	public ActionForward limparOrigem(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
+		form.setListaRodoviariaOrigem(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
+		form.getListaRodoviariaOrigem().remove(CollectionsUtil.find(form.getListaRodoviariaOrigem(), "seqRodoviaria", form.getSeqRodoviariaDestino()));
+		
+		if(form.getPagina().equals("cadastrar")){
+			return mapping.findForward("cadastrar");
+		}else{
+			return mapping.findForward("alterar");
+		}		
+	}
+	
+	public ActionForward limparDestino(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
+		form.setListaRodoviariaDestino(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
+		form.getListaRodoviariaDestino().remove(CollectionsUtil.find(form.getListaRodoviariaDestino(), "seqRodoviaria", form.getSeqRodoviariaOrigem()));
+		
+		if(form.getPagina().equals("cadastrar")){
+			return mapping.findForward("cadastrar");
+		}else{
+			return mapping.findForward("alterar");
+		}	
+	}
+	
+	private ItinerarioVo getItinerarioVo(ManterItinerarioForm form)throws Exception{
+		form.getItinerarioVo().setSeqItinerario(form.getSeqItinerario());
+		return EstagioServices.getManterCadastroBean().getItinerario(form.getItinerarioVo());		
+	}
+	
 	
 	/**
 	 * Método responsável por cadastrar um itinerario.
@@ -52,20 +99,10 @@ public class ManterItinerarioAction extends DispatchAction{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		ActionMessages messages = new ActionMessages();
-		
 		try{
-			
-			form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
-			
-			CollectionsUtil.sort(form.getListaTarifas(), "nomTarifa");
-			
 			form.getItinerarioVo().setListaTarifas(form.getListaTarifasEscolhidas());
-			form.getItinerarioVo().setRodoviariaOrigemVO(form.getListaRodoviaria().get(0));
-			form.getItinerarioVo().setRodoviariaDestinoVO(form.getListaRodoviaria().get(0));
-			
 			EstagioServices.getManterCadastroBean().inserirItinerario(form.getItinerarioVo());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
-			
 		}catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
@@ -83,23 +120,48 @@ public class ManterItinerarioAction extends DispatchAction{
 	 * @return mapping.findForward
 	 * @throws Exception
 	 */
-	public ActionForward alterarItinerario(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+	public ActionForward alterar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		ActionMessages messages = new ActionMessages();
+		try{
+			form.setItinerarioVo(getItinerarioVo(form));
+			form.setListaTarifas(EstagioServices.getManterCadastroBean().getListaTarifa(new TarifaVO()));
+			Iterator<TarifaVO> it = form.getItinerarioVo().getListaTarifas().iterator();
+			while(it.hasNext()){
+				TarifaVO tarifaVO = it.next();
+				CollectionsUtil.removeObjectsFromList(form.getListaTarifas(), tarifaVO.getSeqTarifa(), "seqTarifa");
+			}
+			form.setListaRodoviariaDestino(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
+			form.setListaRodoviariaOrigem(EstagioServices.getManterCadastroBean().listaInicioRodoviaria(new RodoviariaVO()));
+			form.setListaTarifasEscolhidas(form.getItinerarioVo().getListaTarifas());
+		}catch (Exception e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			saveMessages(request, messages);
+			return unspecified(mapping, frm, request, response);
+		}
+		return mapping.findForward("alterar");
+	}
+	public ActionForward confirmAlterar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		ActionMessages messages = new ActionMessages();
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		
 		try{
 			EstagioServices.getManterCadastroBean().alterarItinerario(form.getItinerarioVo());
-			form.setItinerarioVo(new ItinerarioVo());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
-			
 		}catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
-		
 		saveMessages(request, messages);
-		
 		return unspecified(mapping, frm, request, response);
+	}
+	
+	public ActionForward consultar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+		
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
+		form.setItinerarioVo(getItinerarioVo(form));
+		
+		return mapping.findForward("consultar");
 	}
 	
 	/**
@@ -111,23 +173,25 @@ public class ManterItinerarioAction extends DispatchAction{
 	 * @return mapping.findForward
 	 * @throws Exception
 	 */
-	public ActionForward excluirItinerario(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
+	public ActionForward deletar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm)frm;
+		form.setItinerarioVo(getItinerarioVo(form));		
+		
+		return mapping.findForward("deletar");
+	}
+	public ActionForward confirmDeletar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		ActionMessages messages = new ActionMessages();
+		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		
 		try{
 			EstagioServices.getManterCadastroBean().deletarItinerario(form.getItinerarioVo());
-			form.setItinerarioVo(new ItinerarioVo());			
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.deletar"));
-			
 		}catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
-		
 		saveMessages(request, messages);
-		
-		return unspecified(mapping, form, request, response);
+		return unspecified(mapping, frm, request, response);
 	}
 	
 	public ActionForward forwardListar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -168,7 +232,11 @@ public class ManterItinerarioAction extends DispatchAction{
 			form.setCboTarifa(0);
 		}
 		saveMessages(request, messages);		
-		return mapping.findForward("cadastrar");
+		if(form.getPagina().equals("cadastrar")){
+			return mapping.findForward("cadastrar");
+		}else{
+			return mapping.findForward("alterar");
+		}
 	}
 	
 	/**
@@ -204,7 +272,12 @@ public class ManterItinerarioAction extends DispatchAction{
 			form.setCboTarifaDestino(0);
 		}
 		saveMessages(request, messages);		
-		return mapping.findForward("cadastrar");
+		if(form.getPagina().equals("cadastrar")){
+			return mapping.findForward("cadastrar");
+		}else{
+			return mapping.findForward("alterar");
+		}
+		
 	}
 	
 	/**

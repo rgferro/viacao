@@ -50,7 +50,11 @@
 		scope="session"
 		type="com.viacao.struts.action.ManterItinerarioAction"
 		validate="false">
-		<forward name="cadastrar"				path=".cadastrar.manter.itinerario" />
+		<forward name="cadastrar"				path=".viacao.manutencao.itinerario.cadastrar" />
+		<forward name="listar"				path=".viacao.manutencao.itinerario.listar" />
+		<forward name="alterar"				path=".viacao.manutencao.itinerario.alterar" />
+		<forward name="deletar"				path=".viacao.manutencao.itinerario.deletar" />
+		<forward name="consultar"			path=".viacao.manutencao.itinerario.consultar" />
 	</action>
 	
 	<!-- manterOnibusForm -->

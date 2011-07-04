@@ -26,11 +26,14 @@ public class ManterItinerarioForm extends ActionForm{
 	private List<ItinerarioVo> listaItinerario;
 	private List<RodoviariaVO> listaRodoviaria;
 	private List<RodoviariaVO> listaRodoviariaDestino;
-	private Integer seqRodoviaria;
+	private List<RodoviariaVO> listaRodoviariaOrigem;
+	private Integer seqRodoviariaOrigem;
+	private Integer seqRodoviariaDestino;
+	private Integer seqItinerario;
 	private Integer cboTarifa;
 	private Integer cboTarifaDestino;
 	private String task;
-	private String tempoViagem;
+	private String pagina;
 	private boolean isconfirme;
 	
 	public void inicializar(){
@@ -40,12 +43,15 @@ public class ManterItinerarioForm extends ActionForm{
 		this.listaTarifasEscolhidas = new ArrayList<TarifaVO>();
 		this.listaRodoviaria = new ArrayList<RodoviariaVO>();
 		this.listaRodoviariaDestino = new ArrayList<RodoviariaVO>();
-		this.seqRodoviaria = new Integer(0);
 		this.cboTarifa = new Integer(0);
 		this.cboTarifaDestino = new Integer(0);
+		this.seqRodoviariaOrigem = new Integer(0);
+		this.seqRodoviariaDestino = new Integer(0);
 		this.isconfirme = false;
 		this.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
 		this.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
+		this.getItinerarioVo().setListaTarifas(new ArrayList<TarifaVO>());
+		
 	}
 
 	/**
@@ -208,35 +214,43 @@ public class ManterItinerarioForm extends ActionForm{
 		this.listaRodoviariaDestino = listaRodoviariaDestino;
 	}	
 
-	/**
-	 * Obtém o atributo tempoViagem
-	 * @return Valor do atributo tempoViagem
-	 */
-	public String getTempoViagem() {
-		return tempoViagem;
+	public String getPagina() {
+		return pagina;
 	}
 
-	/**
-	 * Altera o atributo tempoViagem
-	 * @param tempoViagem Novo valor do atributo
-	 */
-	public void setTempoViagem(String tempoViagem) {
-		this.tempoViagem = tempoViagem;
+	public void setPagina(String pagina) {
+		this.pagina = pagina;
 	}
 
-	/**
-	 * Obtém o atributo seqRodoviaria
-	 * @return Valor do atributo seqRodoviaria
-	 */
-	public Integer getSeqRodoviaria() {
-		return seqRodoviaria;
+	public List<RodoviariaVO> getListaRodoviariaOrigem() {
+		return listaRodoviariaOrigem;
 	}
 
-	/**
-	 * Altera o atributo seqRodoviaria
-	 * @param seqRodoviaria Novo valor do atributo
-	 */
-	public void setSeqRodoviaria(Integer seqRodoviaria) {
-		this.seqRodoviaria = seqRodoviaria;
+	public void setListaRodoviariaOrigem(List<RodoviariaVO> listaRodoviariaOrigem) {
+		this.listaRodoviariaOrigem = listaRodoviariaOrigem;
+	}
+
+	public Integer getSeqRodoviariaOrigem() {
+		return seqRodoviariaOrigem;
+	}
+
+	public void setSeqRodoviariaOrigem(Integer seqRodoviariaOrigem) {
+		this.seqRodoviariaOrigem = seqRodoviariaOrigem;
+	}
+
+	public Integer getSeqRodoviariaDestino() {
+		return seqRodoviariaDestino;
+	}
+
+	public void setSeqRodoviariaDestino(Integer seqRodoviariaDestino) {
+		this.seqRodoviariaDestino = seqRodoviariaDestino;
+	}
+
+	public Integer getSeqItinerario() {
+		return seqItinerario;
+	}
+
+	public void setSeqItinerario(Integer seqItinerario) {
+		this.seqItinerario = seqItinerario;
 	}	
 }

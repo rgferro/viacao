@@ -41,8 +41,24 @@
 	
 	<!-- Manter Itinerario -->
  
-	<definition name=".cadastrar.manter.itinerario" extends="layout">
+	<definition name=".viacao.manutencao.itinerario.cadastrar" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/itinerario/cadastrar.jsp"/>
+	</definition>
+	
+	<definition name=".viacao.manutencao.itinerario.listar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/itinerario/listar.jsp"/>
+	</definition>
+	
+	<definition name=".viacao.manutencao.itinerario.alterar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/itinerario/alterar.jsp"/>
+	</definition>
+	
+	<definition name=".viacao.manutencao.itinerario.deletar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/itinerario/deletar.jsp"/>
+	</definition>
+	
+	<definition name=".viacao.manutencao.itinerario.consultar" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/itinerario/consultar.jsp"/>
 	</definition>
 	
 	<!-- Tile for Manter Viagem-->

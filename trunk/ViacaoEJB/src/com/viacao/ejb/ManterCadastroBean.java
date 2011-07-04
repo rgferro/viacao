@@ -1,5 +1,6 @@
 package com.viacao.ejb;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.EJBException;
@@ -15,6 +16,7 @@ import com.acol.util.StringUtil;
 import com.viacao.dao.ClienteDAO;
 import com.viacao.dao.EnderecoDAO;
 import com.viacao.dao.ItinerarioDAO;
+import com.viacao.dao.ItinerarioTarifaDAO;
 import com.viacao.dao.OnibusDAO;
 import com.viacao.dao.RodoviariaDAO;
 import com.viacao.dao.TarifaDAO;
@@ -206,6 +208,15 @@ public class ManterCadastroBean implements SessionBean {
 		try{
 			ItinerarioDAO dao = new ItinerarioDAO();
 			dao.inserir(itinerarioVo);
+			if(!itinerarioVo.getListaTarifas().isEmpty()){
+				Iterator<TarifaVO> it = itinerarioVo.getListaTarifas().iterator();
+				itinerarioVo = getItinerario(itinerarioVo);
+				while(it.hasNext()){
+					TarifaVO tarifaVO = it.next();
+					ItinerarioTarifaDAO itDAO = new ItinerarioTarifaDAO();
+					itDAO.inserirItinerarioTarifa(itinerarioVo.getSeqItinerario(), tarifaVO.getSeqTarifa());
+				}
+			}
 		}catch (DAOException e) {
 			logger.fatal("Erro ao inserir itinerario", e);
 			throw new EJBException(e);
@@ -232,7 +243,18 @@ public class ManterCadastroBean implements SessionBean {
 	public void alterarItinerario(ItinerarioVo itinerarioVo){
 		try{
 			ItinerarioDAO dao = new ItinerarioDAO();
+			ItinerarioTarifaDAO itDAO = new ItinerarioTarifaDAO();
+			itDAO.excluirItinerarioTarifa(itinerarioVo.getSeqItinerario());
 			dao.alterar(itinerarioVo);
+			if(!itinerarioVo.getListaTarifas().isEmpty()){
+				Iterator<TarifaVO> it = itinerarioVo.getListaTarifas().iterator();
+				itinerarioVo = getItinerario(itinerarioVo);
+				while(it.hasNext()){
+					TarifaVO tarifaVO = it.next();
+					itDAO = new ItinerarioTarifaDAO();
+					itDAO.inserirItinerarioTarifa(itinerarioVo.getSeqItinerario(), tarifaVO.getSeqTarifa());
+				}
+			}
 		}catch (DAOException e) {
 			logger.fatal("Erro ao alterar itinerario", e);
 			throw new EJBException(e);
@@ -254,10 +276,10 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 	
-	public List<ItinerarioVo> listaItinerario(ItinerarioVo itinerarioVo){
+	public List<ItinerarioVo> getListaItinerario(ItinerarioVo itinerarioVo){
 		try{
 			ItinerarioDAO dao = new ItinerarioDAO();
-			return dao.listaItinerario(itinerarioVo);
+			return dao.getListaItinerario(itinerarioVo);
 		}catch (Exception e) {
 			logger.fatal("Erro ao buscar a lista de itinerarios", e);
 			throw new EJBException(e);
