@@ -32,20 +32,20 @@
 					<tr class="fundoclaro">
 						<td width="22%" align="center">Login</td>
 						<td width="88%" align="left" colspan="3">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.login" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.login" styleClass="inputconsultar" size="20" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td width="22%" align="center">Senha</td>
 						<td width="78%" align="left" colspan="3">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.senha" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.senha" styleClass="inputconsultar" size="20" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">E-mail</td>
 	
 						<td align="left" colspan="3" width="78%">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.email" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.email" styleClass="inputconsultar" size="30" maxlength="20"/>
 						</td>
 					</tr>
 					<c:if test="${manterClienteFisicaForm.tipUsuario eq 'USUARIO'}">
@@ -59,17 +59,17 @@
 						<tr class="fundoclaro">
 							<td align="center" width="22%">Nome</td>
 							<td align="left" colspan="3" width="78%">
-								<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="inputconsultar"/>
+								<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="inputconsultar" size="50" maxlength="50"/>
 							</td>
 						</tr>
 						<tr class="fundoclaro">
 							<td align="center" width="22%">CPF</td>
 							<td align="left" width="28%">
-								<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="inputconsultar"/>
+								<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="inputconsultar" size="15" maxlength="20"/>
 							</td>
 							<td align="center" width="05%">RG</td>
 							<td align="left" width="45%">
-								<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="inputconsultar"/>
+								<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="inputconsultar" size="15" maxlength="20"/>
 							</td>
 						</tr>
 					</c:if>
@@ -79,34 +79,34 @@
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Logradouro</td>
 						<td align="left" width="78%" colspan="3">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.logradouro" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.logradouro" styleClass="inputconsultar" size="90" maxlength="70"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 	
 						<td align="center" width="22%">Número</td>
 						<td align="left" width="28%">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.numero" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.numero" styleClass="inputconsultar" size="5" maxlength="10"/>
 						</td>
 						<td align="center" width="18%">Complemento</td>
 						<td align="left" width="32%%">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.complemento" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.complemento" styleClass="inputconsultar" size="30" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Bairro</td>
 						<td align="left" width="28%">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.bairro" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.bairro" styleClass="inputconsultar" size="20" maxlength="30"/>
 						</td>
 						<td align="center" width="18%">Cidade</td>
 						<td align="left" width="32%%">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.cidade" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.cidade" styleClass="inputconsultar" size="20" maxlength="30"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Estado</td>
 						<td align="left" width="78%" colspan="3">
-							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.estado" styleClass="inputconsultar"/>
+							<html:text disabled="true" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.estado" styleClass="inputconsultar" size="5" maxlength="30"/>
 						</td>
 					</tr>
 	
