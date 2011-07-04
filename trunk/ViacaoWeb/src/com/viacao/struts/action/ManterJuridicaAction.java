@@ -90,8 +90,13 @@ public class ManterJuridicaAction extends DispatchAction {
 		
 		juridicaVO.setSeqJuridica(frm.getSeqJuridica());
 		
-		List<JuridicaVO> listaClienteJuridico = EstagioServices.getManterCadastroBean().getListaClienteJuridica(juridicaVO);
-		frm.setListaClienteJuridico(listaClienteJuridico);
+		frm.setJuridicaVO(EstagioServices.getManterCadastroBean().getClienteJuridica(juridicaVO));
+		
+		if(frm.getJuridicaVO().getNomResponsavel() == null){
+			frm.setTipUsuario("ADMINISTRADOR");
+		}else{
+			frm.setTipUsuario("USUARIO");
+		}
 
 		if(frm.getAcao().equals("DELETAR")){
 			return mapping.findForward("deletar");

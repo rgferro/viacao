@@ -26,7 +26,7 @@ function getJuridica(seq, acao){
 }
 </script>
 
-<html:form action="/manterCliente">
+<html:form action="/manterClienteJuridica">
 <html:hidden property="task" name="manterJuridicaForm"/>
 <html:hidden property="seqJuridica" name="manterJuridicaForm"/>
 <html:hidden property="acao" name="manterJuridicaForm"/>

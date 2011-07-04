@@ -544,6 +544,8 @@ public class ClienteDAO extends BaseDB{
 			rowSet = executeQuery(pstmt);
 			
 			JuridicaVO juriVO = new JuridicaVO();
+			juriVO.setClienteVO(new ClienteVO());
+			juriVO.getClienteVO().setEnderecoVO(new EnderecoVO());
 			if(rowSet.next()){
 				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
 				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
