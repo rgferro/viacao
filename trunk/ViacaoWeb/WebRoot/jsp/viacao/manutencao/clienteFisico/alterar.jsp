@@ -54,30 +54,31 @@
 							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.email" styleClass="input" maxlength="20"/>
 						</td>
 					</tr>
-					<tr class="fundoclaro">
-						<td align="left" colspan="4"><ul><b><li>Dados Pessoais:</ul></td>
-					</tr>	
-					<tr class="fundoclaro">
-	
-						<td align="left" colspan="4" class="texto"><u><i>Pessoa Física</td>
-					</tr>
-					<tr class="fundoclaro">
-						<td align="center" width="22%">Nome</td>
-						<td align="left" colspan="3" width="78%">
-							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="input" maxlength="50"/>
-						</td>
-					</tr>
-					<tr class="fundoclaro">
-						<td align="center" width="22%">CPF</td>
-						<td align="left" width="28%">
-							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="input" maxlength="20"/>
-						</td>
-						<td align="center" width="05%">RG</td>
-						<td align="left" width="45%">
-							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="input" maxlength="20"/>
-						</td>
-					</tr>
-	
+					<c:if test="${manterClienteFisicaForm.tipUsuario eq 'USUARIO'}">
+						<tr class="fundoclaro">
+							<td align="left" colspan="4"><ul><b><li>Dados Pessoais:</ul></td>
+						</tr>	
+						<tr class="fundoclaro">
+		
+							<td align="left" colspan="4" class="texto"><u><i>Pessoa Física</td>
+						</tr>
+						<tr class="fundoclaro">
+							<td align="center" width="22%">Nome</td>
+							<td align="left" colspan="3" width="78%">
+								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="input" maxlength="50"/>
+							</td>
+						</tr>
+						<tr class="fundoclaro">
+							<td align="center" width="22%">CPF</td>
+							<td align="left" width="28%">
+								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="input" maxlength="20"/>
+							</td>
+							<td align="center" width="05%">RG</td>
+							<td align="left" width="45%">
+								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="input" maxlength="20"/>
+							</td>
+						</tr>
+					</c:if>
 					<tr class="fundoclaro">
 						<td align="left" colspan="4"><ul><b><li>Endereço:</ul></td>
 					</tr>			

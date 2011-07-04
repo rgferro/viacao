@@ -61,6 +61,7 @@ public class ManterClienteFisicaAction extends DispatchAction{
 				}
 				
 				EstagioServices.getManterCadastroBean().inserirFisica(frm.getFisicaVO());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
 				
 			}else{
 				saveMessages(request, messages);
@@ -70,7 +71,6 @@ public class ManterClienteFisicaAction extends DispatchAction{
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 			saveMessages(request, messages);
 		}
-		messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
 		saveMessages(request, messages);
 		return unspecified(mapping, form, request, response);
 	}
@@ -96,14 +96,16 @@ public class ManterClienteFisicaAction extends DispatchAction{
 			
 			EstagioServices.getManterCadastroBean().alterarFisica(frm.getFisicaVO());
 			
+			frm.getFisicaVO();
+			
+			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
+		}catch (UniqueConstraintViolatedException e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","fisica"));
 		}
-//		catch (UniqueConstraintViolatedException e) {
-//			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","tarifa"));
-//		}
 		catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
-		
+		saveMessages(request, messages);
 		return unspecified(mapping, form, request, response);
 	}
 	
@@ -120,10 +122,9 @@ public class ManterClienteFisicaAction extends DispatchAction{
 				saveMessages(request, messages);
 				return mapping.findForward("deletar");
 			}
+		}catch (ChildRecordFoundException e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.delete","fisica"));
 		}
-//		catch (ChildRecordFoundException e) {
-//			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.delete","fisica"));
-//		}
 		catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}

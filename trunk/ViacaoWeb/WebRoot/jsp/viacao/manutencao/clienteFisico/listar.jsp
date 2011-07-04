@@ -94,7 +94,7 @@
 							</td>
 							<td align="center">
 								<a href="javascript: selecionar('CONSULTAR', <c:out value="${lista.seqFisica}"/>, <c:out value="${lista.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${lista.clienteVO.seqCliente}"/>)">
-									<img title="Consultar!" src="images/icon_lupa.gif" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'consultar');" onmouseout="mudaImagemOut(this, 'consultar')">
+									<img title="Consultar!" src="images/zoomoff.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'consultar');" onmouseout="mudaImagemOut(this, 'consultar')">
 								</a>
 							</td>
 							<td align="center">
