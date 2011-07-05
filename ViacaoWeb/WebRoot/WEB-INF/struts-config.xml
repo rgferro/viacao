@@ -139,6 +139,7 @@
 		<forward name="cadastrar" path="cadastrar.juridica" />
 		<forward name="alterar" path="alterar.juridica" />
 		<forward name="consultar" path="consultar.juridica" />
+		<forward name="deletar" path="deletar.juridica" />
 		
 	</action> 
    	<action 

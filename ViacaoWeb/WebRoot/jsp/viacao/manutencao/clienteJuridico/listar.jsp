@@ -17,9 +17,11 @@ function buscar(){
 	frm.submit();
 }
 
-function getJuridica(seq, acao){
+function getJuridica(acao, seqJ, seqE, seqC){
 	var frm = document.forms[0];
-	frm.seqJuridica.value = seq;
+	frm.seqEndereco.value = seqE;
+	frm.seqCliente.value = seqC;
+	frm.seqJuridica.value = seqJ;
 	frm.acao.value = acao;
 	frm.task.value = 'getJuridica';
 	frm.submit();
@@ -29,10 +31,13 @@ function getJuridica(seq, acao){
 <html:form action="/manterClienteJuridica">
 <html:hidden property="task" name="manterJuridicaForm"/>
 <html:hidden property="seqJuridica" name="manterJuridicaForm"/>
+<html:hidden property="seqEndereco" name="manterJuridicaForm"/>
+<html:hidden property="seqCliente" name="manterJuridicaForm"/>
 <html:hidden property="acao" name="manterJuridicaForm"/>
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
+				<jsp:include page="/jsp/common/mensagens.jsp" />
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td class="titulo">Usuário Jurídico</td>
@@ -98,27 +103,27 @@ function getJuridica(seq, acao){
 						<logic:iterate id="listaJuridica" name="manterJuridicaForm" property="listaClienteJuridico">
 							<tr class="fundoclaro">
 								<td align="center">
-									<a href="javascript: getJuridica('<c:out value="${listaJuridica.seqJuridica}"/>', 'ALTERAR');">
-										<img title="Editar" src="images/icon_editar.gif">
+									<a href="javascript: getJuridica('ALTERAR', <c:out value="${listaJuridica.seqJuridica}"/>, <c:out value="${listaJuridica.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${listaJuridica.clienteVO.seqCliente}"/>);">
+										<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
 									</a>
 								</td>
 								<td align="center">
-									<a href="javascript: getJuridica('<c:out value="${listaJuridica.seqJuridica}"/>', 'DELETAR');">
-										<img title="Deletar" src="images/icon_lixeira.gif">
+									<a href="javascript: getJuridica('DELETAR', <c:out value="${listaJuridica.seqJuridica}"/>, <c:out value="${listaJuridica.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${listaJuridica.clienteVO.seqCliente}"/>);">
+										<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
 									</a>
 								</td>
 								<td align="center">
-									<a href="javascript: getJuridica('<c:out value="${listaJuridica.seqJuridica}"/>', 'CONSULTAR');">
-										<img title="Deletar" src="images/icon_lupa.gif">
+									<a href="javascript: getJuridica('CONSULTAR', <c:out value="${listaJuridica.seqJuridica}"/>, <c:out value="${listaJuridica.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${listaJuridica.clienteVO.seqCliente}"/>);">
+										<img title="Consultar!" src="images/zoomoff.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'consultar');" onmouseout="mudaImagemOut(this, 'consultar')">
 									</a>
 								</td>
-								<td align="left">
+								<td align="center">
 									<bean:write name="listaJuridica" property="razaoSocial"/>
 								</td>
-								<td align="left">
+								<td align="center">
 									<bean:write name="listaJuridica" property="clienteVO.login"/>
 								</td>
-								<td align="left">
+								<td align="center">
 									<bean:write name="listaJuridica" property="clienteVO.email"/>
 								</td>
 							</tr>

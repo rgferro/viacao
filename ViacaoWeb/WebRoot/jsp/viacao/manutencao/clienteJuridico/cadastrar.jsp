@@ -20,6 +20,8 @@ function voltar(){
 }
 
 function abre(acao){
+	
+	
 	if(acao == 'usuario'){
 		document.getElementById('dadosPessoas').style.display = '';
 	} 
@@ -33,7 +35,6 @@ function abre(acao){
 
 <html:form action="/manterClienteJuridica">
 <html:hidden property="task" name="manterJuridicaForm"/>
-<html:hidden property="tipUsuario" name="manterJuridicaForm"/>
 	
 	<table width="600" border="0" align="center">
 		<tr>
@@ -57,13 +58,13 @@ function abre(acao){
 					<tr class="fundoclaro">
 						<td width="22%" align="center">Login</td>
 						<td width="88%" align="left" colspan="3">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.login" size="20" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.login" size="20" styleClass="inputobrigatorio" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td width="22%" align="center">Senha</td>
 						<td width="78%" align="left" colspan="3">
-							<html:password name="manterJuridicaForm" property="juridicaVO.clienteVO.senha" size="20" styleClass="inputobrigatorio"/>
+							<html:password name="manterJuridicaForm" property="juridicaVO.clienteVO.senha" size="20" styleClass="inputobrigatorio" maxlength="20"/>
 						</td>
 					</tr>
 	
@@ -76,7 +77,7 @@ function abre(acao){
 					<tr class="fundoclaro">
 							<td align="center" width="22%">E-mail</td>
 							<td align="left" colspan="3" width="78%">
-								<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.email" size="30" styleClass="inputobrigatorio"/>
+								<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.email" size="30" styleClass="inputobrigatorio" maxlength="20"/>
 							</td> 
 						</tr>
 					<tr class="fundoclaro">
@@ -99,30 +100,30 @@ function abre(acao){
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Nome responsável</td>
 						<td align="left" colspan="3" width="78%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.nomResponsavel" size="50" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.nomResponsavel" size="50" styleClass="inputobrigatorio" maxlength="50"/>
 						</td> 
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Nome da Empresa</td>
 						<td align="left" colspan="3" width="78%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.nomFantasia" size="50" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.nomFantasia" size="50" styleClass="inputobrigatorio" maxlength="50"/>
 						</td> 
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Razão social</td>
 	
 						<td align="left" colspan="3" width="78%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.razaoSocial" size="50" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.razaoSocial" size="50" styleClass="inputobrigatorio" maxlength="50"/>
 						</td> 
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">CNPJ</td>
 						<td align="left" width="28%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.cnpj" size="20" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.cnpj" size="20" styleClass="inputobrigatorio" maxlength="80"/>
 						</td>
 						<td align="center" width="18%">Inscrição estadual</td>
 						<td align="left" width="32%%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.numInscricao" size="20" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.numInscricao" size="20" styleClass="inputobrigatorio" maxlength="30"/>
 						</td>
 					</tr>
 				</table>
@@ -133,35 +134,35 @@ function abre(acao){
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Logradouro</td>
 						<td align="left" width="78%" colspan="3">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.logradouro" size="88" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.logradouro" size="88" styleClass="inputobrigatorio" maxlength="70"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 	
 						<td align="center" width="22%">Número</td>
 						<td align="left" width="28%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.numero" size="5" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.numero" size="5" styleClass="inputobrigatorio" maxlength="10"/>
 						</td>
 						<td align="center" width="18%">Complemento</td>
 						<td align="left" width="32%%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.complemento" size="30" styleClass="input"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.complemento" size="30" styleClass="input" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Bairro</td>
 	
 						<td align="left" width="28%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.bairro" size="20" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.bairro" size="20" styleClass="inputobrigatorio" maxlength="30"/>
 						</td>
 						<td align="center" width="18%">Cidade</td>
 						<td align="left" width="32%%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.cidade" size="20" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.cidade" size="20" styleClass="inputobrigatorio" maxlength="30"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center" width="22%">Estado</td>
 						<td align="left" width="78%" colspan="3">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.estado" size="5" styleClass="inputobrigatorio"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.estado" size="5" styleClass="inputobrigatorio" maxlength="30"/>
 						</td>
 					</tr>
 				</table>
@@ -174,7 +175,7 @@ function abre(acao){
 							<html:button value="Cadastrar" property="" styleClass="botao" onclick="cadastrar();"/>
 						</td>
 						<td align="center">
-							<html:reset value="Limpar" styleClass="botao"/>
+							<html:reset value="Limpar" styleClass="botao" onclick="limpar();"/>
 						</td>
 					</tr>
 				</table>

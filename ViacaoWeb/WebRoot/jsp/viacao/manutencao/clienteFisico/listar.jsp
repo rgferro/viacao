@@ -49,7 +49,7 @@
 	
 					</tr>
 					<tr class="fundoclaro">
-						<td class="texto" width="10%" height="20" align="center">Usuário</td>
+						<td class="texto" width="10%" height="20" align="center">Nome</td>
 						<td width="45%" colspan="3">
 							<html:text name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="input" size="100"/>
 						</td>
@@ -76,10 +76,16 @@
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
 						<td width="15%" height="20" colspan="3">&nbsp;</td>
-						<td width="40%"  align="center">Usuário</td>
+						<td width="40%"  align="center">Nome</td>
 						<td width="20%" align="center">Login</td>
 						<td width="25%" align="center">E-mail</td>					
+						<td width="25%" align="center">Tipo Usuario</td>					
 					</tr>
+					<logic:empty name="manterClienteFisicaForm" property="listaClienteFisico">
+						<tr>
+							<td align="center" colspan="6" class="texto">Nenhum usuário foi encontrado!</td>
+						</tr>
+					</logic:empty>
 					<logic:iterate id="lista" name="manterClienteFisicaForm" property="listaClienteFisico">
 						<tr class="fundoclaro">
 							<td align="center">
@@ -105,6 +111,14 @@
 							</td>
 							<td align="center">
 								<bean:write name="lista" property="clienteVO.email"/>
+							</td>
+							<td align="center">
+								<c:if test="${lista.nomPessoa ne null}">
+									Usuário
+								</c:if>
+								<c:if test="${lista.nomPessoa eq null}">
+									Administrador
+								</c:if>
 							</td>
 						</tr>
 					</logic:iterate>

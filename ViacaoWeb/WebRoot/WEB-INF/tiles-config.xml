@@ -125,6 +125,9 @@
 	<definition name="consultar.juridica" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/consultar.jsp"/>
 	</definition>
+	<definition name="deletar.juridica" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/deletar.jsp"/>
+	</definition>
 
 	<!-- Tiles for Login -->
 	

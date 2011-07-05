@@ -214,8 +214,6 @@ public class ClienteDAO extends BaseDB{
 		sql.append("		CPF_pessoa	= upper ('"+fisicaVO.getCpfPessoa()+"'), ");
 		sql.append("		RG_pessoa	= upper ('"+fisicaVO.getRgPessoa()+"') ");
 		sql.append(" WHERE	seq_fisica	=  "+ fisicaVO.getSeqFisica()+"  ");
-		
-		System.out.println(sql.toString());
 	
 		return sql.toString();
 	}
@@ -243,8 +241,8 @@ public class ClienteDAO extends BaseDB{
 	}
 	
 	/**
-	 * SQL 
-	 * @return
+	 * SQL getSQLClienteFisica
+	 * @return query getClienteFisica
 	 */
 	public String getSQLClienteFisica(){
 		StringBuffer sql = new StringBuffer();
@@ -271,6 +269,12 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * Recupera um Cliente Fisica no banco
+	 * @param fisicaVO
+	 * @return fisicaVO
+	 * @throws DAOException
+	 */
 	public FisicaVO getClienteFisica (FisicaVO fisicaVO) throws DAOException{
 		
 		try{
@@ -313,13 +317,35 @@ public class ClienteDAO extends BaseDB{
 	}
 	
 	/**
-	 * 
+	 * SQL getSQLListaClienteFisica
 	 * @param fisicaVO
-	 * @return
+	 * @return query getListaClienteFisica
 	 */
 	private String getSQLListaClienteFisica(FisicaVO fisicaVO){
 		StringBuffer sql = new StringBuffer();
 		
+		sql.append(" SELECT f.seq_fisica, ");
+		sql.append("  		c.seq_cliente, ");
+		sql.append("  		e.seq_endereco, ");
+		sql.append("  		c.seq_endereco_fk, ");
+		sql.append("  		c.login, ");
+		sql.append("  		c.senha, ");
+		sql.append("        c.email, ");
+		sql.append("        f.nom_pessoa, ");
+		sql.append("       	f.cpf_pessoa, ");
+		sql.append("        f.rg_pessoa, ");
+		sql.append("        e.logradouro, ");
+		sql.append("		e.numero, ");
+		sql.append("        e.complemento, ");
+		sql.append("        e.bairro, ");
+		sql.append("        e.cidade, ");
+		sql.append("        e.estado ");
+		sql.append(" FROM	endereco e, cliente c, fisica f,juridica j ");
+		sql.append(" WHERE c.seq_endereco_fk = e.seq_endereco ");
+		sql.append(" AND f.seq_cliente_fk(+) = c.seq_cliente ");
+		sql.append(" AND c.seq_cliente not in (select j.seq_cliente_fk from juridica j) ");
+		sql.append(" AND c.seq_cliente not in (select f.seq_cliente_fk from fisica f) ");
+		sql.append(" UNION ");
 		sql.append(" SELECT	f.seq_fisica, ");
 		sql.append("  		c.seq_cliente, ");
 		sql.append("  		e.seq_endereco, ");
@@ -336,8 +362,8 @@ public class ClienteDAO extends BaseDB{
 		sql.append("        e.bairro, ");
 		sql.append("        e.cidade, ");
 		sql.append("        e.estado ");
-		sql.append(" FROM	endereco e, cliente c, fisica f ");
-		sql.append(" WHERE	f.seq_cliente_fk (+) = c.seq_cliente ");
+		sql.append(" FROM	endereco e, cliente c, fisica f,juridica j ");
+		sql.append(" WHERE	f.seq_cliente_fk  = c.seq_cliente ");
 		sql.append(" AND 	c.seq_endereco_fk = e.seq_endereco ");
 		
 		// filtro por nome pessoa
@@ -356,6 +382,12 @@ public class ClienteDAO extends BaseDB{
 		return sql.toString();
 	}
 	
+	/**
+	 * Recupera lista de clientes no banco de dados
+	 * @param fisicaVO
+	 * @return List<clienteVO>
+	 * @throws DAOException
+	 */
 	public List<FisicaVO> getListaClienteFisica (FisicaVO fisicaVO) throws DAOException{
 		
 		try{
@@ -405,7 +437,7 @@ public class ClienteDAO extends BaseDB{
 	 * @return query InserirJuridica
 	 * @throws DAOException
 	 */
-	public String getSQLInserirJuridica() throws DAOException{
+	public String getSQLInserirJuridica(JuridicaVO juridicaVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" INSERT INTO juridica(");
@@ -413,15 +445,16 @@ public class ClienteDAO extends BaseDB{
 		sql.append("			 	seq_cliente_fk, ");
 		sql.append("			 	razao_social, ");
 		sql.append("			 	nom_fantasia, ");
+		sql.append("			 	nom_responsavel, ");
 		sql.append("			 	cnpj, ");
 		sql.append("			 	num_inscricao) ");
-		sql.append(" VALUES 	 seq_juridica.nextval, ");
-		sql.append("			 ?, ");
-		sql.append("			 upper ('?'), ");
-		sql.append("			 upper ('?'), ");
-		sql.append("			 upper ('?'), ");
-		sql.append("			 upper ('?'), ");
-		sql.append("			 upper ('?')) ");
+		sql.append(" VALUES (	 ?, ");
+		sql.append("			 "+juridicaVO.getClienteVO().getSeqCliente()+", ");
+		sql.append("			 upper ('"+juridicaVO.getRazaoSocial()+"'), ");
+		sql.append("			 upper ('"+juridicaVO.getNomFantasia()+"'), ");
+		sql.append("			 upper ('"+juridicaVO.getNomResponsavel()+"'), ");
+		sql.append("			 upper ('"+juridicaVO.getCnpj()+"'), ");
+		sql.append("			 upper ('"+juridicaVO.getNumInscricao()+"')) ");
 	   
 		return sql.toString();
 	}
@@ -435,13 +468,10 @@ public class ClienteDAO extends BaseDB{
 		try{
 			Integer seq = getSequenceNextValue("seq_juridica");
 			
-			pstmt = getPstmt(getSQLInserirJuridica());
-			pstmt.setInt(1, juridicaVO.getClienteVO().getSeqCliente());
-			pstmt.setString(2, juridicaVO.getRazaoSocial());
-			pstmt.setString(3, juridicaVO.getNomFantasia());
-			pstmt.setString(4, juridicaVO.getNomResponsavel());
-			pstmt.setString(5, juridicaVO.getCnpj());
-			pstmt.setString(6, juridicaVO.getNumInscricao());
+			connect();
+			
+			pstmt = getPstmt(getSQLInserirJuridica(juridicaVO));
+			pstmt.setInt(1, seq.intValue());
 			
 			pstmt.executeUpdate();
 			
@@ -481,6 +511,7 @@ public class ClienteDAO extends BaseDB{
 	 */
 	public void alterarJuridica(JuridicaVO juridicaVO) throws DAOException{
 		try{
+			
 			pstmt = getPstmt(getSQLAlterarJuridica());
 			pstmt.setString(1, juridicaVO.getRazaoSocial());
 			pstmt.setString(2, juridicaVO.getNomFantasia());
@@ -524,8 +555,6 @@ public class ClienteDAO extends BaseDB{
 		sql.append("WHERE 	j.seq_cliente_fk = c.seq_cliente ");
 		sql.append("   AND 	c.seq_endereco_fk = e.seq_endereco ");
 		sql.append("   AND 	seq_juridica = ?");
-		
-		System.out.println(sql.toString());
 		
 		return sql.toString();
 	}
@@ -581,7 +610,10 @@ public class ClienteDAO extends BaseDB{
 	public String getSQLGetListaClienteJuridica(JuridicaVO juridicaVO) throws DAOException{
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("SELECT 		c.login 			LOGIN, ");
+		sql.append(" SELECT		c.seq_cliente, ");
+		sql.append("  			e.seq_endereco, ");
+		sql.append("  			c.seq_endereco_fk, ");
+		sql.append("	 		c.login 			LOGIN, ");
 		sql.append("   			c.senha 			SENHA, ");
 		sql.append("   			c.email 			EMAIL, ");
 		sql.append("   			j.seq_juridica 		SEQ_JURIDICA, ");
@@ -609,7 +641,6 @@ public class ClienteDAO extends BaseDB{
 			sql.append("      AND 	c.email LIKE upper ('%" + juridicaVO.getClienteVO().getEmail() + "%')");
 		}
 
-		System.out.println(sql.toString());
 		return sql.toString();
 	}
 	
@@ -630,6 +661,9 @@ public class ClienteDAO extends BaseDB{
 				JuridicaVO juriVO = new JuridicaVO();
 				juriVO.setClienteVO(new ClienteVO());
 				juriVO.getClienteVO().setEnderecoVO(new EnderecoVO());
+				juriVO.getClienteVO().setSeqCliente(new Integer(rowSet.getString("seq_cliente")));
+				juriVO.getClienteVO().getEnderecoVO().setSeqEndereco(new Integer(rowSet.getString("seq_endereco")));
+				juriVO.getClienteVO().getEnderecoVO().setSeqEndereco(new Integer(rowSet.getString("seq_endereco_fk")));
 				juriVO.getClienteVO().setLogin(rowSet.getString("LOGIN"));
 				juriVO.getClienteVO().setSenha(rowSet.getString("SENHA"));
 				juriVO.getClienteVO().setEmail(rowSet.getString("EMAIL"));

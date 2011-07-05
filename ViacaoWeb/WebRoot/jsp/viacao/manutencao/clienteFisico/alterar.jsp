@@ -96,7 +96,7 @@
 						</td>
 						<td align="center" width="18%">Complemento</td>
 						<td align="left" width="32%%">
-							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.complemento" styleClass="inputobrigatorio" size="30" maxlength="20"/>
+							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.complemento" styleClass="input" size="30" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
