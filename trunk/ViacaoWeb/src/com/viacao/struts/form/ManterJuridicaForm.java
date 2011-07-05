@@ -18,6 +18,8 @@ import com.viacao.vo.JuridicaVO;
 public class ManterJuridicaForm extends ActionForm {
 
 	private Integer seqJuridica;
+	private Integer seqCliente;
+	private Integer seqEndereco;
 	private JuridicaVO juridicaVO;
 	private List<JuridicaVO> listaClienteJuridico;
 	private String task;
@@ -149,6 +151,22 @@ public class ManterJuridicaForm extends ActionForm {
 
 	public void setAcao(String acao) {
 		this.acao = acao;
+	}
+
+	public Integer getSeqCliente() {
+		return seqCliente;
+	}
+
+	public void setSeqCliente(Integer seqCliente) {
+		this.seqCliente = seqCliente;
+	}
+
+	public Integer getSeqEndereco() {
+		return seqEndereco;
+	}
+
+	public void setSeqEndereco(Integer seqEndereco) {
+		this.seqEndereco = seqEndereco;
 	}
 	
 }
