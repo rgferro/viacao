@@ -58,30 +58,30 @@
 						<tr class="fundoclaro">
 							<td align="center" width="22%">Nome responsável</td>
 							<td align="left" colspan="3" width="78%">
-								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.nomResponsavel" size="50" styleClass="inputconsultar" size="50" maxlength="50"/>
+								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.nomResponsavel" styleClass="inputconsultar" size="50" maxlength="50"/>
 							</td> 
 						</tr>
 						<tr class="fundoclaro">
 							<td align="center" width="22%">Nome da Empresa</td>
 							<td align="left" colspan="3" width="78%">
-								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.nomFantasia" size="50" styleClass="inputconsultar" size="50" maxlength="50"/>
+								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.nomFantasia" styleClass="inputconsultar" size="50" maxlength="50"/>
 							</td> 
 						</tr>
 						<tr class="fundoclaro">
 							<td align="center" width="22%">Razão social</td>
 		
 							<td align="left" colspan="3" width="78%">
-								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.razaoSocial" size="50" styleClass="inputconsultar" size="50" maxlength="50"/>
+								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.razaoSocial" styleClass="inputconsultar" size="50" maxlength="50"/>
 							</td> 
 						</tr>
 						<tr class="fundoclaro">
 							<td align="center" width="22%">CNPJ</td>
 							<td align="left" width="28%">
-								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.cnpj" size="20" styleClass="inputconsultar" size="20" maxlength="80"/>
+								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.cnpj" styleClass="inputconsultar" size="20" maxlength="80"/>
 							</td>
 							<td align="center" width="18%">Inscrição estadual</td>
 							<td align="left" width="32%%">
-								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.numInscricao" size="20" styleClass="inputconsultar" size="20" maxlength="30"/>
+								<html:text disabled="true" name="manterJuridicaForm" property="juridicaVO.numInscricao" styleClass="inputconsultar" size="20" maxlength="30"/>
 							</td>
 						</tr>
 					</c:if>

@@ -571,6 +571,7 @@ public class ManterCadastroBean implements SessionBean {
 			ClienteDAO dao = new ClienteDAO();
 			enderDao.alterarEndereco(juridicaVO.getClienteVO().getEnderecoVO());
 			dao.alterarCliente(juridicaVO.getClienteVO());
+			dao = new ClienteDAO();
 			dao.alterarJuridica(juridicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em alterarJuridica :: ManterCadastroBean",e);
