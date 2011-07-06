@@ -82,6 +82,7 @@ public class ManterJuridicaAction extends DispatchAction {
 				frm.getJuridicaVO().getClienteVO().getEnderecoVO().setSeqEndereco(frm.getSeqEndereco());
 				
 				EstagioServices.getManterCadastroBean().alterarJuridica(frm.getJuridicaVO());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
 			}else{
 				saveMessages(request, messages);
 				return mapping.findForward("inserir");
