@@ -1,10 +1,13 @@
 package com.viacao.dao;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
+
+import sun.jdbc.rowset.CachedRowSet;
 
 import com.acol.exception.DAOException;
 import com.acol.util.DoubleUtils;
