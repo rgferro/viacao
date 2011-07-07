@@ -33,26 +33,28 @@ public class ManterClienteFisicaAction extends DispatchAction{
 		return mapping.findForward("listar");
 	}
 	
-	public ActionForward listarFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public ActionForward buscarCliente(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
+		ActionMessages messages = new ActionMessages();
 		
 		FisicaVO fisicaVO = new FisicaVO();
 		
-		if(frm.getSeqFisica() != null){
-			fisicaVO.setSeqFisica(frm.getSeqFisica());
+		try{
+			fisicaVO = frm.getFisicaVO();
+			
+			List<FisicaVO> listaClienteFisico = EstagioServices.getManterCadastroBean().getListaClienteFisica(fisicaVO);
+			frm.setListaClienteFisico(listaClienteFisico);
+		
+		}catch (Exception e) {
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			saveMessages(request, messages);
 		}
-		
-		List<FisicaVO> listaClienteFisico = EstagioServices.getManterCadastroBean().getListaClienteFisica(fisicaVO);
-		frm.setListaClienteFisico(listaClienteFisico);
-		
-		return null;
+		return mapping.findForward("listar");
 	}
 	
 	public ActionForward inserirFisica(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterClienteFisicaForm frm = (ManterClienteFisicaForm)form;
 		ActionMessages messages = frm.validate(request);
-		
-		frm.getTipUsuario();
 		
 		try{
 			if(messages.isEmpty()){

@@ -97,11 +97,11 @@ function limpar(){
 						<tr class="fundoclaro">
 							<td align="center" width="22%">CNPJ</td>
 							<td align="left" width="28%">
-								<html:text name="manterJuridicaForm" property="juridicaVO.cnpj" size="20" styleClass="inputobrigatorio" maxlength="80"/>
+								<html:text name="manterJuridicaForm" property="juridicaVO.cnpj" size="20" styleClass="inputobrigatorio" maxlength="80" onkeypress="return somenteNumero(this,event,false,false,false)"/>
 							</td>
 							<td align="center" width="18%">Inscrição estadual</td>
 							<td align="left" width="32%%">
-								<html:text name="manterJuridicaForm" property="juridicaVO.numInscricao" size="20" styleClass="inputobrigatorio" maxlength="30"/>
+								<html:text name="manterJuridicaForm" property="juridicaVO.numInscricao" size="20" styleClass="inputobrigatorio" maxlength="30" onkeypress="return somenteNumero(this,event,false,false,false)"/>
 							</td>
 						</tr>
 					</c:if>
@@ -118,7 +118,7 @@ function limpar(){
 	
 						<td align="center" width="22%">Número</td>
 						<td align="left" width="28%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.numero" size="5" styleClass="inputobrigatorio" maxlength="10"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.enderecoVO.numero" size="5" styleClass="inputobrigatorio" maxlength="10" onkeypress="return somenteNumero(this,event,false,false,false)"/>
 						</td>
 						<td align="center" width="18%">Complemento</td>
 						<td align="left" width="32%%">

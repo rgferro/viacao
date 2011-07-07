@@ -10,6 +10,11 @@
 		frm.task.value = 'getFisica';
 		frm.submit();
 	}
+	function buscar(){
+		var frm = document.forms[0];
+		frm.task.value = 'buscarCliente';
+		frm.submit();
+	}
 	
 	
 </script>
@@ -31,15 +36,10 @@
 					</tr>
 				</table>
 				<table>
-					<tr>
-						<td class="texto">Bem vindo administrador <c:out value="${listaClienteFisico.fisicaVO.nomPessoa}"/>.</td>
-					</tr>
-				</table>
-				<table>
 	
 					<tr>
 						<td class="link"><img src="images/fetch.gif"/>
-							<a href="<%request.getContextPath();%>?task=paginaCadastrarClienteFisica&acao=CADASTRAR">Cadastrar uma nova conta</a>
+							<a href="manterClienteFisica.do?task=paginaCadastrarClienteFisica&acao=CADASTRAR">Cadastrar uma nova conta</a>
 						</td>
 					</tr>
 				</table>
@@ -68,7 +68,9 @@
 				</table>
 				<table width="100%" border="0" align="center">
 					<tr>
-						<td colspan="4" align="center"><input class="botao" value="Buscar"></td>
+						<td colspan="4" align="center">
+							<input class="botao" value="Buscar" type="button" onclick= buscar();>
+						</td>
 					</tr>
 	
 				</table>
@@ -114,10 +116,10 @@
 							</td>
 							<td align="center">
 								<c:if test="${lista.nomPessoa ne null}">
-									Usuário
+									USUÁRIO
 								</c:if>
 								<c:if test="${lista.nomPessoa eq null}">
-									Administrador
+									ADMINISTRADOR
 								</c:if>
 							</td>
 						</tr>

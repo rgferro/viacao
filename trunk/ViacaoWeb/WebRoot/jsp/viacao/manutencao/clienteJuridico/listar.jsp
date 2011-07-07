@@ -45,14 +45,8 @@ function getJuridica(acao, seqJ, seqE, seqC){
 				</table>
 				<table>
 					<tr>
-						<td class="texto">Bem vindo administrador João.</td>
-					</tr>
-				</table>
-				<br>
-				<table>
-					<tr>
 						<td class="link"><img src="images/fetch.gif"/>
-							<a href="<%request.getContextPath();%>?task=paginaCadastrarClienteJuridica">
+							<a href="manterClienteJuridica.do?task=paginaCadastrarClienteJuridica">
 								Cadastrar uma nova conta
 							</a>
 						</td>
@@ -92,7 +86,8 @@ function getJuridica(acao, seqJ, seqE, seqC){
 						<td width="15%" height="20" colspan="3">&nbsp;</td>
 						<td width="40%"  align="center">Nome da empresa</td>
 						<td width="20%" align="center">Login</td>
-						<td width="25%" align="center">E-mail</td>					
+						<td width="25%" align="center">E-mail</td>	
+						<td width="25%" align="center">Tipo Usuario</td>				
 					</tr>
 					<logic:empty name="manterJuridicaForm" property="listaClienteJuridico">
 						<tr>
@@ -126,6 +121,14 @@ function getJuridica(acao, seqJ, seqE, seqC){
 								<td align="center">
 									<bean:write name="listaJuridica" property="clienteVO.email"/>
 								</td>
+								<td align="center">
+								<c:if test="${listaJuridica.razaoSocial ne null}">
+									USUÁRIO
+								</c:if>
+								<c:if test="${listaJuridica.razaoSocial eq null}">
+									ADMINISTRADOR
+								</c:if>
+							</td>
 							</tr>
 						</logic:iterate>
 					</logic:notEmpty>
