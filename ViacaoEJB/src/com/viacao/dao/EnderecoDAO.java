@@ -44,8 +44,6 @@ public class EnderecoDAO extends BaseDB {
 		sql.append("     		upper('"+enderecoVO.getCidade()+"'),		");
 		sql.append("     		upper('"+enderecoVO.getEstado()+"'))		");
 		
-		System.out.println(sql.toString());
-		
 		return sql.toString();
 	}
 	

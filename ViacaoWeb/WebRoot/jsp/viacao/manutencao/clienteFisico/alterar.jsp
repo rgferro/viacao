@@ -71,11 +71,11 @@
 						<tr class="fundoclaro">
 							<td align="center" width="22%">CPF</td>
 							<td align="left" width="28%">
-								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="inputobrigatorio" size="15" maxlength="20"/>
+								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="inputobrigatorio" size="15" maxlength="20" onkeypress="return somenteNumero(this,event,false,false,false)"/>
 							</td>
 							<td align="center" width="05%">RG</td>
 							<td align="left" width="45%">
-								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="inputobrigatorio" size="15" maxlength="20"/>
+								<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="inputobrigatorio" size="15" maxlength="20" onkeypress="return somenteNumero(this,event,false,false,false)"/>
 							</td>
 						</tr>
 					</c:if>
@@ -92,7 +92,7 @@
 	
 						<td align="center" width="22%">Número</td>
 						<td align="left" width="28%">
-							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.numero" styleClass="inputobrigatorio" size="5" maxlength="10"/>
+							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.enderecoVO.numero" styleClass="inputobrigatorio" size="5" maxlength="10" onkeypress="return somenteNumero(this,event,false,false,false)"/>
 						</td>
 						<td align="center" width="18%">Complemento</td>
 						<td align="left" width="32%%">

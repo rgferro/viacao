@@ -15,8 +15,10 @@ import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.acol.util.StringUtil;
 import com.viacao.dao.ClienteDAO;
 import com.viacao.dao.EnderecoDAO;
+import com.viacao.dao.FisicaDAO;
 import com.viacao.dao.ItinerarioDAO;
 import com.viacao.dao.ItinerarioTarifaDAO;
+import com.viacao.dao.JuridicaDAO;
 import com.viacao.dao.OnibusDAO;
 import com.viacao.dao.RodoviariaDAO;
 import com.viacao.dao.TarifaDAO;
@@ -44,6 +46,8 @@ public class ManterCadastroBean implements SessionBean {
 	public void ejbCreate() {}
 	
 // Métodos de negócio
+
+//---------------------------------- TARIFA ----------------------------------------
 	
 	/**
 	 * Insere uma nova tarifa
@@ -121,7 +125,9 @@ public class ManterCadastroBean implements SessionBean {
 			logger.fatal("Erro ocorrido no metodo getTarifa :: ManterCadastroBean", e);
 			throw new EJBException(e);
 		}
-	}	
+	}
+	
+//-------------------------------- ONIBUS -----------------------------------	
 	
 	/**
 	 * Insere um novo ônibus no banco.
@@ -457,6 +463,11 @@ public class ManterCadastroBean implements SessionBean {
 
 //--------------------------------CLIENTE-----------------------------------------
 	
+	/**
+	 * Insere um cliente no banco.
+	 * @param ClienteVO.
+	 * @throws DAOException.
+	 */
 	public void inserirCliente(ClienteVO clienteVO){
 		try {
 			ClienteDAO dao = new ClienteDAO();
@@ -466,24 +477,28 @@ public class ManterCadastroBean implements SessionBean {
 			throw new EJBException(e);
 		}
 	}
-
-	public void inserirFisica(FisicaVO fisicaVO){
+	
+	/**
+	 * ALtera um cliente no banco.
+	 * @param ClienteVO.
+	 * @throws DAOException.
+	 */
+	public void alterarCliente(ClienteVO clienteVO)throws UniqueConstraintViolatedException{
 		try {
 			ClienteDAO dao = new ClienteDAO();
-			EnderecoDAO enderecoDAO = new EnderecoDAO();
-			Integer seq = enderecoDAO.insert(fisicaVO.getClienteVO().getEnderecoVO());
-			fisicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
-			fisicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(fisicaVO.getClienteVO()));
-			if(!StringUtil.empty(fisicaVO.getNomPessoa())){
-				dao = new ClienteDAO();
-				dao.inserirFisica(fisicaVO);
-			}
-		} catch (Exception e) {
-			logger.fatal("Erro em inserirFisica :: ManterCadastroBean",e);
+			dao.alterarCliente(clienteVO);
+		} catch (DAOException e) {
+			e.checkUniqueConstraintViolated();
+			logger.fatal("Erro em alterarCliente :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}
 	
+	/**
+	 * Deleta um cliente do banco.
+	 * @param ClienteVO.
+	 * @throws DAOException.
+	 */
 	public void deletarCliente(ClienteVO clienteVO)throws ChildRecordFoundException{
 		try {
 			ClienteDAO dao = new ClienteDAO();
@@ -495,109 +510,6 @@ public class ManterCadastroBean implements SessionBean {
 		} 
 	}
 	
-	public void alterarCliente(ClienteVO clienteVO)throws UniqueConstraintViolatedException{
-		try {
-			ClienteDAO dao = new ClienteDAO();
-			dao.alterarCliente(clienteVO);
-		} catch (DAOException e) {
-			e.checkUniqueConstraintViolated();
-			logger.fatal("Erro em alterarCliente :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-
-	public void alterarFisica(FisicaVO fisicaVO)throws UniqueConstraintViolatedException{
-		try {
-			ClienteDAO dao = new ClienteDAO();
-			EnderecoDAO enderecoDAO = new EnderecoDAO();
-			enderecoDAO.alterarEndereco(fisicaVO.getClienteVO().getEnderecoVO());
-			dao.alterarCliente(fisicaVO.getClienteVO());
-			if(!StringUtil.empty(fisicaVO.getNomPessoa())){
-				dao = new ClienteDAO();
-				dao.alterarFisica(fisicaVO);
-			}
-		} catch (DAOException e) {
-			e.checkUniqueConstraintViolated();
-			logger.fatal("Erro em alterarFisica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-	
-	public FisicaVO getClienteFisica (FisicaVO fisicaVO){
-		try {
-			ClienteDAO dao = new ClienteDAO();
-			return dao.getClienteFisica(fisicaVO);
-		} catch (Exception e) {
-			logger.fatal("Erro em getClienteFisica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-	
-	
-	
-	
-	
-	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO){
-		try {
-			ClienteDAO dao = new ClienteDAO();
-			return dao.getListaClienteFisica(fisicaVO);
-		} catch (Exception e) {
-			logger.fatal("Erro em getListaClienteFisica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-	
-	public void inserirJuridica(JuridicaVO juridicaVO){
-		try {
-			EnderecoDAO enderDao = new EnderecoDAO();
-			ClienteDAO dao = new ClienteDAO();
-			Integer seq = enderDao.insert(juridicaVO.getClienteVO().getEnderecoVO());
-			juridicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
-			juridicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(juridicaVO.getClienteVO()));
-			
-			if(!StringUtil.empty(juridicaVO.getNomResponsavel())){
-				dao = new ClienteDAO();
-				dao.inserirJuridica(juridicaVO);
-			}
-		} catch (Exception e) {
-			logger.fatal("Erro em inserirJuridica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-	
-	public void alterarJuridica(JuridicaVO juridicaVO){
-		try {
-			EnderecoDAO enderDao = new EnderecoDAO();
-			ClienteDAO dao = new ClienteDAO();
-			enderDao.alterarEndereco(juridicaVO.getClienteVO().getEnderecoVO());
-			dao.alterarCliente(juridicaVO.getClienteVO());
-			dao = new ClienteDAO();
-			dao.alterarJuridica(juridicaVO);
-		} catch (Exception e) {
-			logger.fatal("Erro em alterarJuridica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-	
-	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO){
-		try {
-			ClienteDAO dao = new ClienteDAO();
-			return dao.getClienteJuridica(juridicaVO);
-		} catch (Exception e) {
-			logger.fatal("Erro em getClienteJuridica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
-	
-	public List<JuridicaVO> getListaClienteJuridica (JuridicaVO juridicaVO){
-		try {
-			ClienteDAO dao = new ClienteDAO();
-			return dao.getListaClienteJuridica(juridicaVO);
-		} catch (Exception e) {
-			logger.fatal("Erro em getListaClienteJuridica :: ManterCadastroBean",e);
-			throw new EJBException(e);
-		}
-	}
 	/**
 	 * Seleciona um clienteVO, e recupera o seu enderecoVO.
 	 * @return ClienteVO e o seu EnderecoVO
@@ -613,6 +525,159 @@ public class ManterCadastroBean implements SessionBean {
 			return clienteVO2;
 		}catch (Exception e) {
 			logger.fatal("Erro em getCliente :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+
+//------------------------------------- FISICA --------------------------------------------------
+	
+	/**
+	 * Insere um cliente fisica no banco.
+	 * @param FisicaVO.
+	 * @throws DAOException.
+	 */
+	public void inserirFisica(FisicaVO fisicaVO){
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			FisicaDAO fisicaDAO = new FisicaDAO();
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			Integer seq = enderecoDAO.insert(fisicaVO.getClienteVO().getEnderecoVO());
+			fisicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
+			fisicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(fisicaVO.getClienteVO()));
+			if(!StringUtil.empty(fisicaVO.getNomPessoa())){
+				fisicaDAO.inserirFisica(fisicaVO);
+			}
+		} catch (Exception e) {
+			logger.fatal("Erro em inserirFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * ALtera um cliente fisica no banco.
+	 * @param FisicaVO.
+	 * @throws DAOException.
+	 */
+	public void alterarFisica(FisicaVO fisicaVO)throws UniqueConstraintViolatedException{
+		try {
+			ClienteDAO dao = new ClienteDAO();
+			EnderecoDAO enderecoDAO = new EnderecoDAO();
+			FisicaDAO fisicaDAO = new FisicaDAO();
+			enderecoDAO.alterarEndereco(fisicaVO.getClienteVO().getEnderecoVO());
+			dao.alterarCliente(fisicaVO.getClienteVO());
+			if(!StringUtil.empty(fisicaVO.getNomPessoa())){
+				fisicaDAO.alterarFisica(fisicaVO);
+			}
+		} catch (DAOException e) {
+			e.checkUniqueConstraintViolated();
+			logger.fatal("Erro em alterarFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * Recupera cliente fisica do banco.
+	 * @param FisicaVO.
+	 * @throws DAOException.
+	 * *@return FisicaVO.
+	 */
+	public FisicaVO getClienteFisica (FisicaVO fisicaVO){
+		try {
+			FisicaDAO fisicaDAO = new FisicaDAO();
+			return fisicaDAO.getClienteFisica(fisicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getClienteFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * Recupera uma lista de cliente fisica do banco.
+	 * @param FisicaVO.
+	 * @throws DAOException.
+	 * *@return List<FisicaVO>.
+	 */
+	public List< FisicaVO > getListaClienteFisica (FisicaVO fisicaVO){
+		try {
+			FisicaDAO fisicaDAO = new FisicaDAO();
+			return fisicaDAO.getListaClienteFisica(fisicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaClienteFisica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+//---------------------------- JURIDICA --------------------------------------
+	
+	/**
+	 * Insere um cliente juridica no banco.
+	 * @param JuridicaVO.
+	 * @throws DAOException.
+	 */
+	public void inserirJuridica(JuridicaVO juridicaVO){
+		try {
+			EnderecoDAO enderDao = new EnderecoDAO();
+			ClienteDAO dao = new ClienteDAO();
+			JuridicaDAO juridicaDAO = new JuridicaDAO();
+			Integer seq = enderDao.insert(juridicaVO.getClienteVO().getEnderecoVO());
+			juridicaVO.getClienteVO().getEnderecoVO().setSeqEndereco(seq);
+			juridicaVO.getClienteVO().setSeqCliente(dao.inserirCliente(juridicaVO.getClienteVO()));
+			
+			if(!StringUtil.empty(juridicaVO.getNomResponsavel())){
+				juridicaDAO.inserirJuridica(juridicaVO);
+			}
+		} catch (Exception e) {
+			logger.fatal("Erro em inserirJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * ALtera um cliente juridica no banco.
+	 * @param JuridicaVO.
+	 * @throws DAOException.
+	 */
+	public void alterarJuridica(JuridicaVO juridicaVO){
+		try {
+			EnderecoDAO enderDao = new EnderecoDAO();
+			ClienteDAO dao = new ClienteDAO();
+			JuridicaDAO juridicaDAO = new JuridicaDAO();
+			enderDao.alterarEndereco(juridicaVO.getClienteVO().getEnderecoVO());
+			dao.alterarCliente(juridicaVO.getClienteVO());
+			juridicaDAO.alterarJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em alterarJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * Recupera cliente juridica do banco.
+	 * @param JuridicaVO.
+	 * @throws DAOException.
+	 * *@return JuridicaVO.
+	 */
+	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO){
+		try {
+			JuridicaDAO juridicaDAO = new JuridicaDAO();
+			return juridicaDAO.getClienteJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getClienteJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	/**
+	 * Recupera uma lista de cliente juridica do banco.
+	 * @param JuridicaVO.
+	 * @throws DAOException.
+	 * *@return List<JuridicaVO>.
+	 */
+	public List<JuridicaVO> getListaClienteJuridica (JuridicaVO juridicaVO){
+		try {
+			JuridicaDAO juridicaDAO = new JuridicaDAO();
+			return juridicaDAO.getListaClienteJuridica(juridicaVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaClienteJuridica :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}

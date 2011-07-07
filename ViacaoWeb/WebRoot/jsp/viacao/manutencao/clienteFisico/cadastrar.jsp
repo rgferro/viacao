@@ -26,23 +26,6 @@
 		frm.submit();
 	}
 	
-	function somenteNumero(obj,e,ast,virg,ponto){
-	var tecla=(window.event)?event.keyCode:e.which;
-	if (tecla == 13) {
-		obj.focus();  obj.select();
-		return true
-	}
-	if((tecla > 47 && tecla < 58)){ 
-		return true;
-	}else{
-		if((tecla == 9)) return true;
-		if ((tecla == 8)) return true;
-		if ((tecla == 0)) return true;
-		if ((tecla == 42)&&(ast)) return true; //permite asterísco
-		if ((tecla == 44)&&(virg)) return true; //permite vírgula
-		if ((tecla == 46)&&(ponto)) return true; //permite ponto
-		return false;
-	}
 }
 </script>
 
@@ -118,11 +101,11 @@
 								<tr class="fundoclaro">
 									<td align="center" width="22%">CPF</td>
 									<td align="left" width="28%">
-										<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="inputobrigatorio" size="15" maxlength="20"/>
+										<html:text disabled="false" onkeypress="return somenteNumero(this,event,false,false,false)" name="manterClienteFisicaForm" property="fisicaVO.cpfPessoa" styleClass="inputobrigatorio" size="15" maxlength="20"/>
 									</td>
 									<td align="center" width="05%">RG</td>
 									<td align="left" width="45%">
-										<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="inputobrigatorio" size="15" maxlength="20"/>
+										<html:text disabled="false" onkeypress="return somenteNumero(this,event,false,false,false)" name="manterClienteFisicaForm" property="fisicaVO.rgPessoa" styleClass="inputobrigatorio" size="15" maxlength="20"/>
 									</td>
 								</tr>
 							</table>
