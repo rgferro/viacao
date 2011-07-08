@@ -42,7 +42,7 @@ public class ManterViagemAction extends DispatchAction{
 	
 	public ActionForward paginaCadastrarViagem(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterViagemForm frm = (ManterViagemForm)form;
-		frm.setListaItinerario(EstagioServices.getManterCadastroBean().listaItinerario(new ItinerarioVo()));
+		frm.setListaItinerario(EstagioServices.getManterCadastroBean().getListaItinerario(new ItinerarioVo()));
 		frm.setListaOnibus(EstagioServices.getManterCadastroBean().getListaOnibus(new OnibusVO()));
 		
 			return mapping.findForward("cadastrar");
@@ -126,14 +126,7 @@ public class ManterViagemAction extends DispatchAction{
 			else{
 				return mapping.findForward("alterar");
 			}
-		if(frm.getSeqViagem().equals("ALTERAR")){
-			return mapping.findForward("alterar");
-		}
-			else{
-				return mapping.findForward("listar");
-			}
 	}
-	
 	public ActionForward alterarViagem(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		ManterViagemForm frm = (ManterViagemForm) form;
 		ActionMessages messages = new ActionMessages();
