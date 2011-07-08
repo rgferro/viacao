@@ -166,21 +166,21 @@ function mudaImagemOut(obj, acao){
 							<tr class="fundoclaro">
 								<td align="center">
 									<a href="javascript: recuperar('<c:out value="${idLista.seqViagem}"/>', 'ALTERAR')">
-										<img title="Editar!" src="images/icon_editar3off.png"
+										<img title="Editar" src="images/icon_editar3off.png"
 											height="20" width="20" border="0"
 											onmouseover="mudaImagemOver(this,'editar');"
 											onmouseout="mudaImagemOut(this, 'editar')"> </a>
 								</td>
 								<td align="center">
 									<a href="javascript: recuperar('<c:out value="${idLista.seqViagem}"/>', 'DELETAR')">
-										<img title="Deletar!" src="images/icon_lixeira3off.png"
+										<img title="Deletar" src="images/icon_lixeira3off.png"
 											height="20" width="20" border="0"
 											onmouseover="mudaImagemOver(this,'deletar');"
 											onmouseout="mudaImagemOut(this, 'deletar')"> </a>
 								</td>
 								<td align="center">
 									<a href="javascript: recuperar('<c:out value="${idLista.seqViagem}"/>', 'CONSULTAR')">
-										<img title="Pesquisar!" src="images/zoomoff.png" border="0"
+										<img title="Pesquisar" src="images/zoomoff.png" border="0"
 											height="20" width="20" border="0"
 											onmouseover="mudaImagemOver(this,'pesquisar');"
 											onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
