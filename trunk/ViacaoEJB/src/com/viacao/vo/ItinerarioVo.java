@@ -106,4 +106,8 @@ public class ItinerarioVo {
 	public void setTempoViagem(String tempoViagem) {
 		this.tempoViagem = tempoViagem;
 	}
+	
+	public String getOrigemDestino(){
+		return this.rodoviariaOrigemVO.getNomRodoviaria() + " - " + this.rodoviariaDestinoVO.getNomRodoviaria();
+	}	
 }

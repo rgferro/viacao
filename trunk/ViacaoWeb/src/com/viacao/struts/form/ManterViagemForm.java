@@ -28,15 +28,18 @@ public class ManterViagemForm extends ActionForm {
 	private String acao;
 	private String task;
 	
-	
-	public void inicializar(){
+	public void limparViagemVO(){
 		this.viagemVO = new ViagemVO();
 		this.viagemVO.setItinerarioVo(new ItinerarioVo());
 		this.viagemVO.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
 		this.viagemVO.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
 		this.viagemVO.setOnibusVO(new OnibusVO());
 		this.viagemVO.setHoraSaida(new DataVO());
-		this.viagemVO.setHoraChegada(new DataVO());		
+		this.viagemVO.setHoraChegada(new DataVO());	
+	}
+	
+	public void inicializar(){
+		limparViagemVO();	
 		this.listaViagem = new ArrayList<ViagemVO>();
 		this.listaItinerario = new ArrayList<ItinerarioVo>();
 		this.listaOnibus = new ArrayList<OnibusVO>();

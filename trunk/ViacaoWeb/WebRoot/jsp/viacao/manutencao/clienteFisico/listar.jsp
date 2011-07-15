@@ -39,7 +39,7 @@
 	
 					<tr>
 						<td class="link"><img src="images/fetch.gif"/>
-							<a href="manterClienteFisica.do?task=paginaCadastrarClienteFisica&acao=CADASTRAR">Cadastrar uma nova conta</a>
+							<a href="manterClienteFisica.do?task=paginaCadastrarClienteFisica&acao=CADASTRAR">Cadastrar um novo cliente fisico</a>
 						</td>
 					</tr>
 				</table>
@@ -51,13 +51,13 @@
 					<tr class="fundoclaro">
 						<td class="texto" width="10%" height="20" align="center">Nome</td>
 						<td width="45%" colspan="3">
-							<html:text name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="input" size="100"/>
+							<html:text name="manterClienteFisicaForm" property="fisicaVO.nomPessoa" styleClass="input" size="50"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="10%" height="20" align="center">Login</td>
 						<td width="45%">
-							<html:text name="manterClienteFisicaForm" property="fisicaVO.clienteVO.login" styleClass="input" size="52"/>
+							<html:text name="manterClienteFisicaForm" property="fisicaVO.clienteVO.login" styleClass="input" size="30"/>
 						</td>
 					
 						<td class="texto" width="10%" height="20">E-mail</td>
@@ -81,7 +81,7 @@
 						<td width="40%"  align="center">Nome</td>
 						<td width="20%" align="center">Login</td>
 						<td width="25%" align="center">E-mail</td>					
-						<td width="25%" align="center">Tipo Usuario</td>					
+						<td width="25%" align="center">Tipo</td>					
 					</tr>
 					<logic:empty name="manterClienteFisicaForm" property="listaClienteFisico">
 						<tr>

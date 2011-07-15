@@ -9,7 +9,14 @@
 <meta http-equiv="Expires" content="0"/>
 
 <title><tiles:getAsString name="title"/></title>
+<link href="css/menu.css" rel="stylesheet" type="text/css" />
+<link href="css/portal.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/menu.js">
 
+</script>
+<link type="text/css" href="<%=request.getContextPath() %>/css/custom-theme/jquery-ui-1.8.13.custom.css" rel="stylesheet" />	
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-1.5.1.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath() %>/js/jquery-ui-1.8.13.custom.min.js"></script>
 <link href="<%=request.getContextPath() %>/css/portal.css" rel="stylesheet" type="text/css">
 <script src="<%=request.getContextPath() %>/script/validation.js"></script>
 <script src="<%=request.getContextPath() %>/js/viacao.js"></script>

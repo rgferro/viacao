@@ -106,7 +106,7 @@ public class ManterClienteFisicaAction extends DispatchAction{
 				return mapping.findForward("inserir");
 			}
 		}catch (UniqueConstraintViolatedException e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","fisica"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","pessoa fisica"));
 		}
 		catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
@@ -129,7 +129,7 @@ public class ManterClienteFisicaAction extends DispatchAction{
 				return mapping.findForward("deletar");
 			}
 		}catch (ChildRecordFoundException e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.delete","fisica"));
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.delete","pessoa fisica"));
 		}
 		catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
@@ -164,8 +164,6 @@ public class ManterClienteFisicaAction extends DispatchAction{
 	}
 	
 	public ActionForward trocaForm(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ManterClienteFisicaForm frm = (ManterClienteFisicaForm) form;
-		
 		response.sendRedirect(request.getContextPath()+"/manterJuridica.do?task=inserirJuridica");
 		return null;
 	}

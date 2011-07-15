@@ -1,32 +1,14 @@
 <%@ include file="/jsp/common/taglibs.jsp" %>
 
 <script type="text/javascript">
-	function teste(acao){
+	function abre(acao){
 		if(acao == 'fisica'){
 			document.getElementById('fisica').style.display = '';
-		} 
-		if(acao == 'juridica'){
+		}else{ 
 			document.getElementById('fisica').style.display = 'none';
 		} 
-		if(acao == 'limpar') {
-			document.getElementById('fisica').style.display = 'none';
-			document.getElementById('juridica').style.display = 'none';
-		}
 	}
-	
-	function voltar(){
-		var frm = document.forms[0];
-		frm.task.value = 'unspecified';
-		frm.submit();
-	}
-	
-	function cadastrar(){
-		var frm = document.forms[0];
-		frm.task.value = 'inserirFisica';
-		frm.submit();
-	}
-	
-}
+
 </script>
 
 <link href="css/portal.css" rel="stylesheet" type="text/css">
@@ -77,10 +59,10 @@
 					</tr>
 					<tr class="fundoclaro">
 						<td align="center">
-							<html-el:radio name="manterClienteFisicaForm" property="tipUsuario" value="USUARIO" onclick="teste('fisica');"/>Usuário
+							<html-el:radio name="manterClienteFisicaForm" property="tipUsuario" value="USUARIO" onclick="abre('fisica');"/>Usuário
 						</td>
 						<td align="left" colspan="3" >
-							<html-el:radio name="manterClienteFisicaForm" property="tipUsuario" value="ADMINISTRADOR" onclick="teste('juridica');"/>Administrador
+							<html-el:radio name="manterClienteFisicaForm" property="tipUsuario" value="ADMINISTRADOR" onclick="abre('');"/>Administrador
 						</td> 
 					</tr>	
 					<tr>
@@ -152,9 +134,9 @@
 				<br>
 				<table width="100%" border="0" align="center">
 					<tr>
-						<td align="center"><input class="botao" value="Voltar" type="button" onclick="voltar()"/></td>
-						<td align="center"><input class="botao" value="Cadastrar" type="button" onclick="cadastrar()"/></td>
-						<td align="center"><input class="botao" value="Limpar" type="reset" onclick="teste('limpar');"/></td>
+						<td align="center"><input class="botao" value="Voltar" type="button" onclick="go('manterClienteFisica.do?task=unspecified')"/></td>
+						<td align="center"><input class="botao" value="Cadastrar" type="button" onclick="go('manterClienteFisica.do?task=inserirFisica')"/></td>
+						<td align="center"><input class="botao" value="Limpar" type="reset" onclick="go('manterClienteFisica.do?task=paginaCadastrarClienteFisica&acao=CADASTRAR');"/></td>
 					</tr>
 				</table>
 			</td>

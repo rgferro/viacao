@@ -20,8 +20,6 @@ function voltar(){
 }
 
 function abre(acao){
-	
-	
 	if(acao == 'usuario'){
 		document.getElementById('dadosPessoas').style.display = '';
 	} 
