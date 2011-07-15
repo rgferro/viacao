@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import sun.jdbc.rowset.CachedRowSet;
 
 import com.acol.exception.DAOException;
+import com.acol.util.IntegerUtils;
 import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.OnibusVO;
@@ -170,19 +171,19 @@ public class OnibusDAO extends BaseDB {
 		sql.append("FROM onibus ");
 		sql.append("WHERE 1=1 ");
 		//--filtro tipo
-		if(!(("".equals(oniVO.getTipo())) || (oniVO.getTipo() == null))){
+		if(!StringUtil.empty(oniVO.getTipo())){
 			sql.append("AND tipo like upper('%" + oniVO.getTipo() + "%')");
 		}
 		//--filtro empresa
-		if(!(("".equals(oniVO.getEmpresa())) || (oniVO.getEmpresa() == null))){
+		if(!StringUtil.empty(oniVO.getEmpresa())){
 			sql.append("AND empresa like upper('%" + oniVO.getEmpresa() + "%') ");
 		}
 		//--filtro placa
-		if(!(("".equals(oniVO.getPlaca())) || (oniVO.getPlaca() == null))){
+		if(!StringUtil.empty(oniVO.getPlaca())){
 			sql.append("AND placa like upper('%" + oniVO.getPlaca() + "%') ");
 		}
 		//--filtro quantidade de poltrona
-		if(!(oniVO.getQtdPoltronas() == 0 || oniVO.getQtdPoltronas() == null)){
+		if(!IntegerUtils.empty(oniVO.getQtdPoltronas())){
 			sql.append("AND qtd_poltrona = " + oniVO.getQtdPoltronas());
 		}
 		

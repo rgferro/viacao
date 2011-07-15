@@ -104,6 +104,17 @@ public class DataVO implements Serializable, Comparable
 		return data;
 	}
 	/**
+	 * @return Returns the data.
+	 */
+	public String getDiaMes() 
+	{
+		if (StringUtil.empty(dia) && StringUtil.empty(mes) && StringUtil.empty(ano))
+			data = null;
+		else
+			data =  dia + "/" + mes;
+		return data;
+	}
+	/**
 	 * @param data The data to set.
 	 * @throws Exception 
 	 */
@@ -162,6 +173,32 @@ public class DataVO implements Serializable, Comparable
 		}
 	}
 	
+	/**
+	 * @param horaMinuto The horaMinutoSegundo to set.
+	 * @throws Exception 
+	 */
+	public void setHoraMinuto(String horaMinuto) throws Exception 
+	{
+		try{
+			if (! StringUtil.empty(horaMinuto))
+			{
+				int posIni;
+				posIni = horaMinuto.indexOf(":");
+				hora = horaMinuto.substring(0,posIni);
+				minuto = horaMinuto.substring(posIni+1);
+			}
+			else
+			{
+				hora = null;
+				minuto = null;
+			}
+		}
+		catch (Exception e) 
+		{
+			throw new Exception("DataVO:setHoraMinutoSegundo - erro ao tentar inserir horaMinutoSegundo no objeto. Verifique o formato da horaMinutoSegundo.", e);
+		}
+	}
+	
 	public boolean isEmpty()
 	{
 		return StringUtil.empty(getData());
@@ -209,12 +246,20 @@ public class DataVO implements Serializable, Comparable
 	
 	public String getHoraMinutoSegundo()
 	{
-		return getHoraMinuto() + ":" + StringUtil.nvl(getSegundo(),"00"); 
+		if(getHoraMinuto().equals("")){
+			return "";
+		}else{
+			return getHoraMinuto() + ":" + StringUtil.nvl(getSegundo(),"00"); 
+		}
 	}
 	
 	public String getHoraMinuto()
 	{
-		return StringUtil.nvl(getHora(),"00") + ":" + StringUtil.nvl(getMinuto(),"00"); 
+		if(getHora() == null){
+			return "";
+		}else{
+			return StringUtil.nvl(getHora(),"00") + ":" + StringUtil.nvl(getMinuto(),"00");
+		}
 	}
 	
 	public boolean isValidHoraMinuto()

@@ -2,11 +2,7 @@
 <html >
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
-<link href="css/menu.css" rel="stylesheet" type="text/css" />
-<link href="css/portal.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/menu.js">
 
-</script>
 </head>
  <body onload="menuDropDown(4);">
   <img src="cabecalho/banner2.jpg" width="100%" height="133"/>

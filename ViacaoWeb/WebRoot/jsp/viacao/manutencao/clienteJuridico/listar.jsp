@@ -47,7 +47,7 @@ function getJuridica(acao, seqJ, seqE, seqC){
 					<tr>
 						<td class="link"><img src="images/fetch.gif"/>
 							<a href="manterClienteJuridica.do?task=paginaCadastrarClienteJuridica">
-								Cadastrar uma nova conta
+								Cadastrar um novo cliente juridico
 							</a>
 						</td>
 					</tr>
@@ -59,13 +59,13 @@ function getJuridica(acao, seqJ, seqE, seqC){
 					<tr class="fundoclaro">
 						<td class="texto" width="20%" align="center">Nome da empresa</td>
 						<td width="80%" colspan="4">
-							<html:text name="manterJuridicaForm" property="juridicaVO.razaoSocial" size="90" styleClass="input"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.razaoSocial" size="50" styleClass="input"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="20%" height="20" align="center">Login</td>
 						<td width="30%">
-							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.login" size="20" styleClass="input"/>
+							<html:text name="manterJuridicaForm" property="juridicaVO.clienteVO.login" size="30" styleClass="input"/>
 						</td>
 						<td class="texto" width="08%" height="20">E-mail</td>
 						<td width="42%">
@@ -83,15 +83,15 @@ function getJuridica(acao, seqJ, seqE, seqC){
 				<br>
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="15%" height="20" colspan="3">&nbsp;</td>
+						<td width="5%" height="10" colspan="3">&nbsp;</td>
 						<td width="40%"  align="center">Nome da empresa</td>
 						<td width="20%" align="center">Login</td>
-						<td width="25%" align="center">E-mail</td>	
-						<td width="25%" align="center">Tipo Usuario</td>				
+						<td width="30%" align="center">E-mail</td>	
+						<td width="5%" align="center">Tipo</td>				
 					</tr>
 					<logic:empty name="manterJuridicaForm" property="listaClienteJuridico">
 						<tr>
-							<td align="center" colspan="6" class="texto">Nenhum usuário foi encontrado!</td>
+							<td align="center" colspan="7" class="texto">Nenhum usuário foi encontrado!</td>
 						</tr>
 					</logic:empty>
 					<logic:notEmpty name="manterJuridicaForm" property="listaClienteJuridico">

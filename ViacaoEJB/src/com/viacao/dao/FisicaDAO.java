@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 
 import com.acol.exception.DAOException;
+import com.acol.util.StringUtil;
 import com.viacao.services.persistence.BaseDB;
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
@@ -157,13 +158,9 @@ public class FisicaDAO extends BaseDB{
 				fVO.getClienteVO().setLogin(rowSet.getString("login"));
 				fVO.getClienteVO().setSenha(rowSet.getString("senha"));
 				fVO.getClienteVO().setEmail(rowSet.getString("email"));
-				if(rowSet.getString("nom_pessoa") != null){
+				if(!StringUtil.empty(rowSet.getString("nom_pessoa"))){
 					fVO.setNomPessoa(rowSet.getString("nom_pessoa"));
-				}
-				if(rowSet.getString("nom_pessoa") != null){
 					fVO.setCpfPessoa(rowSet.getString("cpf_pessoa").trim());
-				}
-				if(rowSet.getString("nom_pessoa") != null){
 					fVO.setRgPessoa(rowSet.getString("rg_pessoa").trim());
 				}
 				fVO.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("logradouro"));
@@ -214,6 +211,19 @@ public class FisicaDAO extends BaseDB{
 		sql.append(" AND c.seq_cliente not in (select j.seq_cliente_fk from juridica j) ");
 		sql.append(" AND c.seq_cliente not in (select f.seq_cliente_fk from fisica f) ");
 		
+		// filtro por nome pessoa
+		if(!StringUtil.empty(fisicaVO.getNomPessoa())){
+			sql.append(" AND f.nom_pessoa LIKE upper ('%"+ fisicaVO.getNomPessoa() +"%') ");
+		}
+		// filtro por login cliente
+		if(fisicaVO.getClienteVO() != null){
+			sql.append(" AND c.login LIKE upper ('%"+ fisicaVO.getClienteVO().getLogin() +"%') ");
+		}
+		// filtro por email cliente
+		if(fisicaVO.getClienteVO() != null){
+			sql.append(" AND c.email LIKE upper ('%"+ fisicaVO.getClienteVO().getEmail() +"%') ");
+		}
+		
 		sql.append(" UNION ");
 		
 		sql.append(" SELECT	f.seq_fisica, ");
@@ -237,7 +247,7 @@ public class FisicaDAO extends BaseDB{
 		sql.append(" AND 	c.seq_endereco_fk = e.seq_endereco ");
 		
 		// filtro por nome pessoa
-		if(fisicaVO.getNomPessoa() != null){
+		if(!StringUtil.empty(fisicaVO.getNomPessoa())){
 			sql.append(" AND f.nom_pessoa LIKE upper ('%"+ fisicaVO.getNomPessoa() +"%') ");
 		}
 		// filtro por login cliente

@@ -223,6 +223,16 @@ public class JuridicaDAO extends BaseDB{
 		sql.append(" AND c.seq_cliente not in (select j.seq_cliente_fk from juridica j) ");
 		sql.append(" AND c.seq_cliente not in (select f.seq_cliente_fk from fisica f) ");
 		
+		if(!StringUtil.empty(juridicaVO.getRazaoSocial())){
+			sql.append("      AND 	j.razao_social LIKE upper ('%" + juridicaVO.getRazaoSocial() + "%') ");
+		}
+		if(!StringUtil.empty(juridicaVO.getClienteVO().getLogin())){
+			sql.append("      AND 	c.login LIKE upper ('%" + juridicaVO.getClienteVO().getLogin() + "%') ");
+		}
+		if(!StringUtil.empty(juridicaVO.getClienteVO().getEmail())){
+			sql.append("      AND 	c.email LIKE upper ('%" + juridicaVO.getClienteVO().getEmail() + "%')");
+		}
+		
 		sql.append(" UNION ");
 		
 		sql.append(" SELECT		c.seq_cliente, ");
@@ -246,13 +256,14 @@ public class JuridicaDAO extends BaseDB{
 		sql.append("FROM 		endereco e, cliente c, juridica j ");
 		sql.append("WHERE 		j.seq_cliente_fk = c.seq_cliente ");
 		sql.append("   	  AND 	c.seq_endereco_fk = e.seq_endereco ");
-		if(juridicaVO.getRazaoSocial() != null){
+		
+		if(!StringUtil.empty(juridicaVO.getRazaoSocial())){
 			sql.append("      AND 	j.razao_social LIKE upper ('%" + juridicaVO.getRazaoSocial() + "%') ");
 		}
-		if(juridicaVO.getClienteVO().getLogin() != null){
+		if(!StringUtil.empty(juridicaVO.getClienteVO().getLogin())){
 			sql.append("      AND 	c.login LIKE upper ('%" + juridicaVO.getClienteVO().getLogin() + "%') ");
 		}
-		if(juridicaVO.getClienteVO().getEmail() != null){
+		if(!StringUtil.empty(juridicaVO.getClienteVO().getEmail())){
 			sql.append("      AND 	c.email LIKE upper ('%" + juridicaVO.getClienteVO().getEmail() + "%')");
 		}
 
@@ -271,7 +282,7 @@ public class JuridicaDAO extends BaseDB{
 			
 			rowSet = executeQuery(pstmt);
 			
-			List<JuridicaVO> listaClienteJuridica = new ArrayList();
+			List<JuridicaVO> listaClienteJuridica = new ArrayList<JuridicaVO>();
 			while(rowSet.next()){
 				JuridicaVO juriVO = new JuridicaVO();
 				juriVO.setClienteVO(new ClienteVO());
@@ -284,12 +295,12 @@ public class JuridicaDAO extends BaseDB{
 				juriVO.getClienteVO().setEmail(rowSet.getString("EMAIL"));
 				if(!StringUtil.empty(rowSet.getString("SEQ_JURIDICA"))){
 					juriVO.setSeqJuridica(new Integer(rowSet.getString("SEQ_JURIDICA")));
+					juriVO.setRazaoSocial(rowSet.getString("RAZAO_SOCIAL"));
+					juriVO.setNomFantasia(rowSet.getString("NOM_FANTASIA"));
+					juriVO.setNomResponsavel(rowSet.getString("NOM_RESPOSAVEL"));
+					juriVO.setCnpj(rowSet.getString("CNPJ"));
+					juriVO.setNumInscricao(rowSet.getString("NUM_INSCRICAO"));
 				}
-				juriVO.setRazaoSocial(rowSet.getString("RAZAO_SOCIAL"));
-				juriVO.setNomFantasia(rowSet.getString("NOM_FANTASIA"));
-				juriVO.setNomResponsavel(rowSet.getString("NOM_RESPOSAVEL"));
-				juriVO.setCnpj(rowSet.getString("CNPJ"));
-				juriVO.setNumInscricao(rowSet.getString("NUM_INSCRICAO"));
 				juriVO.getClienteVO().getEnderecoVO().setLogradouro(rowSet.getString("LOGRADOURO"));
 				juriVO.getClienteVO().getEnderecoVO().setNumero(rowSet.getString("NUMERO"));
 				juriVO.getClienteVO().getEnderecoVO().setComplemento(rowSet.getString("COMPLEMENTO"));

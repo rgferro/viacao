@@ -1,13 +1,10 @@
 package com.viacao.dao;
 
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-
-import sun.jdbc.rowset.CachedRowSet;
 
 import com.acol.exception.DAOException;
 import com.acol.util.StringUtil;
@@ -34,9 +31,9 @@ public class ViagemDAO extends BaseDB {
 		sql.append("					seq_onibus_FK, ");
 		sql.append("					data_hora_saida, ");
 		sql.append("					data_hora_chegada) ");
-		sql.append("VALUES (seq_viagem.nextval, param_seq_itinerario (?), param_seq_onibus (?)");
-		sql.append("to_date 'param_data_hora_saida', 'DD/MM/YY HH24:MI:SS' (?)");
-		sql.append("to_date 'param_data_hora_chegada', 'DD/MM/YY HH24:MI:SS'(?), )");
+		sql.append("VALUES (seq_viagem.nextval, ?, ?,");
+		sql.append("to_date (?, 'HH24:MI'),");
+		sql.append("to_date (?, 'HH24:MI') )");
 	   
 		return sql.toString();
 	}
@@ -46,8 +43,8 @@ public class ViagemDAO extends BaseDB {
 			pstmt = getPstmt(getSQLInserir());
 			pstmt.setInt(1, viagemVO.getItinerarioVo().getSeqItinerario());
 			pstmt.setInt(2, viagemVO.getOnibusVO().getSeqOnibus());
-			pstmt.setString(3, viagemVO.getHoraSaida().getHoraMinutoSegundo());
-			pstmt.setString(4, viagemVO.getHoraChegada().getHoraMinutoSegundo());
+			pstmt.setString(3, viagemVO.getHoraSaida().getHoraMinuto());
+			pstmt.setString(4, viagemVO.getHoraChegada().getHoraMinuto());
 			
 			pstmt.executeUpdate();
 		}
@@ -117,6 +114,7 @@ public class ViagemDAO extends BaseDB {
 		StringBuffer sql = new StringBuffer();
 		
 		sql.append(" SELECT	vg.seq_viagem, ");
+		sql.append(" 		it.seq_itinerario, ");
 		sql.append("  		(SELECT		r.nom_rodoviaria ");
 		sql.append("         	FROM	rodoviaria r ");
 		sql.append("         	WHERE	r.seq_rodoviaria = it.seq_rodoviaria_origem_fk) origem, ");
@@ -127,7 +125,8 @@ public class ViagemDAO extends BaseDB {
 		sql.append("         to_char(vg.data_hora_saida, 'DD/MM/YYYY') data_saida, ");
 		sql.append("        to_char(vg.data_hora_saida, 'HH24:MI:SS') hora_saida, ");
 		sql.append("        to_char(vg.data_hora_chegada, 'DD/MM/YYYY') data_chegada, ");
-		sql.append("        to_char(vg.data_hora_chegada, 'HH24:MI:SS') hora_chegada ");
+		sql.append("        to_char(vg.data_hora_chegada, 'HH24:MI:SS') hora_chegada, ");
+		sql.append("        o.seq_onibus ");
 		sql.append(" FROM	itinerario it, viagem vg, onibus o ");
 		sql.append(" WHERE	it.seq_itinerario = vg.seq_itinerario_fk ");
 		sql.append(" AND	o.seq_onibus = vg.seq_onibus_fk");
@@ -146,11 +145,13 @@ public class ViagemDAO extends BaseDB {
 			if(rowSet.next()){
 				vgVO.setSeqViagem(new Integer(rowSet.getInt("seq_viagem")));
 				vgVO.setItinerarioVo(new ItinerarioVo());
+				vgVO.getItinerarioVo().setSeqItinerario(Integer.valueOf(rowSet.getString("seq_itinerario")));
 				vgVO.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
 				vgVO.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
 				vgVO.getItinerarioVo().getRodoviariaOrigemVO().setNomRodoviaria(rowSet.getString("origem"));
 				vgVO.getItinerarioVo().getRodoviariaDestinoVO().setNomRodoviaria(rowSet.getString("destino"));
 				vgVO.setOnibusVO(new OnibusVO());
+				vgVO.getOnibusVO().setSeqOnibus(Integer.valueOf(rowSet.getString("seq_onibus")));
 				vgVO.getOnibusVO().setTipo(rowSet.getString("tipo"));
 				vgVO.setHoraSaida(new DataVO(rowSet.getString("data_saida")));
 				vgVO.getHoraSaida().setHoraMinutoSegundo(rowSet.getString("hora_saida"));
@@ -204,7 +205,12 @@ public class ViagemDAO extends BaseDB {
 		}
 		// filtro por hora partida
 		if(!StringUtil.empty(vgVO.getHoraSaida().getHora())){
-			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI:SS')= '"+ vgVO.getHoraSaida().getHoraMinutoSegundo() +"' ");
+			sql.append(" AND to_char(vg.data_hora_saida, 'HH24:MI') = '"+ vgVO.getHoraSaida().getHoraMinuto() +"' ");
+		}
+		
+		// filtro por hora chegada
+		if(!StringUtil.empty(vgVO.getHoraChegada().getHora())){
+			sql.append(" AND to_char(vg.data_hora_chegada, 'HH24:MI')= '"+ vgVO.getHoraChegada().getHoraMinuto() +"' ");
 		}
 		
 		
