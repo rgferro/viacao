@@ -5,15 +5,15 @@
 function recuperar(seqViagem, acao){
 	var frm = document.forms[0];
 		frm.seqViagem.value = seqViagem;
+		frm.task.value = 'unspecified';
 	if(acao == 'ALTERAR'){
 		frm.task.value = 'alterar';
 	}
 	if(acao == 'DELETAR'){
-		frm.task.value = 'deletar';
+		if(confirm('Deseja Excluir?')){
+			frm.task.value = 'deletar';
+		}
 	}
-	if(acao == 'CONSULTAR'){
-		frm.task.value = 'consultar';
-	}	
 	frm.submit();
 }
 
@@ -60,7 +60,7 @@ $(function() {
 							<td class="texto" width="20%" height="20" align="left">Origem
 							</td>
 							<td width="30%">
-								<html:text name="manterViagemForm" property="viagemVO.itinerarioVo.rodoviariaOrigemVO.nomRodoviaria" size="35" styleClass="input"/>
+								<html:text name="manterViagemForm" property="viagemVO.itinerarioVo.rodoviariaOrigemVO.nomRodoviaria" size="30" styleClass="input"/>
 							</td>
 							<td class="texto" width="20%" height="20" align="left">Destino
 							</td>
@@ -103,7 +103,7 @@ $(function() {
 				<br>
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="10%" colspan="3" align="center">
+						<td width="10%" colspan="2" align="center">
 						</td>
 						<td width="25%"  align="center">Origem
 						</td>
@@ -133,14 +133,6 @@ $(function() {
 											height="20" width="20" border="0"
 											onmouseover="mudaImagemOver(this,'deletar');"
 											onmouseout="mudaImagemOut(this, 'deletar')"> </a>
-								</td>
-								<td align="center">
-									<a href="javascript: recuperar('<c:out value="${lista.seqViagem}"/>', 'CONSULTAR')">
-										<img title="Pesquisar" src="images/zoomoff.png" border="0"
-											height="20" width="20" border="0"
-											onmouseover="mudaImagemOver(this,'pesquisar');"
-											onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
-	
 								</td>
 								<td align="center">
 									<bean:write name="lista" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/>

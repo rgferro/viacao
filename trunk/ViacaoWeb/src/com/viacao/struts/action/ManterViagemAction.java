@@ -62,12 +62,6 @@ public class ManterViagemAction extends DispatchAction{
 		return unspecified(mapping, form, request, response);
 	}
 	
-	public ActionForward consultar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ManterViagemForm frm = (ManterViagemForm) form;
-		EstagioServices.getManterCadastroBean().getListaViagem(frm.getViagemVO());
-		return listarViagem(mapping, form, request, response);
-	}
-	
 	private void getViagemVO(ManterViagemForm frm) throws Exception{
 		frm.getViagemVO().setSeqViagem(frm.getSeqViagem());
 		frm.setViagemVO(EstagioServices.getManterCadastroBean().getViagem(frm.getViagemVO()));
@@ -96,7 +90,7 @@ public class ManterViagemAction extends DispatchAction{
 		try{	
 			if(messages.isEmpty()){
 				EstagioServices.getManterCadastroBean().alterar(frm.getViagemVO());
-				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alerar"));
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
 			}
 			else{
 				saveMessages(request, messages);
@@ -114,32 +108,13 @@ public class ManterViagemAction extends DispatchAction{
 		ActionMessages messages = new ActionMessages();
 		try{
 			getViagemVO(frm);
-		}
-		catch (Exception e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
-		}
-		saveMessages(request, messages);
-		return mapping.findForward("deletar");
-	}
-	public ActionForward confirmDeletar(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response) throws Exception {
-
-		ManterViagemForm frm = (ManterViagemForm) form;
-		ActionMessages messages = new ActionMessages();
-		ViagemVO viagemVO = new ViagemVO();
-		
-		try{
-			viagemVO.setSeqViagem(frm.getViagemVO().getSeqViagem());
-			viagemVO.setItinerarioVo(frm.getViagemVO().getItinerarioVo());
-			viagemVO.setOnibusVO(frm.getViagemVO().getOnibusVO());
-			viagemVO.setHoraSaida(frm.getViagemVO().getHoraSaida());
-			viagemVO.setHoraChegada(frm.getViagemVO().getHoraChegada());
-//		EstagioServices.getManterCadastroBean().deletar(viagemVO);
+			EstagioServices.getManterCadastroBean().deletar(frm.getViagemVO());
 			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.deletar"));
 		}
 		catch (Exception e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
 		}
 		saveMessages(request, messages);
-		return alterar(mapping, form, request, response);
+		return unspecified(mapping, form, request, response);
 	}
 }
