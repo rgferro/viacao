@@ -92,6 +92,10 @@ public class DataVO implements Serializable, Comparable
 	public void setMes(String mes) {
 		this.mes = mes;
 	}
+	
+	public String getDataHoraMinSeg(){
+		return getData()+" "+getHoraMinutoSegundo();
+	}
 	/**
 	 * @return Returns the data.
 	 */

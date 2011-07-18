@@ -32,7 +32,7 @@ public class ViagemDAO extends BaseDB {
 		sql.append("					data_hora_saida, ");
 		sql.append("					data_hora_chegada) ");
 		sql.append("VALUES (seq_viagem.nextval, ?, ?,");
-		sql.append("to_date (?, 'HH24:MI'),");
+		sql.append("to_date (?, 'DD/MM/YYYY HH24:MI:SS'),");
 		sql.append("to_date (?, 'HH24:MI') )");
 	   
 		return sql.toString();
@@ -43,7 +43,7 @@ public class ViagemDAO extends BaseDB {
 			pstmt = getPstmt(getSQLInserir());
 			pstmt.setInt(1, viagemVO.getItinerarioVo().getSeqItinerario());
 			pstmt.setInt(2, viagemVO.getOnibusVO().getSeqOnibus());
-			pstmt.setString(3, viagemVO.getHoraSaida().getHoraMinuto());
+			pstmt.setString(3, viagemVO.getHoraSaida().getDataHoraMinSeg());
 			pstmt.setString(4, viagemVO.getHoraChegada().getHoraMinuto());
 			
 			pstmt.executeUpdate();
@@ -81,10 +81,8 @@ public class ViagemDAO extends BaseDB {
 		StringBuffer sql = new StringBuffer();
 
 		sql.append(" UPDATE	viagem");
-		sql.append(" SET 	seq_itinerario_FK = ? , ");
-		sql.append("		seq_onibus_FK     = ? , ");
-		sql.append("		data_hora_saida   = to_date('?', 'DD/MM/YYYY HH24:MI:SS'),");
-		sql.append("		data_hora_chegada = to_date('?', 'DD/MM/YYYY HH24:MI:SS')");
+		sql.append(" SET 	data_hora_saida   = to_date(?, 'DD/MM/YYYY HH24:MI:SS'),");
+		sql.append("		data_hora_chegada = to_date(?, 'HH24:MI')");
 		sql.append(" WHERE	seq_viagem = ? ");
 	
 		return sql.toString();
@@ -93,11 +91,9 @@ public class ViagemDAO extends BaseDB {
 	public void alterar(ViagemVO viagemVO)throws DAOException{
 		try{
 			pstmt = getPstmt(getSQLAlterar());
-			pstmt.setInt(1, viagemVO.getItinerarioVo().getSeqItinerario());
-			pstmt.setInt(2, viagemVO.getOnibusVO().getSeqOnibus());
-			pstmt.setString(3, viagemVO.getHoraSaida().getData());
-			pstmt.setString(4, viagemVO.getHoraChegada().getData());
-			pstmt.setInt(5, viagemVO.getSeqViagem());
+			pstmt.setString(1, viagemVO.getHoraSaida().getDataHoraMinSeg());
+			pstmt.setString(2, viagemVO.getHoraChegada().getHoraMinuto());
+			pstmt.setInt(3, viagemVO.getSeqViagem());
 			
 			pstmt.executeUpdate();
 		}

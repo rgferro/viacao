@@ -1,30 +1,6 @@
 <%@ include file="/jsp/common/taglibs.jsp" %>
 
 <script type="text/javascript">
-
-function cadastrar(){
-	var frm = document.forms[0];
-	frm.task.value = 'cadastrarViagem';
-	frm.submit();
-}
-
-function voltar(){
-	var frm = document.forms[0];
-	frm.task.value = 'unspecified';
-	frm.submit();
-}
-
-function adicionar() {
-	var frm = document.forms[0];
-	frm.task.value = "adicionarLista";	
-	frm.submit();
-}
-
-function remover() {
-	var frm = document.forms[0];
-	frm.task.value = "removerLista";
-	frm.submit();
-}
 $(function() {
 		$( "#datepicker" ).datepicker({
 			changeMonth: true,
@@ -80,12 +56,12 @@ $(function() {
 						<td class="texto" width="05%" align="left">Hora Saída
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinuto" maxlength="5" size="6" styleClass="input"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinuto" maxlength="4" size="5" styleClass="input" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
 						</td>
 						<td class="texto" width="05%" align="left">Hora Chegada
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinuto" maxlength="5" size="6" styleClass="input"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinuto" maxlength="4" size="5" styleClass="input" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
 						</td>
 					</tr>
 				</table>
