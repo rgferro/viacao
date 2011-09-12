@@ -68,7 +68,7 @@ function selecionar(acao, seq){
 			<table width="100%" border="0" align="center" class="bordatabela">
 
 				<tr class="fundoescuro">
-					<td width="15%" height="20" colspan="3">&nbsp;</td>
+					<td width="15%" height="10" colspan="3">&nbsp;</td>
 					<td width="20%"  align="center">Origem</td>
 					<td width="20%" align="center">Destino</td>
 					<td width="25%" align="center">Tempo (hh:mm)</td>
@@ -77,41 +77,44 @@ function selecionar(acao, seq){
 
 			<logic:empty name="manterItinerarioForm" property="listaItinerario">
 				<tr>
-					<td align="center" colspan="8" class="texto">Nenhuma itinerário foi cadastrado!</td>
+					<td align="center" colspan="8" class="texto">
+						<br><strong>Nenhuma itinerário foi cadastrado!</strong></td>
 				</tr>
 			</logic:empty>
 			<logic:notEmpty name="manterItinerarioForm" property="listaItinerario">
-				<logic:iterate id="itinerario" name="manterItinerarioForm" property="listaItinerario">
+				<logic:iterate id="itinerario" name="manterItinerarioForm" property="listaItinerario" indexId="index">
+				<c:if test="${index % 2 != 0}">
+					<tr class="fundobranco">
+				</c:if>
+				<c:if test="${index % 2 == 0}">
 					<tr class="fundoclaro">
-					<td align="center">
-						<a href="javascript: selecionar('ALTERAR', <c:out value="${itinerario.seqItinerario}"/>)">
-							<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
-						</a>
-					</td>
-					<td align="center">
-						<a href="javascript: selecionar('DELETAR', <c:out value="${itinerario.seqItinerario}"/>)">
-							<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
-						</a>
-					</td>
-					<td align="center">
-								<a
-									href="javascript: selecionar('PESQUISAR','<c:out value="${itinerario.seqItinerario}"/>')">
-									<img title="Pesquisar!" src="images/zoomoff.png" border="0"
-										height="20" width="20" border="0"
-										onmouseover="mudaImagemOver(this,'pesquisar');"
-										onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
-
-							</td>
-					<td align="left"><bean:write name="itinerario" property="rodoviariaOrigemVO.nomRodoviaria"/></td>
-					<td align="left"><bean:write name="itinerario" property="rodoviariaDestinoVO.nomRodoviaria"/></td>
-					<td align="center"><bean:write name="itinerario" property="tempoViagem"/></td>
-					<td align="right">
-					<c:set var="total" value="0"/>
+				</c:if>
+						<td align="center">
+							<a href="javascript: selecionar('ALTERAR', <c:out value="${itinerario.seqItinerario}"/>)">
+								<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
+							</a>
+						</td>
+						<td align="center">
+							<a href="javascript: selecionar('DELETAR', <c:out value="${itinerario.seqItinerario}"/>)">
+								<img title="Deletar!" src="images/icon_lixeira3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
+							</a>
+						</td>
+						<td align="center">
+							<a href="javascript: selecionar('PESQUISAR','<c:out value="${itinerario.seqItinerario}"/>')">
+								<img title="Pesquisar!" src="images/zoomoff.png" border="0" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'pesquisar');" onmouseout="mudaImagemOut(this, 'pesquisar')"> 
+							</a>
+						</td>
+						<td align="left"><bean:write name="itinerario" property="rodoviariaOrigemVO.nomRodoviaria"/></td>
+						<td align="left"><bean:write name="itinerario" property="rodoviariaDestinoVO.nomRodoviaria"/></td>
+						<td align="center"><bean:write name="itinerario" property="tempoViagem"/></td>
+						<td align="right">
+						<c:set var="total" value="0"/>
 							<logic:iterate id="it" name="itinerario" property="listaTarifas">
 								<c:set var="total" value="${total + it.valor}"/>
 							</logic:iterate>
-					<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${total+itinerario.valorPassagem}"/></td>
-				</tr>
+						<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${total+itinerario.valorPassagem}"/>
+						</td>
+					</tr>
 				</logic:iterate>
 			</logic:notEmpty>
 			</table>

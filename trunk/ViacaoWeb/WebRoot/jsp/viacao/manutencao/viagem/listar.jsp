@@ -4,15 +4,14 @@
 
 function recuperar(seqViagem, acao){
 	var frm = document.forms[0];
+		frm.acao.value = acao;
 		frm.seqViagem.value = seqViagem;
 		frm.task.value = 'unspecified';
 	if(acao == 'ALTERAR'){
 		frm.task.value = 'alterar';
 	}
 	if(acao == 'DELETAR'){
-		if(confirm('Deseja Excluir?')){
-			frm.task.value = 'deletar';
-		}
+		frm.task.value = 'alterar';
 	}
 	frm.submit();
 }
@@ -32,6 +31,7 @@ $(function() {
 
 <html:hidden name="manterViagemForm" property="task"/>
 <html:hidden name="manterViagemForm" property="seqViagem"/>
+<html:hidden name="manterViagemForm" property="acao"/>
 
 	<table width="600" border="0" align="center">
 		<tr>
@@ -41,7 +41,7 @@ $(function() {
 						<tr>
 							<td class="titulo">Viagens</td>
 						</tr>
-					</table>
+					</table>	
 					<table>
 						<tr>
 							<td class="link"><img src="images/fetch.gif"/>
@@ -103,56 +103,57 @@ $(function() {
 				<br>
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="10%" colspan="2" align="center">
-						</td>
-						<td width="25%"  align="center">Origem
-						</td>
-						<td width="25%" align="center">Destino
-						</td>
-						<td width="10%" align="center">Tipo de Ônibus
-						</td>
-						<td width="10%" align="center">Data
-						</td>
-						<td width="10%" align="center">Hora Saída
-						</td>
-						<td width="10%" align="center">Hora Chegada
-						</td>
+						<td width="10%" colspan="2" height="10">&nbsp;</td>
+						<td width="25%"  align="center">Origem</td>
+						<td width="25%" align="center">Destino</td>
+						<td width="10%" align="center">Tipo de Ônibus</td>
+						<td width="10%" align="center">Data</td>
+						<td width="10%" align="center">Hora Saída</td>
+						<td width="10%" align="center">Hora Chegada</td>
 					</tr>
-						<logic:iterate id="lista" name="manterViagemForm" property="listaViagem">
-							<tr class="fundoclaro">
-								<td align="center">
-									<a href="javascript: recuperar('<c:out value="${lista.seqViagem}"/>', 'ALTERAR')">
-										<img title="Editar" src="images/icon_editar3off.png"
-											height="20" width="20" border="0"
-											onmouseover="mudaImagemOver(this,'editar');"
-											onmouseout="mudaImagemOut(this, 'editar')"> </a>
-								</td>
-								<td align="center">
-									<a href="javascript: recuperar('<c:out value="${lista.seqViagem}"/>', 'DELETAR')">
-										<img title="Deletar" src="images/icon_lixeira3off.png"
-											height="20" width="20" border="0"
-											onmouseover="mudaImagemOver(this,'deletar');"
-											onmouseout="mudaImagemOut(this, 'deletar')"> </a>
-								</td>
-								<td align="center">
-									<bean:write name="lista" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/>
-								</td>
-									<td align="center">
-										<bean:write name="lista" property="itinerarioVo.rodoviariaDestinoVO.nomRodoviaria"/>
-									</td>
-									<td align="center">
-										<bean:write name="lista" property="onibusVO.tipo"/>
-									</td>
-									<td align="center">
-										<bean:write name="lista" property="horaSaida.data"/>
-									</td>
-									<td align="center">
-										<bean:write name="lista" property="horaSaida.horaMinuto"/>
-									</td>
-									<td align="center">
-										<bean:write name="lista" property="horaChegada.horaMinuto"/>
-									</td>
-						</logic:iterate>
+					<logic:empty name="manterViagemForm" property="listaViagem">
+						<tr>
+							<td align="center" colspan="8" class="texto">
+								<br><strong>Nenhuma viagem foi encontrada!</strong>
+							</td>
+						</tr>
+					</logic:empty>
+					<logic:iterate id="lista" name="manterViagemForm" property="listaViagem" indexId="index">
+					<c:if test="${index % 2 != 0}">
+						<tr class="fundobranco">
+					</c:if>
+					<c:if test="${index % 2 == 0}">
+						<tr class="fundoclaro">
+					</c:if>
+							<td align="center">
+								<a href="javascript: recuperar('<c:out value="${lista.seqViagem}"/>', 'ALTERAR')">
+									<img title="Editar" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
+								</a>
+							</td>
+							<td align="center">
+								<a href="javascript: recuperar('<c:out value="${lista.seqViagem}"/>', 'DELETAR')">
+									<img title="Deletar" src="images/icon_lixeira3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'deletar');" onmouseout="mudaImagemOut(this, 'deletar')">
+								</a>
+							</td>
+							<td align="center">
+								<bean:write name="lista" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/>
+							</td>
+							<td align="center">
+								<bean:write name="lista" property="itinerarioVo.rodoviariaDestinoVO.nomRodoviaria"/>
+							</td>
+							<td align="center">
+								<bean:write name="lista" property="onibusVO.tipo"/>
+							</td>
+							<td align="center">
+								<bean:write name="lista" property="horaSaida.data"/>
+							</td>
+							<td align="center">
+								<bean:write name="lista" property="horaSaida.horaMinuto"/>
+							</td>
+							<td align="center">
+								<bean:write name="lista" property="horaChegada.horaMinuto"/>
+							</td>		
+					</logic:iterate>
 				</table>
 			</td>
 		</tr>

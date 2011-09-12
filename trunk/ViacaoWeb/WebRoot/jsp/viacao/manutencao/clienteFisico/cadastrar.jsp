@@ -34,7 +34,7 @@
 					<tr class="fundoclaro">
 						<td align="center">Login</td>
 						<td align="left" colspan="3">
-							<html:text disabled="false" name="manterClienteFisicaForm" property="fisicaVO.clienteVO.login" styleClass="inputobrigatorio" size="20" maxlength="20"/>
+							<html:text name="manterClienteFisicaForm" property="fisicaVO.clienteVO.login" styleClass="inputobrigatorio" size="20" maxlength="20"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">

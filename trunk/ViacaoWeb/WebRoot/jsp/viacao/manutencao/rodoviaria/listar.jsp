@@ -49,8 +49,10 @@ function consultar(seqRodoviaria){
 						</td>
 					</tr>
 				</table>
-				<table width="100%" border="0" align="center" id="consulta"
-					class="bordatabela">
+				<table width="100%" border="0" align="center" id="consulta" class="bordatabela">
+					<tr class="fundoescuro">
+						<td class="texto" colspan="4" align="center">Busca de Rodoviária</td>
+					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="05%" height="20" align="center">
 							Rodoviária
@@ -88,30 +90,25 @@ function consultar(seqRodoviaria){
 				<br />
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="15%" height="20" colspan="3">
-							&nbsp;
-						</td>
-						<td width="20%" align="center">
-							Rodoviária
-						</td>
-						<td width="20%" align="center">
-							Estado
-						</td>
-						<td width="25%" align="center">
-							Cidade
-						</td>
+						<td width="15%" height="10" colspan="3">&nbsp;</td>
+						<td width="20%" align="center">Rodoviária</td>
+						<td width="20%" align="center">Estado</td>
+						<td width="25%" align="center">Cidade</td>
 					</tr>
-					<logic:empty name="manterRodoviariaForm"
-						property="listaInicioRodoviaria">
+					<logic:empty name="manterRodoviariaForm" property="listaInicioRodoviaria">
 						<tr>
 							<td align="center" colspan="7" class="texto">
-								Nenhuma rodoviária foi cadastrado!
+								<br><strong>Nenhuma rodoviária foi encontrada!</strong>
 							</td>
 						</tr>
 					</logic:empty>
-					<logic:iterate id="idLista" name="manterRodoviariaForm"
-						property="listaInicioRodoviaria">
+					<logic:iterate id="idLista" name="manterRodoviariaForm" property="listaInicioRodoviaria" indexId="index">
+					<c:if test="${index % 2 != 0}">
+						<tr class="fundobranco">
+					</c:if>
+					<c:if test="${index % 2 == 0}">
 						<tr class="fundoclaro">
+					</c:if>
 							<td align="center">
 								<a
 									href="javascript: alterar('<c:out value="${idLista.seqRodoviaria}"/>')">
@@ -135,7 +132,7 @@ function consultar(seqRodoviaria){
 										height="20" width="20" border="0"
 										onmouseover="mudaImagemOver(this,'pesquisar');"
 										onmouseout="mudaImagemOut(this, 'pesquisar')"> </a>
-
+	
 							</td>
 							<td align="center">
 								<bean:write name="idLista" property="nomRodoviaria" />

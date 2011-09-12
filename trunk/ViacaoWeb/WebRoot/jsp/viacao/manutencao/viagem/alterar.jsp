@@ -18,10 +18,10 @@ $(function() {
 	<table width="600" border="0" align="center">
 		<tr>
 			<td>
-			<jsp:include page="/jsp/common/mensagens.jsp"/>
+				<jsp:include page="/jsp/common/mensagens.jsp"/>
 				<table width="100%" border="0" align="center">
 					<tr>
-						<td class="titulo">Cadastro de Viagens
+						<td class="titulo">Alterar Viagem
 						</td>
 					</tr>
 				</table>
@@ -31,7 +31,7 @@ $(function() {
 						<td class="texto" width="20%" height="20" align="left">Itinerário
 						</td>
 						<td width="37%" colspan="3">
-							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="input">
+							<html:select name="manterViagemForm" property="viagemVO.itinerarioVo.seqItinerario" styleId="lista" styleClass="inputobrigatorio">
 								<html:option value="-1">SELECIONE</html:option>
     							<html:optionsCollection  name="manterViagemForm" property="listaItinerario" label="origemDestino" value="seqItinerario"/>
     						</html:select>
@@ -41,7 +41,7 @@ $(function() {
 						<td class="texto" width="13%" height="20" align="left">Tipo de Ônibus
 						</td>
 						<td width="37%">
-							<html:select name="manterViagemForm" property="viagemVO.onibusVO.seqOnibus" styleId="lista" styleClass="input">
+							<html:select name="manterViagemForm" property="viagemVO.onibusVO.seqOnibus" styleId="lista" styleClass="inputobrigatorio">
 								<html:option value="-1">SELECIONE</html:option>
 								<html:optionsCollection  name="manterViagemForm" property="listaOnibus" label="tipo" value="seqOnibus"/>	
     						</html:select>
@@ -49,19 +49,19 @@ $(function() {
 						<td class="texto" width="13%" height="20" align="left">Data
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida.data" styleClass="input" size="12" styleId="datepicker"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida.data" styleClass="inputobrigatorio" size="12" styleId="datepicker"/>
 						</td>	
 					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="05%" align="left">Hora Saída
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinuto" maxlength="4" size="5" styleClass="input" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinuto" maxlength="4" size="5" styleClass="inputobrigatorio" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
 						</td>
 						<td class="texto" width="05%" align="left">Hora Chegada
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinuto" maxlength="4" size="5" styleClass="input" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinuto" maxlength="4" size="5" styleClass="inputobrigatorio" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
 						</td>
 					</tr>
 				</table>

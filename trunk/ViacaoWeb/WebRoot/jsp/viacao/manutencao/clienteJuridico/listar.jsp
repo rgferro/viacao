@@ -91,12 +91,19 @@ function getJuridica(acao, seqJ, seqE, seqC){
 					</tr>
 					<logic:empty name="manterJuridicaForm" property="listaClienteJuridico">
 						<tr>
-							<td align="center" colspan="7" class="texto">Nenhum usuário foi encontrado!</td>
+							<td align="center" colspan="7" class="texto">
+								<br><strong>Nenhum usuário foi encontrado!</strong>
+							</td>
 						</tr>
 					</logic:empty>
 					<logic:notEmpty name="manterJuridicaForm" property="listaClienteJuridico">
-						<logic:iterate id="listaJuridica" name="manterJuridicaForm" property="listaClienteJuridico">
+						<logic:iterate id="listaJuridica" name="manterJuridicaForm" property="listaClienteJuridico" indexId="index">
+						<c:if test="${index % 2 != 0}">
+							<tr class="fundobranco">
+						</c:if>
+						<c:if test="${index % 2 == 0}">
 							<tr class="fundoclaro">
+						</c:if>
 								<td align="center">
 									<a href="javascript: getJuridica('ALTERAR', <c:out value="${listaJuridica.seqJuridica}"/>, <c:out value="${listaJuridica.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${listaJuridica.clienteVO.seqCliente}"/>);">
 										<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">
@@ -122,13 +129,13 @@ function getJuridica(acao, seqJ, seqE, seqC){
 									<bean:write name="listaJuridica" property="clienteVO.email"/>
 								</td>
 								<td align="center">
-								<c:if test="${listaJuridica.razaoSocial ne null}">
-									USUÁRIO
-								</c:if>
-								<c:if test="${listaJuridica.razaoSocial eq null}">
-									ADMINISTRADOR
-								</c:if>
-							</td>
+									<c:if test="${listaJuridica.razaoSocial ne null}">
+										USUÁRIO
+									</c:if>
+									<c:if test="${listaJuridica.razaoSocial eq null}">
+										ADMINISTRADOR
+									</c:if>
+								</td>
 							</tr>
 						</logic:iterate>
 					</logic:notEmpty>

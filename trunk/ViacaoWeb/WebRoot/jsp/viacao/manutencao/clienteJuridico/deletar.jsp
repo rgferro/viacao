@@ -133,10 +133,10 @@
 				<table width="100%" border="0" align="center">
 					<tr>
 						<td align="center">
-							<html:button value="Confirmar" property="" styleClass="botao" onclick="confirmar();"/>
+							<html:button value="Voltar" property="" styleClass="botao" onclick="voltar();"/>
 						</td>
 						<td align="center">
-							<html:button value="Voltar" property="" styleClass="botao" onclick="voltar();"/>
+							<html:button value="Confirmar" property="" styleClass="botao" onclick="confirmar();"/>
 						</td>
 					</tr>
 				</table>

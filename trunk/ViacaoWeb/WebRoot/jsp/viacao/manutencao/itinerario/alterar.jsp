@@ -55,19 +55,19 @@ function limpar(obj,acao){
 			<jsp:include page="/jsp/common/mensagens.jsp" />
 			<table width="100%" border="0" align="center" class="bordatabela">
 				<tr class="fundoescuro">
-					<td colspan="4" align="center" class="texto">Cadastro de Itinerario</td>
+					<td colspan="4" align="center" class="texto">Alterar Itinerario</td>
 				</tr>
 				<tr class="fundoclaro">
 					<td class="texto" align="center" width="18%">Origem:</td>
 					<td width="32%">
-						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.seqRodoviaria" styleClass="input" onchange="limpar(this,'origem');">
+						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.seqRodoviaria" styleClass="inputobrigatorio" onchange="limpar(this,'origem');">
 							<html:option value="-1">SELECIONE</html:option>
 							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaOrigem" label="nomRodoviaria" value="seqRodoviaria" />							
 						</html:select>						
 					</td>
 					<td class="texto" align="center" width="18%">Destino:</td>
 					<td width="32%">
-						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.seqRodoviaria" styleClass="input" onchange="limpar(this,'destino');">
+						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.seqRodoviaria" styleClass="inputobrigatorio" onchange="limpar(this,'destino');">
 							<html:option value="-1">SELECIONE</html:option>
 							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaDestino" label="nomRodoviaria" value="seqRodoviaria" />							
 						</html:select>
@@ -76,11 +76,11 @@ function limpar(obj,acao){
 				<tr class="fundoclaro">
 					<td class="texto" align="center">Tempo de Viagem</td>
 					<td class="texto">
-						<html:text styleClass="input" size="5" maxlength="4" name="manterItinerarioForm" property="itinerarioVo.tempoViagem" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
+						<html:text name="manterItinerarioForm" property="itinerarioVo.tempoViagem" styleClass="inputobrigatorio" size="5" maxlength="4" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
 					</td>					
 					<td class="texto" height="20" align="center">Valor (em R$)</td>
 					<td>
-						<html:text name="manterItinerarioForm" size="40" property="itinerarioVo.valorPassagem" styleClass="input" onchange="formataValor(this,6);" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
+						<html:text name="manterItinerarioForm" property="itinerarioVo.valorPassagem" styleClass="inputobrigatorio" size="15" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)" onchange="formataValor(this,6);" disabled="${disable}"/>
 					</td>					
 				</tr>				
 			</table>			

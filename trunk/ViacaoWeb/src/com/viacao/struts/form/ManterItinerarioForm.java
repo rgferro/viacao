@@ -6,8 +6,15 @@ package com.viacao.struts.form;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.struts.action.ActionForm;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.struts.action.ActionForm;
+import org.apache.struts.action.ActionMessage;
+import org.apache.struts.action.ActionMessages;
+
+import com.acol.util.DoubleUtils;
+import com.acol.util.IntegerUtils;
+import com.viacao.utils.Constantes;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
@@ -52,6 +59,25 @@ public class ManterItinerarioForm extends ActionForm{
 		this.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
 		this.getItinerarioVo().setListaTarifas(new ArrayList<TarifaVO>());
 		
+	}
+	
+	public ActionMessages validate(HttpServletRequest request) {
+		ActionMessages messages = new ActionMessages();
+		
+		if(this.itinerarioVo.getRodoviariaOrigemVO().getSeqRodoviaria() == -1){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Origem"));
+		}
+		if(this.itinerarioVo.getRodoviariaDestinoVO().getSeqRodoviaria() == -1){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Destino"));
+		}
+		if(this.itinerarioVo.getTempoViagem().equals("")){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Tempo"));
+		}
+		if(DoubleUtils.empty(this.itinerarioVo.getValorPassagem())){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Valor"));
+		}
+		
+		return messages;
 	}
 
 	/**
