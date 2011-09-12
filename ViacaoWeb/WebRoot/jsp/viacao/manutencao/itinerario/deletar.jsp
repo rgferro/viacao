@@ -17,26 +17,27 @@ function deletar(){
 			<jsp:include page="/jsp/common/mensagens.jsp" />
 			<table width="100%" border="0" align="center" class="bordatabela">
 				<tr class="fundoescuro">
-					<td colspan="4" align="center" class="texto">Cadastro de Itinerario</td>
+					<td colspan="4" align="center" class="texto">Deletar Itinerário</td>
 				</tr>
 				<tr class="fundoclaro">
 					<td class="texto" align="center" width="18%">Origem:</td>
 					<td width="32%">
-						<bean:write name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/>			
+						<html:text name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria" disabled="true" styleClass="inputdeletar" size="20"/>			
 					</td>
 					<td class="texto" align="center" width="18%">Destino:</td>
 					<td width="32%">
-						<bean:write name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.nomRodoviaria"/>
+						<html:text name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.nomRodoviaria" disabled="true" styleClass="inputdeletar" size="20"/>
 					</td>
 				</tr>
 				<tr class="fundoclaro">
 					<td class="texto" align="center">Tempo de Viagem</td>
 					<td class="texto">
-						<bean:write name="manterItinerarioForm" property="itinerarioVo.tempoViagem"/>
+						<html:text name="manterItinerarioForm" property="itinerarioVo.tempoViagem" disabled="true" styleClass="inputdeletar" size="5"/>
 					</td>					
 					<td class="texto" height="20" align="center">Valor (em R$)</td>
 					<td>
-						<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${manterItinerarioForm.itinerarioVo.valorPassagem}"/>
+						<html:text name="manterItinerarioForm" size="15" property="itinerarioVo.valorPassagem" styleClass="inputdeletar" onchange="formataValor(this,6);" disabled="true"/>
+						<!--<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${manterItinerarioForm.itinerarioVo.valorPassagem}"/>-->
 					</td>					
 				</tr>				
 			</table>			

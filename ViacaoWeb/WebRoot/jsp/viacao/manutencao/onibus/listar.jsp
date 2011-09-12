@@ -86,7 +86,7 @@ function buscar(){
 				<br>
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="15%" height="20" colspan="2">&nbsp;</td>
+						<td width="15%" height="10" colspan="2">&nbsp;</td>
 						<td width="20%"  align="center">Empresa</td>
 						<td width="20%" align="center">Tipo</td>
 						<td width="25%" align="center">Qtd Poltronas</td>
@@ -94,11 +94,18 @@ function buscar(){
 					</tr>
 					<logic:empty name="manterOnibusForm" property="listaOnibus">
 					<tr>
-						<td align="center" colspan="6" class="texto">Nenhum ônibus foi encontrado!</td>
+						<td align="center" colspan="6" class="texto">
+							<br><strong>Nenhum ônibus foi encontrado!</strong>
+						</td>
 					</tr>
 					</logic:empty>	
-					<logic:iterate id="lista" name="manterOnibusForm" property="listaOnibus">
+					<logic:iterate id="lista" name="manterOnibusForm" property="listaOnibus" indexId="index">
+					<c:if test="${index % 2 != 0}">
+						<tr class="fundobranco">
+					</c:if>
+					<c:if test="${index % 2 == 0}">
 						<tr class="fundoclaro">
+					</c:if>
 							<td align="center">
 								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqOnibus}"/>)">
 									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">

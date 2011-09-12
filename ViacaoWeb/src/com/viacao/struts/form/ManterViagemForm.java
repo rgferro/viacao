@@ -51,20 +51,23 @@ public class ManterViagemForm extends ActionForm {
 	public ActionMessages validate(HttpServletRequest request){
 		ActionMessages messages = new ActionMessages();
 		
-		if(viagemVO.getItinerarioVo().equals("") || viagemVO.getItinerarioVo() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.itinerario"));
+		if(viagemVO.getItinerarioVo().getSeqItinerario() == -1){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Itinerário"));
 		}
 		
-		if(viagemVO.getOnibusVO().equals("") || viagemVO.getOnibusVO() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.onibus"));
+		if(viagemVO.getOnibusVO().getSeqOnibus() == -1){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Tipo de Ônibus"));
 		}		
 		
-		if(viagemVO.getHoraSaida().equals("") || viagemVO.getHoraSaida() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.HoraSaida"));
+		if(viagemVO.getHoraSaida().getData() == null){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Data"));
 		}
 		
-		if(viagemVO.getHoraChegada().equals("") || viagemVO.getHoraChegada() == null){
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio.HoraChegada"));
+		if(viagemVO.getHoraChegada().getHoraMinuto().equals("") || viagemVO.getHoraChegada().getHoraMinuto() == null){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Hora Chegada"));
+		}
+		if(viagemVO.getHoraSaida().getHoraMinuto().equals("") || viagemVO.getHoraSaida().getHoraMinuto() == null){
+			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.vazio", "Hora Saída"));
 		}
 		
 		return messages;

@@ -37,7 +37,6 @@ function limpar(){
 						<td class="titulo">Atualização de Ônibus</td>
 					</tr>
 				</table>
-				<br>
 				<table width="100%" border="0" align="center" id="cadastrar" class="bordatabela">
 					<tr class="fundoescuro">
 						<td colspan="4" align="center" class="texto">Atualização de Ônibus</td>
@@ -45,21 +44,21 @@ function limpar(){
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Empresa</td>
 						<td width="32%">
-							<html:text name="manterOnibusForm" property="onibusVO.empresa" styleClass="input"/>
+							<html:text name="manterOnibusForm" property="onibusVO.empresa" styleClass="inputobrigatorio"/>
 						</td>
 						<td class="texto" width="05%" height="20">Tipo</td>
 						<td width="45%">
-							<html:text name="manterOnibusForm" property="onibusVO.tipo" styleClass="input"/>
+							<html:text name="manterOnibusForm" property="onibusVO.tipo" styleClass="inputobrigatorio"/>
 						</td>
 					</tr>
 					<tr class="fundoclaro">
 						<td class="texto" width="18%" height="20" align="center">Qtd Poltronas</td>
 						<td width="32%">
-							<html:text onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="qtdPoltronas" styleClass="input"/>
+							<html:text onkeypress="return somenteNumero(this,event,false,false,false)" maxlength="3" name="manterOnibusForm" property="qtdPoltronas" styleClass="inputobrigatorio"/>
 						</td>
 						<td class="texto" width="05%" height="20" align="center">Placa</td>
 						<td width="45%">
-							<html:text onkeypress="return formataPlaca(this,event,true)" name="manterOnibusForm" property="onibusVO.placa" styleClass="input" maxlength="8"/>
+							<html:text onkeypress="return formataPlaca(this,event,true)" name="manterOnibusForm" property="onibusVO.placa" styleClass="inputobrigatorio" maxlength="8"/>
 						</td>
 					</tr>
 				</table>

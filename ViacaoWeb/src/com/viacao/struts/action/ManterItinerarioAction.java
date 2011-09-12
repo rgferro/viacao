@@ -99,16 +99,20 @@ public class ManterItinerarioAction extends DispatchAction{
 		
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
 		ActionMessages messages = new ActionMessages();
-		try{
-			form.getItinerarioVo().setListaTarifas(form.getListaTarifasEscolhidas());
-			EstagioServices.getManterCadastroBean().inserirItinerario(form.getItinerarioVo());
-			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
-		}catch (Exception e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+		messages = form.validate(request);
+		if(messages.isEmpty()){
+			try{
+				form.getItinerarioVo().setListaTarifas(form.getListaTarifasEscolhidas());
+				EstagioServices.getManterCadastroBean().inserirItinerario(form.getItinerarioVo());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.incluir"));
+			}catch (Exception e) {
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+			}
+			saveMessages(request, messages);
+			return unspecified(mapping, frm, request, response);
 		}
 		saveMessages(request, messages);
-		
-		return unspecified(mapping, frm, request, response);
+		return mapping.findForward("cadastrar");
 	}
 	
 	/**
@@ -145,15 +149,21 @@ public class ManterItinerarioAction extends DispatchAction{
 	public ActionForward confirmAlterar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{
 		ActionMessages messages = new ActionMessages();
 		ManterItinerarioForm form = (ManterItinerarioForm) frm;
-		
-		try{
-			EstagioServices.getManterCadastroBean().alterarItinerario(form.getItinerarioVo());
-			messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
-		}catch (Exception e) {
-			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+		messages = form.validate(request);
+		if(messages.isEmpty()){
+			try{
+				EstagioServices.getManterCadastroBean().alterarItinerario(form.getItinerarioVo());
+				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
+				saveMessages(request, messages);
+				return unspecified(mapping, frm, request, response);
+			}catch (Exception e) {
+				messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.acesso"));
+				saveMessages(request, messages);
+				return unspecified(mapping, frm, request, response);
+			}
 		}
 		saveMessages(request, messages);
-		return unspecified(mapping, frm, request, response);
+		return mapping.findForward("alterar");
 	}
 	
 	public ActionForward consultar(ActionMapping mapping, ActionForm frm, HttpServletRequest request, HttpServletResponse response)throws Exception{

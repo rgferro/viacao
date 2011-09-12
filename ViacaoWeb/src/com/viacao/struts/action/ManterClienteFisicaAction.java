@@ -103,7 +103,7 @@ public class ManterClienteFisicaAction extends DispatchAction{
 				messages.add(Constantes.MESSAGE_SUCESSO, new ActionMessage("sucesso.alterar"));
 			}else{
 				saveMessages(request, messages);
-				return mapping.findForward("inserir");
+				return mapping.findForward("alterar");
 			}
 		}catch (UniqueConstraintViolatedException e) {
 			messages.add(Constantes.MESSAGE_ERRO, new ActionMessage("error.update","pessoa fisica"));

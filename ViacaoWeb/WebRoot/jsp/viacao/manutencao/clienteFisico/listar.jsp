@@ -77,19 +77,26 @@
 				<br>
 				<table width="100%" border="0" align="center" class="bordatabela">
 					<tr class="fundoescuro">
-						<td width="15%" height="20" colspan="3">&nbsp;</td>
+						<td width="5%" height="10" colspan="3">&nbsp;</td>
 						<td width="40%"  align="center">Nome</td>
 						<td width="20%" align="center">Login</td>
-						<td width="25%" align="center">E-mail</td>					
-						<td width="25%" align="center">Tipo</td>					
+						<td width="30%" align="center">E-mail</td>					
+						<td width="5%" align="center">Tipo</td>					
 					</tr>
 					<logic:empty name="manterClienteFisicaForm" property="listaClienteFisico">
 						<tr>
-							<td align="center" colspan="6" class="texto">Nenhum usuário foi encontrado!</td>
+							<td align="center" colspan="6" class="texto">
+								<br><strong>Nenhum usuário foi encontrado!</strong>
+							</td>
 						</tr>
 					</logic:empty>
-					<logic:iterate id="lista" name="manterClienteFisicaForm" property="listaClienteFisico">
+					<logic:iterate id="lista" name="manterClienteFisicaForm" property="listaClienteFisico" indexId="index">
+					<c:if test="${index % 2 != 0}">
+						<tr class="fundobranco">
+					</c:if>
+					<c:if test="${index % 2 == 0}">
 						<tr class="fundoclaro">
+					</c:if>
 							<td align="center">
 								<a href="javascript: selecionar('ALTERAR', <c:out value="${lista.seqFisica}"/>, <c:out value="${lista.clienteVO.enderecoVO.seqEndereco}"/>, <c:out value="${lista.clienteVO.seqCliente}"/>)">
 									<img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')">

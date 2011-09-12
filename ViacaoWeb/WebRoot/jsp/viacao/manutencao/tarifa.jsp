@@ -71,12 +71,22 @@ function getTarifa(acao,seq) {
 						<td align="center" style="color: #0000FF">
 					</logic:notEqual>
 						<b><bean:write name="manterTarifaForm" property="acao"/></b></td>
+					<c:if test="${manterTarifaForm.acao eq 'ALTERAR'}">
+					<td>
+						<html:text name="manterTarifaForm" size="40" property="tarifaVO.nomTarifa" styleClass="inputobrigatorio" disabled="${disable}"/>
+					</td>
+					<td>
+						<html:text name="manterTarifaForm" size="40" property="tarifaVO.valor" styleClass="inputobrigatorio" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
+					</td>
+					</c:if>	
+					<c:if test="${manterTarifaForm.acao ne 'ALTERAR'}">
 					<td>
 						<html:text name="manterTarifaForm" size="40" property="tarifaVO.nomTarifa" styleClass="input" disabled="${disable}"/>
 					</td>
 					<td>
 						<html:text name="manterTarifaForm" size="40" property="tarifaVO.valor" styleClass="input" disabled="${disable}" onkeypress="return formataCampoDecimal(6,this,event,false,false,true)"/>
 					</td>
+					</c:if>	
 					<td align="center"><img title="Pesquisar!" src="images/zoomoff.png" border="0" height="20" width="20" onmouseover="mudaImagemOver(this,'pesquisar');" onmouseout="mudaImagemOut(this, 'pesquisar')" onclick="javascript: inicio('pesquisar');"></td>
 					<td align="center"><img title="Confirmar!" src="images/acceptoff.png" border="0" height="20" width="20" onmouseover="mudaImagemOver(this,'confirmar');" onmouseout="mudaImagemOut(this, 'confirmar')" onclick="javascript: confirmar('<bean:write name="manterTarifaForm" property="acao"/>');"></td>
 					<td align="center"><img title="Cancelar!" src="images/deleteoff.png" border="0" height="20" width="20" onmouseover="mudaImagemOver(this,'cancelar');" onmouseout="mudaImagemOut(this, 'cancelar')" onclick="javascript: inicio('');"></td>
@@ -85,20 +95,22 @@ function getTarifa(acao,seq) {
 			<br>
 			<table width="100%" border="0" cellpadding="0" cellspacing="2" align="center" class="bordatabela">
 				<tr class="fundoescuro">
-					<td width="10%" height="20" colspan="2">&nbsp;</td>
+					<td width="10%" height="10" colspan="2">&nbsp;</td>
 					<td width="45%"  align="center">Nome da Tarifa</td>
 					<td width="45%" align="center">Valor(R$)</td>
 				</tr>
 				<logic:empty name="manterTarifaForm" property="listaTarifas">
 					<tr>
-						<td align="center" colspan="4" class="texto">Nenhuma tarifa foi encontrada!</td>
+						<td align="center" colspan="4" class="texto">
+							<br><strong>Nenhuma tarifa foi encontrada!</strong>
+						</td>
 					</tr>
 				</logic:empty>
 				<logic:iterate id="varInterno" name="manterTarifaForm" property="listaTarifas" indexId="index">
-					<c:if test="${index % 2 == 0}">
+					<c:if test="${index % 2 != 0}">
 						<tr class="fundobranco">
 					</c:if>
-					<c:if test="${index % 2 != 0}">
+					<c:if test="${index % 2 == 0}">
 						<tr class="fundoclaro">
 					</c:if>
 						<td><img title="Editar!" src="images/icon_editar3off.png" height="20" width="20" onclick="javascript: getTarifa('alterar',<bean:write name="varInterno" property="seqTarifa"/>);" onmouseover="mudaImagemOver(this,'editar');" onmouseout="mudaImagemOut(this, 'editar')"></td>
