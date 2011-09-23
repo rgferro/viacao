@@ -141,7 +141,29 @@
 		<forward name="consultar" path="consultar.juridica" />
 		<forward name="deletar" path="deletar.juridica" />
 		
-	</action> 
+	</action>
+	
+	<!-- ManterCompraForm -->
+	
+	<action 
+		attribute="manterCompraForm"
+		name="manterCompraForm"
+		path="/manterCompra"
+		parameter="task"
+		scope="session"
+		type="com.viacao.struts.action.ManterCompraAction"
+		validate="false">
+		
+		<forward name="selecionarViagem"		path=".selecionar.compra"/>
+		<forward name=""			path=".compra"/>
+		<forward name=""		path=".compra"/>
+		<forward name=""		path=".compra"/>
+		<forward name=""		path=".compra"/>
+    
+    </action>       
+	
+	<!-- ManterLoginForm --> 
+	<!-- 
    	<action 
 			attribute="loginForm"
             name="loginForm"
@@ -152,6 +174,7 @@
             validate="false">
             <forward name="login"                path=".login"/>
 	 </action>
+	  -->
    </action-mappings>
   
   <message-resources parameter="com.viacao.struts.ApplicationResources" />
