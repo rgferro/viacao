@@ -128,10 +128,17 @@
 	<definition name="deletar.juridica" extends="layout">
 		<put name="body" value="/jsp/viacao/manutencao/clienteJuridico/deletar.jsp"/>
 	</definition>
+	
+	<!-- Tiles for Compra -->
+	
+	<definition name=".selecionar.compra" extends="layout">
+		<put name="body" value="/jsp/viacao/compra/selecionarViagem.jsp"/>
+	</definition>
 
 	<!-- Tiles for Login -->
 	
 	<definition name=".login" extends="layout">
 		<put name="body" value="/jsp/viacao/login/login.jsp"/>
 	</definition>
+	
 </tiles-definitions>

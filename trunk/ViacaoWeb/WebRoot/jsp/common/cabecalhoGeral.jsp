@@ -35,7 +35,7 @@
    <li class="submenu"><a href="<%=request.getContextPath()%>/exemplo.do">Menu</a>
       <ul class="menu">      
       	<li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Conta</a></li>
-        <li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Compras</a></li>
+        <li class="item"><a href="<%=request.getContextPath()%>/manterCompra.do">Compras</a></li>
         <li class="item"><a href="<%=request.getContextPath()%>/exemplo.do">Dados do Cartao</a></li>                                    
       </ul>
    </li>
