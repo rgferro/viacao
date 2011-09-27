@@ -170,6 +170,17 @@ select {
 	padding: 2px;
 }
 
+#buss {
+    width: 699px;
+    *width: 699px;
+    height: 221px;
+    background-image:  url("/astorbr-ut/imgs5un/BUSS.gif");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 110px;
+}
+
 /*classes*/
 
 .botao{

@@ -165,4 +165,134 @@
 	border:1px solid #BFDFDF;
 	background-color: #FFFFFF;
 }
+
+#buss {
+    width: 699px;
+    *width: 699px;
+    height: 221px;
+    background-image:  url("images/BUSS.gif");
+    background-repeat: no-repeat;
+    margin: 0 auto;
+    text-align: left;
+    padding-left: 110px;
+}
+
+td.ocupada {
+    height: 34px;
+    width: 36px;
+    background-image: url('images/bancOcupada.gif');
+    background-repeat: no-repeat;
+    cursor: default;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
+    text-indent: 9px;
+}
+
+td.seleccionada {
+    height: 34px;
+    width: 36px;
+    background-image: url('images/bancSelecionada.gif');
+    background-repeat: no-repeat;
+    cursor: pointer;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #FFF;
+    text-indent: 9px;
+}
+
+td.libre {
+    height: 34px;
+    width: 36px;
+    background-image: url('images/bancLivre.gif');
+    background-repeat: no-repeat;
+    cursor:pointer;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-indent: 9px;
+}
+
+#buss table tr td {
+    padding: 0px;
+    margin: 0px;
+	width: 550px;
+}
+
+#buss table {
+    margin-top: 2px;
+    margin-left: 5px;
+	width: 550px;
+}
+
+#buss table tr td {
+    /*background-color: #333333;*/
+    height: 40px;
+}
+
+#CaixaInfsBus {
+    font-size: 11px;
+}
+
+#ContainerBus {
+	float: right
+    width: 700px;
+    *width: 700px;
+    height: 266px;
+    padding: 0px;
+    margin: 0 auto;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+}
+
+#bussInfsGeral {
+    width:  730px;
+    *width:  730px;
+    height: 115px;
+    margin: 0 auto;
+    padding-top: 8px;
+}
+
+#busInfs {
+    width: 230px;
+    height: 110px;
+    float: left;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-size: 11px;
+}
+
+#busInfs #direita, #busInfs #esquerda {
+    height: 25.5px;
+    float: left;
+    margin: 1px;
+    text-indent: 6px;
+}
+
+#busInfs #esquerda {
+    text-align: left;
+    background-color: #eaeaea;
+    font-weight: bold;
+    color: #535351;
+    width: 110px;
+    height: 18.5px;
+    *height: 23.5px;
+    padding-top: 5px;
+    border: 1px solid #eaeaea;
+}
+
+#busInfs #direita {
+    width: 110px;
+    height: 18.5px;
+    *height: 23.5px;
+    text-align: left;
+    background-color: #eaeaea;
+    border: 1px solid #eaeaea;
+    padding-top: 5px;
+    color: #333333;
+}
 </style>

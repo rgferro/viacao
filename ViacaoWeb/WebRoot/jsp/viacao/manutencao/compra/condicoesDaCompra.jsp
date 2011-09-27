@@ -1,0 +1,61 @@
+<%@ include file="/jsp/common/taglibs.jsp" %>
+
+<script type="text/javascript">
+
+function ir(){
+	var frm = document.forms[0];
+	frm.task.value = 'escolherPoltrona';
+	frm.submit();
+}
+
+</script>
+
+<html:form action="/manterCompra">
+<html:hidden property="task" name="manterCompraForm"/>
+<table width="600" border="0" align="center">
+	<tr>
+		<td>
+			<table width="100%" border="0" align="center">
+				<tr>
+					<td class="titulo">Termo de compromisso para os Clientes</td>
+				</tr>
+			</table>
+			<br>
+			<table width="100%" border="0" align="center" class="bordatabela">
+				<tr class="fundoescuro">
+					<td class="texto" align="center">Termo de compromisso</td>
+				</tr>
+				<tr class="fundoclaro">
+					<td class="texto">Leia atentamente o termo de compromisso abaixo, e caso concordar com o mesmo, preencha a opção antes de prosseguir com a compra do seu bilhete.</td>
+				</tr>
+				<tr class="fundoclaro">
+					<td><textarea cols="70" rows="10"> INFORMAÇÕES IMPORTANTES:
+
+- ATENÇÃO: somente o titular do cartão de crédito utilizado para a compra do bilhete poderá fazer a retirada do mesmo na bilheteria. Caso o passageiro não seja o titular do cartão, solicitar sua presença quando do embarque para emissão das passagens, portando o cartão de crédito.
+
+- Esse documento não é válido para viagem. Deverá ser trocado por um bilhete de passagem preferencialmente na bilheteria de origem da viagem, ou em qualquer outra bilheteria.
+												
+- Para sua segurança, imprima esse documento e apresente-o na agência onde for efetuar a troca pelo bilhete de passagem. Caso opte por não imprimir, quando for retirar seu bilhete de passagem, informe seu nome, seu e-mail e apresente o documento de identidade que informou cadastro do site.
+														
+- Os bilhetes de passagem adquiridos via Internet deverão ser retirados com antecedência de 60 minutos do horário de embarque.
+														
+- Em caso de desistência da viagem, haverá a retenção de até 5 % do valor da passagem, conforme resolução da Agência Nacional de Transportes Terrestres - ANTT.
+														
+- A devolução de bilhete de passagem adquirido pela Internet poderá ser feita até 3 horas antes do horário de embarque, obedecendo ás normas internas da UTIL/NORMANDY para devolução de bilhetes comprados com pagamento via CARTÃO DE CRÉDITO. Não haverá devolução do valor em espécie, o cancelamento da venda será feito junto à operadora do cartão de crédito e estornado na fatura.</textarea></td>
+				</tr>
+				<tr class="fundoclaro">
+					<td class="texto"><input type="radio">Li e concorodo com o termo de compromisso acima.</td>
+				</tr>
+			</table>
+			<br>
+			<table width="100%" border="0" align="center">
+				<tr>
+					<td align="center">
+						<input class="botao" value="Prosseguir" type="button" onclick= ir();>
+					</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+</html:form>
