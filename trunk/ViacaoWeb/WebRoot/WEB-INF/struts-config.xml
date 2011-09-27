@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> 
 <!DOCTYPE struts-config PUBLIC  "-//Apache Software Foundation//DTD Struts Configuration 1.3//EN" "http://struts.apache.org/dtds/struts-config_1_3.dtd">
 
 <struts-config>
@@ -11,6 +11,7 @@
   	<form-bean name="manterViagemForm" type="com.viacao.struts.form.ManterViagemForm"/>
   	<form-bean name="manterClienteFisicaForm" type="com.viacao.struts.form.ManterClienteFisicaForm"/>
   	<form-bean name="manterJuridicaForm" type="com.viacao.struts.form.ManterJuridicaForm"/>
+  	<form-bean name="manterCompraForm" type="com.viacao.struts.form.ManterCompraForm"/>
   	<form-bean name="loginForm" type="com.viacao.struts.form.LoginForm"/>
   </form-beans>
   <global-exceptions />
@@ -155,8 +156,8 @@
 		validate="false">
 		
 		<forward name="selecionarViagem"		path=".selecionar.compra"/>
-		<forward name=""			path=".compra"/>
-		<forward name=""		path=".compra"/>
+		<forward name="condicoesCompra"			path=".codicoes.compra"/>
+		<forward name="escolherPoltrona"		path=".escolherPoltrona.compra"/>
 		<forward name=""		path=".compra"/>
 		<forward name=""		path=".compra"/>
     

@@ -132,7 +132,15 @@
 	<!-- Tiles for Compra -->
 	
 	<definition name=".selecionar.compra" extends="layout">
-		<put name="body" value="/jsp/viacao/compra/selecionarViagem.jsp"/>
+		<put name="body" value="/jsp/viacao/manutencao/compra/selecionarViagem.jsp"/>
+	</definition>
+	
+	<definition name=".codicoes.compra" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/compra/condicoesDaCompra.jsp"/>
+	</definition>
+	
+	<definition name=".escolherPoltrona.compra" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/compra/escolherPoltrona.jsp"/>
 	</definition>
 
 	<!-- Tiles for Login -->

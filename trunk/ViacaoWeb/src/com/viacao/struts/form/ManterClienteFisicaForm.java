@@ -13,7 +13,6 @@ import com.viacao.utils.Constantes;
 import com.viacao.vo.ClienteVO;
 import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.FisicaVO;
-import com.viacao.vo.JuridicaVO;
 
 public class ManterClienteFisicaForm extends ActionForm{
 	
