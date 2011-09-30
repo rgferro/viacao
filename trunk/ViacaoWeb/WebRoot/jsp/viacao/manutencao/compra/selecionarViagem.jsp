@@ -170,7 +170,6 @@ function ir(){
 					<tr>
 						<td align="center">
 							<input class="botao" value="Comprar" type="button" onclick= ir();>
-						
 						</td>
 					</tr>
 				</table>

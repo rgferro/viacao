@@ -158,8 +158,9 @@
 		<forward name="selecionarViagem"		path=".selecionar.compra"/>
 		<forward name="condicoesCompra"			path=".codicoes.compra"/>
 		<forward name="escolherPoltrona"		path=".escolherPoltrona.compra"/>
-		<forward name=""		path=".compra"/>
-		<forward name=""		path=".compra"/>
+		<forward name="carrinhoDeCompra"		path=".carrinho.compra"/>
+		<forward name="dadosCartao"				path=".dadosCartao.compra"/>
+		<forward name="compraConcluida"			path=".compraConcluida.compra"/>
     
     </action>       
 	

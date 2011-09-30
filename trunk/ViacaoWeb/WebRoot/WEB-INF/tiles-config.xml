@@ -143,6 +143,18 @@
 		<put name="body" value="/jsp/viacao/manutencao/compra/escolherPoltrona.jsp"/>
 	</definition>
 
+	<definition name=".carrinho.compra" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/compra/carrinhoDeCompra.jsp"/>
+	</definition>
+
+	<definition name=".dadosCartao.compra" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/compra/dadosCartao.jsp"/>
+	</definition>
+
+	<definition name=".compraConcluida.compra" extends="layout">
+		<put name="body" value="/jsp/viacao/manutencao/compra/compraConcluida.jsp"/>
+	</definition>
+
 	<!-- Tiles for Login -->
 	
 	<definition name=".login" extends="layout">
