@@ -39,5 +39,23 @@ public class ManterCompraAction extends DispatchAction{
 		
 		return mapping.findForward("condicoesCompra");
 	}
+	
+	public ActionForward carrinhoDeCompra(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response){
+		ManterCompraForm frm = (ManterCompraForm) form;
+		
+		return mapping.findForward("carrinhoDeCompra");
+	}
+	
+	public ActionForward dadosCartao(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response){
+		ManterCompraForm frm = (ManterCompraForm) form;
+		
+		return mapping.findForward("dadosCartao");
+	}
+
+	public ActionForward compraConcluida(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response){
+		ManterCompraForm frm = (ManterCompraForm) form;
+		
+		return mapping.findForward("compraConcluida");
+	}
 
 }

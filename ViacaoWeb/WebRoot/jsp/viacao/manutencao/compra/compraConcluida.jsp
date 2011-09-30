@@ -5,7 +5,7 @@
 		<td>
 			<table width="100%" border="0" align="center">
 				<tr>
-					<td class="titulo">Concluir fsdfd</td>
+					<td class="titulo">Concluir Compra</td>
 				</tr>
 			</table>
 			<br>
