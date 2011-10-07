@@ -243,16 +243,16 @@ public class RodoviariaDAO  extends BaseDB{
 		sql.append(" SELECT 	r.seq_rodoviaria,                             ");
 		sql.append(" 		    e.seq_endereco,                               ");
 		sql.append(" 		    r.nom_rodoviaria,                             ");
-		sql.append(" 	      e.logradouro,                                   ");
+		sql.append(" 	      	e.logradouro,                                 ");
 		sql.append(" 		    e.numero,                                     ");
 		sql.append(" 		    e.complemento,                                ");
 		sql.append(" 		    e.bairro,                                     ");
 		sql.append(" 		    e.cidade,                                     ");
-		sql.append(" 	      e.estado                                        ");
-		sql.append("    FROM  endereco e,                                     ");
-		sql.append("          rodoviaria r                                    ");
-		sql.append("     WHERE                                                ");
-		sql.append("        r.seq_endereco_fk = e.seq_endereco                ");
+		sql.append(" 	      	e.estado                                      ");
+		sql.append(" FROM  		endereco e,                                   ");
+		sql.append("          	rodoviaria r                                  ");
+		sql.append(" WHERE                                               	  ");
+		sql.append("        	r.seq_endereco_fk = e.seq_endereco            ");
 	
 		return sql.toString();
 	} 
