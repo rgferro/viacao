@@ -118,7 +118,7 @@ public class ViagemDAO extends BaseDB {
 		sql.append("         	FROM	rodoviaria r ");
 		sql.append("         	WHERE 	r.seq_rodoviaria = it.seq_rodoviaria_destino_fk) destino, ");
 		sql.append("		o.tipo, ");
-		sql.append("         to_char(vg.data_hora_saida, 'DD/MM/YYYY') data_saida, ");
+		sql.append("        to_char(vg.data_hora_saida, 'DD/MM/YYYY') data_saida, ");
 		sql.append("        to_char(vg.data_hora_saida, 'HH24:MI:SS') hora_saida, ");
 		sql.append("        to_char(vg.data_hora_chegada, 'DD/MM/YYYY') data_chegada, ");
 		sql.append("        to_char(vg.data_hora_chegada, 'HH24:MI:SS') hora_chegada, ");
@@ -237,12 +237,10 @@ public class ViagemDAO extends BaseDB {
 				lista.add(viagem);
 			}
 			return lista;
-		}
-		catch (SQLException e) {
+		}catch (SQLException e) {
 			logger.fatal("Erro ocorrido no metodo listaViagem em :: ViagemDAO");
 			throw new DAOException(e);
-		}
-		finally{
+		}finally{
 			release();
 		}
 	}
