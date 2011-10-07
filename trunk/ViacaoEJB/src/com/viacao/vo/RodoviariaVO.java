@@ -46,5 +46,17 @@ public class RodoviariaVO {
 	 */
 	public void setEnderecoVO(EnderecoVO enderecoVO) {
 		this.enderecoVO = enderecoVO;
-	}	
+	}
+	/**
+	 * @return the nomRodoviariaConcatOrigem
+	 */
+	public String getNomRodoviariaConcatOrigem() {
+		return this.nomRodoviaria + " - " + this.enderecoVO.getCidade();
+	}
+	/**
+	 * @return the nomRodoviariaConcatDestino
+	 */
+	public String getNomRodoviariaConcatDestino() {
+		return this.nomRodoviaria + " - " + this.enderecoVO.getCidade();
+	}
 }
