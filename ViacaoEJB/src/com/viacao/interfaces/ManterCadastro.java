@@ -67,4 +67,7 @@ public interface ManterCadastro extends EJBObject {
 	public void alterarJuridica(JuridicaVO juridicaVO) throws RemoteException;
 	public JuridicaVO getClienteJuridica (JuridicaVO juridicaVO) throws RemoteException;
 	public List<JuridicaVO> getListaClienteJuridica (JuridicaVO juridicaVO) throws RemoteException;
+	
+	public List<ViagemVO> getListaViagensCompraIda(ViagemVO viagemVO) throws RemoteException;
+	public List<ViagemVO> getListaViagensCompraVolta(ViagemVO viagemVO) throws RemoteException;
 }

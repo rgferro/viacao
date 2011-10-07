@@ -109,5 +109,5 @@ public class ItinerarioVo {
 	
 	public String getOrigemDestino(){
 		return this.rodoviariaOrigemVO.getNomRodoviaria() + " - " + this.rodoviariaDestinoVO.getNomRodoviaria();
-	}	
+	}
 }

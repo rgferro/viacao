@@ -14,6 +14,7 @@ import com.acol.exception.business.ChildRecordFoundException;
 import com.acol.exception.business.UniqueConstraintViolatedException;
 import com.acol.util.StringUtil;
 import com.viacao.dao.ClienteDAO;
+import com.viacao.dao.CompraDAO;
 import com.viacao.dao.EnderecoDAO;
 import com.viacao.dao.FisicaDAO;
 import com.viacao.dao.ItinerarioDAO;
@@ -345,6 +346,7 @@ public class ManterCadastroBean implements SessionBean {
 		}
 	}
 //---------------------------------------Endereco----------------------------------------------------------------------	
+	
 	public void insert(EnderecoVO enderecoVO){
 		try {
 			EnderecoDAO dao = new EnderecoDAO();
@@ -384,6 +386,7 @@ public class ManterCadastroBean implements SessionBean {
 
 
 //---------------------------------VIAGEM-----------------------------------------
+	
 	/**
 	 * Insere uma nova viagem no banco.
 	 * @param ViagemVO.
@@ -678,6 +681,29 @@ public class ManterCadastroBean implements SessionBean {
 			return juridicaDAO.getListaClienteJuridica(juridicaVO);
 		} catch (Exception e) {
 			logger.fatal("Erro em getListaClienteJuridica :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+
+
+//-------------------------- COMPRA -------------------------------------------------------
+
+	public List getListaViagensCompraIda(ViagemVO viagemVO){
+		try {
+			CompraDAO compraDAO = new CompraDAO();
+			return compraDAO.getListaViagensCompraIda(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaViagens :: ManterCadastroBean",e);
+			throw new EJBException(e);
+		}
+	}
+	
+	public List getListaViagensCompraVolta(ViagemVO viagemVO){
+		try {
+			CompraDAO compraDAO = new CompraDAO();
+			return compraDAO.getListaViagensCompraVolta(viagemVO);
+		} catch (Exception e) {
+			logger.fatal("Erro em getListaViagens :: ManterCadastroBean",e);
 			throw new EJBException(e);
 		}
 	}
