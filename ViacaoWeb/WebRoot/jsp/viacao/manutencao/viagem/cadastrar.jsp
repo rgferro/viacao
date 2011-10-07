@@ -56,12 +56,12 @@ $(function() {
 						<td class="texto" width="05%" align="left">Hora Saída
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinuto" maxlength="4" size="5" styleClass="inputobrigatorio" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaSaida.horaMinuto" maxlength="4" size="5" styleClass="inputobrigatorio" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/> *Somente Numero
 						</td>
 						<td class="texto" width="05%" align="left">Hora Chegada
 						</td>
 						<td width="37%">
-							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinuto" maxlength="4" size="5" styleClass="inputobrigatorio" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
+							<html:text name="manterViagemForm" property="viagemVO.horaChegada.horaMinuto" maxlength="4" size="5" styleClass="inputobrigatorio" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>  *Somente Numero
 						</td>
 					</tr>
 				</table>

@@ -62,14 +62,14 @@ function limpar(obj,acao){
 					<td width="32%">
 						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.seqRodoviaria" styleClass="inputobrigatorio" onchange="limpar(this,'origem');">
 							<html:option value="-1">SELECIONE</html:option>
-							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaOrigem" label="nomRodoviaria" value="seqRodoviaria" />							
+							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaOrigem" label="nomRodoviariaConcatOrigem" value="seqRodoviaria" />							
 						</html:select>						
 					</td>
 					<td class="texto" align="center" width="18%">Destino:</td>
 					<td width="32%">
 						<html:select name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.seqRodoviaria" styleClass="inputobrigatorio" onchange="limpar(this,'destino');">
 							<html:option value="-1">SELECIONE</html:option>
-							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaDestino" label="nomRodoviaria" value="seqRodoviaria" />							
+							<html:optionsCollection name="manterItinerarioForm" property="listaRodoviariaDestino" label="nomRodoviariaConcatDestino" value="seqRodoviaria" />							
 						</html:select>
 					</td>
 				</tr>

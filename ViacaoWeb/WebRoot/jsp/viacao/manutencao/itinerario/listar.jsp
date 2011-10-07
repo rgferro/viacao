@@ -41,14 +41,24 @@ function selecionar(acao, seq){
 				</tr>
 				<tr class="fundoclaro">
 					<td class="texto" width="12%" height="20" align="center">Origem</td>
-					<td width="38%"><html:text styleClass="input" name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/></td>
+					<td width="38%">
+						<html:text styleClass="input" name="manterItinerarioForm" property="itinerarioVo.rodoviariaOrigemVO.nomRodoviaria"/>
+					</td>
 					<td class="texto" width="12%" height="20" align="center">Destino</td>
-					<td width="38%"><html:text styleClass="input" name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.nomRodoviaria"/></td>
+					<td width="38%">
+						<html:text styleClass="input" name="manterItinerarioForm" property="itinerarioVo.rodoviariaDestinoVO.nomRodoviaria"/>
+					</td>
 				</tr>
 				<tr class="fundoclaro">
-					<td class="texto" width="18%" height="20" align="center">Tempo (hh:mm)</td>
-					<td width="32%"><html:text styleClass="input" size="5" maxlength="4" name="manterItinerarioForm" property="itinerarioVo.tempoViagem" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/></td>
-					<td class="texto" width="18%" height="20" align="center">Valor (em R$)</td>
+					<td class="texto" width="18%" height="20" align="center">
+						Tempo (hh:mm)
+					</td>
+					<td width="32%">
+						<html:text styleClass="input" size="5" maxlength="4" name="manterItinerarioForm" property="itinerarioVo.tempoViagem" onkeypress="return somenteNumero(this, event,false,false,false);" onchange="formataHoraMin(this);"/>
+					</td>
+					<td class="texto" width="18%" height="20" align="center">
+						Valor (em R$)
+					</td>
 					<td width="32%">
 						<c:if test="${manterItinerarioForm.itinerarioVo.valorPassagem == 0}">
 							<html:text styleClass="input" name="manterItinerarioForm" property="itinerarioVo.valorPassagem" value=""/>
@@ -104,15 +114,21 @@ function selecionar(acao, seq){
 								<img title="Pesquisar!" src="images/zoomoff.png" border="0" height="20" width="20" border="0" onmouseover="mudaImagemOver(this,'pesquisar');" onmouseout="mudaImagemOut(this, 'pesquisar')"> 
 							</a>
 						</td>
-						<td align="left"><bean:write name="itinerario" property="rodoviariaOrigemVO.nomRodoviaria"/></td>
-						<td align="left"><bean:write name="itinerario" property="rodoviariaDestinoVO.nomRodoviaria"/></td>
-						<td align="center"><bean:write name="itinerario" property="tempoViagem"/></td>
-						<td align="right">
-						<c:set var="total" value="0"/>
-							<logic:iterate id="it" name="itinerario" property="listaTarifas">
-								<c:set var="total" value="${total + it.valor}"/>
-							</logic:iterate>
-						<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${total+itinerario.valorPassagem}"/>
+						<td align="center">
+							<bean:write name="itinerario" property="rodoviariaOrigemVO.nomRodoviaria"/>
+						</td>
+						<td align="center">
+							<bean:write name="itinerario" property="rodoviariaDestinoVO.nomRodoviaria"/>
+						</td>
+						<td align="center">
+							<bean:write name="itinerario" property="tempoViagem"/>
+						</td>
+						<td align="center">
+							<c:set var="total" value="0"/>
+								<logic:iterate id="it" name="itinerario" property="listaTarifas">
+									<c:set var="total" value="${total + it.valor}"/>
+								</logic:iterate>
+							<fmt:formatNumber minFractionDigits="2" maxFractionDigits="2" value="${total+itinerario.valorPassagem}"/>
 						</td>
 					</tr>
 				</logic:iterate>

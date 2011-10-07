@@ -1,4 +1,13 @@
-<link href="css/portal.css" rel="stylesheet" type="text/css">
+<%@ include file="/jsp/common/taglibs.jsp" %>
+
+<script type="text/javascript">
+function ir(parametro){
+	var frm = document.forms[0];
+	frm.task.value = '';
+	frm.submit();
+}
+
+</script>
 <form action="/exemplo">
 <table width="600" border="0" align="center">
 	<tr>
@@ -25,7 +34,7 @@
 				<tr>
 					<td><input type="button" class="botao" value="Imprimir passagem"></td>
 					<td><input type="button" class="botao" value="Enviar passagem para e-mail"></td>
-					<td><input type="button" class="botao" value="Retorna para página inicial"></td>
+					<td><input type="button" class="botao" value="Retorna para página inicial" onclick=ir();></td>
 				</tr>
 			</table>
 		</td>
