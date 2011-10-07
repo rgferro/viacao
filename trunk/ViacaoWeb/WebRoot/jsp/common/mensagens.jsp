@@ -43,7 +43,7 @@
 		<!-- MENSAGENS DE AVISO -->
 		<html:messages  id="messages" message="true" property="AVISO">
 			<tr>
-				<td width="10%">
+				<td width="10%" align="center">
 					<img src='images/icon_atencao.gif' border=0 /> 
 				</td>
 				<td>

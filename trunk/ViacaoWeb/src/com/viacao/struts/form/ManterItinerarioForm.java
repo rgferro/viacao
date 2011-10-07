@@ -15,6 +15,7 @@ import org.apache.struts.action.ActionMessages;
 import com.acol.util.DoubleUtils;
 import com.acol.util.IntegerUtils;
 import com.viacao.utils.Constantes;
+import com.viacao.vo.EnderecoVO;
 import com.viacao.vo.ItinerarioVo;
 import com.viacao.vo.RodoviariaVO;
 import com.viacao.vo.TarifaVO;
@@ -57,6 +58,8 @@ public class ManterItinerarioForm extends ActionForm{
 		this.isconfirme = false;
 		this.getItinerarioVo().setRodoviariaOrigemVO(new RodoviariaVO());
 		this.getItinerarioVo().setRodoviariaDestinoVO(new RodoviariaVO());
+		this.getItinerarioVo().getRodoviariaOrigemVO().setEnderecoVO(new EnderecoVO());
+		this.getItinerarioVo().getRodoviariaDestinoVO().setEnderecoVO(new EnderecoVO());
 		this.getItinerarioVo().setListaTarifas(new ArrayList<TarifaVO>());
 		
 	}
@@ -278,5 +281,22 @@ public class ManterItinerarioForm extends ActionForm{
 
 	public void setSeqItinerario(Integer seqItinerario) {
 		this.seqItinerario = seqItinerario;
-	}	
+	}
+	
+	/**
+	 * @return the nomRodoviariaConcatOrigem
+	 */
+	public String getNomRodoviariaConcatOrigem() {
+		System.out.println(this.itinerarioVo.getRodoviariaOrigemVO().getNomRodoviaria());
+		System.out.println(this.itinerarioVo.getRodoviariaOrigemVO().getEnderecoVO().getCidade());
+		return this.itinerarioVo.getRodoviariaOrigemVO().getNomRodoviaria() + " - " + this.itinerarioVo.getRodoviariaOrigemVO().getEnderecoVO().getCidade();
+	}
+
+	/**
+	 * @return the nomRodoviariaConcatDestino
+	 */
+	public String getNomRodoviariaConcatDestino() {
+		return this.itinerarioVo.getRodoviariaDestinoVO().getNomRodoviaria() + " - " + this.itinerarioVo.getRodoviariaDestinoVO().getEnderecoVO().getCidade();
+	}
+
 }
